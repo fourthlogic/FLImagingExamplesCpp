@@ -679,6 +679,21 @@
 	  - Example of connecting and operating Multicam.
       - Multicam 연결 및 구동하는 예제.
 
+  - [Light Controller]
+
+    - DeviceLightControllerProtecPMSC_CH03
+      - Example of connecting and operating Protec PMSC CH03.
+      - Protec PMSC CH03 연결 및 구동하는 예제
+    - DeviceLightControllerProtecPSC_CH03
+      - Example of connecting and operating Protec PSC CH03.
+      - Protec PSC CH03 연결 및 구동하는 예제
+    - DeviceLightControllerProtecPSLC_CH06
+      - Example of connecting and operating Protec PSLC CH06.
+      - Protec PSLC CH06 연결 및 구동하는 예제
+    - DeviceLightControllerWordopPD5_6024
+      - Example of connecting and operating Wordop PD5 6024.
+      - Wordop PD5 6024 연결 및 구동하는 예제
+
   - [Motion]
 
     - DeviceMotionAxl
