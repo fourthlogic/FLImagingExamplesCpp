@@ -129,9 +129,9 @@ int main()
 		stereoDisparity.SetDestinationTextureImage(&fliTxtImage);
 		// Destination 3D Object 설정 // Set the Destination 3D Object 
 		stereoDisparity.SetDestinationObject(fl3DOHM);
-		// 최소 허용 Disparity 값 설정 // Set the minimum allowed stereoDisparity value
+		// 최소 허용 Disparity 값 설정 // Set the minimum allowed disparity value
 		stereoDisparity.SetMinimumDisparity(-20);
-		// Disparity 범위 설정 // Set the range of stereoDisparity
+		// Disparity 범위 설정 // Set the range of disparity
 		stereoDisparity.SetMaximumDisparity(0);
 		// Matched Block 크기 설정 // Set the matched block size
 		stereoDisparity.SetMatchBlockSize(3);
