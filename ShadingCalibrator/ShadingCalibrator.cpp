@@ -110,27 +110,27 @@ int main()
 		}
 
 		// ShadingCalibrator 객체 생성 // Create ShadingCalibrator object
-		CShadingCalibrator ShadingCalibrator;
+		CShadingCalibrator shadingCalibrator;
 
 		// Learn 이미지 설정 // Set the learn image
-		ShadingCalibrator.SetLearnImageForShadingCalibration(fliLearnImage);
+		shadingCalibrator.SetLearnImageForShadingCalibration(fliLearnImage);
 
 		// 앞서 설정된 이미지로 Calibration을 수행 // Perform Calibration with the previously set image
-		if((res = ShadingCalibrator.Calibrate()).IsFail())
+		if((res = shadingCalibrator.Calibrate()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to calibrate.\n");
 			break;
 		}
 
 		// Source 이미지 설정 // Set the source image
-		ShadingCalibrator.SetSourceImage(fliSrcImage);
+		shadingCalibrator.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		ShadingCalibrator.SetDestinationImage(fliDstImage);
+		shadingCalibrator.SetDestinationImage(fliDstImage);
 		// Batch Processing 설정 // Set Batch Processing
-		ShadingCalibrator.EnableBatchProcessing(true);
+		shadingCalibrator.EnableBatchProcessing(true);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = ShadingCalibrator.Execute()).IsFail())
+		if((res = shadingCalibrator.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute ShadingCalibrator.");
 			break;

@@ -78,18 +78,18 @@ int main()
 		}
 
 		// DiscreteWaveletTransform 객체 생성 // Create DiscreteWaveletTransform object
-		CDiscreteWaveletTransform DiscreteWaveletTransform;
+		CDiscreteWaveletTransform discreteWaveletTransform;
 		// Source 이미지 설정 // Set source image
-		DiscreteWaveletTransform.SetSourceImage(arrFliImage[EType_Source]);
+		discreteWaveletTransform.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		DiscreteWaveletTransform.SetDestinationImage(arrFliImage[EType_Destination]);
+		discreteWaveletTransform.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Basis Function 설정 // Set Basis Function
-		DiscreteWaveletTransform.SetBasisFunction(CDiscreteWaveletTransform::EBasisFunction_Haar);
+		discreteWaveletTransform.SetBasisFunction(CDiscreteWaveletTransform::EBasisFunction_Haar);
 		// 분해 단계 설정 // Set Decomposition Level
-		DiscreteWaveletTransform.SetDecompositionLevel(1);
+		discreteWaveletTransform.SetDecompositionLevel(1);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = DiscreteWaveletTransform.Execute()).IsFail())
+		if((res = discreteWaveletTransform.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Discrete Wavelet Transform.");
 			break;

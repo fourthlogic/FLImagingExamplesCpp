@@ -86,16 +86,16 @@ int main()
 		}
 
 		// Auto Correlation FD 객체 생성 // Create Auto Correlation object
-		CAutoCorrelationFD AutoCorrelationFD;
+		CAutoCorrelationFD autoCorrelationFD;
 		// Source 이미지 설정 // Set source image
-		AutoCorrelationFD.SetSourceImage(arrFliImage[EType_Source]);
+		autoCorrelationFD.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		AutoCorrelationFD.SetDestinationImage(arrFliImage[EType_Destination]);
+		autoCorrelationFD.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 출력 방식 설정 // Set Output Method
-		AutoCorrelationFD.EnableNormalizedAutoCorrelation(true);
+		autoCorrelationFD.EnableNormalizedAutoCorrelation(true);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = AutoCorrelationFD.Execute()).IsFail())
+		if((res = autoCorrelationFD.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Auto Correlation.");
 			break;

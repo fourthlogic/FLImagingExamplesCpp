@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Cross Correlation FD 객체 생성 // Create Cross Correlation object
-		CCrossCorrelationFD CrossCorrelationFD;
+		CCrossCorrelationFD crossCorrelationFD;
 		// Source 이미지 설정 // Set source image
-		CrossCorrelationFD.SetSourceImage(arrFliImage[EType_Source]);
+		crossCorrelationFD.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		CrossCorrelationFD.SetOperandImage(arrFliImage[EType_Operand]);
+		crossCorrelationFD.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		CrossCorrelationFD.SetDestinationImage(arrFliImage[EType_Destination]);
+		crossCorrelationFD.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 출력 방식 설정 // Set Output Method
-		CrossCorrelationFD.EnableNormalizedCrossCorrelation(true);
+		crossCorrelationFD.EnableNormalizedCrossCorrelation(true);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = CrossCorrelationFD.Execute()).IsFail())
+		if((res = crossCorrelationFD.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Cross Correlation.");
 			break;

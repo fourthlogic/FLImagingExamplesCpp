@@ -85,16 +85,16 @@ int main()
 		}
 
 		// LowLuminanceCorrectionType1 객체 생성 // Create LowLuminanceCorrectionType1 object
-		CLowLuminanceCorrectionType1 LowLuminanceCorrectionType1;
+		CLowLuminanceCorrectionType1 lowLuminanceCorrectionType1;
 		// Source 이미지 설정 // Set source image
-		LowLuminanceCorrectionType1.SetSourceImage(arrFliImage[EType_Source]);
+		lowLuminanceCorrectionType1.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		LowLuminanceCorrectionType1.SetDestinationImage(arrFliImage[EType_Destination]);
+		lowLuminanceCorrectionType1.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Noise Reduction 설정
-		LowLuminanceCorrectionType1.EnableNoiseReduction(true);
+		lowLuminanceCorrectionType1.EnableNoiseReduction(true);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = LowLuminanceCorrectionType1.Execute()).IsFail())
+		if((res = lowLuminanceCorrectionType1.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Low Luminance Correction Type 1.");
 			break;

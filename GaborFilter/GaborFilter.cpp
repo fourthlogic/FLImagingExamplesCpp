@@ -100,16 +100,16 @@ int main()
 		}
 
 		// Gabor Filter 객체 생성 // Create Gabor Filter
-		CGaborFilter gaborfilter;
+		CGaborFilter gaborFilter;
 		// Source 이미지 설정 // Set source image
-		gaborfilter.SetSourceImage(arrFliImage[EType_Source]);
+		gaborFilter.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		gaborfilter.SetDestinationImage(arrFliImage[EType_Destination]);
+		gaborFilter.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 커널 이미지 설정 // Set kernel image 
-		gaborfilter.GetKernelImage(arrFliImage[EType_Kernel]);
+		gaborFilter.GetKernelImage(arrFliImage[EType_Kernel]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = gaborfilter.Execute()).IsFail())
+		if((res = gaborFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute gabor filter.");
 			break;

@@ -85,16 +85,16 @@ int main()
 		}
 
 		// Demoire 객체 생성 // Create Demoire object
-		CDemoire Demoire;
+		CDemoire demoire;
 		// Source 이미지 설정 // Set source image
-		Demoire.SetSourceImage(arrFliImage[EType_Source]);
+		demoire.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		Demoire.SetDestinationImage(arrFliImage[EType_Destination]);
+		demoire.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Demoire.Execute()).IsFail())
+		if((res = demoire.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation add.");
+			ErrorPrint(res, "Failed to execute Demoire.");
 			break;
 		}
 

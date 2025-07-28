@@ -104,67 +104,67 @@ int main()
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
  		// Convolution Gaussian 객체 생성 // Create Convolution Gaussian object
- 		CBinomialFilter BinomialFilter;
+ 		CBinomialFilter binomialFilter;
  		// Source 이미지 설정 // Set the source image
- 		BinomialFilter.SetSourceImage(arrFliImage[EType_Source]); 
+		binomialFilter.SetSourceImage(arrFliImage[EType_Source]);
  		// Source ROI 설정 // Set the source ROI
- 		BinomialFilter.SetSourceROI(flrROI);
+		binomialFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		BinomialFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+		binomialFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		BinomialFilter.SetDestinationROI(flrROI);
+		binomialFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set the kernel size
-		BinomialFilter.SetKernel(3);
+		binomialFilter.SetKernel(3);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if((res = BinomialFilter.Execute()).IsFail())
+ 		if((res = binomialFilter.Execute()).IsFail())
  		{
  			ErrorPrint(res, L"Failed to execute algorithm.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		binomialFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		BinomialFilter.SetDestinationROI(flrROI);
+		binomialFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set the kernel size
-		BinomialFilter.SetKernel(5);
+		binomialFilter.SetKernel(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = BinomialFilter.Execute()).IsFail())
+		if((res = binomialFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination3 이미지 설정 // Set the destination3 image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
+		binomialFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Destination3 ROI 설정
-		BinomialFilter.SetDestinationROI(flrROI);
+		binomialFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set the kernel size
-		BinomialFilter.SetKernel(7);
+		binomialFilter.SetKernel(7);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = BinomialFilter.Execute()).IsFail())
+		if((res = binomialFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination4 이미지 설정 // Set the destination4 image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
+		binomialFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Destination4 ROI 설정
-		BinomialFilter.SetDestinationROI(flrROI);
+		binomialFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set the kernel size
-		BinomialFilter.SetKernel(15);
+		binomialFilter.SetKernel(15);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = BinomialFilter.Execute()).IsFail())
+		if((res = binomialFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

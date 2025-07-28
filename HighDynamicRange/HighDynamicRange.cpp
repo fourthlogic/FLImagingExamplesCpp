@@ -68,17 +68,17 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// HighDynamicRange 객체 생성 // Create HighDynamicRange object
-		CHighDynamicRange HighDynamicRange;
+		CHighDynamicRange highDynamicRange;
 
 		// Source 이미지 설정 // Set the source image
-		HighDynamicRange.SetSourceImage(fliSrcImage);
+		highDynamicRange.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		HighDynamicRange.SetDestinationImage(fliDstImage);
+		highDynamicRange.SetDestinationImage(fliDstImage);
 		// HighDynamicRange Rate 설정 // Set the rate value
-		HighDynamicRange.SetRateValue(0.8);
+		highDynamicRange.SetRateValue(0.8);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = HighDynamicRange.Execute()).IsFail())
+		if((res = highDynamicRange.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute HighDynamicRange.");
 			break;

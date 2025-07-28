@@ -81,14 +81,14 @@ int main()
 		}
 
 		// SaliencyMap 객체 생성 // Create SaliencyMap object
-		CSaliencyMap SaliencyMap;
+		CSaliencyMap saliencyMap;
 		// Source 이미지 설정 // Set source image
-		SaliencyMap.SetSourceImage(arrFliImage[EType_Source]);
+		saliencyMap.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		SaliencyMap.SetDestinationImage(arrFliImage[EType_Destination]);
+		saliencyMap.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = SaliencyMap.Execute()).IsFail())
+		if((res = saliencyMap.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute SaliencyMap.");
 			break;

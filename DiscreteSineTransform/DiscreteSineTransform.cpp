@@ -85,14 +85,14 @@ int main()
 		}
 
 		// DiscreteSineTransform 객체 생성 // Create DiscreteSineTransform object
-		CDiscreteSineTransform DiscreteSineTransform;
+		CDiscreteSineTransform discreteSineTransform;
 		// Source 이미지 설정 // Set source image
-		DiscreteSineTransform.SetSourceImage(arrFliImage[EType_Source]);
+		discreteSineTransform.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		DiscreteSineTransform.SetDestinationImage(arrFliImage[EType_Destination]);
+		discreteSineTransform.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = DiscreteSineTransform.Execute()).IsFail())
+		if((res = discreteSineTransform.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Discrete Sine Transform.");
 			break;
