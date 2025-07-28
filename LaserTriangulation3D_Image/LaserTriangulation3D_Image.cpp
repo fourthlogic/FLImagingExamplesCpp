@@ -75,29 +75,29 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// Laser Triangulation 객체 생성 // Create Laser Triangulation object
-		CLaserTriangulation3D LaserTriangulation;
+		CLaserTriangulation3D laserTriangulation;
 
 		CFL3DObjectHeightMap fl3DOHM;
 
 		// Source 이미지 설정 // Set the source image
-		LaserTriangulation.SetSourceImage(fliSrcImage);
+		laserTriangulation.SetSourceImage(fliSrcImage);
 		// Destination Height Map 이미지 설정 // Set the destination height map image
-		LaserTriangulation.SetDestinationHeightMapImage(fliDstImage);
+		laserTriangulation.SetDestinationHeightMapImage(fliDstImage);
 		// Destination 3D Object 설정 // Set the Destination 3D Object 
-		LaserTriangulation.SetDestinationObject(fl3DOHM);
+		laserTriangulation.SetDestinationObject(fl3DOHM);
 		// Source 이미지 타입 설정 // Set the type of the source image
-		LaserTriangulation.SetSourceType(CLaserTriangulation3D::ESourceType_Profile);
+		laserTriangulation.SetSourceType(CLaserTriangulation3D::ESourceType_Profile);
 		// Pixel Accuracy 설정 // Set the pixel accuracy
-		LaserTriangulation.SetPixelAccuracy(0.33);
+		laserTriangulation.SetPixelAccuracy(0.33);
 		// Scan Accuracy 설정 // Set the scan accuracy
-		LaserTriangulation.SetScanAccuracy(0.2);
+		laserTriangulation.SetScanAccuracy(0.2);
 		// Working Distance 설정 // Set the working distance
-		LaserTriangulation.SetWorkingDistance(214.7);
+		laserTriangulation.SetWorkingDistance(214.7);
 		// 레이저 각도 설정 // Set the angle of laser
-		LaserTriangulation.SetAngleOfLaser(60);
+		laserTriangulation.SetAngleOfLaser(60);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = LaserTriangulation.Execute()).IsFail())
+		if((res = laserTriangulation.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute Laser Triangulation.");
 			break;
@@ -140,7 +140,7 @@ int main()
 		}
 
 		// 3D 이미지 뷰에 Height Map (Dst Image) 이미지를 디스플레이
-		if((res = view3DDst.PushObject(*LaserTriangulation.GetDestinationObject())).IsFail())
+		if((res = view3DDst.PushObject(*laserTriangulation.GetDestinationObject())).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;

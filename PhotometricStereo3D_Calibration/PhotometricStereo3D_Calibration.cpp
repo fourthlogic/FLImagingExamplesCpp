@@ -115,34 +115,34 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// PhotometricStereo 객체 생성 // Create PhotometricStereo object
-		CPhotometricStereo3D photometric;
+		CPhotometricStereo3D photometricStereo;
 
 		CFL3DObjectHeightMap fl3DOHM;
 
 		// Source 이미지 설정 // Set the source image
-		photometric.SetSourceImage(fliSrcImage);
+		photometricStereo.SetSourceImage(fliSrcImage);
 		// Calibration 이미지 설정 // Set the calibration image
-		photometric.SetCalibrationImage(fliCalImage);
+		photometricStereo.SetCalibrationImage(fliCalImage);
 		// Destination Height Map 이미지 설정 // Set the destination height map image
-		photometric.SetDestinationHeightMapImage(fliDstImage);
+		photometricStereo.SetDestinationHeightMapImage(fliDstImage);
 		// Destination Texture 이미지 설정 // Set the destination texture image
-		photometric.SetDestinationTextureImage(fliTxtImage);
+		photometricStereo.SetDestinationTextureImage(fliTxtImage);
 		// Destination 3D Object 설정 // Set the destination 3D object 
-		photometric.SetDestinationObject(fl3DOHM);
+		photometricStereo.SetDestinationObject(fl3DOHM);
 		// Calibration 데이터 설정 // Set Calibration Settings
-		photometric.SetCalibrationCircleROI(CFLCircle<double>(386.439657, 346.491239, 259.998140, 0.000000, 0.000000, 360.000000, EArcClosingMethod_EachOther));
+		photometricStereo.SetCalibrationCircleROI(CFLCircle<double>(386.439657, 346.491239, 259.998140, 0.000000, 0.000000, 360.000000, EArcClosingMethod_EachOther));
 		// 동작 방식 설정 // Set operation mode
-		photometric.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
+		photometricStereo.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
-		photometric.SetValidPixelThreshold(0.125);
+		photometricStereo.SetValidPixelThreshold(0.125);
 
 		CMatrix<double> cmatdTemp(3, 3);
 
 		// Angle Degrees 동작 방식으로 설정 // Set operation method as angle degrees
-		photometric.SetLightAngleDegrees(cmatdTemp);
+		photometricStereo.SetLightAngleDegrees(cmatdTemp);
 
 		// 알고리즘 Calibration 실행 // Execute calibration of the algorithm
-		if((res = photometric.Calibrate()).IsFail())
+		if((res = photometricStereo.Calibrate()).IsFail())
 		{
 			ErrorPrint(res, "Failed to calibrate algorithm.\n");
 			break;
@@ -152,13 +152,13 @@ int main()
 		CMultiVar<double> cmvdSlant;
 		CMultiVar<double> cmvdTilt;
 
-		photometric.GetLightAngleDegrees(cmvdSlant, cmvdTilt);
+		photometricStereo.GetLightAngleDegrees(cmvdSlant, cmvdTilt);
 
 		// 위치 데이터 동작 방식으로 설정 // Set operation method as positions
-		photometric.SetLightPositions(cmatdTemp);
+		photometricStereo.SetLightPositions(cmatdTemp);
 
 		// 알고리즘 Calibration 실행 // Execute calibration of the algorithm
-		if((res = photometric.Calibrate()).IsFail())
+		if((res = photometricStereo.Calibrate()).IsFail())
 		{
 			ErrorPrint(res, "Failed to calibrate algorithm.\n");
 			break;
@@ -167,7 +167,7 @@ int main()
 		// Calibrate 된 위치 데이터 저장 // Save calibrated position data
 		CMatrix<double> cmatdPosition;
 
-		photometric.GetLightPositions(cmatdPosition);
+		photometricStereo.GetLightPositions(cmatdPosition);
 
 		// Calibrate를 실행한 결과를 Console창에 출력합니다. // Output the calibration result to the console window.
 		int32_t i32CalibPageNum = fliCalImage.GetPageCount();
@@ -187,7 +187,7 @@ int main()
 			printf("Image %d ->\tX: %0.7lf\tY: %0.7lf \tZ: %0.7lf\n", i, *cmatdPosition.GetValue(i, 0), *cmatdPosition.GetValue(i, 1), *cmatdPosition.GetValue(i, 2));
 
 		// 알고리즘 실행 // Execute algorithm
-		if((res = photometric.Execute()).IsFail())
+		if((res = photometricStereo.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to calibrate algorithm.\n");
 			break;
@@ -264,7 +264,7 @@ int main()
 		}
 
 		// Height Map에 Texture Image 설정
-		CFL3DObjectHeightMap* pFl3DOHM = dynamic_cast<CFL3DObjectHeightMap*>(photometric.GetDestinationObject());
+		CFL3DObjectHeightMap* pFl3DOHM = dynamic_cast<CFL3DObjectHeightMap*>(photometricStereo.GetDestinationObject());
 		pFl3DOHM->SetTextureImage(fliTxtImage);
 		pFl3DOHM->ActivateVertexColorTexture(false);
 

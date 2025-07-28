@@ -83,22 +83,22 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// PhotometricStereo 객체 생성 // Create PhotometricStereo object
-		CPhotometricStereo3D photometric;
+		CPhotometricStereo3D photometricStereo;
 
 		CFL3DObjectHeightMap fl3DOHM;
 
 		// Source 이미지 설정 // Set the source image
-		photometric.SetSourceImage(fliSrcImage);
+		photometricStereo.SetSourceImage(fliSrcImage);
 		// Destination Height Map 이미지 설정 // Set the destination height map image
-		photometric.SetDestinationHeightMapImage(fliDstImage);
+		photometricStereo.SetDestinationHeightMapImage(fliDstImage);
 		// Destination Texture 이미지 설정 // Set the destination texture image
-		photometric.SetDestinationTextureImage(&fliTxtImage);
+		photometricStereo.SetDestinationTextureImage(&fliTxtImage);
 		// Destination 3D Object 설정 // Set the Destination 3D Object 
-		photometric.SetDestinationObject(fl3DOHM);
+		photometricStereo.SetDestinationObject(fl3DOHM);
 		// 동작 방식 설정 // Set Operation Mode
-		photometric.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
+		photometricStereo.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
-		photometric.SetValidPixelThreshold(0.125);
+		photometricStereo.SetValidPixelThreshold(0.125);
 		
 		// 각 이미지의 광원 Slant 값 입력
 		CMultiVar<double> mvdSlant;
@@ -148,10 +148,10 @@ int main()
 		mvdTilt.PushBack(13.056294);
 		mvdTilt.PushBack(-5.976723);
 
-		photometric.SetLightAngleDegrees(mvdSlant, mvdTilt);
+		photometricStereo.SetLightAngleDegrees(mvdSlant, mvdTilt);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = photometric.Execute()).IsFail())
+		if((res = photometricStereo.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.\n");
 			break;
@@ -193,7 +193,7 @@ int main()
 		}
 
 		// Height Map에 Texture Image 설정
-		CFL3DObjectHeightMap* pFl3DOHM = dynamic_cast<CFL3DObjectHeightMap*>(photometric.GetDestinationObject());
+		CFL3DObjectHeightMap* pFl3DOHM = dynamic_cast<CFL3DObjectHeightMap*>(photometricStereo.GetDestinationObject());
 		pFl3DOHM->SetTextureImage(fliTxtImage);
 		pFl3DOHM->ActivateVertexColorTexture(false);
 
