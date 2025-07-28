@@ -115,7 +115,7 @@ int main()
 			break;
 		}
 
-		// Operation LogicalOr 객체 생성 // Create Operation LogicalOr object
+		// Operation Logical Or 객체 생성 // Create Operation Logical Or object
 		COperationLogicalOr logicalOr;
 		// Source 이미지 설정 // Set the source image
 		logicalOr.SetSourceImage(arrFliImage[EType_Source]);
@@ -129,7 +129,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = logicalOr.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation logicalOr.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 
@@ -143,7 +143,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = logicalOr.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation logicalOr.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 

@@ -70,32 +70,32 @@ int main()
 			break;
 		}
 
-		// FLColorBoostingType1 객체 생성 // Create FLColorBoostingType1 object
-		CFLColorBoostingType1 FLColorBoostingtype1;
+		// FL Color Boosting Type 1 객체 생성 // Create FL Color Boosting Type 1 object
+		CFLColorBoostingType1 flColorBoostingType1;
 
 		// Source 이미지 설정 // Set source image 
-		if(IsFail(eResult = FLColorBoostingtype1.SetSourceImage(fliSourceImage)))
+		if(IsFail(eResult = flColorBoostingType1.SetSourceImage(fliSourceImage)))
 		{
 			ErrorPrint(eResult, "Failed to set Source Image.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		if(IsFail(eResult = FLColorBoostingtype1.SetDestinationImage(fliConvertedImage)))
+		if(IsFail(eResult = flColorBoostingType1.SetDestinationImage(fliConvertedImage)))
 		{
 			ErrorPrint(eResult, "Failed to set Destination Image.");
 			break;
 		}
 
 		// Factor 설정 // Set Factor.
-		if(IsFail(eResult = FLColorBoostingtype1.SetFactor(3)))
+		if(IsFail(eResult = flColorBoostingType1.SetFactor(3)))
 		{
 			ErrorPrint(eResult, "Failed to set Factor.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((eResult = FLColorBoostingtype1.Execute()).IsFail())
+		if((eResult = flColorBoostingType1.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, "Failed to process.");
 			break;

@@ -115,29 +115,29 @@ int main()
 			break;
 		}
 
-		// CDeviationFilter 객체 생성 // Create CDeviationFilter object
-		CDeviationFilter DeviationFilter;
+		// Deviation Filter 객체 생성 // Create Deviation Filter object
+		CDeviationFilter deviationFilter;
 		// Source 이미지 설정 // Set source image
-		DeviationFilter.SetSourceImage(arrFliImage[EType_Source]);
+		deviationFilter.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image
-		DeviationFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+		deviationFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 파라미터 값 설정 // Set parameter value
-		DeviationFilter.SetKernel(5);
+		deviationFilter.SetKernel(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = DeviationFilter.Execute()).IsFail())
+		if((result = deviationFilter.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute Sigma Filter.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		DeviationFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		deviationFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 파라미터 값 설정 // Set parameter value
-		DeviationFilter.SetKernel(25);
+		deviationFilter.SetKernel(25);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = DeviationFilter.Execute()).IsFail())
+		if((result = deviationFilter.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute Sigma Filter.");
 			break;

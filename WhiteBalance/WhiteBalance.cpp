@@ -70,24 +70,24 @@ int main()
 			break;
 		}
 
-		// WhiteBalance 객체 생성 // Create WhiteBalance object
-		CWhiteBalance WhiteBalance;
+		// White Balance 객체 생성 // Create White Balance object
+		CWhiteBalance whiteBalance;
 
 		// Source 이미지 설정 // Set the source image
-		WhiteBalance.SetSourceImage(fliSrcImage);
+		whiteBalance.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		WhiteBalance.SetDestinationImage(fliDstImage);
+		whiteBalance.SetDestinationImage(fliDstImage);
 
 		// 보정 방법 설정 // Set correction method
-		WhiteBalance.SetCorrectionMethod(CWhiteBalance::ECorrectionMethod_ColorTemperature);
+		whiteBalance.SetCorrectionMethod(CWhiteBalance::ECorrectionMethod_ColorTemperature);
 
 		// 색온도 설정 // Set color temperature
-		WhiteBalance.SetColorTemperature(5700);
+		whiteBalance.SetColorTemperature(5700);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = WhiteBalance.Execute()).IsFail())
+		if((res = whiteBalance.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute WhiteBalance.");
+			ErrorPrint(res, "Failed to execute White Balance.");
 			break;
 		}
 

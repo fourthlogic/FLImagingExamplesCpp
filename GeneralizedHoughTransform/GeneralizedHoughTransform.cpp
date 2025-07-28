@@ -42,34 +42,34 @@ int main()
 			break;
 		}
 
-		// GeneralizedHoughTransform 객체 생성 // Create GeneralizedHoughTransform  object
-		CGeneralizedHoughTransform GeneralizedHoughTransform;
+		// Generalized Hough Transform 객체 생성 // Create Generalized Hough Transform  object
+		CGeneralizedHoughTransform generalizedHoughTransform;
 
 		// Source 이미지 설정 // Set the source image
-		GeneralizedHoughTransform.SetSourceImage(fliSourceImage);
+		generalizedHoughTransform.SetSourceImage(fliSourceImage);
 
 		CFLCircle<int64_t> flfPatternROI(575, 755, 71, 0, 0, 360, EArcClosingMethod_EachOther);
-		GeneralizedHoughTransform.SetPatternROI(&flfPatternROI);
+		generalizedHoughTransform.SetPatternROI(&flfPatternROI);
 
 		// Threshold 값 설정 // Set Threshold value
-		GeneralizedHoughTransform.SetPixelThreshold(128);
+		generalizedHoughTransform.SetPixelThreshold(128);
 
 		// 신뢰도 설정 // set confidence
-		GeneralizedHoughTransform.SetConfidence(0.5);
+		generalizedHoughTransform.SetConfidence(0.5);
 
 		// 탐색할 각도 단위 설정 (degree) // Set the angle unit to search (degree)
-		GeneralizedHoughTransform.SetAngleTolerance(90);
+		generalizedHoughTransform.SetAngleTolerance(90);
 
 		// 탐색할 크기 설정 (percent) // Set the scale tolerance to search (percent)
-		GeneralizedHoughTransform.SetScaleTolerance(10);
+		generalizedHoughTransform.SetScaleTolerance(10);
 
 		// 최대 검출 수 설정 // Set the maximum number of detections
-		GeneralizedHoughTransform.SetMaxObjectCount(20);
+		generalizedHoughTransform.SetMaxObjectCount(20);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = GeneralizedHoughTransform.Execute()))
+		if(IsFail(res = generalizedHoughTransform.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute GeneralizedHoughTransform.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 
@@ -81,10 +81,10 @@ int main()
 		layerSource.Clear();
 
 		// Result 갯수 체크 // Check the number of results
-		if(GeneralizedHoughTransform.GetDetectedObjectCount() > 0)
+		if(generalizedHoughTransform.GetDetectedObjectCount() > 0)
 		{
-			Foundation::CFLFigureArray flfaDetectedObjects;
-			GeneralizedHoughTransform.GetDetectedObjects(&flfaDetectedObjects);
+			CFLFigureArray flfaDetectedObjects;
+			generalizedHoughTransform.GetDetectedObjects(&flfaDetectedObjects);
 
 			// 이미지 뷰에 검출된 객체 출력 // Output the detected object to the image view
 			if(IsFail(res = layerSource.DrawFigureImage(flfaDetectedObjects, BRIGHTCYAN, 2)))

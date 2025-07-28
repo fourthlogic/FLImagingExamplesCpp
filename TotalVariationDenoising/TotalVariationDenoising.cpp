@@ -70,46 +70,46 @@ int main()
 			break;
 		}
 
-		// TotalVariationDenoising 객체 생성 // Create TotalVariationDenoising object
-		CTotalVariationDenoising TotalVariationDenoising;
+		// Total Variation Denoising 객체 생성 // Create Total Variation Denoising object
+		CTotalVariationDenoising totalVariationDenoising;
 
 		// Source 이미지 설정 // Set source image 
-		if(IsFail(res = TotalVariationDenoising.SetSourceImage(fliSourceImage)))
+		if(IsFail(res = totalVariationDenoising.SetSourceImage(fliSourceImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		if(IsFail(res = TotalVariationDenoising.SetDestinationImage(fliConvertedImage)))
+		if(IsFail(res = totalVariationDenoising.SetDestinationImage(fliConvertedImage)))
 		{
 			ErrorPrint(res, "Failed to set Destination Image.");
 			break;
 		}
 
 		// 모델 설정 // Set the Model Tpye.
-		if(IsFail(res = TotalVariationDenoising.SetModelType(CTotalVariationDenoising::EModelType_Anisotropic)))
+		if(IsFail(res = totalVariationDenoising.SetModelType(CTotalVariationDenoising::EModelType_Anisotropic)))
 		{
 			ErrorPrint(res, "Failed to set Model Type.");
 			break;
 		}
 
 		// Lambda 설정 // Set the Lambda.
-		if(IsFail(res = TotalVariationDenoising.SetLambda(0.1)))
+		if(IsFail(res = totalVariationDenoising.SetLambda(0.1)))
 		{
 			ErrorPrint(res, "Failed to set Lambda.");
 			break;
 		}
 
 		// 연산 반복 횟수 설정 // Set the Iteration.
-		if(IsFail(res = TotalVariationDenoising.SetIteration(3)))
+		if(IsFail(res = totalVariationDenoising.SetIteration(3)))
 		{
 			ErrorPrint(res, "Failed to set Iteration.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = TotalVariationDenoising.Execute()).IsFail())
+		if((res = totalVariationDenoising.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;

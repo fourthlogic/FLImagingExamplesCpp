@@ -70,53 +70,53 @@ int main()
 			break;
 		}
 
-		// FLDenoisingType1 객체 생성 // Create FLDenoisingType1 object
-		CFLDenoisingType1 FLDenoisingType1;
+		// FL Denoising Type 1 객체 생성 // Create FL Denoising Type 1 object
+		CFLDenoisingType1 flDenoisingType1;
 
 		// Source 이미지 설정 // Set source image 
-		if(IsFail(res = FLDenoisingType1.SetSourceImage(fliSourceImage)))
+		if(IsFail(res = flDenoisingType1.SetSourceImage(fliSourceImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		if(IsFail(res = FLDenoisingType1.SetDestinationImage(fliConvertedImage)))
+		if(IsFail(res = flDenoisingType1.SetDestinationImage(fliConvertedImage)))
 		{
 			ErrorPrint(res, "Failed to set Destination Image.");
 			break;
 		}
 
 		// Kernel 크기 설정 // Set the Kernel Size.
-		if(IsFail(res = FLDenoisingType1.SetKernel(5)))
+		if(IsFail(res = flDenoisingType1.SetKernel(5)))
 		{
 			ErrorPrint(res, "Failed to set Kernel Size.");
 			break;
 		}
 
 		// 시그마 설정 // Set the Sigma.
-		if(IsFail(res = FLDenoisingType1.SetSigma(2)))
+		if(IsFail(res = flDenoisingType1.SetSigma(2)))
 		{
 			ErrorPrint(res, "Failed to set Sigma.");
 			break;
 		}
 
 		// Amplitude 설정 // Set the Amplitude.
-		if(IsFail(res = FLDenoisingType1.SetAmplitude(20)))
+		if(IsFail(res = flDenoisingType1.SetAmplitude(20)))
 		{
 			ErrorPrint(res, "Failed to set Amplitude.");
 			break;
 		}
 
 		// Operation Mode 설정 // Set the Operation Mode.
-		if(IsFail(res = FLDenoisingType1.SetOperationMode(CFLDenoisingType1::EOperationMode_Normal)))
+		if(IsFail(res = flDenoisingType1.SetOperationMode(CFLDenoisingType1::EOperationMode_Normal)))
 		{
 			ErrorPrint(res, "Failed to set Operation Mode.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = FLDenoisingType1.Execute()).IsFail())
+		if((res = flDenoisingType1.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;

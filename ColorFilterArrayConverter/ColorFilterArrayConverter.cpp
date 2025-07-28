@@ -70,27 +70,27 @@ int main()
 			break;
 		}
 
-		// ColorFilterArrayConverter 객체 생성 // Create ColorFilterArrayConverter object
-		CColorFilterArrayConverter ColorFilterArrayConverter;
+		// Color Filter Array Converter 객체 생성 // Create Color Filter Array Converter object
+		CColorFilterArrayConverter colorFilterArrayConverter;
 
 		// Source 이미지 설정 // Set the source image
-		ColorFilterArrayConverter.SetSourceImage(fliSrcImage);
+		colorFilterArrayConverter.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		ColorFilterArrayConverter.SetDestinationImage(fliDstImage);
+		colorFilterArrayConverter.SetDestinationImage(fliDstImage);
 
 		// Bayer Pattern 설정 // Set Bayer Pattern
-		ColorFilterArrayConverter.SetBayerPattern(CColorFilterArrayConverter::EBayerPattern_RGGB);
+		colorFilterArrayConverter.SetBayerPattern(CColorFilterArrayConverter::EBayerPattern_RGGB);
 
 		// Bayer Interpolation 설정 // Set Bayer Interpolation
-		ColorFilterArrayConverter.SetBayerInterpolation(CColorFilterArrayConverter::EBayerInterpolation_Adaptive2);
+		colorFilterArrayConverter.SetBayerInterpolation(CColorFilterArrayConverter::EBayerInterpolation_Adaptive2);
 
 		// 채널 타입 설정 // Set Channel Type
-		ColorFilterArrayConverter.SetChannelType(CColorFilterArrayConverter::EChannelType_Separation);
+		colorFilterArrayConverter.SetChannelType(CColorFilterArrayConverter::EChannelType_Separation);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = ColorFilterArrayConverter.Execute()).IsFail())
+		if((res = colorFilterArrayConverter.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute ColorFilterArrayConverter.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 

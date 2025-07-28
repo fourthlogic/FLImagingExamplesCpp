@@ -70,32 +70,32 @@ int main()
 			break;
 		}
 
-		// ColorBoosting 객체 생성 // Create ColorBoosting object
-		CColorBoosting ColorBoosting;
+		// Color Boosting 객체 생성 // Create Color Boosting object
+		CColorBoosting colorBoosting;
 
 		// Source 이미지 설정 // Set source image 
-		if(IsFail(eResult = ColorBoosting.SetSourceImage(fliSourceImage)))
+		if(IsFail(eResult = colorBoosting.SetSourceImage(fliSourceImage)))
 		{
 			ErrorPrint(eResult, "Failed to set Source Image.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		if(IsFail(eResult = ColorBoosting.SetDestinationImage(fliConvertedImage)))
+		if(IsFail(eResult = colorBoosting.SetDestinationImage(fliConvertedImage)))
 		{
 			ErrorPrint(eResult, "Failed to set Destination Image.");
 			break;
 		}
 
 		// 연산 타입 설정 // Set the operation Type.
-		if(IsFail(eResult = ColorBoosting.SetOperationType(CColorBoosting::EOperationType_Constant)))
+		if(IsFail(eResult = colorBoosting.SetOperationType(CColorBoosting::EOperationType_Constant)))
 		{
 			ErrorPrint(eResult, "Failed to set Operation Type.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((eResult = ColorBoosting.Execute()).IsFail())
+		if((eResult = colorBoosting.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, "Failed to process.");
 			break;

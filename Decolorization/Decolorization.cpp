@@ -71,33 +71,33 @@ int main()
 		}
 
 		// Decolorization 객체 생성 // Create Decolorization object
-		CDecolorization Decolorization;
+		CDecolorization decolorization;
 
 		// Source 이미지 설정 // Set source image 
-		if(IsFail(res = Decolorization.SetSourceImage(fliSourceImage)))
+		if(IsFail(res = decolorization.SetSourceImage(fliSourceImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		if(IsFail(res = Decolorization.SetDestinationImage(fliConvertedImage)))
+		if(IsFail(res = decolorization.SetDestinationImage(fliConvertedImage)))
 		{
 			ErrorPrint(res, "Failed to set Destination Image.");
 			break;
 		}
 
 		// 연산 속도 설정 // Set the operation speed.
-		if(IsFail(res = Decolorization.SetOperationSpeed(CDecolorization::EOperationSpeed_Normal)))
+		if(IsFail(res = decolorization.SetOperationSpeed(CDecolorization::EOperationSpeed_Normal)))
 		{
 			ErrorPrint(res, "Failed to set Operation Speed.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Decolorization.Execute()).IsFail())
+		if((res = decolorization.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to process.");
+			ErrorPrint(res, "Failed to Execute.");
 			break;
 		}
 

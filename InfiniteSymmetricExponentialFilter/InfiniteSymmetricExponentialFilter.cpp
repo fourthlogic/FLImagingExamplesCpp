@@ -103,68 +103,68 @@ int main()
 		// ROI 설정을 위한 CFLRect 객체 생성 // Create a CFLRect object for setting ROI
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
- 		// InfiniteSymmetricExponential filter 객체 생성 // Create InfiniteSymmetricExponential filter object
- 		CInfiniteSymmetricExponentialFilter InfiniteSymmetricExponentialFilter;
+ 		// Infinite Symmetric Exponential Filter 객체 생성 // Create Infinite Symmetric Exponential Filter object
+ 		CInfiniteSymmetricExponentialFilter infiniteSymmetricExponentialFilter;
  		// Source 이미지 설정 // Set the source image
- 		InfiniteSymmetricExponentialFilter.SetSourceImage(arrFliImage[EType_Source]); 
+		infiniteSymmetricExponentialFilter.SetSourceImage(arrFliImage[EType_Source]);
  		// Source ROI 설정 // Set the source ROI
- 		InfiniteSymmetricExponentialFilter.SetSourceROI(flrROI);
+		infiniteSymmetricExponentialFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		InfiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
+		infiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
 
 		// PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(0.3);
+		infiniteSymmetricExponentialFilter.SetPValue(0.3);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if((res = InfiniteSymmetricExponentialFilter.Execute()).IsFail())
+ 		if((res = infiniteSymmetricExponentialFilter.Execute()).IsFail())
  		{
  			ErrorPrint(res, L"Failed to execute algorithm.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		InfiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
+		infiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
 
 		// InfiniteSymmetricExponential filter 커널 크기 설정
-		InfiniteSymmetricExponentialFilter.SetPValue(0.6);
+		infiniteSymmetricExponentialFilter.SetPValue(0.6);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = InfiniteSymmetricExponentialFilter.Execute()).IsFail())
+		if((res = infiniteSymmetricExponentialFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination3 이미지 설정 // Set the destination3 image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Destination3 ROI 설정
-		InfiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
+		infiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
 
 		// PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(0.9);
+		infiniteSymmetricExponentialFilter.SetPValue(0.9);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = InfiniteSymmetricExponentialFilter.Execute()).IsFail())
+		if((res = infiniteSymmetricExponentialFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute InfiniteSymmetricExponential filter.");
 			break;
 		}
 
 		// Destination4 이미지 설정 // Set the destination4 image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Destination4 ROI 설정
-		InfiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
+		infiniteSymmetricExponentialFilter.SetDestinationROI(flrROI);
 
 		// PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(1.5);
+		infiniteSymmetricExponentialFilter.SetPValue(1.5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = InfiniteSymmetricExponentialFilter.Execute()).IsFail())
+		if((res = infiniteSymmetricExponentialFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

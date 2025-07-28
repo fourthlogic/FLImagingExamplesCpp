@@ -70,24 +70,24 @@ int main()
 			break;
 		}
 
-		// ColorAdjustment 객체 생성 // Create ColorAdjustment object
-		CColorAdjustment ColorAdjustment;
+		// Color Adjustment 객체 생성 // Create Color Adjustment object
+		CColorAdjustment colorAdjustment;
 
 		// Source 이미지 설정 // Set the source image
-		ColorAdjustment.SetSourceImage(fliSrcImage);
+		colorAdjustment.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		ColorAdjustment.SetDestinationImage(fliDstImage);
+		colorAdjustment.SetDestinationImage(fliDstImage);
 
 		// Color Spcae 설정 // Set Color Space
-		ColorAdjustment.SetColorSpace(CColorAdjustment::EColorSpace_CIELCh);
+		colorAdjustment.SetColorSpace(CColorAdjustment::EColorSpace_CIELCh);
 
 		// Offset 설정 // Set Offset
-		ColorAdjustment.SetOffset(CMultiVar<double>(-10, 20, -50));
+		colorAdjustment.SetOffset(CMultiVar<double>(-10, 20, -50));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = ColorAdjustment.Execute()).IsFail())
+		if((res = colorAdjustment.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute ColorAdjustment.");
+			ErrorPrint(res, "Failed to execute Color Adjustment.");
 			break;
 		}
 

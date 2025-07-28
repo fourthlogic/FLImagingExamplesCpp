@@ -79,16 +79,16 @@ int main()
 		}
 
 		// Operation SineH 객체 생성 // Create SineH object
-		COperationSineH SineH;
+		COperationSineH sineH;
 		// Source 이미지 설정 // Set source image
-		SineH.SetSourceImage(arrFliImage[EType_Source]);
+		sineH.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		SineH.SetDestinationImage(arrFliImage[EType_Destination]);
+		sineH.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = SineH.Execute()).IsFail())
+		if((res = sineH.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation SineH.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 

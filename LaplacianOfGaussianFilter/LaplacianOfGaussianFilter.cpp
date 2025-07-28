@@ -104,67 +104,67 @@ int main()
 		CFLRect<int32_t> flrROI(150, 150, 300, 300);
 
  		// Laplacian Of Gaussian filter 객체 생성 // Create Laplacian Of Gaussian filter object
- 		CLaplacianOfGaussianFilter LaplacianOfGaussianFilter;
+ 		CLaplacianOfGaussianFilter laplacianOfGaussianFilter;
  		// Source 이미지 설정 // Set the source image
- 		LaplacianOfGaussianFilter.SetSourceImage(arrFliImage[EType_Source]); 
+		laplacianOfGaussianFilter.SetSourceImage(arrFliImage[EType_Source]);
  		// Source ROI 설정 // Set the source ROI
- 		LaplacianOfGaussianFilter.SetSourceROI(flrROI);
+		laplacianOfGaussianFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		LaplacianOfGaussianFilter.SetDestinationROI(flrROI);
+		laplacianOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(0.5);
+		laplacianOfGaussianFilter.SetSigma(0.5);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if((res = LaplacianOfGaussianFilter.Execute()).IsFail())
+ 		if((res = laplacianOfGaussianFilter.Execute()).IsFail())
  		{
  			ErrorPrint(res, L"Failed to execute algorithm.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		LaplacianOfGaussianFilter.SetDestinationROI(flrROI);
+		laplacianOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// gauss filter 커널 크기 설정
-		LaplacianOfGaussianFilter.SetSigma(0.8);
+		laplacianOfGaussianFilter.SetSigma(0.8);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = LaplacianOfGaussianFilter.Execute()).IsFail())
+		if((res = laplacianOfGaussianFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination3 이미지 설정 // Set the destination3 image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Destination3 ROI 설정
-		LaplacianOfGaussianFilter.SetDestinationROI(flrROI);
+		laplacianOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(1);
+		laplacianOfGaussianFilter.SetSigma(1);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = LaplacianOfGaussianFilter.Execute()).IsFail())
+		if((res = laplacianOfGaussianFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination4 이미지 설정 // Set the destination4 image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Destination4 ROI 설정
-		LaplacianOfGaussianFilter.SetDestinationROI(flrROI);
+		laplacianOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(2);
+		laplacianOfGaussianFilter.SetSigma(2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = LaplacianOfGaussianFilter.Execute()).IsFail())
+		if((res = laplacianOfGaussianFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

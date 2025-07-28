@@ -70,21 +70,21 @@ int main()
 			break;
 		}
 
-		// GammaCorrection 객체 생성 // Create GammaCorrection object
-		CGammaCorrection GammaCorrection;
+		// Gamma Correction 객체 생성 // Create Gamma Correction object
+		CGammaCorrection gammaCorrection;
 
 		// Source 이미지 설정 // Set the source image
-		GammaCorrection.SetSourceImage(fliSrcImage);
+		gammaCorrection.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		GammaCorrection.SetDestinationImage(fliDstImage);
+		gammaCorrection.SetDestinationImage(fliDstImage);
 
 		// Mode 설정 // Set Mode
-		GammaCorrection.EnableWithEstimation(true);
+		gammaCorrection.EnableWithEstimation(true);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = GammaCorrection.Execute()).IsFail())
+		if((res = gammaCorrection.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute GammaCorrection.");
+			ErrorPrint(res, "Failed to execute Gamma Correction.");
 			break;
 		}
 

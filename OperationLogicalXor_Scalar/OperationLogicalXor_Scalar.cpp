@@ -114,7 +114,7 @@ int main()
 			break;
 		}
 
-		// Operation LogicalXor 객체 생성 // Create Operation LogicalXor object
+		// Operation Logical Xor 객체 생성 // Create Operation Logical Xor object
 		COperationLogicalXor logicalXor;
 		// Source 이미지 설정 // Set the source image
 		logicalXor.SetSourceImage(arrFliImage[EType_Source]);
@@ -128,7 +128,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = logicalXor.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation logical xor.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 
@@ -142,7 +142,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = logicalXor.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation logical xor.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 
