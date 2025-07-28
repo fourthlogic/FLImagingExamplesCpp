@@ -58,26 +58,26 @@ int main()
 		}
 
 		// Histogram 객체 생성 // Create Histogram object
-		CHistogram Histogram;
+		CHistogram histogram;
 
 		// Source 이미지 설정 // Set source image
-		Histogram.SetSourceImage(fliSourceImage);
+		histogram.SetSourceImage(fliSourceImage);
 
 		// ROI 지정 // Create ROI
 		CFLRect<double> flrSrcROI(161, 181, 293, 302);
 
 		// Source ROI 영역 지정 // set Source ROI 
-		Histogram.SetSourceROI(flrSrcROI);
+		histogram.SetSourceROI(flrSrcROI);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Histogram.Execute()).IsFail())
+		if((res = histogram.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Histogram.");
 			break;
 		}
 
 		// Result 결과 갯수 확인 // get result count
-		int64_t i64IndexCount = Histogram.GetResultCount();
+		int64_t i64IndexCount = histogram.GetResultCount();
 
 		// Channel 값 표기를 위한 String 변수 // string variable to indicate Channel value
 		Base::CFLString<wchar_t> strChannel;
@@ -94,7 +94,7 @@ int main()
 			flaResult.Clear();
 
 			// Histogram 결과 값 가져오기 // get histogram result
-			if(IsFail(res = Histogram.GetResult(i, flaResult)))
+			if(IsFail(res = histogram.GetResult(i, flaResult)))
 				break;
 
 			// 채널 String // Channel String
@@ -113,10 +113,10 @@ int main()
 		CMultiVar<double> mvMedian;
 
 		// 평균, 분산, 표준편차, 중앙값 받기 // get mean, variance, standard deviation, median
-		Histogram.GetResultStdDev(mvMean);
-		Histogram.GetResultVariance(mvVariance);
-		Histogram.GetResultStdDev(mvStdDev);
-		Histogram.GetResultMedian(mvMedian);
+		histogram.GetResultStdDev(mvMean);
+		histogram.GetResultVariance(mvVariance);
+		histogram.GetResultStdDev(mvStdDev);
+		histogram.GetResultMedian(mvMedian);
 
 		// 출력 갯수 // get count
 		int32_t i32Count = (int32_t)mvMean.GetCount();

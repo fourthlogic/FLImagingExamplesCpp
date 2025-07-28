@@ -72,31 +72,31 @@ int main()
 		}
 
 		// Mura 객체 생성 // Create Mura object
-		CMura Mura;
+		CMura mura;
 
 		// 처리할 이미지 설정
-		Mura.SetSourceImage(fliImageSrc);
+		mura.SetSourceImage(fliImageSrc);
 		// Auto Threshold 모드 설정 // Set auto threshold mode
-		Mura.EnableAutoThresholdMode(true);
+		mura.EnableAutoThresholdMode(true);
 		// Kernel Size Rate 설정 // Set kernel size rate
-		Mura.SetKernelSizeRate(0.25);
+		mura.SetKernelSizeRate(0.25);
 		// Mura Color Type 설정 // Set mura color type
-		Mura.SetMuraColorType(CMura::EMuraColorType_All);
+		mura.SetMuraColorType(CMura::EMuraColorType_All);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = Mura.Execute()))
+		if(IsFail(res = mura.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Mura.");
 			break;
 		}
 
-		Mura.GetResultMuraImage(fliImageDst);
+		mura.GetResultMuraImage(fliImageDst);
 
 		// Mura 결과를 얻어오기 위해 FigureArray 선언
 		CFLFigureArray flfaContours;
 
 		// Mura 결과들 중 Contour를 얻어옴
-		if(IsFail(res = Mura.GetResultContours(flfaContours)))
+		if(IsFail(res = mura.GetResultContours(flfaContours)))
 		{
 			ErrorPrint(res, "Failed to get boundary rects from the Mura object.");
 			break;

@@ -73,14 +73,14 @@ int main()
 			break;
 	
 		// BilinearSplineWarping 객체 생성 // Create BilinearSplineWarping object
-		CBilinearSplineWarping BilinearSplineWarping;
+		CBilinearSplineWarping bilinearSplineWarping;
 
 		// Source 이미지 설정 // Set the source image
-		BilinearSplineWarping.SetSourceImage(arrFliImage[0]);
+		bilinearSplineWarping.SetSourceImage(arrFliImage[0]);
 		// Destination 이미지 설정 // Set the destination image
-		BilinearSplineWarping.SetDestinationImage(arrFliImage[1]);
+		bilinearSplineWarping.SetDestinationImage(arrFliImage[1]);
 		// Interpolation Method 설정 // Set the interpolation method
-		BilinearSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		bilinearSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// 그리드를 (5,5)로 초기화 // Initialize the grid to (5,5)
 		CFLPoint<int32_t> flpGridSize(5, 5);
@@ -129,19 +129,19 @@ int main()
 		}
 
 		// 위에서 설정한 좌표들을 바탕으로 BilinearSplineWarping 클래스에 Point 배열 설정 // Set the Point array in the BilinearSplineWarping class based on the coordinates set above
-		BilinearSplineWarping.SetCalibrationPointArray(flpaSourcePoints, flpaDestinationPoints);
+		bilinearSplineWarping.SetCalibrationPointArray(flpaSourcePoints, flpaDestinationPoints);
 
 		// 앞서 설정된 Source Image, Calibration Point Array를 기반으로 Calibrate 수행 // Calibrate based on the previously set Source Image and Calibration Point Array
-		if(IsFail(BilinearSplineWarping.Calibrate()))
+		if(IsFail(bilinearSplineWarping.Calibrate()))
 		{
-			printf("Failed to execute BilinearSplineWarping.");
+			printf("Failed to execute bilinearSplineWarping.");
 			break;
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(BilinearSplineWarping.Execute()))
+		if(IsFail(bilinearSplineWarping.Execute()))
 		{
-			printf("Failed to execute BilinearSplineWarping.");
+			printf("Failed to execute bilinearSplineWarping.");
 			break;
 		}
 
@@ -155,25 +155,25 @@ int main()
 		//변환 결과를 원래대로 변환하는 과정 수행 // Perform the process of converting the conversion result back to its original state
 		arrFliImage[2].Assign(arrFliImage[1]);
 		// 컨트롤 포인트 설정 // Set control points
-		BilinearSplineWarping.SetCalibrationPointArray(flpaDestinationPoints, flpaSourcePoints);
+		bilinearSplineWarping.SetCalibrationPointArray(flpaDestinationPoints, flpaSourcePoints);
 		// Source 이미지 설정 // Set the source image
-		BilinearSplineWarping.SetSourceImage(arrFliImage[2]);
+		bilinearSplineWarping.SetSourceImage(arrFliImage[2]);
 		// Destination 이미지 설정 // Set the destination image
-		BilinearSplineWarping.SetDestinationImage(arrFliImage[3]);
+		bilinearSplineWarping.SetDestinationImage(arrFliImage[3]);
 		// Interpolation Method 설정 // Set the interpolation method
-		BilinearSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		bilinearSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// 앞서 설정된 Source Image, Calibration Point Array를 기반으로 Calibrate 수행
-		if(IsFail(BilinearSplineWarping.Calibrate()))
+		if(IsFail(bilinearSplineWarping.Calibrate()))
 		{
-			printf("Failed to execute BilinearSplineWarping.");
+			printf("Failed to execute bilinearSplineWarping.");
 			break;
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(BilinearSplineWarping.Execute()))
+		if(IsFail(bilinearSplineWarping.Execute()))
 		{
-			printf("Failed to execute BilinearSplineWarping.");
+			printf("Failed to execute bilinearSplineWarping.");
 			break;
 		}
 

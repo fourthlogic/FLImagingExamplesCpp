@@ -10,7 +10,7 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 조합 객체 선언 // Declare a combination object
-	CCombination C;
+	CCombination combination;
 
 	while(true)
 	{
@@ -65,14 +65,14 @@ int main()
 			}
 
 			// nCk, n 개에서 k 개를 선택하는 조합 // nCk, a combination of selecting k objects from n objects
-			C.SetMax(n);
-			C.SetSelection(k);
+			combination.SetMax(n);
+			combination.SetSelection(k);
 
 			// 조합을 계산 // Calculate combinations
-			C.Calculate();
+			combination.Calculate();
 
 			// 조합 결과값 얻기 // Get combination result
-			CFLArray<CFLArrayL> flaCombination = C.GetResult();
+			CFLArray<CFLArrayL> flaCombination = combination.GetResult();
 
 			CFLString<char> flstrCombination = "";
 			int64_t i64CombinationCnt = 0;

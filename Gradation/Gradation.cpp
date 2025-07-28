@@ -70,38 +70,38 @@ int main()
 		}
 
 		// Gradation 객체 생성 // Create Gradation object
-		CGradation Gradation;
+		CGradation gradation;
 
 		// Source 이미지 설정 // Set source image 
-		Gradation.SetSourceImage(fliISrcImage);
+		gradation.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		Gradation.SetDestinationImage(fliIDstImage);
+		gradation.SetDestinationImage(fliIDstImage);
 
 		// 시작 Alpha 값 설정 // Set start alpha value
 		CMultiVar<double> mvStartAlpha(0., 0., 0.);
-		Gradation.SetStartAlpha(mvStartAlpha);
+		gradation.SetStartAlpha(mvStartAlpha);
 
 		// 끝 Alpha 값 설정 // Set end alpha value
 		CMultiVar<double> mvEndAlpha(0.1, 0.6, 0.9);
-		Gradation.SetEndAlpha(mvEndAlpha);
+		gradation.SetEndAlpha(mvEndAlpha);
 
 		// Gradation Start Value 설정(3Ch) // Set Gradation Start Value(3Ch)
 		CMultiVar<double> mvStartValue(255, 0, 0);
-		Gradation.SetStartValue(mvStartValue);
+		gradation.SetStartValue(mvStartValue);
 
 		// Gradation End Value 설정(3Ch) // Set Gradation End Value(3Ch)
 		CMultiVar<double> mvEndValue(0, 0, 255);
-		Gradation.SetEndValue(mvEndValue);
+		gradation.SetEndValue(mvEndValue);
 
 		// Gradation Vector Figure 객체 // Gradation Vector Figure object
 		CFLLine<double> fllVector;
 		fllVector.Load(L"../../ExampleImages/Gradation/Vector.fig");
 
-		Gradation.SetVector(fllVector);
+		gradation.SetVector(fllVector);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Gradation.Execute()).IsFail())
+		if((res = gradation.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Gradation.");
 			break;
@@ -163,7 +163,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = layer2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Gradation Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layer2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"gradation Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

@@ -70,16 +70,16 @@ int main()
 		}
 
 		// Canny Edge Detector 객체 생성 // Create Canny Edge Detector object
-		CCannyEdgeDetector CannyEdge;
+		CCannyEdgeDetector cannyEdgeDetector;
 
 		// Source 이미지 설정 // Set source image 
-		CannyEdge.SetSourceImage(fliISrcImage);
+		cannyEdgeDetector.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		CannyEdge.SetDestinationImage(fliIDstImage);
+		cannyEdgeDetector.SetDestinationImage(fliIDstImage);
 
 		// Gaussian 전처리 설정 // Set Gaussian preprocessing
-		CannyEdge.SetConvolutionMode(CCannyEdgeDetector::EConvolutionMode_Gaussian);
+		cannyEdgeDetector.SetConvolutionMode(CCannyEdgeDetector::EConvolutionMode_Gaussian);
 
 		// threshold 값 // threshold value
 		CMultiVar<double> mvThresholdValue;
@@ -91,10 +91,10 @@ int main()
 		mvThresholdValue.PushBack(120);
 
 		// 최소, 최대 threshold 설정 // Set minimum, maximum threshold
-		CannyEdge.SetThreshold(mvThresholdValue);
+		cannyEdgeDetector.SetThreshold(mvThresholdValue);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = CannyEdge.Execute()).IsFail())
+		if((res = cannyEdgeDetector.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Canny Edge Detector.");
 

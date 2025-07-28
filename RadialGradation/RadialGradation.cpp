@@ -74,38 +74,38 @@ int main()
 		flcRadialRegion.Load(L"../../ExampleImages/RadialGradation/RadialRegion.fig");
 
 		// Radial Gradation 객체 생성 // Create Radial Gradation object
-		CRadialGradation RadialGradation;
+		CRadialGradation radialGradation;
 
 		// Source 이미지 설정 // Set source image 
-		RadialGradation.SetSourceImage(fliISrcImage);
+		radialGradation.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		RadialGradation.SetDestinationImage(fliIDstImage);
+		radialGradation.SetDestinationImage(fliIDstImage);
 
 		// Source ROI 설정 // Set source ROI 
-		RadialGradation.SetSourceROI(flcRadialRegion);
+		radialGradation.SetSourceROI(flcRadialRegion);
 
 		// 시작 Alpha 값 설정 // Set start alpha value
 		CMultiVar<double> mvStartAlpha(0.0, 0.0, 0.0);
-		RadialGradation.SetStartAlpha(mvStartAlpha);
+		radialGradation.SetStartAlpha(mvStartAlpha);
 
 		// 끝 Alpha 값 설정 // Set end alpha value
 		CMultiVar<double> mvEndAlpha(0.7, 0.5, 0.5);
-		RadialGradation.SetEndAlpha(mvEndAlpha);
+		radialGradation.SetEndAlpha(mvEndAlpha);
 
 		// RadialGradation Start Value 설정(3Ch) // Set RadialGradation Start Value(3Ch)
 		CMultiVar<double> mvStartValue(0, 0, 0);
-		RadialGradation.SetStartValue(mvStartValue);
+		radialGradation.SetStartValue(mvStartValue);
 
 		// RadialGradation End Value 설정(3Ch) // Set RadialGradation End Value(3Ch)
 		CMultiVar<double> mvEndValue(100, 255, 255);
-		RadialGradation.SetEndValue(mvEndValue);
+		radialGradation.SetEndValue(mvEndValue);
 
 		// RadialGradation Region 설정 // Set RadialGradation Region 
-		RadialGradation.SetRadialRegion(flcRadialRegion);
+		radialGradation.SetRadialRegion(flcRadialRegion);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = RadialGradation.Execute()).IsFail())
+		if((res = radialGradation.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute RadialGradation.");
 			break;

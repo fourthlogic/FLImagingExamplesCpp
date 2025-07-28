@@ -82,14 +82,14 @@ int main()
 		}
 
 		// Operation Logical Not 객체 생성 // Create Logical Not object
-		COperationLogicalNot LogicalNot;
+		COperationLogicalNot operationLogicalNot;
 		// Source 이미지 설정 // Set source image
-		LogicalNot.SetSourceImage(arrFliImage[EType_Source]);
+		operationLogicalNot.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		LogicalNot.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationLogicalNot.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// Operation Logical Not 수행
-		if(IsFail(LogicalNot.Execute()))
+		if(IsFail(operationLogicalNot.Execute()))
 		{
 			printf("Failed to execute operation Logical Not.");
 			break;

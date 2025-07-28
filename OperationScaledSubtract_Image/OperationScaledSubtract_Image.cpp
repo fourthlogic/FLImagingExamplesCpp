@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation ScaledSubtract 객체 생성 // Create Operation ScaledSubtract object
-		COperationScaledSubtract ScaledSubtract;
+		COperationScaledSubtract operationScaledSubtract;
 		// Source 이미지 설정 // Set the source image
-		ScaledSubtract.SetSourceImage(arrFliImage[EType_Source]);
+		operationScaledSubtract.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		ScaledSubtract.SetOperandImage(arrFliImage[EType_Operand]);
+		operationScaledSubtract.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		ScaledSubtract.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationScaledSubtract.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		ScaledSubtract.SetOperationSource(EOperationSource_Image);
+		operationScaledSubtract.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = ScaledSubtract.Execute()))
+		if(IsFail(res = operationScaledSubtract.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledSubtract.");
 			break;

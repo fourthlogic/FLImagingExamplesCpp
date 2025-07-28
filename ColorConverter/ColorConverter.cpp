@@ -71,38 +71,38 @@ int main()
 		}
 
 		// ColorConverter 객체 생성 // Create ColorConverter object
-		CColorConverter ColorConverter;
+		CColorConverter colorConverter;
 
 		// Source 이미지 설정 // Set source image 
-		if(IsFail(res = ColorConverter.SetSourceImage(fliSourceImage)))
+		if(IsFail(res = colorConverter.SetSourceImage(fliSourceImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		if(IsFail(res = ColorConverter.SetDestinationImage(fliConvertedImage)))
+		if(IsFail(res = colorConverter.SetDestinationImage(fliConvertedImage)))
 		{
 			ErrorPrint(res, "Failed to set Destination Image.");
 			break;
 		}
 
 		// 변환할 픽셀 포멧 입력(C3_U8 -> C4_U8) // Set the pixel format to convert(C3_U8 -> C4_U8)
-		if(IsFail(res = ColorConverter.SetPixelFormat(EPixelFormat_C4_U8)))
+		if(IsFail(res = colorConverter.SetPixelFormat(EPixelFormat_C4_U8)))
 		{
 			ErrorPrint(res, "Failed to set PixelFormat.");
 			break;
 		}
 
 		// 변환할 픽셀 포멧 입력 (RGB -> ARGB) // Set the color sequence to convert (RGB -> ARGB)
-		if(IsFail(res = ColorConverter.SetColorSequence(EColorSequence_ARGB)))
+		if(IsFail(res = colorConverter.SetColorSequence(EColorSequence_ARGB)))
 		{
 			ErrorPrint(res, "Failed to set PixelFormat.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = ColorConverter.Execute()).IsFail())
+		if((res = colorConverter.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;

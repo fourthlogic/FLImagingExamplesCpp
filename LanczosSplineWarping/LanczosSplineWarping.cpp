@@ -76,14 +76,14 @@ int main()
 			break;
 
 		// LanczosSplineWarping 객체 생성 // Create LanczosSplineWarping object
-		CLanczosSplineWarping LanczosSplineWarping;
+		CLanczosSplineWarping lanczosSplineWarping;
 
 		// Source 이미지 설정 // Set the source image
-		LanczosSplineWarping.SetSourceImage(arrFliImage[0]);
+		lanczosSplineWarping.SetSourceImage(arrFliImage[0]);
 		// Destination 이미지 설정 // Set the destination image
-		LanczosSplineWarping.SetDestinationImage(arrFliImage[1]);
+		lanczosSplineWarping.SetDestinationImage(arrFliImage[1]);
 		// Interpolation Method 설정 // Set the interpolation method
-		LanczosSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		lanczosSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// 그리드를 (5,5)로 초기화 // Initialize the grid to (5,5)
 		CFLPoint<int32_t> flpGridSize(5, 5);
@@ -131,17 +131,17 @@ int main()
 			}
 		}
 
-		LanczosSplineWarping.SetCalibrationPointArray(flpaSourcePoints, flpaDestinationPoints);
+		lanczosSplineWarping.SetCalibrationPointArray(flpaSourcePoints, flpaDestinationPoints);
 
 		// 앞서 설정된 Source Image, Calibration Point Array를 기반으로 Calibrate 수행 // Calibrate based on the previously set Source Image and Calibration Point Array
-		if(IsFail(res = LanczosSplineWarping.Calibrate()))
+		if(IsFail(res = lanczosSplineWarping.Calibrate()))
 		{
 			ErrorPrint(res, "Failed to execute LanczosSplineWarping.");
 			break;
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = LanczosSplineWarping.Execute()))
+		if(IsFail(res = lanczosSplineWarping.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute LanczosSplineWarping.");
 			break;
@@ -157,23 +157,23 @@ int main()
 		//변환 결과를 원래대로 변환하는 과정 수행 // Perform the process of converting the conversion result back to its original state
 		arrFliImage[2].Assign(arrFliImage[1]);
 		// 컨트롤 포인트 설정 // Set control points
-		LanczosSplineWarping.SetCalibrationPointArray(flpaDestinationPoints, flpaSourcePoints);
+		lanczosSplineWarping.SetCalibrationPointArray(flpaDestinationPoints, flpaSourcePoints);
 		// Source 이미지 설정 // Set the source image
-		LanczosSplineWarping.SetSourceImage(arrFliImage[2]);
+		lanczosSplineWarping.SetSourceImage(arrFliImage[2]);
 		// Destination 이미지 설정 // Set the destination image
-		LanczosSplineWarping.SetDestinationImage(arrFliImage[3]);
+		lanczosSplineWarping.SetDestinationImage(arrFliImage[3]);
 		// Interpolation Method 설정 // Set the interpolation method
-		LanczosSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		lanczosSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// 앞서 설정된 Source Image, Calibration Point Array를 기반으로 Calibrate 수행
-		if(IsFail(res = LanczosSplineWarping.Calibrate()))
+		if(IsFail(res = lanczosSplineWarping.Calibrate()))
 		{
 			ErrorPrint(res, "Failed to execute LanczosSplineWarping.");
 			break;
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = LanczosSplineWarping.Execute()))
+		if(IsFail(res = lanczosSplineWarping.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute LanczosSplineWarping.");
 			break;

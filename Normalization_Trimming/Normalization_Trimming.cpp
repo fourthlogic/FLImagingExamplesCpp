@@ -93,21 +93,21 @@ int main()
 			break;
 
 		// Normalization 객체 생성 // Create Normalization object
-		CNormalization Normalization;
+		CNormalization normalization;
 
 		// Source 이미지 설정 // Set source image
-		Normalization.SetSourceImage(arrFliImage[EType_Src]);
+		normalization.SetSourceImage(arrFliImage[EType_Src]);
 		// Destination 이미지 설정 // Set destination image 
-		Normalization.SetDestinationImage(arrFliImage[EType_Dst]);
+		normalization.SetDestinationImage(arrFliImage[EType_Dst]);
 		// 정규화 방식 설정(Min/Max) // Set Normalization Method(Min/Max)
-		Normalization.SetNormalizationMethod(CNormalization::ENormalizationMethod_MinMax);
+		normalization.SetNormalizationMethod(CNormalization::ENormalizationMethod_MinMax);
 
 		// Trimming 비율 설정 // Setting the Trimming Ratio
 		// 하한 10%, 상한 30% 설정 // Set trimming Lower 10%, Upper30%
-		Normalization.SetTrimming(CNormalization::ETrimmingMethod_Ratio, 0.1, 0.3);
+		normalization.SetTrimming(CNormalization::ETrimmingMethod_Ratio, 0.1, 0.3);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Normalization.Execute()).IsFail())
+		if((res = normalization.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute normalize.");
 			break;

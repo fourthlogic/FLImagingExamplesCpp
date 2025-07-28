@@ -80,22 +80,22 @@ int main()
 		}
 
 		// InpaintingCoherenceTransport 객체 생성 // Create InpaintingCoherenceTransport object
-		CInpaintingCoherenceTransport InpaintingCoherenceTransport;
+		CInpaintingCoherenceTransport inpaintingCoherenceTransport;
 
 		// Source 이미지 설정 // Set the source image
-		InpaintingCoherenceTransport.SetSourceImage(fliSrcImage);
+		inpaintingCoherenceTransport.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		InpaintingCoherenceTransport.SetDestinationImage(fliDstImage);
+		inpaintingCoherenceTransport.SetDestinationImage(fliDstImage);
 		// Inpainting에 사용될 픽셀 영역 설정 // Setting the pixel area to be used for Inpainting
-		InpaintingCoherenceTransport.SetEpsilon(5);
+		inpaintingCoherenceTransport.SetEpsilon(5);
 		// 선명도 % // Sharpness parameter(%)
-		InpaintingCoherenceTransport.SetKappa(25);
+		inpaintingCoherenceTransport.SetKappa(25);
 		// 미분 평활화(가우사안) // Smoothing for derivative operator.(Gaussian)
-		InpaintingCoherenceTransport.SetSigma(1.400000);
+		inpaintingCoherenceTransport.SetSigma(1.400000);
 		// 확산 계수(가우사안) // Smoothing for diffusion coefficients.(Gaussian)
-		InpaintingCoherenceTransport.SetRho(5.000000);
+		inpaintingCoherenceTransport.SetRho(5.000000);
 		// Channel 가중치 // Channel Weight
-		InpaintingCoherenceTransport.SetWeightOfChannels(CMultiVar<double>(0.114, 0.587, 0.299));
+		inpaintingCoherenceTransport.SetWeightOfChannels(CMultiVar<double>(0.114, 0.587, 0.299));
 
 		CFLRegion flrInpaintingRegion;
 
@@ -107,10 +107,10 @@ int main()
 		}
 
 		// Inpainting을 위한 Painting region 설정 // Set painting region for Inpainting
-		InpaintingCoherenceTransport.SetPaintingRegion(&flrInpaintingRegion);
+		inpaintingCoherenceTransport.SetPaintingRegion(&flrInpaintingRegion);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = InpaintingCoherenceTransport.Execute()).IsFail())
+		if((res = inpaintingCoherenceTransport.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute InpaintingCoherenceTransport.");
 			break;

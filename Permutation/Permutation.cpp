@@ -10,7 +10,7 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 순열 객체 선언 // Declare permutation object
-	CPermutation P;
+	CPermutation permutation;
 
 	while(true)
 	{
@@ -65,14 +65,14 @@ int main()
 			}
 
 			// nPk, n 개에서 k 개를 선택하는 순열 // nPk, a permutation of selecting k objects from n objects
-			P.SetMax(n);
-			P.SetSelection(k);
+			permutation.SetMax(n);
+			permutation.SetSelection(k);
 
 			// 순열을 계산 // Calculate the permutation
-			P.Calculate();
+			permutation.Calculate();
 
 			// 순열 결과값 얻기 // Get permutation result
-			CFLArray<CFLArrayL> flaPermutation = P.GetResult();
+			CFLArray<CFLArrayL> flaPermutation = permutation.GetResult();
 
 			CFLString<char> flstrPermutation = "";
 			int64_t i64PermutationCnt = 0;

@@ -96,7 +96,7 @@ int main()
 			break;
 
 		// Random Image Generator 객체 생성 // Create Random Image Generator object
-		CRandomImageGenerator RandomImageGenerator;
+		CRandomImageGenerator randomImageGenerator;
 
 		// Random Image Generator ROI 지정 // Create ROI range
 		CFLFigureArray flfaSrcROI;
@@ -104,13 +104,13 @@ int main()
 		flfaSrcROI.Load(L"../../ExampleImages/RandomImageGenerator/FigureROI.fig");
 
 		// Source 이미지 설정 // Set source image 
-		RandomImageGenerator.SetSourceImage(arrFliImage[EType_Dst]);
+		randomImageGenerator.SetSourceImage(arrFliImage[EType_Dst]);
 
 		// Random Image Generator 영역 지정 // set source ROI 
-		RandomImageGenerator.SetSourceROI(flfaSrcROI);
+		randomImageGenerator.SetSourceROI(flfaSrcROI);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = RandomImageGenerator.Execute()).IsFail())
+		if((res = randomImageGenerator.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Random Image Generator.");
 			break;
@@ -137,7 +137,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Dst].DrawTextCanvas(&CFLPoint<double>(0, 0), L"RandomImageGenerator Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Dst].DrawTextCanvas(&CFLPoint<double>(0, 0), L"randomImageGenerator Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

@@ -86,19 +86,19 @@ int main()
 		}
 
 		// Pattern Match 객체 생성 // Create Pattern Match object
-		CPatternMatch FLPatternMatch;
+		CPatternMatch patternMatch;
 
 		// 학습할 이미지 설정 // Set the image to learn
-		FLPatternMatch.SetLearnImage(fliLearnImage);
+		patternMatch.SetLearnImage(fliLearnImage);
 
 		// 학습할 영역을 설정합니다. // Set the area to learn.
 		CFLRect<double> learnRegion(174.7086, 272.2204, 799.0551, 601.3228);
 		CFLPoint<double> flpLearnPivot = learnRegion.GetCenter();
-		FLPatternMatch.SetLearnROI(learnRegion);
-		FLPatternMatch.SetLearnPivot(flpLearnPivot);
+		patternMatch.SetLearnROI(learnRegion);
+		patternMatch.SetLearnPivot(flpLearnPivot);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if(IsFail(res = FLPatternMatch.Learn()))
+		if(IsFail(res = patternMatch.Learn()))
 		{
 			ErrorPrint(res, "Failed to execute Learn.\n");
 			break;
@@ -144,28 +144,28 @@ int main()
 		printf("\n");
 
 		// 검출할 이미지 설정 // Set image to detect
-		FLPatternMatch.SetSourceImage(fliFindImage);
+		patternMatch.SetSourceImage(fliFindImage);
 
 		// 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
 		// 검출 시 사용될 유효 변경 크기범위를 설정합니다. // Set the effective change size range to be used for detection.
-		FLPatternMatch.SetScaleRange(0.95, 1.05);
+		patternMatch.SetScaleRange(0.95, 1.05);
 		// 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
-		FLPatternMatch.SetAngleBias(0.);
+		patternMatch.SetAngleBias(0.);
 		// 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
 		// 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
-		FLPatternMatch.SetAngleTolerance(10.);
+		patternMatch.SetAngleTolerance(10.);
 		// 검출 시 최적화 정도를 설정합니다. // Set the degree of optimization for detection.
 		// 0 ~ 1범위에서 0에 가까울수록 정확성은 낮아질 수 있으나, 속도가 상향됩니다. // From 0 to 1, the closer to 0, the lower the accuracy, but the higher the speed.
-		FLPatternMatch.SetAccuracy(0.5);
+		patternMatch.SetAccuracy(0.5);
 		// 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
-		FLPatternMatch.SetMinimumDetectionScore(0.7);
+		patternMatch.SetMinimumDetectionScore(0.7);
 		// 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
-		FLPatternMatch.SetMaxObject(1);
+		patternMatch.SetMaxObject(1);
 		// 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
-		FLPatternMatch.EnableInterpolation(true);
+		patternMatch.EnableInterpolation(true);
 
 		// 알고리즘 수행 // Execute the algorithm
-		res = FLPatternMatch.Execute();
+		res = patternMatch.Execute();
 
 		if(IsFail(res))
 		{
@@ -174,7 +174,7 @@ int main()
 		}
 
 		// 패턴 검출 결과를 가져옵니다. // Get the pattern detection result.
-		int64_t i64ResultCount = FLPatternMatch.GetResultCount();
+		int64_t i64ResultCount = patternMatch.GetResultCount();
 
 		printf(" ▶ Find Information\n");
 
@@ -182,7 +182,7 @@ int main()
 		{
 			CPatternMatch::SResult results;
 
-			FLPatternMatch.GetResult(i, results);
+			patternMatch.GetResult(i, results);
 
 			float f32Score = results.f32Score;
 			float f32Angle = results.f32Angle;

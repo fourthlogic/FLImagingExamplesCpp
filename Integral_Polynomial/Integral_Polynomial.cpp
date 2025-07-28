@@ -93,26 +93,26 @@ int main()
 			break;
 
 		// Integral 객체 생성 // Create Integral object
-		CIntegral Integral;
+		CIntegral integral;
 
 		// Source 이미지 설정 // Set source image
-		Integral.SetSourceImage(arrFliImage[EType_Src]);
+		integral.SetSourceImage(arrFliImage[EType_Src]);
 
 		// Destination 이미지 설정 // Set destination image 
-		Integral.SetDestinationImage(arrFliImage[EType_Dst]);
+		integral.SetDestinationImage(arrFliImage[EType_Dst]);
 
 		// 적분합 자료형 타입을 설정합니다. // Set integral data type.
-		Integral.SetDataType(CIntegral::EDataType_Uint32);
+		integral.SetDataType(CIntegral::EDataType_Uint32);
 
 		// Integral 누적합 연산 모드 설정 // Set integration operation method.
 		// ECalculationMode_Polynomial : ax^2 + bx + c 다항식 방식의 합 // ECalculationMode_Polynomial : Polynomial sum
-		Integral.SetCalculationMode(CIntegral::ECalculationMode_Polynomial);
+		integral.SetCalculationMode(CIntegral::ECalculationMode_Polynomial);
 
 		// ax^2 + bx + c 계수 설정(a = 1.7, b = 2.1, c = 1.5) // ax^2 + bx + c Setting the coefficient (a = 1.7, b = 2.1, c = 1.5)
-		Integral.SetCoefficients(CMultiVar<double>(1.7, 2.1, 1.5));
+		integral.SetCoefficients(CMultiVar<double>(1.7, 2.1, 1.5));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Integral.Execute()).IsFail())
+		if((res = integral.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Integral.");
 			break;

@@ -96,19 +96,19 @@ int main()
 			break;
 
 		// Crop 객체 생성 // Create Crop object
-		CCrop Crop;
+		CCrop crop;
 
 		// Crop ROI 지정 // Create ROI range
 		CFLRect<double> flrCropROI(161, 181, 293, 302);
 
 		// Source 이미지 설정 // Set source image 
-		Crop.SetSourceImage(arrFliImage[EType_Crop]);
+		crop.SetSourceImage(arrFliImage[EType_Crop]);
 
 		// Crop 영역 지정 // set source ROI 
-		Crop.SetSourceROI(flrCropROI);
+		crop.SetSourceROI(flrCropROI);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Crop.Execute()).IsFail())
+		if((res = crop.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Crop.");
 			break;
@@ -135,7 +135,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Crop].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Crop Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Crop].DrawTextCanvas(&CFLPoint<double>(0, 0), L"crop Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

@@ -70,28 +70,28 @@ int main()
 		}
 
 		// CoherenceEnhancingDiffusionNonNeg 객체 생성 // Create CoherenceEnhancingDiffusionNonNeg object
-		CCoherenceEnhancingDiffusionNonNeg CoherenceEnhancingDiffusionNonNeg;
+		CCoherenceEnhancingDiffusionNonNeg coherenceEnhancingDiffusionNonNeg;
 
 		// Source 이미지 설정 // Set source image 
-		CoherenceEnhancingDiffusionNonNeg.SetSourceImage(fliISrcImage);
+		coherenceEnhancingDiffusionNonNeg.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		CoherenceEnhancingDiffusionNonNeg.SetDestinationImage(fliIDstImage);
+		coherenceEnhancingDiffusionNonNeg.SetDestinationImage(fliIDstImage);
 
 		// 미분 평활화(가우사안) // Smoothing for derivative operator.(Gaussian)
-		CoherenceEnhancingDiffusionNonNeg.SetSigma(0.5);
+		coherenceEnhancingDiffusionNonNeg.SetSigma(0.5);
 
 		// 확산 계수(가우사안) // Smoothing for diffusion coefficients.(Gaussian)
-		CoherenceEnhancingDiffusionNonNeg.SetRho(4);
+		coherenceEnhancingDiffusionNonNeg.SetRho(4);
 
 		// 업데이트 비율 설정 // Set update rate
-		CoherenceEnhancingDiffusionNonNeg.SetTheta(0.5);
+		coherenceEnhancingDiffusionNonNeg.SetTheta(0.5);
 
 		// 반복횟수 설정 // Number of iterations
-		CoherenceEnhancingDiffusionNonNeg.SetIteration(15);
+		coherenceEnhancingDiffusionNonNeg.SetIteration(15);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = CoherenceEnhancingDiffusionNonNeg.Execute()).IsFail())
+		if((res = coherenceEnhancingDiffusionNonNeg.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Coherence Enhancing Diffusion NonNeg.");
 			break;

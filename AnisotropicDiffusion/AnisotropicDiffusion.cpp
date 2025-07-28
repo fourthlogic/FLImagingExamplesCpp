@@ -91,28 +91,28 @@ int main()
 		}
 
 		// AnisotropicDiffusion 객체 생성 // Create AnisotropicDiffusion object
-		CAnisotropicDiffusion AnisotropicDiffusion;
+		CAnisotropicDiffusion anisotropicDiffusion;
 
 		// Source 이미지 설정 // Set the source image
-		AnisotropicDiffusion.SetSourceImage(arrFliImage[EType_Source]);
+		anisotropicDiffusion.SetSourceImage(arrFliImage[EType_Source]);
 
 		// Destination1 이미지 설정 // Set the destination image
-		AnisotropicDiffusion.SetDestinationImage(arrFliImage[EType_Destination1]);
+		anisotropicDiffusion.SetDestinationImage(arrFliImage[EType_Destination1]);
 
 		// diffusion coefficient 모드 설정(Parabolic) // Set the diffusion coefficient mode
-		AnisotropicDiffusion.SetDiffusionMode(CAnisotropicDiffusion::EDiffusionCoefficientMode_Parabolic);
+		anisotropicDiffusion.SetDiffusionMode(CAnisotropicDiffusion::EDiffusionCoefficientMode_Parabolic);
 
 		// Contrast = 3 설정 // Set the Contrast = 3
-		AnisotropicDiffusion.SetContrast(3.0);
+		anisotropicDiffusion.SetContrast(3.0);
 
 		// Theta = 3 설정 // Set the Theta = 3
-		AnisotropicDiffusion.SetTheta(3.0);
+		anisotropicDiffusion.SetTheta(3.0);
 
 		// Iteration = 5 설정 // Set the Iteration = 5
-		AnisotropicDiffusion.SetIteration(5);
+		anisotropicDiffusion.SetIteration(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = AnisotropicDiffusion.Execute()).IsFail())
+		if((res = anisotropicDiffusion.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute AnisotropicDiffusion.\n");
 			wprintf(res.GetString());
@@ -120,13 +120,13 @@ int main()
 		}
 
 		// Destination2 이미지 설정 // Set the destination image
-		AnisotropicDiffusion.SetDestinationImage(arrFliImage[EType_Destination2]);
+		anisotropicDiffusion.SetDestinationImage(arrFliImage[EType_Destination2]);
 
 		// diffusion coefficient 모드 설정(Perona-Malik) // Set the diffusion coefficient mode
-		AnisotropicDiffusion.SetDiffusionMode(CAnisotropicDiffusion::EDiffusionCoefficientMode_PeronaMalik);
+		anisotropicDiffusion.SetDiffusionMode(CAnisotropicDiffusion::EDiffusionCoefficientMode_PeronaMalik);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = AnisotropicDiffusion.Execute()).IsFail())
+		if((res = anisotropicDiffusion.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute AnisotropicDiffusion.\n");
 			wprintf(res.GetString());
@@ -134,13 +134,13 @@ int main()
 		}
 
 		// Destination3 이미지 설정 // Set the destination image
-		AnisotropicDiffusion.SetDestinationImage(arrFliImage[EType_Destination3]);
+		anisotropicDiffusion.SetDestinationImage(arrFliImage[EType_Destination3]);
 
 		// diffusion coefficient 모드 설정(Weickert) // Set the diffusion coefficient mode
-		AnisotropicDiffusion.SetDiffusionMode(CAnisotropicDiffusion::EDiffusionCoefficientMode_Weickert);
+		anisotropicDiffusion.SetDiffusionMode(CAnisotropicDiffusion::EDiffusionCoefficientMode_Weickert);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = AnisotropicDiffusion.Execute()).IsFail())
+		if((res = anisotropicDiffusion.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute AnisotropicDiffusion.\n");
 			wprintf(res.GetString());

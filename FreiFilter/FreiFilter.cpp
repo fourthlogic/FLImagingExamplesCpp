@@ -71,15 +71,15 @@ int main()
 		}
 
 		// FreiFilter 객체 생성 // Create FreiFilter object
-		CFreiFilter FreiFilter;
+		CFreiFilter freiFilter;
 
 		// Source 이미지 설정 // Set the source Image
-		FreiFilter.SetSourceImage(fliSrcImage);
+		freiFilter.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination Image
-		FreiFilter.SetDestinationImage(fliDstImage);
+		freiFilter.SetDestinationImage(fliDstImage);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute the algorithm according to the previously set parameters
-		if((res =FreiFilter.Execute()).IsFail())
+		if((res =freiFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute FreiFilter.");
 			break;

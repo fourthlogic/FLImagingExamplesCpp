@@ -72,25 +72,25 @@ int main()
 		}
 
 		// Mura 객체 생성 // Create Mura object
-		CMura Mura;
+		CMura mura;
 
 		// 처리할 이미지 설정
-		Mura.SetSourceImage(fliImageSrc);
+		mura.SetSourceImage(fliImageSrc);
 		// Auto Threshold 모드 설정 // Set auto threshold mode
-		Mura.EnableAutoThresholdMode(false);
+		mura.EnableAutoThresholdMode(false);
 		// Kernel Size Rate 설정 // Set kernel size rate
-		Mura.SetKernelSizeRate(0.25);
+		mura.SetKernelSizeRate(0.25);
 		// Mura Color Type 설정 // Set mura color type
-		Mura.SetMuraColorType(CMura::EMuraColorType_BlackOnWhite);
+		mura.SetMuraColorType(CMura::EMuraColorType_BlackOnWhite);
 
 		// 논리 조건 설정
-		Mura.SetLogicalCondition(ELogicalCondition_GreaterEqual);
+		mura.SetLogicalCondition(ELogicalCondition_GreaterEqual);
 
 		// 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 100보다 같거나 큰 객체를 검출
-		Mura.SetThreshold(0.8);
+		mura.SetThreshold(0.8);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = Mura.Execute()))
+		if(IsFail(res = mura.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Mura.");
 			break;
@@ -99,19 +99,19 @@ int main()
 		// 결과 객체들 중 해당되는 조건을 가진 객체를 제거
 
 		// 50보다 같거나 큰 징뱐 길이를 가진 객체들을 제거
-		if(IsFail(res = Mura.Filter(CBlob::EFilterItem_MinimumEnclosingRectangleLongSideLength, 50, ELogicalCondition_LessEqual)))
+		if(IsFail(res = mura.Filter(CBlob::EFilterItem_MinimumEnclosingRectangleLongSideLength, 50, ELogicalCondition_LessEqual)))
 		{
 			ErrorPrint(res, "Blob filtering algorithm error occurs.");
 			break;
 		}
 
-		Mura.GetResultMuraImage(fliImageDst);
+		mura.GetResultMuraImage(fliImageDst);
 
 		// Mura 결과를 얻어오기 위해 FigureArray 선언
 		CFLFigureArray flfaContours;
 
 		// Mura 결과들 중 Contour를 얻어옴
-		if(IsFail(res = Mura.GetResultContours(flfaContours)))
+		if(IsFail(res = mura.GetResultContours(flfaContours)))
 		{
 			ErrorPrint(res, "Failed to get boundary rects from the Mura object.");
 			break;

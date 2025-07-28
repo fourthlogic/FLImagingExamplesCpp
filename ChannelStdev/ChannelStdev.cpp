@@ -71,16 +71,16 @@ int main()
 		}
 
 		// Channel Stdev 객체 생성 // Create Channel Stdev object
-		CChannelStdev ChannelStdev;
+		CChannelStdev channelStdev;
 
 		// Source 이미지 설정 // Set source image 
-		ChannelStdev.SetSourceImage(fliSourceImage);
+		channelStdev.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set destination image
-		ChannelStdev.SetDestinationImage(fliDestinationImage);
+		channelStdev.SetDestinationImage(fliDestinationImage);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = ChannelStdev.Execute()).IsFail())
+		if((res = channelStdev.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Channel Stdev.\n");
 

@@ -42,7 +42,7 @@ int main()
 		}
 
 		// CPeripheralLuminance 객체 생성 // Create CPeripheralLuminance object
-		CPeripheralLuminance PeripheralLuminance;
+		CPeripheralLuminance peripheralLuminance;
 
 		CFLFigureArray flfaMeasurementRegion;
 
@@ -54,14 +54,14 @@ int main()
 		}
 
 		// Source 이미지 설정 // Set the Source Image
-		PeripheralLuminance.SetSourceImage(fliImage);
+		peripheralLuminance.SetSourceImage(fliImage);
 		// Measurement Region 설정 // Set the Measurement Region
-		PeripheralLuminance.SetMeasurementRegion(flfaMeasurementRegion);
+		peripheralLuminance.SetMeasurementRegion(flfaMeasurementRegion);
 		// Thickness 설정 // Set Thickness
-		PeripheralLuminance.SetThickness(2.0);
+		peripheralLuminance.SetThickness(2.0);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = PeripheralLuminance.Execute()).IsFail())
+		if((res = peripheralLuminance.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Peripheral Luminance.");
 			break;
@@ -70,7 +70,7 @@ int main()
 		CFLArray<double> flaResult;
 
 		// 측정 영역들의 휘도 차이에 결과 // Results of luminance differences in measurement areas
-		if((res = PeripheralLuminance.GetResult(flaResult)).IsFail())
+		if((res = peripheralLuminance.GetResult(flaResult)).IsFail())
 		{
 			ErrorPrint(res, "No Result");
 			break;

@@ -71,15 +71,15 @@ int main()
 		}
 
 		// EdgeEnhancement 객체 생성 // Create EdgeEnhancement object
-		CEdgeEnhancement EdgeEnhancement;
+		CEdgeEnhancement edgeEnhancement;
 
 		// Source 이미지 설정 // Set the source image
-		EdgeEnhancement.SetSourceImage(fliSrcImage);
+		edgeEnhancement.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		EdgeEnhancement.SetDestinationImage(fliDstImage);
+		edgeEnhancement.SetDestinationImage(fliDstImage);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = EdgeEnhancement.Execute()).IsFail())
+		if((res = edgeEnhancement.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute EdgeEnhancement.");
 			break;

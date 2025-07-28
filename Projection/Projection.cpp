@@ -58,23 +58,23 @@ int main()
 		}
 
 		// Projection 객체 생성 // Create Projection object
-		CProjection Projection;
+		CProjection projection;
 
 		// Source 이미지 설정 // Set source image
-		Projection.SetSourceImage(fliSourceImage);
+		projection.SetSourceImage(fliSourceImage);
 
 		// 연산 방향 설정 // Set operation direction
-		Projection.SetProjectionMode(CProjection::EProjectionDirection_Column);
+		projection.SetProjectionMode(CProjection::EProjectionDirection_Column);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Projection.Execute()).IsFail())
+		if((res = projection.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Projection.");
 			break;
 		}
 
 		// Result 결과 갯수 확인 // get result count
-		int64_t i64Count = Projection.GetResultCount();
+		int64_t i64Count = projection.GetResultCount();
 
 		// Channel 값 표기를 위한 String 변수 // string variable to indicate Channel value
 		Base::CFLString<wchar_t> strChannel;
@@ -91,7 +91,7 @@ int main()
 			flaResult.Clear();
 
 			// Projection 결과 값 가져오기 // get projection result
-			if(IsFail(res = Projection.GetResult(i, flaResult)))
+			if(IsFail(res = projection.GetResult(i, flaResult)))
 				break;
 
 			// 채널 String // Channel String

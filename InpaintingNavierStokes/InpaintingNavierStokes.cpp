@@ -80,14 +80,14 @@ int main()
 		}
 
 		// InpaintingNavierStokes 객체 생성 // Create InpaintingNavierStokes object
-		CInpaintingNavierStokes InpaintingNavierStokes;
+		CInpaintingNavierStokes inpaintingNavierStokes;
 
 		// Source 이미지 설정 // Set the source image
-		InpaintingNavierStokes.SetSourceImage(fliSrcImage);
+		inpaintingNavierStokes.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		InpaintingNavierStokes.SetDestinationImage(fliDstImage);
+		inpaintingNavierStokes.SetDestinationImage(fliDstImage);
 		// Inpainting에 사용될 픽셀 영역 설정 // Setting the pixel area to be used for Inpainting
-		InpaintingNavierStokes.SetEpsilon(5);
+		inpaintingNavierStokes.SetEpsilon(5);
 
 		CFLFigureArray flaInpaintingRegion;
 
@@ -99,10 +99,10 @@ int main()
 		}
 
 		// Inpainting을 위한 Painting region 설정 // Set painting region for Inpainting
-		InpaintingNavierStokes.SetPaintingRegion(&flaInpaintingRegion);
+		inpaintingNavierStokes.SetPaintingRegion(&flaInpaintingRegion);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = InpaintingNavierStokes.Execute()).IsFail())
+		if((res = inpaintingNavierStokes.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute InpaintingNavierStokes.");
 			break;

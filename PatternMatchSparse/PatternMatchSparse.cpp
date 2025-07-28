@@ -86,22 +86,22 @@ int main()
 		}
 
 		// Pattern Match 객체 생성 // Create Pattern Match object
-		CPatternMatchSparse FLPatternMatchSparse;
+		CPatternMatchSparse patternMatchSparse;
 
 		// 학습할 이미지 설정 // Set the image to learn
-		FLPatternMatchSparse.SetLearnImage(fliLearnImage);
+		patternMatchSparse.SetLearnImage(fliLearnImage);
 
 		// 학습할 영역을 설정합니다. // Set the area to learn.
 		CFLRect<double> learnRegion(150, 150, 760, 840);
 		CFLPoint<double> flpLearnPivot = learnRegion.GetCenter();
-		FLPatternMatchSparse.SetLearnROI(learnRegion);
-		FLPatternMatchSparse.SetLearnPivot(flpLearnPivot);
+		patternMatchSparse.SetLearnROI(learnRegion);
+		patternMatchSparse.SetLearnPivot(flpLearnPivot);
 
 		// 샘플링 개수를 설정합니다. // Set the sample count.
-		FLPatternMatchSparse.SetSampleCount(64);
+		patternMatchSparse.SetSampleCount(64);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if(IsFail(res = FLPatternMatchSparse.Learn()))
+		if(IsFail(res = patternMatchSparse.Learn()))
 		{
 			ErrorPrint(res, "Failed to execute Learn.\n");
 			break;
@@ -147,22 +147,22 @@ int main()
 		printf("\n");
 
 		// 검출할 이미지 설정 // Set image to detect
-		FLPatternMatchSparse.SetSourceImage(fliFindImage);
+		patternMatchSparse.SetSourceImage(fliFindImage);
 
 		// 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
-		FLPatternMatchSparse.SetAngleBias(0.);
+		patternMatchSparse.SetAngleBias(0.);
 		// 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
 		// 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
-		FLPatternMatchSparse.SetAngleTolerance(10.);
+		patternMatchSparse.SetAngleTolerance(10.);
 		// 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
-		FLPatternMatchSparse.SetMinimumDetectionScore(0.7);
+		patternMatchSparse.SetMinimumDetectionScore(0.7);
 		// 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
-		FLPatternMatchSparse.SetMaxObject(1);
+		patternMatchSparse.SetMaxObject(1);
 		// 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
-		FLPatternMatchSparse.EnableInterpolation(true);
+		patternMatchSparse.EnableInterpolation(true);
 
 		// 알고리즘 수행 // Execute the algorithm
-		res = FLPatternMatchSparse.Execute();
+		res = patternMatchSparse.Execute();
 
 		if(IsFail(res))
 		{
@@ -171,7 +171,7 @@ int main()
 		}
 
 		// 패턴 검출 결과를 가져옵니다. // Get the pattern detection result.
-		int64_t i64ResultCount = FLPatternMatchSparse.GetResultCount();
+		int64_t i64ResultCount = patternMatchSparse.GetResultCount();
 
 		printf(" ▶ Find Information\n");
 
@@ -179,7 +179,7 @@ int main()
 		{
 			CPatternMatchSparse::SResult results;
 
-			FLPatternMatchSparse.GetResult(i, results);
+			patternMatchSparse.GetResult(i, results);
 
 			float f32Score = results.f32Score;
 			float f32Angle = results.f32Angle;

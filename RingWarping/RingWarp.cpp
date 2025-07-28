@@ -43,33 +43,33 @@ int main()
 		}
 
 		// Ring Warping 객체 생성 // Create Ring Warping object
-		CRingWarping RingWarping;
+		CRingWarping ringWarping;
 
 		// Source 이미지 설정 // Set the source image
-		RingWarping.SetSourceImage(fliSourceImage);
+		ringWarping.SetSourceImage(fliSourceImage);
 
 		// Source 이미지 관심 영역 파라미터 설정
 		CFLDoughnut<double> fldSourceROI(257.071130, 257.071130, 216.368201, 118.521494, 0.000000, -17.159659, 213.494067, EArcClosingMethod_Center);
 		// Source 이미지 관심 영역 설정
-		RingWarping.SetSourceROI(fldSourceROI);
+		ringWarping.SetSourceROI(fldSourceROI);
 
 		// Destination 이미지 설정 // Set the destination image
-		RingWarping.SetDestinationImage(fliDestinationImage);
+		ringWarping.SetDestinationImage(fliDestinationImage);
 
 		// 보간법 설정 (Bicubic / Bilinear / NearestNeighbor / Lanczos)
-		RingWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		ringWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// 공백 영역 색상 값 설정 // Set 공백 영역 색상 value
 		CMultiVar<double> mvBlankColor(10, 160, 20);
 
 		// 공백 영역 색상 지정
-		RingWarping.SetBlankColor(mvBlankColor);
+		ringWarping.SetBlankColor(mvBlankColor);
 
 		// 항상 공백 영역을 지정한 색으로 채우도록 설정
-		RingWarping.EnableFillBlankColorMode(true);
+		ringWarping.EnableFillBlankColorMode(true);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = RingWarping.Execute()))
+		if(IsFail(res = ringWarping.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute RingWarping.\n");
 			

@@ -43,17 +43,17 @@ int main()
 		}
 
 		// Pixel Counter 객체 생성 // Create Pixel Counter object
-		CPixelCounter PixelCounter;
+		CPixelCounter pixelCounter;
 
 		// Source 이미지 설정 // Set source image 
-		PixelCounter.SetSourceImage(fliISrcImage);
+		pixelCounter.SetSourceImage(fliISrcImage);
 
 		// Source ROI 설정 // Set source ROI 
 		CFLQuad<double> flfSourceROI(170.550171, 102.400000, 380.243003, 135.950853, 341.100341, 312.092833, 124.417747, 265.960410);
-		PixelCounter.SetSourceROI(flfSourceROI);
+		pixelCounter.SetSourceROI(flfSourceROI);
 
 		// PixelCounter 모드 설정(Dual) // Set Threshold Mode(Dual)
-		PixelCounter.SetThresholdMode(EThresholdMode_Dual_And);
+		pixelCounter.SetThresholdMode(EThresholdMode_Dual_And);
 
 		// MultiVar 객체 생성 // Create MultiVar object
 		CMultiVar<double> mvThresholdValue1, mvThresholdValue2;
@@ -64,25 +64,25 @@ int main()
 		mvThresholdValue2.PushBack(230);
 
 		// 임계값 설정 (다채널 경우 CMultiVar<double> 사용) // Set PixelCounter value(Use CMultiVar<double> for multi-channel)
-		PixelCounter.SetThreshold(mvThresholdValue1, mvThresholdValue2);
+		pixelCounter.SetThreshold(mvThresholdValue1, mvThresholdValue2);
 
 		// 1채널 논리조건 입력 // 1Channel condition push
 		mvCondition1.PushBack(ELogicalCondition_Greater);
 		mvCondition2.PushBack(ELogicalCondition_Less);
 
 		// 논리 조건 설정 // Set condition value
-		PixelCounter.SetLogicalCondition(mvCondition1, mvCondition2);
+		pixelCounter.SetLogicalCondition(mvCondition1, mvCondition2);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = PixelCounter.Execute()).IsFail())
+		if((res = pixelCounter.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Pixel Counter.");
 			break;
 		}
 
-		int64_t i64TotalPixel = PixelCounter.GetResultTotalPixelCount();
-		int64_t i64ValidPixel = PixelCounter.GetResultValidPixelCount();
-		int64_t i64InvalidPixel = PixelCounter.GetResultInvalidPixelCount();
+		int64_t i64TotalPixel = pixelCounter.GetResultTotalPixelCount();
+		int64_t i64ValidPixel = pixelCounter.GetResultValidPixelCount();
+		int64_t i64InvalidPixel = pixelCounter.GetResultInvalidPixelCount();
 
 		// 전체 픽셀, 유효한 픽셀, 유효하지 않은 픽셀 갯수 출력 // display Total, Valid, Invalid Pixel Count
 		{

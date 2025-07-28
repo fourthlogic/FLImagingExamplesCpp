@@ -116,32 +116,32 @@ int main()
 		}
 
 		// Operation ScaledSubtract 객체 생성 // Create Operation ScaledSubtract object
-		COperationScaledSubtract ScaledSubtract;
+		COperationScaledSubtract operationScaledSubtract;
 		// Source 이미지 설정 // Set the source image
-		ScaledSubtract.SetSourceImage(arrFliImage[EType_Source]);
+		operationScaledSubtract.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		ScaledSubtract.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationScaledSubtract.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		ScaledSubtract.SetOperationSource(EOperationSource_Scalar);
+		operationScaledSubtract.SetOperationSource(EOperationSource_Scalar);
 		// ScaledSubtract 값 설정 // Set ScaledSubtract value
-		ScaledSubtract.SetScalarValue(CMultiVar<double>(128, 128, 128));
+		operationScaledSubtract.SetScalarValue(CMultiVar<double>(128, 128, 128));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = ScaledSubtract.Execute()))
+		if(IsFail(res = operationScaledSubtract.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledSubtract.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		ScaledSubtract.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationScaledSubtract.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		ScaledSubtract.SetOperationSource(EOperationSource_Scalar);
+		operationScaledSubtract.SetOperationSource(EOperationSource_Scalar);
 		// ScaledSubtract 값 설정 // Set ScaledSubtract value
-		ScaledSubtract.SetScalarValue(CMultiVar<double>(430, 430, 430));
+		operationScaledSubtract.SetScalarValue(CMultiVar<double>(430, 430, 430));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = ScaledSubtract.Execute()))
+		if(IsFail(res = operationScaledSubtract.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledSubtract.");
 			break;
@@ -172,13 +172,13 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Destination1].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination1 Image(ScaledSubtract 128)", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Destination1].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination1 Image(operationScaledSubtract 128)", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Destination2].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination2 Image(ScaledSubtract 430)", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Destination2].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination2 Image(operationScaledSubtract 430)", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

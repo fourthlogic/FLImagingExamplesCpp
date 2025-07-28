@@ -100,23 +100,23 @@ int main()
 		}
 
 		// OpticalFlowPolynomialExpansion 객체 생성 // Create OpticalFlowPolynomialExpansion object
-		COpticalFlowPolynomialExpansion OpticalFlowPolynomialExpansion;
+		COpticalFlowPolynomialExpansion opticalFlowPolynomialExpansion;
 
 		// Source 이미지 설정 // Set the source image
-		OpticalFlowPolynomialExpansion.SetSourceImage(fliSrcImage);
+		opticalFlowPolynomialExpansion.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		OpticalFlowPolynomialExpansion.SetDestinationImage(fliDstImage);
+		opticalFlowPolynomialExpansion.SetDestinationImage(fliDstImage);
 		// Pyramid Level 설정
-		OpticalFlowPolynomialExpansion.SetPyramidLevel(2);
+		opticalFlowPolynomialExpansion.SetPyramidLevel(2);
 		// Iteration 설정
-		OpticalFlowPolynomialExpansion.SetIteration(3);
+		opticalFlowPolynomialExpansion.SetIteration(3);
 		// Window Size 설정
-		OpticalFlowPolynomialExpansion.SetWindowSize(15);
+		opticalFlowPolynomialExpansion.SetWindowSize(15);
 
 		printf("Processing.....\n");
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = OpticalFlowPolynomialExpansion.Execute()).IsFail())
+		if((res = opticalFlowPolynomialExpansion.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

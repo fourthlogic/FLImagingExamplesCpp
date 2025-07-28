@@ -50,62 +50,62 @@ int main()
 		layer.Clear();
 
 		// ORB 객체 생성 // Create ORB object
-		COrientedFASTandRotatedBRIEF ORB;
+		COrientedFASTandRotatedBRIEF orientedFASTandRotatedBRIEF;
 
 		// ROI 범위 설정
 		CFLRect<int32_t> flrROI(100, 50, 450, 450);
 
 		// 처리할 이미지 설정
-		if(IsFail(res = ORB.SetSourceImage(fliImage)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetSourceImage(fliImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// 처리할 ROI 설정
-		if(IsFail(res = ORB.SetSourceROI(flrROI)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetSourceROI(flrROI)))
 		{
 			ErrorPrint(res, "Failed to set Source ROI.");
 			break;
 		}
 
 		// 특징점을 추출할 NLevels 수를 설정
-		if(IsFail(res = ORB.SetNLevels(4)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetNLevels(4)))
 		{
 			ErrorPrint(res, "Failed to set NLevels.");
 			break;
 		}
 
 		// 특징점을 추출할 Nfeature 수를 설정
-		if(IsFail(res = ORB.SetNfeature(500)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetNfeature(500)))
 		{
 			ErrorPrint(res, "Failed to set Nfeature.");
 			break;
 		}
 
 		// 특징점을 추출할 ScoreType 설정
-		if(IsFail(res = ORB.SetScoreType(COrientedFASTandRotatedBRIEF::EScoreType_FastScore)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetScoreType(COrientedFASTandRotatedBRIEF::EScoreType_FastScore)))
 		{
 			ErrorPrint(res, "Failed to set Score Type.");
 			break;
 		}
 
 		// 추출할 특징점의 FAST Threshold 설정
-		if(IsFail(res = ORB.SetFASTThreshold(10)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetFASTThreshold(10)))
 		{
 			ErrorPrint(res, "Failed to set FAST Threshold.");
 			break;
 		}
 
 		// ORB의 파라미터 Scale Factor 설정
-		if(IsFail(res = ORB.SetScaleFactor(1.2f)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.SetScaleFactor(1.2f)))
 		{
 			ErrorPrint(res, "Failed to set Scale Factor.");
 			break;
 		}
 
 		// ORB 실행 함수
-		if(IsFail(res = ORB.Execute()))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;
@@ -115,7 +115,7 @@ int main()
 		Foundation::CFLPointArray flfaResultPoints;
 
 		// 키 포인트 점을 검출
-		if(IsFail(res = ORB.GetResultPoints(&flfaResultPoints)))
+		if(IsFail(res = orientedFASTandRotatedBRIEF.GetResultPoints(&flfaResultPoints)))
 		{
 			ErrorPrint(res, "Failed to get result.");
 			break;
