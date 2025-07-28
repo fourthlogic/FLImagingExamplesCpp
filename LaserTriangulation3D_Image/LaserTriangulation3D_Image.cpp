@@ -22,7 +22,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/LaserTriangulation3D/SrcProfile.flif")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/LaserTriangulation3D/SrcImage.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -59,7 +59,7 @@ int main()
 		}
 
 		// Destination 3D 이미지 뷰 생성 // Create the destination 3D image view
-		if((res = view3DDst.Create(400, 200, 1300, 800)).IsFail())
+		if((res = view3DDst.Create(100, 448, 1100, 896)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
@@ -79,22 +79,31 @@ int main()
 
 		CFL3DObjectHeightMap fl3DOHM;
 
+		// Baseline ROI 생성 // Set the base line of the laser
+		CFLLine<double> fliBaseLine = CFLLine<double>(0, 61, 1216, 61);
+
 		// Source 이미지 설정 // Set the source image
 		laserTriangulation.SetSourceImage(fliSrcImage);
 		// Destination Height Map 이미지 설정 // Set the destination height map image
 		laserTriangulation.SetDestinationHeightMapImage(fliDstImage);
 		// Destination 3D Object 설정 // Set the Destination 3D Object 
 		laserTriangulation.SetDestinationObject(fl3DOHM);
+		// Baseline ROI 설정 // Set the base line of the laser
+		laserTriangulation.SetBaseLine(&fliBaseLine);
 		// Source 이미지 타입 설정 // Set the type of the source image
-		laserTriangulation.SetSourceType(CLaserTriangulation3D::ESourceType_Profile);
+		laserTriangulation.SetSourceType(CLaserTriangulation3D::ESourceType_Image);
 		// Pixel Accuracy 설정 // Set the pixel accuracy
-		laserTriangulation.SetPixelAccuracy(0.33);
+		laserTriangulation.SetPixelAccuracy(0.165);
 		// Scan Accuracy 설정 // Set the scan accuracy
 		laserTriangulation.SetScanAccuracy(0.2);
 		// Working Distance 설정 // Set the working distance
 		laserTriangulation.SetWorkingDistance(214.7);
 		// 레이저 각도 설정 // Set the angle of laser
 		laserTriangulation.SetAngleOfLaser(60);
+		// 레이저 밝기 설정 // Set laser brightness threshold
+		laserTriangulation.SetLaserThreshold(64);
+		// 평균 Window의 pixel 길이 설정 // Set Average Window Pixel Length
+		laserTriangulation.SetAverageWindowLength(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = laserTriangulation.Execute()).IsFail())
