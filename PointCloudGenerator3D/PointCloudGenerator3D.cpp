@@ -25,13 +25,13 @@ int main()
 
 		view3DDst.PushObject(CFL3DObject());
 		CGUIView3DObject* pViewObject = (CGUIView3DObject *)view3DDst.GetView3DObject(0);
-		CFL3DObject& fl3DObjectDst = *(CFL3DObject*)pViewObject->Get3DObject();
+		CFL3DObject& floDst = *(CFL3DObject*)pViewObject->Get3DObject();
 
 		// Perspective Transform 3D 객체 생성 // Create Perspective Transform 3D object
 		CPointCloudGenerator3D alg;
 
 		// 파라미터 설정 // Set parameter
-		alg.SetDestinationObject(fl3DObjectDst);
+		alg.SetDestinationObject(floDst);
 		alg.EnableColorGeneration(true);
 		alg.EnableNormalGeneration(false);
 
