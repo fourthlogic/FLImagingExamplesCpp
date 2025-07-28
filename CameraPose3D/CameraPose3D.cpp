@@ -52,21 +52,21 @@ int main()
 		}
 		
 		// CameraPose3D 객체 생성 // Create CameraPose3D object
-		CCameraPose3D CameraPose3D;
+		CCameraPose3D cameraPose3D;
 
 		// Camera Matrix 설정 // Set the camera matrix
 		CFLPoint<double> flpFocalLength(617.8218, 618.2815);
 		CFLPoint<double> flpPrincipalPoint(319.05237, 243.0472);
-		CameraPose3D.SetCameraMatrix(flpFocalLength, flpPrincipalPoint);
+		cameraPose3D.SetCameraMatrix(flpFocalLength, flpPrincipalPoint);
 
 		// 셀 간격 설정 // Set the board cell pitch
-		CameraPose3D.SetBoardCellPitch(5, 5);
+		cameraPose3D.SetBoardCellPitch(5, 5);
 
 		// 캘리브레이션 객체 타입 설정 // Set the calibration object type
-		CameraPose3D.SetCalibrationObjectType(ECalibrationObjectType_ChessBoard);
+		cameraPose3D.SetCalibrationObjectType(ECalibrationObjectType_ChessBoard);
 
 		// 이미지 전처리 타입 설정 // Set the image preprocessing method
-		CameraPose3D.SetPreprocessingMethod(ECalibrationPreprocessingMethod_ShadingCorrection);
+		cameraPose3D.SetPreprocessingMethod(ECalibrationPreprocessingMethod_ShadingCorrection);
 		
 		const int32_t i32PageCount = fliSource.GetPageCount();
 
@@ -97,13 +97,13 @@ int main()
 			fliPage[i].Assign(fliSource.GetPage(i));
 
 			// 처리할 이미지 설정
-			CameraPose3D.SetSourceImage(fliPage[i]);
+			cameraPose3D.SetSourceImage(fliPage[i]);
 
 			// 이미지 포인터 설정 // Set image pointer
 			arrViewWrap[i].SetImagePtr(&fliPage[i]);
 
 			// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-			if((eResult = CameraPose3D.Execute()).IsFail())
+			if((eResult = cameraPose3D.Execute()).IsFail())
 			{
 				ErrorPrint(eResult, L"Failed to execute Camera Pose 3D.");
 				break;
@@ -131,11 +131,11 @@ int main()
 
 			// 결과 객체 영역 가져오기 // Get the result board region
 			CFLQuad<double> flqBoardRegion;
-			CameraPose3D.GetResultBoardRegion(flqBoardRegion);
+			cameraPose3D.GetResultBoardRegion(flqBoardRegion);
 
 			// 결과 코너점 가져오기 // Get the result corner points
 			CFLFigureArray flfaCornerPoints;
-			CameraPose3D.GetResultCornerPoints(flfaCornerPoints);
+			cameraPose3D.GetResultCornerPoints(flfaCornerPoints);
 
 			// 결과 객체 영역 그리기 // Draw the result board region
 			layerViewSource.DrawFigureImage(flqBoardRegion, BLUE, 3);
@@ -155,10 +155,10 @@ int main()
 			// 오일러 각 순서 설정 // Set the euler sequence
 			EEulerSequence eEulerSequence = EEulerSequence_Extrinsic_XYZ;
 
-			CameraPose3D.GetResultRotationVector(flaResultRotationVector);
-			CameraPose3D.GetResultRotationMatrix(matResultRotationMatrix);
-			CameraPose3D.GetResultTranslationVector(flaResultTranslationVector);
-			CameraPose3D.GetResultEulerAngle(eEulerSequence, flaResultEulerAngle);
+			cameraPose3D.GetResultRotationVector(flaResultRotationVector);
+			cameraPose3D.GetResultRotationMatrix(matResultRotationMatrix);
+			cameraPose3D.GetResultTranslationVector(flaResultTranslationVector);
+			cameraPose3D.GetResultEulerAngle(eEulerSequence, flaResultEulerAngle);
 
 			CFLPoint<double> flpImageSize(fliSource);
 			flpImageSize *= 2;

@@ -74,38 +74,38 @@ int main()
 		}
 
 		// SurfaceMatch3D 객체 생성 // Create SurfaceMatch3D object
-		CSurfaceMatch3D SurfaceMatch3D;
+		CSurfaceMatch3D surfaceMatch3D;
 
 		// Learn object 설정 // Set the learn object
-		SurfaceMatch3D.SetLearnObject(fl3DOLearnObject);
+		surfaceMatch3D.SetLearnObject(fl3DOLearnObject);
 		// Source object 설정 // Set the source object
-		SurfaceMatch3D.SetSourceObject(fl3DOSourceObject);
+		surfaceMatch3D.SetSourceObject(fl3DOSourceObject);
 		// Min score 설정 // Set the min score
-		SurfaceMatch3D.SetMinScore(0.3);
+		surfaceMatch3D.SetMinScore(0.3);
 		// 최대 결과 개수 설정 // Set the max count of match result
-		SurfaceMatch3D.SetMaxObject(4);
+		surfaceMatch3D.SetMaxObject(4);
 		// 학습 샘플링 거리 설정 // Set the learn sampling distance
-		SurfaceMatch3D.SetLearnSamplingDistance(0.03);
+		surfaceMatch3D.SetLearnSamplingDistance(0.03);
 		// 장면 샘플링 거리 설정 // Set the scene sampling distance
-		SurfaceMatch3D.SetSceneSamplingDistance(0.03);
+		surfaceMatch3D.SetSceneSamplingDistance(0.03);
 		// 키포인트 비율 설정 // Set the keypoint ratio.
-		SurfaceMatch3D.SetKeypointRatio(0.5);
+		surfaceMatch3D.SetKeypointRatio(0.5);
 		// 엣지 학습 여부 설정 // Set the edge train
-		SurfaceMatch3D.EnableTrainEdge(false);
+		surfaceMatch3D.EnableTrainEdge(false);
 		// 클러스터링 범위 설정 // Set the clustering range
-		SurfaceMatch3D.SetClusterRange(0.02);
+		surfaceMatch3D.SetClusterRange(0.02);
 		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		SurfaceMatch3D.SetIteration(5);
+		surfaceMatch3D.SetIteration(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = SurfaceMatch3D.Learn()).IsFail())
+		if((eResult = surfaceMatch3D.Learn()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to learn Surface Match 3D.");
 			break;
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = SurfaceMatch3D.Execute()).IsFail())
+		if((eResult = surfaceMatch3D.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Surface Match 3D.");
 			break;
@@ -158,7 +158,7 @@ int main()
 		}
 
 		// 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
-		if((eResult = view3DDst.PushObject((CFL3DObject)SurfaceMatch3D.GetSourceObject())).IsFail())
+		if((eResult = view3DDst.PushObject((CFL3DObject)surfaceMatch3D.GetSourceObject())).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to set object on the 3d view.\n");
 			break;
@@ -166,7 +166,7 @@ int main()
 
 
 		ThreeDim::SPoseMatrixParameters sResult;
-		int64_t i64ResultCount = SurfaceMatch3D.GetResultCount();
+		int64_t i64ResultCount = surfaceMatch3D.GetResultCount();
 		TPoint3<double> tp3F64Rotation, tp3F64RotVec;
 		CFLString<wchar_t> strText;
 		CFLPoint3<double> flp3F64Translation;
@@ -184,14 +184,14 @@ int main()
 			Base::TPoint3<double> tp3Center;
 
 			// 추정된 포즈 행렬 가져오기
-			if((eResult = SurfaceMatch3D.GetResultPoseMatrix(i, sResult)).IsFail())
+			if((eResult = surfaceMatch3D.GetResultPoseMatrix(i, sResult)).IsFail())
 			{
 				ErrorPrint(eResult, L"Failed to estimate pose matrix.\n");
 				break;
 			}
 
 			// 추정된 포즈 행렬이 적용된 결과 오브젝트 가져오기
-			if((eResult = SurfaceMatch3D.GetResultObject(i, fl3DOLearnTransform, tp3Center)).IsFail())
+			if((eResult = surfaceMatch3D.GetResultObject(i, fl3DOLearnTransform, tp3Center)).IsFail())
 			{
 				ErrorPrint(eResult, L"Failed to estimate pose matrix.\n");
 				break;

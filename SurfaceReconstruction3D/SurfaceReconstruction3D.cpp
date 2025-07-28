@@ -50,40 +50,40 @@ int main()
 		}
 
 		// SurfaceReconstruction3D 객체 생성 // Create SurfaceReconstruction3D object
-		CSurfaceReconstruction3D SurfaceReconstruction3D;
+		CSurfaceReconstruction3D surfaceReconstruction3D;
 
 		// Source object 설정 // Set the source object
-		SurfaceReconstruction3D.SetSourceObject(floSourceObject);
+		surfaceReconstruction3D.SetSourceObject(floSourceObject);
 
 		// Destination object 설정 // Set the destination object
-		SurfaceReconstruction3D.SetDestinationObject(floDestinationObject);
+		surfaceReconstruction3D.SetDestinationObject(floDestinationObject);
 
 		// Reconstruction Method 설정 // Set the reconstruction method
-		SurfaceReconstruction3D.SetReconstructionMethod(CSurfaceReconstruction3D::EReconstructionMethod_Explicit_RegionGrowing);
+		surfaceReconstruction3D.SetReconstructionMethod(CSurfaceReconstruction3D::EReconstructionMethod_Explicit_RegionGrowing);
 
 		// 최대 반경 자동 계산하도록 설정 // Set to auto-calculate maximum radius
-		SurfaceReconstruction3D.EnableExplicitAutoRadius(true);
+		surfaceReconstruction3D.EnableExplicitAutoRadius(true);
 
 		// 최대 반경 계수 설정 // Set the maximum radius coefficient
-		SurfaceReconstruction3D.SetExplicitMaxRadiusCoefficient(5.000000f);
+		surfaceReconstruction3D.SetExplicitMaxRadiusCoefficient(5.000000f);
 
 		// Hole filling 최대 반경 자동 계산하도록 설정 // Set to auto-calculate hole filling maximum radius
-		SurfaceReconstruction3D.EnableExplicitHoleFillingAutoRadius(true);
+		surfaceReconstruction3D.EnableExplicitHoleFillingAutoRadius(true);
 
 		// 최대 반경 계수 설정 // Set the maximum radius coefficient
-		SurfaceReconstruction3D.SetExplicitHoleFillingRadiusCoefficient(1.000000f);
+		surfaceReconstruction3D.SetExplicitHoleFillingRadiusCoefficient(1.000000f);
 
 		// 시작 지점 최대 개수 설정 // Set the maximum number of starting points
-		SurfaceReconstruction3D.SetExplicitMaxSeed(10000);
+		surfaceReconstruction3D.SetExplicitMaxSeed(10000);
 
 		// 그리드 셀 거리 자동 계산하도록 설정 // Set to auto-calculate grid cell distance
-		SurfaceReconstruction3D.EnableExplicitAutoCellRadius(true);
+		surfaceReconstruction3D.EnableExplicitAutoCellRadius(true);
 
 		// 그리드 셀 거리 계수 설정 // Set the grid cell distance coefficient
-		SurfaceReconstruction3D.SetExplicitCellRadiusCoefficient(1.000000f);
+		surfaceReconstruction3D.SetExplicitCellRadiusCoefficient(1.000000f);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = SurfaceReconstruction3D.Execute()).IsFail())
+		if((eResult = surfaceReconstruction3D.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Surface Reconstruction 3D.");
 			break;

@@ -101,49 +101,49 @@ int main()
 			break;		
 
  		// WienerDeconvolutionFilter 객체 생성 // Create WienerDeconvolutionFilter filter object
- 		CWienerDeconvolutionFilter WienerDeconvolutionFilter;
+ 		CWienerDeconvolutionFilter wienerDeconvolutionFilter;
  		// Source 이미지 설정 // Set the source image
- 		WienerDeconvolutionFilter.SetSourceImage(arrFliImage[EType_Source]); 
+ 		wienerDeconvolutionFilter.SetSourceImage(arrFliImage[EType_Source]); 
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		WienerDeconvolutionFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+ 		wienerDeconvolutionFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		WienerDeconvolutionFilter.SetResultFrequency(arrFliImage[EType_Destination3]);
+		wienerDeconvolutionFilter.SetResultFrequency(arrFliImage[EType_Destination3]);
 
 		// SNR 값 설정 // Set the SNR value
-		WienerDeconvolutionFilter.SetSNR(0.00001);
+		wienerDeconvolutionFilter.SetSNR(0.00001);
 
 		// Length 값 설정 // Set the Length value
-		WienerDeconvolutionFilter.SetLength(135);
+		wienerDeconvolutionFilter.SetLength(135);
 
 		// Angle 값 설정 // Set the Angle value
-		WienerDeconvolutionFilter.SetAngle(45);
+		wienerDeconvolutionFilter.SetAngle(45);
 
 		// Motion Blur 값 설정 // Set the Motion Blur value
-		WienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter::EOperationType_Convolution);
+		wienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter::EOperationType_Convolution);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if((res = WienerDeconvolutionFilter.Execute()).IsFail())
+ 		if((res = wienerDeconvolutionFilter.Execute()).IsFail())
  		{
  			ErrorPrint(res, L"Failed to execute algorithm.");
  			break;
  		}
 
 		// Source 이미지 설정 // Set the source image
-		WienerDeconvolutionFilter.SetSourceImage(arrFliImage[EType_Destination1]); 
+		wienerDeconvolutionFilter.SetSourceImage(arrFliImage[EType_Destination1]); 
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		WienerDeconvolutionFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		wienerDeconvolutionFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 
 		// Destination4 이미지 설정 // Set the destination2 image
-		WienerDeconvolutionFilter.SetResultFrequency(arrFliImage[EType_Destination4]);
+		wienerDeconvolutionFilter.SetResultFrequency(arrFliImage[EType_Destination4]);
 
 		// WienerDeconvolutionFilter Motion Blur 설정 / Set the Motion Blur value
-		WienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter::EOperationType_Deconvolution);
+		wienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter::EOperationType_Deconvolution);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = WienerDeconvolutionFilter.Execute()).IsFail())
+		if((res = wienerDeconvolutionFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

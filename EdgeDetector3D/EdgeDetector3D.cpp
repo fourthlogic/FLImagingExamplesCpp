@@ -52,20 +52,20 @@ int main()
 		}
 
 		// EdgeDetector3D 객체 생성 // Create EdgeDetector3D object
-		CEdgeDetector3D EdgeDetector3D;
+		CEdgeDetector3D edgeDetector3D;
 
 		// Destination object 설정 // Set the destination object
-		EdgeDetector3D.SetDestinationObject(fl3DODestinationObject);
+		edgeDetector3D.SetDestinationObject(fl3DODestinationObject);
 		// Source object 설정 // Set the source object
-		EdgeDetector3D.SetSourceObject(fl3DOSourceObject);		
+		edgeDetector3D.SetSourceObject(fl3DOSourceObject);		
 		// 최대 결과 개수 설정 // Set the max count of match result
-		EdgeDetector3D.SetEdgeThreshold(0.01f);
+		edgeDetector3D.SetEdgeThreshold(0.01f);
 		// 학습 샘플링 거리 설정 // Set the destination sampling distance
-		EdgeDetector3D.SetNearestNeighborCount(32);
+		edgeDetector3D.SetNearestNeighborCount(32);
 		// 키포인트 비율 설정 // Set the keypoint ratio.
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = EdgeDetector3D.Execute()).IsFail())
+		if((eResult = edgeDetector3D.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Edge Detector 3D.");
 			break;
@@ -105,14 +105,14 @@ int main()
 		}
 
 		// 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
-		if((eResult = view3DDst.PushObject((CFL3DObject)EdgeDetector3D.GetSourceObject())).IsFail())
+		if((eResult = view3DDst.PushObject((CFL3DObject)edgeDetector3D.GetSourceObject())).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to set object on the 3d view.\n");
 			break;
 		}
 
 		// 3D 오브젝트 뷰에 Destination 오브젝트 디스플레이
-		if((eResult = view3DDst.PushObject((CFL3DObject)EdgeDetector3D.GetDestinationObject())).IsFail())
+		if((eResult = view3DDst.PushObject((CFL3DObject)edgeDetector3D.GetDestinationObject())).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to set object on the 3d view.\n");
 			break;

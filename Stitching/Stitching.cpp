@@ -70,25 +70,25 @@ int main()
 		}
 
 		// Stitching 객체 생성 // Create Stitching object
-		CStitching Stitching;
+		CStitching stitching;
 
 		// Source 이미지 설정 // Set source image 
-		Stitching.SetSourceImage(fliISrcImage);
+		stitching.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		Stitching.SetDestinationImage(fliIDstImage);
+		stitching.SetDestinationImage(fliIDstImage);
 
 		// Projection Method 설정 // Set Projection Method
-		Stitching.SetProjectionMethod(CStitching::EProjectionMethod_Spherical);
+		stitching.SetProjectionMethod(CStitching::EProjectionMethod_Spherical);
 
 		// K-Neighbor Nearest 임계값 설정 // Set K-Neighbor Nearest threshold value
-		Stitching.SetThreshold(0.6f);
+		stitching.SetThreshold(0.6f);
 
 		// 특징점 개수 설정 // Set a number of feature points
-		Stitching.SetNFeature(1000);
+		stitching.SetNFeature(1000);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = Stitching.Execute()).IsFail())
+		if((res = stitching.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Stitching.");
 

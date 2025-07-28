@@ -50,45 +50,45 @@ int main()
 		layer.Clear();
 
 		// SIFT 객체 생성 // Create SIFT object
-		CScaleInvariantFeatureTransform SIFT;
+		CScaleInvariantFeatureTransform scaleInvariantFeatureTransform;
 
 		// 처리할 이미지 설정
-		if(IsFail(res = SIFT.SetSourceImage(fliImage)))
+		if(IsFail(res = scaleInvariantFeatureTransform.SetSourceImage(fliImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// 특징점을 추출할 Octave Layer 수를 설정
-		if(IsFail(res = SIFT.SetOctaveLayers(3)))
+		if(IsFail(res = scaleInvariantFeatureTransform.SetOctaveLayers(3)))
 		{
 			ErrorPrint(res, "Failed to set octave layers.");
 			break;
 		}
 
 		// 추출할 특징점의 대비 임계값 설정
-		if(IsFail(res = SIFT.SetContrastThreshold(0.04f)))
+		if(IsFail(res = scaleInvariantFeatureTransform.SetContrastThreshold(0.04f)))
 		{
 			ErrorPrint(res, "Failed to set contrast threshold.");
 			break;
 		}
 
 		// 추출할 특징점의 에지 임계값 설정
-		if(IsFail(res = SIFT.SetEdgeThreshold(10.f)))
+		if(IsFail(res = scaleInvariantFeatureTransform.SetEdgeThreshold(10.f)))
 		{
 			ErrorPrint(res, "Failed to set edge threshold.");
 			break;
 		}
 
 		// SIFT의 파라미터 Sigma 설정
-		if(IsFail(res = SIFT.SetSigma(1.6f)))
+		if(IsFail(res = scaleInvariantFeatureTransform.SetSigma(1.6f)))
 		{
 			ErrorPrint(res, "Failed to set param sigma.");
 			break;
 		}
 
 		// SIFT 실행 함수
-		if(IsFail(res = SIFT.Execute()))
+		if(IsFail(res = scaleInvariantFeatureTransform.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;
@@ -98,7 +98,7 @@ int main()
 		Foundation::CFLPointArray flfaResultPoints;
 
 		// 키 포인트 점을 검출
-		if(IsFail(res = SIFT.GetResultPoints(&flfaResultPoints)))
+		if(IsFail(res = scaleInvariantFeatureTransform.GetResultPoints(&flfaResultPoints)))
 		{
 			ErrorPrint(res, "Failed to get result.");
 			break;

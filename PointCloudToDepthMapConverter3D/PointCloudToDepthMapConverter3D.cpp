@@ -28,16 +28,16 @@ int main()
 		}
 
 		// PointCloudToDepthMapConverter3D 객체 생성 // Create PointCloudToDepthMapConverter3D object
-		CPointCloudToDepthMapConverter3D PointCloudToDepthMapConverter3D;
+		CPointCloudToDepthMapConverter3D pointCloudToDepthMapConverter3D;
 
 		// 이미지 크기 설정 // Set the image size.
-		PointCloudToDepthMapConverter3D.SetImageSize(2064, 1544);
+		pointCloudToDepthMapConverter3D.SetImageSize(2064, 1544);
 
 		// Destination 이미지 설정 // Set the Destination image.
-		PointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination);
+		pointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination);
 
 		// Destination Texture 이미지 설정 // Set the texture image.
-		PointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture);
+		pointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture);
 
 		// Camera Matrix 설정 // Set the camera matrix
 		CFLPoint<float> flpFocalLength;
@@ -48,7 +48,7 @@ int main()
 		flpPrincipalPoint.x = 988.599976f;
 		flpPrincipalPoint.y = 750.299988f;
 
-		PointCloudToDepthMapConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint);
+		pointCloudToDepthMapConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint);
 
 		//왜곡 계수 설정 // Set the distortion coefficient
 		CFLArray<double> flaDistortionCoefficient;
@@ -59,13 +59,13 @@ int main()
 		flaDistortionCoefficient.PushBack(-0.0005675755000);
 		flaDistortionCoefficient.PushBack(-0.0246060137000);
 
-		PointCloudToDepthMapConverter3D.SetDistortionCoefficient(flaDistortionCoefficient);
+		pointCloudToDepthMapConverter3D.SetDistortionCoefficient(flaDistortionCoefficient);
 
 		// Z축 방향 설정 // Set z-axis direction.
-		PointCloudToDepthMapConverter3D.SetDirectionType(EDirectionType_Increment);
+		pointCloudToDepthMapConverter3D.SetDirectionType(EDirectionType_Increment);
 
 		// Source 3D Object 설정 // Set the source 3D object
-		PointCloudToDepthMapConverter3D.SetSourceObject(floSource);
+		pointCloudToDepthMapConverter3D.SetSourceObject(floSource);
 
 		// 이미지 뷰 생성 // Create image view
 		if(IsFail(eResult = viewDepthImage.Create(100, 0, 612, 512)))
@@ -101,7 +101,7 @@ int main()
 		layerViewDestinationTexture.Clear();
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = PointCloudToDepthMapConverter3D.Execute()).IsFail())
+		if((eResult = pointCloudToDepthMapConverter3D.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Point Cloud To Depth Map Converter 3D.");
 			break;

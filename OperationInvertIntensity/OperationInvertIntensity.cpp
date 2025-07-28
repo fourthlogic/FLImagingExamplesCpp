@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation Invert Intensity 객체 생성 // Create Invert Intensity object
-		COperationInvertIntensity InvertIntensity;
+		COperationInvertIntensity invertIntensity;
 		// Source 이미지 설정 // Set source image
-		InvertIntensity.SetSourceImage(arrFliImage[EType_Source]);
+		invertIntensity.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		InvertIntensity.SetDestinationImage(arrFliImage[EType_Destination]);
+		invertIntensity.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = InvertIntensity.Execute()).IsFail())
+		if((res = invertIntensity.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation Invert Intensity.");
 			break;

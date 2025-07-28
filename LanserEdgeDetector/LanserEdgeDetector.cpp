@@ -70,19 +70,19 @@ int main()
 		}
 
 		// Lanser Edge Detector 객체 생성 // Create Lanser Edge Detector object
-		CLanserEdgeDetector LanserEdge;
+		CLanserEdgeDetector lanserEdgeDetector;
 
 		// Source 이미지 설정 // Set source image 
-		LanserEdge.SetSourceImage(fliISrcImage);
+		lanserEdgeDetector.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		LanserEdge.SetDestinationImage(fliIDstImage);
+		lanserEdgeDetector.SetDestinationImage(fliIDstImage);
 
 		// Edge Detector Mode 설정 // Set Edge Detector Mode
-		LanserEdge.SetEdgeDetectorMode(CLanserEdgeDetector::EEdgeDetectorMode_Shen);
+		lanserEdgeDetector.SetEdgeDetectorMode(CLanserEdgeDetector::EEdgeDetectorMode_Shen);
 
 		// Preprocessing Mode 설정 // Set Preprocessing Mode
-		LanserEdge.SetNoiseReduction(CLanserEdgeDetector::ENoiseReduction_Smoothing);
+		lanserEdgeDetector.SetNoiseReduction(CLanserEdgeDetector::ENoiseReduction_Smoothing);
 
 		// threshold 값 // threshold value
 		CMultiVar<double> mvThresholdValue;
@@ -94,13 +94,13 @@ int main()
 		mvThresholdValue.PushBack(30);
 
 		// 최소, 최대 threshold 설정 // Set minimum, maximum threshold
-		LanserEdge.SetThreshold(mvThresholdValue);
+		lanserEdgeDetector.SetThreshold(mvThresholdValue);
 
 		// Alpha 값 설정 // Set alpha value
-		LanserEdge.SetAlphaValue(2.0f);
+		lanserEdgeDetector.SetAlphaValue(2.0f);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = LanserEdge.Execute()).IsFail())
+		if((res = lanserEdgeDetector.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Lanser Edge Detector.");
 

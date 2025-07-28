@@ -66,17 +66,17 @@ int main()
 		}
 
 		// ResidualEvaluator3D 객체 생성 // Create ResidualEvaluator3D object
-		CResidualEvaluator3D ResidualEvaluator3D;
+		CResidualEvaluator3D residualEvaluator3D;
 
 		// Destination object 설정 // Set the destination object
-		ResidualEvaluator3D.SetLearnObject(fl3DOReferenceObject);
+		residualEvaluator3D.SetLearnObject(fl3DOReferenceObject);
 		// Target object 설정 // Set the target object
-		ResidualEvaluator3D.SetSourceObject(fl3DOTargetObject);
+		residualEvaluator3D.SetSourceObject(fl3DOTargetObject);
 		// 최대 결과 개수 설정 // Set the max count of match result
-		ResidualEvaluator3D.SetResidualType(CResidualEvaluator3D::EResidualType_RMSE);
+		residualEvaluator3D.SetResidualType(CResidualEvaluator3D::EResidualType_RMSE);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = ResidualEvaluator3D.Execute()).IsFail())
+		if((eResult = residualEvaluator3D.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Surface Match 3D.");
 			break;
@@ -116,7 +116,7 @@ int main()
 
 		CFLString<wchar_t> strText;
 
-		strText.Format(L"Residual : %lf", ResidualEvaluator3D.GetResidual());
+		strText.Format(L"Residual : %lf", residualEvaluator3D.GetResidual());
 		Base::TPoint3<float> tp3Min, tp3Max;
 		Base::TPoint3<double> tp3Center;
 

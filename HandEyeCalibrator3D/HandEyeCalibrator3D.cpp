@@ -54,13 +54,13 @@ int main()
 		}
 
 		// HandEyeCalibrator3D 객체 생성 // Create HandEyeCalibrator3D object
-		CHandEyeCalibrator3D HandEyeCalibrator3D;
+		CHandEyeCalibrator3D handEyeCalibrator3D;
 
 		// 처리할 이미지 설정
-		HandEyeCalibrator3D.SetSourceImage(fliSource);
+		handEyeCalibrator3D.SetSourceImage(fliSource);
 
 		// 엔드 이펙터 포즈 로드 // Load the end effector pose
-		if((eResult = HandEyeCalibrator3D.LoadEndEffectorPose(L"../../ExampleImages/HandEyeCalibrator3D/EndEffectorPose.csv")).IsFail())
+		if((eResult = handEyeCalibrator3D.LoadEndEffectorPose(L"../../ExampleImages/HandEyeCalibrator3D/EndEffectorPose.csv")).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to load the file.\n");
 			break;
@@ -70,25 +70,25 @@ int main()
 		CFLPoint<double> flpFocalLength(428.668823242188, 428.268188476563);
 		CFLPoint<double> flpPrincipalPoint(422.934997558594, 240.188659667969);
 
-		HandEyeCalibrator3D.SetCalibrationCameraMatrix(flpFocalLength, flpPrincipalPoint);
+		handEyeCalibrator3D.SetCalibrationCameraMatrix(flpFocalLength, flpPrincipalPoint);
 
 		// 셀 간격 설정 // Set the board cell pitch
-		HandEyeCalibrator3D.SetCalibrationBoardCellPitch(15, 15);
+		handEyeCalibrator3D.SetCalibrationBoardCellPitch(15, 15);
 
 		// 캘리브레이션 객체 타입 설정 // Set the calibration object type
-		HandEyeCalibrator3D.SetCalibrationObjectType(ECalibrationObjectType_ChessBoard);
+		handEyeCalibrator3D.SetCalibrationObjectType(ECalibrationObjectType_ChessBoard);
 
 		// 최적화 방법 설정 // Set the optimization method
-		HandEyeCalibrator3D.SetOptimizationMethod(EOptimizationMethod_Nonlinear);
+		handEyeCalibrator3D.SetOptimizationMethod(EOptimizationMethod_Nonlinear);
 
 		// 회전 타입 설정 // Set the rotation type
-		HandEyeCalibrator3D.SetRotationType(ERotationType_RotationVector);
+		handEyeCalibrator3D.SetRotationType(ERotationType_RotationVector);
 
 		// 엔드 이펙터 각 단위 설정 // Set the end effector angle unit
-		HandEyeCalibrator3D.SetEndEffectorAngleUnit(EAngleUnit_Radian);
+		handEyeCalibrator3D.SetEndEffectorAngleUnit(EAngleUnit_Radian);
 
 		// 오일러 각 순서 설정 // Set the euler sequence
-		HandEyeCalibrator3D.SetEulerSequence(EEulerSequence_Extrinsic_XYZ);
+		handEyeCalibrator3D.SetEulerSequence(EEulerSequence_Extrinsic_XYZ);
 
 		//왜곡 계수 설정 // Set the distortion coefficient
 		CFLArray<double> flaDistortionCoefficient;
@@ -99,7 +99,7 @@ int main()
 		flaDistortionCoefficient.PushBack(0.000785713375080377);
 		flaDistortionCoefficient.PushBack(-0.0189481563866138);
 
-		HandEyeCalibrator3D.SetCalibrationDistortionCoefficient(flaDistortionCoefficient);
+		handEyeCalibrator3D.SetCalibrationDistortionCoefficient(flaDistortionCoefficient);
 
 		const int32_t i32PageCount = fliSource.GetPageCount();
 
@@ -141,7 +141,7 @@ int main()
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = HandEyeCalibrator3D.Calibrate()).IsFail())
+		if((eResult = handEyeCalibrator3D.Calibrate()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Hand Eye Calibrator 3D.");
 			break;
@@ -158,11 +158,11 @@ int main()
 			double f64RotationError, f64TranslationError;
 
 			// 캘리브레이션 결과 얻어오기 // Get the calibration result
-			HandEyeCalibrator3D.GetResultHandToEyeRotationVector(matResultRotationVector);
-			HandEyeCalibrator3D.GetResultHandToEyeTranslationVector(tp3ResultTranslationVector);
-			HandEyeCalibrator3D.GetResultHandToEyeEulerAngle(flaResultEulerAngle);
-			HandEyeCalibrator3D.GetResultRotationError(f64RotationError);
-			HandEyeCalibrator3D.GetResultTranslationError(f64TranslationError);
+			handEyeCalibrator3D.GetResultHandToEyeRotationVector(matResultRotationVector);
+			handEyeCalibrator3D.GetResultHandToEyeTranslationVector(tp3ResultTranslationVector);
+			handEyeCalibrator3D.GetResultHandToEyeEulerAngle(flaResultEulerAngle);
+			handEyeCalibrator3D.GetResultRotationError(f64RotationError);
+			handEyeCalibrator3D.GetResultTranslationError(f64TranslationError);
 			
 			// 3D View의 canvas rect 영역 얻어오기 // Get the canvas rect region
 			CFLRectL flrCanvasRegion = view3D.GetClientRectCanvasRegion();
@@ -201,7 +201,7 @@ int main()
 				L"[%11.6lf]\n"
 				L"[%11.6lf]\n"
 				L"[%11.6lf]"
-				, mapEulerString[HandEyeCalibrator3D.GetEulerSequence()].c_str()
+				, mapEulerString[handEyeCalibrator3D.GetEulerSequence()].c_str()
 				, flaResultEulerAngle[0], flaResultEulerAngle[1], flaResultEulerAngle[2]);
 
 			view3DLayer.DrawTextCanvas(CFLPoint<double>(0, flpImageSize.y), strDisplay, YELLOW, BLACK, 12, false, 0, EGUIViewImageTextAlignment_LEFT_BOTTOM);
@@ -209,7 +209,7 @@ int main()
 			CFL3DObject fl3DOCalibrationBoard;
 			Base::TPoint3<double> tp3BoardCenter;
 
-			HandEyeCalibrator3D.GetResultCalibration3DObject(fl3DOCalibrationBoard, tp3BoardCenter);
+			handEyeCalibrator3D.GetResultCalibration3DObject(fl3DOCalibrationBoard, tp3BoardCenter);
 			CFLString<wchar_t> strIdx;
 
 			strIdx.Format(L"Calibration Board");
@@ -226,10 +226,10 @@ int main()
 
 				// 결과 3D 객체 얻어오기 // Get the result 3D object
 				
-				if(HandEyeCalibrator3D.GetResultCamera3DObject(i, &fl3DCam, &tp3CamCenter).IsOK())
+				if(handEyeCalibrator3D.GetResultCamera3DObject(i, &fl3DCam, &tp3CamCenter).IsOK())
 				{
 					// 카메라 포즈 추정에 실패할 경우 NOK 출력 // NOK output if camera pose estimation fails
-					if((HandEyeCalibrator3D.GetResultReprojectionPoint(i, tp3Cam, tp3Board)).IsFail())
+					if((handEyeCalibrator3D.GetResultReprojectionPoint(i, tp3Cam, tp3Board)).IsFail())
 					{
 						strIdx.Format(L"Cam %d (NOK)", i);
 						view3DLayer.DrawText3D(tp3CamCenter, strIdx, CYAN, 0, 9);
@@ -244,7 +244,7 @@ int main()
 					view3D.PushObject(fl3DCam);
 				}
 
-				if(HandEyeCalibrator3D.GetEndEffector3DObject(i, &fl3DORobot, &tp3RobotCenter).IsOK())
+				if(handEyeCalibrator3D.GetEndEffector3DObject(i, &fl3DORobot, &tp3RobotCenter).IsOK())
 				{
 					strIdx.Format(L"End Effector %d", i);
 					view3DLayer.DrawText3D(tp3RobotCenter, strIdx, BLUE, 0, 9);
