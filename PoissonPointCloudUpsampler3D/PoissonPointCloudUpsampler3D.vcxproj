@@ -22,7 +22,7 @@
     <ProjectGuid>{80BDD460-AAAA-9909-A0D6-2C4AAE28C30E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PoissonPointCloudUpsampler3D</RootNamespace>
-    <ProjectName>PoissonPointCloudUpsampler3D</ProjectName>
+    <ProjectName>PointCloudUpsamplerPoisson3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PoissonPointCloudUpsampler3D.cpp" />
+    <ClCompile Include="PointCloudUpsamplerPoisson3D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

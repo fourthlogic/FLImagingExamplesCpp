@@ -22,7 +22,7 @@
     <ProjectGuid>{80BDD460-BBAE-010F-90D6-2C4000AAC30E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UniformPointCloudUpsampler3D</RootNamespace>
-    <ProjectName>UniformPointCloudUpsampler3D</ProjectName>
+    <ProjectName>PointCloudUpsamplerUniform3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="UniformPointCloudUpsampler3D.cpp" />
+    <ClCompile Include="PointCloudUpsamplerUniform3D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
