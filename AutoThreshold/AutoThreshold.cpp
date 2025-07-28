@@ -102,29 +102,29 @@ int main()
 		CFLRect<int32_t> flrROI(300, 200, 700, 600);
 
 		// auto threshold 객체 생성 // Create auto threshold object
-		CAutoThreshold AutoThreshold;
+		CAutoThreshold autoThreshold;
 		// Source 이미지 설정 // Set the source image
-		AutoThreshold.SetSourceImage(arrFliImage[EType_Source]);
+		autoThreshold.SetSourceImage(arrFliImage[EType_Source]);
 		// Source ROI 설정 // Set the source ROI
-		AutoThreshold.SetSourceROI(flrROI);
+		autoThreshold.SetSourceROI(flrROI);
 
 		// Destination1 이미지 설정 // Set the destination1 image
-		AutoThreshold.SetDestinationImage(arrFliImage[EType_Destination1]);
+		autoThreshold.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Destination1 ROI 설정 // Set the destination1 ROI
-		AutoThreshold.SetDestinationROI(flrROI);
+		autoThreshold.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		AutoThreshold.SetSigma(2);
+		autoThreshold.SetSigma(2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = AutoThreshold.Execute()).IsFail())
+		if((res = autoThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Result 결과 갯수 확인 // get result count
-		int64_t i64IndexCount = AutoThreshold.GetResultBatchCount();
+		int64_t i64IndexCount = autoThreshold.GetResultBatchCount();
 
 		// Threshold 값 표기를 위한 String 변수 // string variable to indicate Threshold value
 		CFLArray<CFLString<wchar_t>> flaThresholdStr;
@@ -138,7 +138,7 @@ int main()
 			flaThresholdStr.Clear();
 
 			// Channel 값 가져오기 // get channel result
-			int64_t i64ChannelCount = AutoThreshold.GetChannelCount(i);
+			int64_t i64ChannelCount = autoThreshold.GetChannelCount(i);
 
 			for(int j = 0; j < i64ChannelCount; ++j)
 			{
@@ -146,7 +146,7 @@ int main()
 				flaResult.Clear();
 
 				// AutoThreshold 결과 값 가져오기 // get auto threshold result
-				if((res = (AutoThreshold.GetResultBatch(i, j, flaResult))).IsFail())
+				if((res = (autoThreshold.GetResultBatch(i, j, flaResult))).IsFail())
 				{
 					ErrorPrint(res, L"No Result.");
 					break;
@@ -166,22 +166,22 @@ int main()
 		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		AutoThreshold.SetDestinationImage(arrFliImage[EType_Destination2]);
+		autoThreshold.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		AutoThreshold.SetDestinationROI(flrROI);
+		autoThreshold.SetDestinationROI(flrROI);
 
 		// auto threshold 커널 크기 설정
-		AutoThreshold.SetSigma(4);
+		autoThreshold.SetSigma(4);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = AutoThreshold.Execute()).IsFail())
+		if((res = autoThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 		
 		// Result 결과 갯수 확인 // get result count
-		i64IndexCount = AutoThreshold.GetResultBatchCount();
+		i64IndexCount = autoThreshold.GetResultBatchCount();
 
 		// Threshold 값 표기를 위한 String 변수 // string variable to indicate Threshold value
 		CFLArray<CFLString<wchar_t>> flaThresholdStr2;
@@ -192,7 +192,7 @@ int main()
 			flaThresholdStr2.Clear();
 
 			// Channel 값 가져오기 // get channel result
-			int64_t i64ChannelCount = AutoThreshold.GetChannelCount(i);
+			int64_t i64ChannelCount = autoThreshold.GetChannelCount(i);
 
 			for(int j = 0; j < i64ChannelCount; ++j)
 			{
@@ -200,7 +200,7 @@ int main()
 				flaResult.Clear();
 
 				// AutoThreshold 결과 값 가져오기 // get auto threshold result
-				if((res = (AutoThreshold.GetResultBatch(i, j, flaResult))).IsFail())
+				if((res = (autoThreshold.GetResultBatch(i, j, flaResult))).IsFail())
 				{
 					ErrorPrint(res, L"No Result.");
 					break;

@@ -24,7 +24,7 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/ShockFilter/ShockFilter.flif")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/ShockFilter/shockFilter.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -73,21 +73,21 @@ int main()
 		}
 
 		// ShockFilter 객체 생성 // Create ShockFilter object
-		CShockFilter ShockFilter;
+		CShockFilter shockFilter;
 
 		// Source 이미지 설정 // Set the source image
-		ShockFilter.SetSourceImage(fliSrcImage);
+		shockFilter.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		ShockFilter.SetDestinationImage(fliDstImage);
+		shockFilter.SetDestinationImage(fliDstImage);
 		// Algorithm 반복 수행 횟수 설정 // Set the number of iterations of an algorithm
-		ShockFilter.SetIteration(15);
+		shockFilter.SetIteration(15);
 		// Time Step 설정 // Set the time step value
-		ShockFilter.SetTimeStep(0.5);
+		shockFilter.SetTimeStep(0.5);
 		// Sigma 설정 // Set the sigma value
-		ShockFilter.SetSigma(0.5);
+		shockFilter.SetSigma(0.5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = ShockFilter.Execute()).IsFail())
+		if((res = shockFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute ShockFilter.");
 			break;
