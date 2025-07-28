@@ -20,7 +20,7 @@ int main()
 	CResult res = EResult_UnknownError;
 
 	// Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
-	CPatternMatchMultiSparse FLPatternMatchMultiSparseSave;
+	CPatternMatchMultiSparse patternMatchMultiSparseSave;
 
 	do
 	{
@@ -61,16 +61,16 @@ int main()
 			layerLearn.Clear();
 
 			// 학습할 이미지 설정 // Set the image to learn
-			FLPatternMatchMultiSparseSave.SetLearnImage(fliLearnImage[i64DataIdx]);
+			patternMatchMultiSparseSave.SetLearnImage(fliLearnImage[i64DataIdx]);
 
 			// 학습할 영역을 설정합니다. // Set the area to learn.
 			CFLPoint<double> flpLearnPivot = arrLearnRegion[i64DataIdx].GetCenter();
-			FLPatternMatchMultiSparseSave.SetLearnROI(arrLearnRegion[i64DataIdx]);
-			FLPatternMatchMultiSparseSave.SetLearnPivot(flpLearnPivot);
-			FLPatternMatchMultiSparseSave.SetSampleCount(256);
+			patternMatchMultiSparseSave.SetLearnROI(arrLearnRegion[i64DataIdx]);
+			patternMatchMultiSparseSave.SetLearnPivot(flpLearnPivot);
+			patternMatchMultiSparseSave.SetSampleCount(256);
 
 		    // 알고리즘 수행 // Execute the algorithm
-			if(IsFail(res = FLPatternMatchMultiSparseSave.Learn(arrClassName[i64DataIdx])))
+			if(IsFail(res = patternMatchMultiSparseSave.Learn(arrClassName[i64DataIdx])))
 			{
 				ErrorPrint(res, "Failed to execute Learn.\n");
 				break;
@@ -131,7 +131,7 @@ int main()
 		}
 		
 		// 데이터 추가를 완료 후 Save를 진행합니다. // After completing data addition, proceed with Save.
-		if(IsFail(res = FLPatternMatchMultiSparseSave.Save(L"../../ExampleImages/Matching/Pattern Multi Learn File")))
+		if(IsFail(res = patternMatchMultiSparseSave.Save(L"../../ExampleImages/Matching/Pattern Multi Learn File")))
 		{
 			ErrorPrint(res, "Failed to save\n");
 			break;
@@ -178,38 +178,38 @@ int main()
 			break;
 		}
 
-		CPatternMatchMultiSparse FLPatternMatchMultiSparseLoad;
+		CPatternMatchMultiSparse patternMatchMultiSparseLoad;
 
 		// 데이터를 Load합니다. // Load data.
-		if(IsFail(res = FLPatternMatchMultiSparseLoad.Load(L"../../ExampleImages/Matching/Pattern Multi Learn File")))
+		if(IsFail(res = patternMatchMultiSparseLoad.Load(L"../../ExampleImages/Matching/Pattern Multi Learn File")))
 		{
 			ErrorPrint(res, "Failed to save\n");
 			break;
 		}
 
 		// 검출할 이미지 설정 // Set image to detect
-		FLPatternMatchMultiSparseSave.SetSourceImage(fliFindImage);
+		patternMatchMultiSparseSave.SetSourceImage(fliFindImage);
 
 		// 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
 		// 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
-		FLPatternMatchMultiSparseSave.SetAngleBias(0.);
+		patternMatchMultiSparseSave.SetAngleBias(0.);
 		// 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
 		// 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
-		FLPatternMatchMultiSparseSave.SetAngleTolerance(15.);
+		patternMatchMultiSparseSave.SetAngleTolerance(15.);
 		// 검출 시 최적화 정도를 설정합니다. // Set the degree of optimization for detection.
 		// 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
-		FLPatternMatchMultiSparseSave.SetMinimumDetectionScore(0.7);
+		patternMatchMultiSparseSave.SetMinimumDetectionScore(0.7);
 		// 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
-		FLPatternMatchMultiSparseSave.SetMaxObjectMode(CPatternMatchMultiSparse::EMaxObjectMode_Total);
+		patternMatchMultiSparseSave.SetMaxObjectMode(CPatternMatchMultiSparse::EMaxObjectMode_Total);
 		// 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
-		FLPatternMatchMultiSparseSave.SetMaxObjectTotal(2);
+		patternMatchMultiSparseSave.SetMaxObjectTotal(2);
 		// 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
-		FLPatternMatchMultiSparseSave.EnableInterpolation(true);
+		patternMatchMultiSparseSave.EnableInterpolation(true);
 		// 검출 시 서로 다른 클래스에 대해 영역 중복을 허용 유무에 대해 설정합니다. // Set whether to allow area overlap for different classes during detection.
-		FLPatternMatchMultiSparseSave.SetConflictDetectionMethod();
+		patternMatchMultiSparseSave.SetConflictDetectionMethod();
 
 		// 알고리즘 수행 // Execute the algorithm
-		res = FLPatternMatchMultiSparseSave.Execute();
+		res = patternMatchMultiSparseSave.Execute();
 
 		if(IsFail(res))
 		{
@@ -218,7 +218,7 @@ int main()
 		}
 
 		// 패턴 검출 결과를 가져옵니다. // Get the pattern detection result.
-		int64_t i64ResultCount = FLPatternMatchMultiSparseSave.GetResultCount();
+		int64_t i64ResultCount = patternMatchMultiSparseSave.GetResultCount();
 
 		printf(" ▶ Find Information\n");
 
@@ -227,7 +227,7 @@ int main()
 			CPatternMatchMultiSparse::SResult results;
 			CFLFigureArray flfaResultPoints;
 
-			FLPatternMatchMultiSparseSave.GetResult(i, results);
+			patternMatchMultiSparseSave.GetResult(i, results);
 
 			float f32Score = results.f32Score;
 			float f32Angle = results.f32Angle;

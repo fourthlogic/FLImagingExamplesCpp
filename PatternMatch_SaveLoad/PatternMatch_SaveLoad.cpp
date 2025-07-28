@@ -86,26 +86,26 @@ int main()
 		}
 
 		// Pattern Match 객체 생성 // Create Pattern Match object
-		CPatternMatch FLPatternMatchSave;
+		CPatternMatch patternMatchSave;
 
 		// 학습할 이미지 설정 // Set the image to learn
-		FLPatternMatchSave.SetLearnImage(fliLearnImage);
+		patternMatchSave.SetLearnImage(fliLearnImage);
 
 		// 학습할 영역을 설정합니다. // Set the area to learn.
 		CFLRect<double> learnRegion(174.7086, 272.2204, 799.0551, 601.3228);
 		CFLPoint<double> flpLearnPivot = learnRegion.GetCenter();
-		FLPatternMatchSave.SetLearnROI(learnRegion);
-		FLPatternMatchSave.SetLearnPivot(flpLearnPivot);
+		patternMatchSave.SetLearnROI(learnRegion);
+		patternMatchSave.SetLearnPivot(flpLearnPivot);
 		 
 		// 알고리즘 수행 // Execute the algorithm
-		if(IsFail(res = FLPatternMatchSave.Learn()))
+		if(IsFail(res = patternMatchSave.Learn()))
 		{
 			ErrorPrint(res, "Failed to execute Learn.\n");
 			break;
 		}
 
 		// 데이터 Save를 진행합니다. // Proceed to save data.
-		if(IsFail(res = FLPatternMatchSave.Save(L"../../ExampleImages/Matching/Pattern Single Learn File")))
+		if(IsFail(res = patternMatchSave.Save(L"../../ExampleImages/Matching/Pattern Single Learn File")))
 		{
 			ErrorPrint(res, "Failed to save\n");
 			break;
@@ -150,38 +150,38 @@ int main()
 		printf("  2. Interest Pivot : (%.3lf, %.3lf)\n", flpLearnPivot.x, flpLearnPivot.y);
 		printf("\n");
 
-		CPatternMatch FLPatternMatchLoad;
+		CPatternMatch patternMatchLoad;
 
 		// 데이터 Load를 진행합니다. // Proceed to load data.
-		if(IsFail(res = FLPatternMatchLoad.Load(L"../../ExampleImages/Matching/Pattern Single Learn File")))
+		if(IsFail(res = patternMatchLoad.Load(L"../../ExampleImages/Matching/Pattern Single Learn File")))
 		{
 			ErrorPrint(res, "Failed to save\n");
 			break;
 		}
 
 		// 검출할 이미지 설정 // Set image to detect
-		FLPatternMatchLoad.SetSourceImage(fliFindImage);
+		patternMatchLoad.SetSourceImage(fliFindImage);
 
 		// 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
 		// 검출 시 사용될 유효 변경 크기범위를 설정합니다. // Set the effective change size range to be used for detection.
-		FLPatternMatchLoad.SetScaleRange(0.95, 1.05);
+		patternMatchLoad.SetScaleRange(0.95, 1.05);
 		// 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
-		FLPatternMatchLoad.SetAngleBias(0.);
+		patternMatchLoad.SetAngleBias(0.);
 		// 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
 		// 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
-		FLPatternMatchLoad.SetAngleTolerance(10.);
+		patternMatchLoad.SetAngleTolerance(10.);
 		// 검출 시 최적화 정도를 설정합니다. // Set the degree of optimization for detection.
 		// 0 ~ 1범위에서 0에 가까울수록 정확성은 낮아질 수 있으나, 속도가 상향됩니다. // From 0 to 1, the closer to 0, the lower the accuracy, but the higher the speed.
-		FLPatternMatchLoad.SetAccuracy(0.5);
+		patternMatchLoad.SetAccuracy(0.5);
 		// 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
-		FLPatternMatchLoad.SetMinimumDetectionScore(0.7);
+		patternMatchLoad.SetMinimumDetectionScore(0.7);
 		// 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
-		FLPatternMatchLoad.SetMaxObject(1);
+		patternMatchLoad.SetMaxObject(1);
 		// 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
-		FLPatternMatchLoad.EnableInterpolation(true);
+		patternMatchLoad.EnableInterpolation(true);
 
 		// 알고리즘 수행 // Execute the algorithm
-		res = FLPatternMatchLoad.Execute();
+		res = patternMatchLoad.Execute();
 
 		if(IsFail(res))
 		{
@@ -190,7 +190,7 @@ int main()
 		}
 		 
 		// 패턴 검출 결과를 가져옵니다. // Get the pattern detection result.
-		int64_t i64ResultCount = FLPatternMatchLoad.GetResultCount();
+		int64_t i64ResultCount = patternMatchLoad.GetResultCount();
 
 		printf(" ▶ Find Information\n");
 
@@ -198,7 +198,7 @@ int main()
 		{
 			CPatternMatch::SResult results;
 
-			FLPatternMatchLoad.GetResult(i, results);
+			patternMatchLoad.GetResult(i, results);
 
 			float f32Score = results.f32Score;
 			float f32Angle = results.f32Angle;

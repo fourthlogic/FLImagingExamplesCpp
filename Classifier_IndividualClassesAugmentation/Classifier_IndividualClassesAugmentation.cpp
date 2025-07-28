@@ -216,14 +216,14 @@ int main()
 
 		augSpec1.EnableRotation(true);
 		augSpec1.SetRotationParam(-30.000000, 30.000000, false, false, 1.000000);
-		CAugmentationPreset AugmentationPreset1;
+		CAugmentationPreset augmentationPreset1;
 		CFLArray<int32_t> flaClassNum1;
 		flaClassNum1.PushBack(0);
 		flaClassNum1.PushBack(1);
-		AugmentationPreset1.SetClassNumbers(flaClassNum1);
-		AugmentationPreset1.SetName(L"Class 0");
-		AugmentationPreset1.SetAugmentationSpec(augSpec1);
-		classifier.AddLearningAugmentationPreset(AugmentationPreset1);
+		augmentationPreset1.SetClassNumbers(flaClassNum1);
+		augmentationPreset1.SetName(L"Class 0");
+		augmentationPreset1.SetAugmentationSpec(augSpec1);
+		classifier.AddLearningAugmentationPreset(augmentationPreset1);
 		CAugmentationSpec augSpec2;
 
 		augSpec2.EnableAugmentation(true);
@@ -234,13 +234,13 @@ int main()
 		augSpec2.EnableRotation(true);
 		augSpec2.SetRotationParam(-180.000000, 180.000000, false, false, 1.000000);
 
-		CAugmentationPreset AugmentationPreset2;
+		CAugmentationPreset augmentationPreset2;
 		CFLArray<int32_t> flaClassNum2;
 		flaClassNum2.PushBack(2);
-		AugmentationPreset2.SetClassNumbers(flaClassNum2);
-		AugmentationPreset2.SetName(L"Class 2");
-		AugmentationPreset2.SetAugmentationSpec(augSpec2);
-		classifier.AddLearningAugmentationPreset(AugmentationPreset2);
+		augmentationPreset2.SetClassNumbers(flaClassNum2);
+		augmentationPreset2.SetName(L"Class 2");
+		augmentationPreset2.SetAugmentationSpec(augSpec2);
+		classifier.AddLearningAugmentationPreset(augmentationPreset2);
 		CAugmentationSpec augSpec3;
 
 		augSpec3.EnableAugmentation(true);
@@ -251,13 +251,13 @@ int main()
 		augSpec3.EnableScale(true);
 		augSpec3.SetScaleParam(0.670000, 1.500000, 0.670000, 1.500000, true, 1.000000);
 
-		CAugmentationPreset AugmentationPreset3;
+		CAugmentationPreset augmentationPreset3;
 		CFLArray<int32_t> flaClassNum3;
 		flaClassNum3.PushBack(3);
-		AugmentationPreset3.SetClassNumbers(flaClassNum3);
-		AugmentationPreset3.SetName(L"Class 3");
-		AugmentationPreset3.SetAugmentationSpec(augSpec3);
-		classifier.AddLearningAugmentationPreset(AugmentationPreset3);
+		augmentationPreset3.SetClassNumbers(flaClassNum3);
+		augmentationPreset3.SetName(L"Class 3");
+		augmentationPreset3.SetAugmentationSpec(augSpec3);
+		classifier.AddLearningAugmentationPreset(augmentationPreset3);
 		CAugmentationSpec augSpec4;
 
 		augSpec4.EnableAugmentation(true);
@@ -268,14 +268,14 @@ int main()
 		augSpec4.EnableQuarterRotation(true);
 		augSpec4.SetQuarterRotationParam(true, true, true, true, 1.000000);
 
-		CAugmentationPreset AugmentationPreset4;
+		CAugmentationPreset augmentationPreset4;
 		CFLArray<int32_t> flaClassNum4;
 		flaClassNum4.PushBack(4);
 		flaClassNum4.PushBack(5);
-		AugmentationPreset4.SetClassNumbers(flaClassNum4);
-		AugmentationPreset4.SetName(L"Class 4,5");
-		AugmentationPreset4.SetAugmentationSpec(augSpec4);
-		classifier.AddLearningAugmentationPreset(AugmentationPreset4);
+		augmentationPreset4.SetClassNumbers(flaClassNum4);
+		augmentationPreset4.SetName(L"Class 4,5");
+		augmentationPreset4.SetAugmentationSpec(augSpec4);
+		classifier.AddLearningAugmentationPreset(augmentationPreset4);
 		// Learn 동작을 하는 핸들 객체 선언 // Declare HANDLE object execute learn function
 		HANDLE hThread;
 

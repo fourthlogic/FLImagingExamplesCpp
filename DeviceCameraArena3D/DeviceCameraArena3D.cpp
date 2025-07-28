@@ -96,7 +96,7 @@ int main()
 	CResult drReturn = EResult_UnknownError;
 
 	// 3D 뷰 선언
-	CGUIView3DWrap View3D;
+	CGUIView3DWrap view3D;
 
 	// Arena3D 카메라 선언
 	CDeviceCameraArena3D camArena3D;
@@ -221,7 +221,7 @@ int main()
 		}
 
 		// 3D 뷰 생성
-		if(View3D.Create(0, 0, 1000, 1000).IsFail())
+		if(view3D.Create(0, 0, 1000, 1000).IsFail())
 		{
 			drReturn = EResult_FailedToCreateObject;
 
@@ -229,7 +229,7 @@ int main()
 			break;
 		}
 
-		eventImage.SetView3D(&View3D);
+		eventImage.SetView3D(&view3D);
 
 		// 카메라를 Live 합니다.
 		drReturn = camArena3D.Live();
@@ -241,7 +241,7 @@ int main()
 		}
 
 		// 3D 뷰가 종료될 때 까지 기다림
-		while(View3D.IsAvailable())
+		while(view3D.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
