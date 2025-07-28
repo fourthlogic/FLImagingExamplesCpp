@@ -44,18 +44,18 @@ int main()
 		}
 
 		// SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-		CGUIViewImageLayerWrap Src1Layer0 = viewImage[0].GetLayer(0);
-		CGUIViewImageLayerWrap Dst1Layer0 = viewImage[1].GetLayer(0);
-		CGUIViewImageLayerWrap Src2Layer0 = viewImage[2].GetLayer(0);
-		CGUIViewImageLayerWrap Dst2Layer0 = viewImage[3].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc1 = viewImage[0].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst1 = viewImage[1].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc2 = viewImage[2].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst2 = viewImage[3].GetLayer(0);
 
-		Src1Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 1", YELLOW, BLACK, 15);
-		Src2Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 2", YELLOW, BLACK, 15);
-		Dst1Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 1", YELLOW, BLACK, 15);
-		Dst2Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 2", YELLOW, BLACK, 15);
+		layerSrc1.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 1", YELLOW, BLACK, 15);
+		layerSrc2.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 2", YELLOW, BLACK, 15);
+		layerDst1.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 1", YELLOW, BLACK, 15);
+		layerDst2.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 2", YELLOW, BLACK, 15);
 
-		Dst1Layer0.DrawTextCanvas(TPoint<double>(0, 20), L"Minimum Distance", CYAN, BLACK);
-		Dst2Layer0.DrawTextCanvas(TPoint<double>(0, 20), L"Minimum Distance", CYAN, BLACK);
+		layerDst1.DrawTextCanvas(TPoint<double>(0, 20), L"Minimum Distance", CYAN, BLACK);
+		layerDst2.DrawTextCanvas(TPoint<double>(0, 20), L"Minimum Distance", CYAN, BLACK);
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[1])))
@@ -153,34 +153,34 @@ int main()
 		CFLLine<double> fllMin2(flpaResult2.GetAt(0), flpaResult2.GetAt(1));
 
 		// SourceView1의 0번 레이어에 Source, Operand Figure 그리기 // Draw Source and Operand Figure on Layer 0 of SourceView1
-		Src1Layer0.DrawFigureImage(flcSource1, BLACK, 3);
-		Src1Layer0.DrawFigureImage(flcSource1, KHAKI);
-		Src1Layer0.DrawFigureImage(flqOperand1, BLACK, 3);
-		Src1Layer0.DrawFigureImage(flqOperand1, LIME);
+		layerSrc1.DrawFigureImage(flcSource1, BLACK, 3);
+		layerSrc1.DrawFigureImage(flcSource1, KHAKI);
+		layerSrc1.DrawFigureImage(flqOperand1, BLACK, 3);
+		layerSrc1.DrawFigureImage(flqOperand1, LIME);
 
 		// DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-		Dst1Layer0.DrawFigureImage(flcSource1, BLACK, 3);
-		Dst1Layer0.DrawFigureImage(flcSource1, KHAKI);
-		Dst1Layer0.DrawFigureImage(flqOperand1, BLACK, 3);
-		Dst1Layer0.DrawFigureImage(flqOperand1, LIME);
-		Dst1Layer0.DrawFigureImage(flpaResult1, CYAN, 3);
-		Dst1Layer0.DrawFigureImage(fllMin1, CYAN);
-		Dst1Layer0.DrawTextImage(fllMin1.GetCenter(), CFLString<wchar_t>().Format(L"%.3lf", f64MinimumDistance1), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_RIGHT_TOP);
+		layerDst1.DrawFigureImage(flcSource1, BLACK, 3);
+		layerDst1.DrawFigureImage(flcSource1, KHAKI);
+		layerDst1.DrawFigureImage(flqOperand1, BLACK, 3);
+		layerDst1.DrawFigureImage(flqOperand1, LIME);
+		layerDst1.DrawFigureImage(flpaResult1, CYAN, 3);
+		layerDst1.DrawFigureImage(fllMin1, CYAN);
+		layerDst1.DrawTextImage(fllMin1.GetCenter(), CFLString<wchar_t>().Format(L"%.3lf", f64MinimumDistance1), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_RIGHT_TOP);
 
 		// SourceView2의 0번 레이어에 Source, Operand Figure 그리기 // Draw Source and Operand Figure on Layer 0 of SourceView2
-		Src2Layer0.DrawFigureImage(flfaSource2, BLACK, 3);
-		Src2Layer0.DrawFigureImage(flfaSource2, KHAKI);
-		Src2Layer0.DrawFigureImage(flfaOperand2, BLACK, 3);
-		Src2Layer0.DrawFigureImage(flfaOperand2, LIME);
+		layerSrc2.DrawFigureImage(flfaSource2, BLACK, 3);
+		layerSrc2.DrawFigureImage(flfaSource2, KHAKI);
+		layerSrc2.DrawFigureImage(flfaOperand2, BLACK, 3);
+		layerSrc2.DrawFigureImage(flfaOperand2, LIME);
 
 		// DstView2의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView2
-		Dst2Layer0.DrawFigureImage(flfaSource2, BLACK, 3);
-		Dst2Layer0.DrawFigureImage(flfaSource2, KHAKI);
-		Dst2Layer0.DrawFigureImage(flfaOperand2, BLACK, 3);
-		Dst2Layer0.DrawFigureImage(flfaOperand2, LIME);
-		Dst2Layer0.DrawFigureImage(flpaResult2, CYAN, 3);
-		Dst2Layer0.DrawFigureImage(fllMin2, CYAN);
-		Dst2Layer0.DrawTextImage(fllMin2.GetCenter(), CFLString<wchar_t>().Format(L"%.3lf", f64MinimumDistance2), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_LEFT_BOTTOM);
+		layerDst2.DrawFigureImage(flfaSource2, BLACK, 3);
+		layerDst2.DrawFigureImage(flfaSource2, KHAKI);
+		layerDst2.DrawFigureImage(flfaOperand2, BLACK, 3);
+		layerDst2.DrawFigureImage(flfaOperand2, LIME);
+		layerDst2.DrawFigureImage(flpaResult2, CYAN, 3);
+		layerDst2.DrawFigureImage(fllMin2, CYAN);
+		layerDst2.DrawTextImage(fllMin2.GetCenter(), CFLString<wchar_t>().Format(L"%.3lf", f64MinimumDistance2), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_LEFT_BOTTOM);
 
 		// Console 출력 // Console output
 		wprintf(L"Source1 CFLCircle<double>\n");

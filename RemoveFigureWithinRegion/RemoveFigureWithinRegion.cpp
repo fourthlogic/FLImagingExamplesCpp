@@ -44,15 +44,15 @@ int main()
 		}
 
 		// SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-		CGUIViewImageLayerWrap SrcLayer0 = viewImage[0].GetLayer(0);
-		CGUIViewImageLayerWrap DstLayer0 = viewImage[1].GetLayer(0);
-		CGUIViewImageLayerWrap SrcLayer1 = viewImage[2].GetLayer(0);
-		CGUIViewImageLayerWrap DstLayer1 = viewImage[3].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc0 = viewImage[0].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst0 = viewImage[1].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc1 = viewImage[2].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst1 = viewImage[3].GetLayer(0);
 
-		SrcLayer0.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure And Region1", YELLOW, BLACK, 15);
-		DstLayer0.DrawTextCanvas(TPoint<double>(0, 0), L"Remove Figure Within Region1", YELLOW, BLACK, 15);
-		SrcLayer1.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure And Region2", YELLOW, BLACK, 15);
-		DstLayer1.DrawTextCanvas(TPoint<double>(0, 0), L"Remove Figure Within Region2", YELLOW, BLACK, 15);
+		layerSrc0.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure And Region1", YELLOW, BLACK, 15);
+		layerDst0.DrawTextCanvas(TPoint<double>(0, 0), L"Remove Figure Within Region1", YELLOW, BLACK, 15);
+		layerSrc1.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure And Region2", YELLOW, BLACK, 15);
+		layerDst1.DrawTextCanvas(TPoint<double>(0, 0), L"Remove Figure Within Region2", YELLOW, BLACK, 15);
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		for(int32_t i = 1; i < 4; ++i)
@@ -138,8 +138,8 @@ int main()
 		wprintf(L"%s", strFigure.GetString());
 
 		// SourceView1의 0번 레이어에 Source Figure, Region1 그리기 // Draw Source Figure, Region1 on Layer 0 of SourceView1
-		SrcLayer0.DrawFigureImage(flfaSource, CYAN);
-		SrcLayer0.DrawFigureImage(flcrRegion1, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerSrc0.DrawFigureImage(flfaSource, CYAN);
+		layerSrc0.DrawFigureImage(flcrRegion1, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
 
 		wprintf(L"Region2\n");
 
@@ -147,8 +147,8 @@ int main()
 		wprintf(L"%s", strFigure.GetString());
 
 		// SourceView2의 0번 레이어에 Source Figure, Region2 그리기 // Draw Source Figure, Region2 on Layer 0 of SourceView2
-		SrcLayer1.DrawFigureImage(flfaSource, CYAN);
-		SrcLayer1.DrawFigureImage(flcrRegion2, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerSrc1.DrawFigureImage(flfaSource, CYAN);
+		layerSrc1.DrawFigureImage(flcrRegion2, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
 
 		// Region1과 겹쳐지는 Figure 제거 // Remove the overlapping figure with Region1
 		CFLFigureArray flfaResult1(flfaSource);
@@ -160,9 +160,9 @@ int main()
 		wprintf(L"%s", strFigure.GetString());
 
 		// DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-		DstLayer0.DrawFigureImage(flfaSource, CYAN);
-		DstLayer0.DrawFigureImage(flcrRegion1, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
-		DstLayer0.DrawFigureImage(flfaResult1, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerDst0.DrawFigureImage(flfaSource, CYAN);
+		layerDst0.DrawFigureImage(flcrRegion1, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerDst0.DrawFigureImage(flfaResult1, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
 
 		// Region2과 겹쳐지는 Figure 제거 // Remove figure overlapping with Region2
 		CFLFigureArray flfaResult2(flfaSource);
@@ -174,9 +174,9 @@ int main()
 		wprintf(L"%s", strFigure.GetString());
 
 		// DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-		DstLayer1.DrawFigureImage(flfaSource, CYAN);
-		DstLayer1.DrawFigureImage(flcrRegion2, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
-		DstLayer1.DrawFigureImage(flfaResult2, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerDst1.DrawFigureImage(flfaSource, CYAN);
+		layerDst1.DrawFigureImage(flcrRegion2, BLUE, 1, BLUE, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerDst1.DrawFigureImage(flfaResult2, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
 		for(int32_t i = 0; i < 4; ++i)

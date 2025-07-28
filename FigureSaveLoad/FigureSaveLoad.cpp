@@ -31,11 +31,11 @@ int main()
 		}
 
 		// SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-		CGUIViewImageLayerWrap SrcLayer0 = viewImage[0].GetLayer(0);
-		CGUIViewImageLayerWrap DstLayer0 = viewImage[1].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc0 = viewImage[0].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst0 = viewImage[1].GetLayer(0);
 
-		SrcLayer0.DrawTextCanvas(TPointD(0, 0), L"Figure To Save", YELLOW, BLACK, 15);
-		DstLayer0.DrawTextCanvas(TPointD(0, 0), L"Loaded Figure", YELLOW, BLACK, 15);
+		layerSrc0.DrawTextCanvas(TPointD(0, 0), L"Figure To Save", YELLOW, BLACK, 15);
+		layerDst0.DrawTextCanvas(TPointD(0, 0), L"Loaded Figure", YELLOW, BLACK, 15);
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[1])))
@@ -74,8 +74,8 @@ int main()
 		wprintf(L"%s", strFigure.GetString());
 
 		// SourceView의 0번 레이어에 그리기 // Draw on Layer 0 of SourceView
-		SrcLayer0.DrawFigureImage(flr, RED);
-		SrcLayer0.DrawFigureImage(flfa, BLUE);
+		layerSrc0.DrawFigureImage(flr, RED);
+		layerSrc0.DrawFigureImage(flfa, BLUE);
 
 		// 경로 없이 파일명만 넣고 저장하는 것도 가능 // It is also possible to put only the file name without path and save it
 		flr.Save(L"FLRect.fig");
@@ -115,8 +115,8 @@ int main()
 		wprintf(L"%s", strFigure.GetString());
 
 		// DestinationView의 0번 레이어에 그리기 // Draw on Layer 0 of DestinationView
-		DstLayer0.DrawFigureImage(flrLoad, MAGENTA);
-		DstLayer0.DrawFigureImage(flfaLoad, LIME);
+		layerDst0.DrawFigureImage(flrLoad, MAGENTA);
+		layerDst0.DrawFigureImage(flfaLoad, LIME);
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
 		viewImage[0].Invalidate(true);

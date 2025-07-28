@@ -44,15 +44,15 @@ int main()
 		}
 
 		// SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-		CGUIViewImageLayerWrap Src1Layer0 = viewImage[0].GetLayer(0);
-		CGUIViewImageLayerWrap Dst1Layer0 = viewImage[1].GetLayer(0);
-		CGUIViewImageLayerWrap Src2Layer0 = viewImage[2].GetLayer(0);
-		CGUIViewImageLayerWrap Dst2Layer0 = viewImage[3].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc1 = viewImage[0].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst1 = viewImage[1].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc2 = viewImage[2].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst2 = viewImage[3].GetLayer(0);
 
-		Src1Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 1", YELLOW, BLACK, 15);
-		Src2Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 2", YELLOW, BLACK, 15);
-		Dst1Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 1", YELLOW, BLACK, 15);
-		Dst2Layer0.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 2", YELLOW, BLACK, 15);
+		layerSrc1.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 1", YELLOW, BLACK, 15);
+		layerSrc2.DrawTextCanvas(TPoint<double>(0, 0), L"Source Figure 2", YELLOW, BLACK, 15);
+		layerDst1.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 1", YELLOW, BLACK, 15);
+		layerDst2.DrawTextCanvas(TPoint<double>(0, 0), L"Result Figure 2", YELLOW, BLACK, 15);
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[1])))
@@ -245,7 +245,7 @@ int main()
 		strExpression1.Format(L"area > 400 and center.y < 160 or vertexcount = 3");
 
 		// 조건식을 View에 표기 // Draw the conditional expression in the View
-		Dst1Layer0.DrawTextCanvas(TPoint<double>(0, 20), strExpression1, YELLOW, BLACK, 13);
+		layerDst1.DrawTextCanvas(TPoint<double>(0, 20), strExpression1, YELLOW, BLACK, 13);
 
 		// 조건식을 만족하는 Figure를 flfaResult1에 추출 // Extract the figure that satisfies the conditional expression to flfaResult1
 		CFLFigureArray flfaResult1;
@@ -261,7 +261,7 @@ int main()
 		strExpression2.Format(L"area >= mean('area')");
 
 		// 조건식을 View에 표기 // Draw the conditional expression in the View
-		Dst2Layer0.DrawTextCanvas(TPoint<double>(0, 20), strExpression2, YELLOW, BLACK, 13);
+		layerDst2.DrawTextCanvas(TPoint<double>(0, 20), strExpression2, YELLOW, BLACK, 13);
 
 		// 조건식을 만족하는 Figure를 flfaResult2에 추출 // Get the figure that satisfies the conditional expression to flfaResult2
 		CFLFigureArray flfaResult2;
@@ -273,16 +273,16 @@ int main()
 		}
 
 		// SourceView의 0번 레이어에 Source Figure 그리기 // Draw the Source Figure on Layer 0 of the SourceView
-		Src1Layer0.DrawFigureImage(flfaSource1, CYAN);
-		Src2Layer0.DrawFigureImage(flfaSource2, CYAN);
+		layerSrc1.DrawFigureImage(flfaSource1, CYAN);
+		layerSrc2.DrawFigureImage(flfaSource2, CYAN);
 
 		// DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-		Dst1Layer0.DrawFigureImage(flfaSource1, CYAN);
-		Dst1Layer0.DrawFigureImage(flfaResult1, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerDst1.DrawFigureImage(flfaSource1, CYAN);
+		layerDst1.DrawFigureImage(flfaResult1, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
 
 		// DstView2의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView2
-		Dst2Layer0.DrawFigureImage(flfaSource2, CYAN);
-		Dst2Layer0.DrawFigureImage(flfaResult2, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
+		layerDst2.DrawFigureImage(flfaSource2, CYAN);
+		layerDst2.DrawFigureImage(flfaResult2, LIME, 3, LIME, EGUIViewImagePenStyle_Solid, 1, 0.2f);
 
 		// Console 출력 // Console output
 		wprintf(L"Source1 Figure Array\n");

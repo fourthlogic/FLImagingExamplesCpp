@@ -60,10 +60,10 @@ int main()
 		}
 
 		// SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-		CGUIViewImageLayerWrap ViewLayer[i32ViewCount];
+		CGUIViewImageLayerWrap layerView[i32ViewCount];
 
 		for(int32_t i = 0; i < i32ViewCount; ++i)
-			ViewLayer[i] = viewImage[i].GetLayer(0);
+			layerView[i] = viewImage[i].GetLayer(0);
 
 		// Figure 생성 // Create Figure
 		CFLRect<double> flr(50, 50, 100, 100, 15);
@@ -91,7 +91,7 @@ int main()
 
 		// Figure 그리기 // Draw Figure
 		for(int32_t i = 0; i < flfa.GetCount(); ++i)
-			ViewLayer[i].DrawFigureImage(flfa, LIME);
+			layerView[i].DrawFigureImage(flfa, LIME);
 
 		//////////////////////////////// GetCenterElementwise()
 		// 중심점 좌표를 담을 FigureArray 생성 // Create a FigureArray to hold the coordinates of the center point
@@ -101,8 +101,8 @@ int main()
 		flfa.GetCenterElementwise(&flfaCenter);
 
 		// 중심들을 View0의 0번 레이어에 그리기 // Draw the centers on layer 0 of View0
-		ViewLayer[0].DrawFigureImage(flfaCenter, RED);
-		ViewLayer[0].DrawTextCanvas(TPointD(0, 0), L"GetCenterElementwise() Result", YELLOW, BLACK, 15);
+		layerView[0].DrawFigureImage(flfaCenter, RED);
+		layerView[0].DrawTextCanvas(TPointD(0, 0), L"GetCenterElementwise() Result", YELLOW, BLACK, 15);
 
 		// 콘솔에 중심 좌표 표시 // Print center coordinates in console
 		wprintf(L"Center Point\n");
@@ -128,9 +128,9 @@ int main()
 		{
 			CFLString<wchar_t> strPerimeter;
 			strPerimeter.Format(L"%lf", ((CFLScalarD*)flfaPerimeter[i])->v);
-			ViewLayer[1].DrawTextImage(flfaCenter[i], strPerimeter, BLACK);
+			layerView[1].DrawTextImage(flfaCenter[i], strPerimeter, BLACK);
 		}
-		ViewLayer[1].DrawTextCanvas(TPointD(0, 0), L"GetPerimeterElementwise() Result", YELLOW, BLACK, 15);
+		layerView[1].DrawTextCanvas(TPointD(0, 0), L"GetPerimeterElementwise() Result", YELLOW, BLACK, 15);
 
 		// 콘솔에 길이 표시 // Display the length in the console
 		wprintf(L"Perimeter\n");
@@ -152,8 +152,8 @@ int main()
 		flfa.GetCenterOfGravityElementwise(&flfaCenterOfGravity);
 
 		// 무게중심들을 View0의 0번 레이어에 그리기 // Draw the centers of gravity on Layer 0 of View0
-		ViewLayer[2].DrawFigureImage(flfaCenterOfGravity, CYAN);
-		ViewLayer[2].DrawTextCanvas(TPointD(0, 0), L"GetCenterOfGravityElementwise() Result", YELLOW, BLACK, 15);
+		layerView[2].DrawFigureImage(flfaCenterOfGravity, CYAN);
+		layerView[2].DrawTextCanvas(TPointD(0, 0), L"GetCenterOfGravityElementwise() Result", YELLOW, BLACK, 15);
 
 		// 콘솔에 무게중심 좌표 표시 // Display barycentric coordinates in console
 		wprintf(L"Center Of Gravity Point\n");
@@ -175,8 +175,8 @@ int main()
 		flfa.GetMinimumEnclosingRectangleElementwise(&flfaMER);
 
 		// 최소둘레 직사각형들을 View0의 0번 레이어에 그리기 // Draw the minimum enclosing rectangle on Layer 0 of View0
-		ViewLayer[3].DrawFigureImage(flfaMER, BLUE);
-		ViewLayer[3].DrawTextCanvas(TPointD(0, 0), L"GetMinimumEnclosingRectangleElementwise() Result", YELLOW, BLACK, 15);
+		layerView[3].DrawFigureImage(flfaMER, BLUE);
+		layerView[3].DrawTextCanvas(TPointD(0, 0), L"GetMinimumEnclosingRectangleElementwise() Result", YELLOW, BLACK, 15);
 
 		// 콘솔에 최소둘레 직사각형을 표시 // Display the minimum enclosing rectangle in console
 		wprintf(L"Minimum Enclosing Rectangle\n");
