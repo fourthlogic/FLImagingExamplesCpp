@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{80BDD460-AAAA-9909-A0D6-2C4AAE28C30E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PoissonPointCloudUpsampler3D</RootNamespace>
+    <RootNamespace>PointCloudUpsamplerPoisson3D</RootNamespace>
     <ProjectName>PointCloudUpsamplerPoisson3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -1752,9 +1752,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MorphologyTopHat_Kernel", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MorphologyTopHat_Region", "MorphologyTopHat_Region\MorphologyTopHat_Region.vcxproj", "{89390B25-6280-4BA9-B0E9-4E6AE4F4640A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PoissonPointCloudUpsampler3D", "PoissonPointCloudUpsampler3D\PoissonPointCloudUpsampler3D.vcxproj", "{80BDD460-AAAA-9909-A0D6-2C4AAE28C30E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointCloudUpsamplerPoisson3D", "PointCloudUpsamplerPoisson3D\PointCloudUpsamplerPoisson3D.vcxproj", "{80BDD460-AAAA-9909-A0D6-2C4AAE28C30E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UniformPointCloudUpsampler3D", "UniformPointCloudUpsampler3D\UniformPointCloudUpsampler3D.vcxproj", "{80BDD460-BBAE-010F-90D6-2C4000AAC30E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointCloudUpsamplerUniform3D", "PointCloudUpsamplerUniform3D\PointCloudUpsamplerUniform3D.vcxproj", "{80BDD460-BBAE-010F-90D6-2C4000AAC30E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image Drawing", "Image Drawing", "{077ECFE5-A775-4281-A4E4-7C1CF57AE6E8}"
 EndProject
