@@ -39,18 +39,18 @@ int main()
 			break;
 		}
 
-		// Perspective Transform 3D 객체 생성 // Create Perspective Transform 3D object
-		CPointCloudUpsamplerUniform3D pointCloudUpsamplerUniform3D;
+		// Uniform Upsampler 객체 생성 // Create Uniform Upsampler object
+		CPointCloudUpsamplerUniform3D alg;
 
 		// 파라미터 설정 // Set parameter
-		pointCloudUpsamplerUniform3D.SetSourceObject(floSrc);
-		pointCloudUpsamplerUniform3D.SetDestinationObject(floDst);
-		pointCloudUpsamplerUniform3D.SetColoringMode(CPointCloudUpsampler3DBase::EColoringMode_Interpolate);
-		pointCloudUpsamplerUniform3D.EnableNormalInterpolation(true);
-		pointCloudUpsamplerUniform3D.SetSamplingSize((int64_t)1e7);
-		pointCloudUpsamplerUniform3D.EnableCopyVertex(true);
-		pointCloudUpsamplerUniform3D.EnableFaceReconstruction(false);
-		pointCloudUpsamplerUniform3D.EnableFaceRetainment(false);
+		alg.SetSourceObject(floSrc);
+		alg.SetDestinationObject(floDst);
+		alg.SetColoringMode(CPointCloudUpsampler3DBase::EColoringMode_Interpolate);
+		alg.EnableNormalInterpolation(true);
+		alg.SetSamplingSize((int64_t)1e7);
+		alg.EnableCopyVertex(true);
+		alg.EnableFaceReconstruction(false);
+		alg.EnableFaceRetainment(false);
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIView3DLayerWrap layer3DSrc = view3DSrc.GetLayer(0);
@@ -69,7 +69,7 @@ int main()
 			break;
 		}
 
-		if((res = pointCloudUpsamplerUniform3D.Execute()).IsFail())
+		if((res = alg.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;
