@@ -52,6 +52,11 @@
 
   - [Generator]
 
+    - [Point Cloud Downsampler Stochastic]
+      - PointCloudDownsamplerStochastic3D
+        - The example of an algorithm that reduces number of points in a point cloud by randomly dropping points.
+        - 무작위 탈락을 통해 포인트 클라우드의 점의 수를 줄이는 알고리즘 예제.
+
     - [Point Cloud Generator]
       - PointCloudGenerator3D
         - The example of an algorithm that generates a point cloud from predefined 3d object.
