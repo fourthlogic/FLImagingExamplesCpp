@@ -135,23 +135,23 @@ int main()
 		fl3DObject.Load(L"../../ExampleImages/DistanceTransform3D/binary-vertex.ply");
 
 		// Distance Transform 3D 객체 생성 // Create Distance Transform 3D object
-		CDistanceTransform3D alg;
+		CDistanceTransform3D distanceTransform;
 
 		TPoint3<float> tpPosition(0.0f, 0.0f, 0.0f);
 		TPoint3<float> tpDirection(-0.1f, 0.0f, -1.0f);
 		TPoint3<float> tpUpVector(0.0f, 1.0f, 0.0f);
 
 		// Source 객체 설정 // Set the source object
-		alg.SetSourceObject(&fl3DObject);
+		distanceTransform.SetSourceObject(&fl3DObject);
 		// 카메라 위치 설정 // Set the camera position
-		alg.SetPosition(tpPosition);
+		distanceTransform.SetPosition(tpPosition);
 		// 카메라 방향 설정 // Set the camera direction
-		alg.SetDirection(tpDirection);
+		distanceTransform.SetDirection(tpDirection);
 		// 카메라 업 벡터 설정 // Set the camera up vector
-		alg.SetUpVector(tpUpVector);
+		distanceTransform.SetUpVector(tpUpVector);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = alg.Execute()).IsFail())
+		if((res = distanceTransform.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;
@@ -159,7 +159,7 @@ int main()
 
 		CFLArray<TPoint3<float>> arrResult;
 		// 거리 결과 가져오기 // Get the distance
-		alg.GetResultDistanceAxis(arrResult);
+		distanceTransform.GetResultDistanceAxis(arrResult);
 
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately

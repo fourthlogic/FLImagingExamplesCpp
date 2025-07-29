@@ -52,9 +52,9 @@ int main()
 		res = fl3DObjectSrc.Load("../../ExampleImages/PerspectiveMerge3D/Left Cam.ply");
 		res = fl3DObjectSrc2.Load("../../ExampleImages/PerspectiveMerge3D/Right Cam.ply");
 
-		CPerspectiveMerge3D alg;
+		CPerspectiveMerge3D perspectiveMerge;
 
-		alg.SetEulerSequence(EEulerSequence_Extrinsic_ZXY);
+		perspectiveMerge.SetEulerSequence(EEulerSequence_Extrinsic_ZXY);
 
 		TPoint3<float> tpPosition(-0.152f, 0.0f, 0.0f);
 		TPoint3<float> tpRotation(-90.0f, 8.0f, -29.0f);
@@ -62,14 +62,14 @@ int main()
 		TPoint3<float> tpRotation2(-90.0f, 8.0f, 29.0f);
 
 		// 카메라 1, 2의 Source 객체 설정 // Set the source object of camera 1, 2
-		alg.AddSourceObject(&fl3DObjectSrc, tpPosition, tpRotation);
-		alg.AddSourceObject(&fl3DObjectSrc2, tpPosition2, tpRotation2);
+		perspectiveMerge.AddSourceObject(&fl3DObjectSrc, tpPosition, tpRotation);
+		perspectiveMerge.AddSourceObject(&fl3DObjectSrc2, tpPosition2, tpRotation2);
 
 		// Destination 객체 설정 // Set the destination object
-		alg.SetDestinationObject(fl3DObjectDst);
+		perspectiveMerge.SetDestinationObject(fl3DObjectDst);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = alg.Execute()).IsFail())
+		if((res = perspectiveMerge.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.\n");
 			break;
@@ -77,7 +77,7 @@ int main()
 
 		view3DSrc.PushObject(fl3DObjectSrc);
 		view3DSrc2.PushObject(fl3DObjectSrc2);
-		view3DDst.PushObject(*alg.GetDestinationObject());
+		view3DDst.PushObject(*perspectiveMerge.GetDestinationObject());
 
 		// Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
 		view3DSrc.ZoomFit();

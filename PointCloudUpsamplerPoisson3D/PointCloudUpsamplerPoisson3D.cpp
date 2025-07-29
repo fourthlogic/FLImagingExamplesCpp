@@ -40,17 +40,17 @@ int main()
 		}
 
 		// Poisson Upsampler 객체 생성 // Create Poisson Upsampler object
-		CPointCloudUpsamplerPoisson3D alg;
+		CPointCloudUpsamplerPoisson3D pointCloudUpsampler;
 
 		// 파라미터 설정 // Set parameter
-		alg.SetSourceObject(floSrc);
-		alg.SetDestinationObject(floDst);
-		alg.SetColoringMode(CPointCloudUpsampler3DBase::EColoringMode_Interpolate);
-		alg.EnableNormalInterpolation(true);
-		alg.EnableAutoDistance(true);
-		alg.EnableCopyVertex(true);
-		alg.EnableFaceReconstruction(false);
-		alg.EnableFaceRetainment(false);
+		pointCloudUpsampler.SetSourceObject(floSrc);
+		pointCloudUpsampler.SetDestinationObject(floDst);
+		pointCloudUpsampler.SetColoringMode(CPointCloudUpsampler3DBase::EColoringMode_Interpolate);
+		pointCloudUpsampler.EnableNormalInterpolation(true);
+		pointCloudUpsampler.EnableAutoDistance(true);
+		pointCloudUpsampler.EnableCopyVertex(true);
+		pointCloudUpsampler.EnableFaceReconstruction(false);
+		pointCloudUpsampler.EnableFaceRetainment(false);
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIView3DLayerWrap layer3DSrc = view3DSrc.GetLayer(0);
@@ -69,7 +69,7 @@ int main()
 			break;
 		}
 
-		if((res = alg.Execute()).IsFail())
+		if((res = pointCloudUpsampler.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;

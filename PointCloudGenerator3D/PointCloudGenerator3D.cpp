@@ -28,27 +28,27 @@ int main()
 		CFL3DObject& floDst = *(CFL3DObject*)pViewObject->Get3DObject();
 
 		// Perspective Transform 3D 객체 생성 // Create Perspective Transform 3D object
-		CPointCloudGenerator3D alg;
+		CPointCloudGenerator3D pointCloudGenerator;
 
 		// 파라미터 설정 // Set parameter
-		alg.SetDestinationObject(floDst);
-		alg.EnableColorGeneration(true);
-		alg.EnableNormalGeneration(false);
+		pointCloudGenerator.SetDestinationObject(floDst);
+		pointCloudGenerator.EnableColorGeneration(true);
+		pointCloudGenerator.EnableNormalGeneration(false);
 
 		int64_t arrI64count[3] = {};
 
-		alg.AddPredefinedObject(true, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(255, 255, 255));
+		pointCloudGenerator.AddPredefinedObject(true, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(255, 255, 255));
 
 		arrI64count[0] = 4000;
-		alg.AddPredefinedObject(false, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(255, 0, 0));
+		pointCloudGenerator.AddPredefinedObject(false, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(255, 0, 0));
 		arrI64count[0] = 0;
 
 		arrI64count[1] = 20000;
-		alg.AddPredefinedObject(false, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(0, 255, 0));
+		pointCloudGenerator.AddPredefinedObject(false, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(0, 255, 0));
 		arrI64count[1] = 0;
 
 		arrI64count[2] = 100000;
-		alg.AddPredefinedObject(false, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(0, 0, 255));
+		pointCloudGenerator.AddPredefinedObject(false, arrI64count, EPredefinedObject_Regular_DodecaHedron, TPoint3<uint8_t>(0, 0, 255));
 		arrI64count[2] = 0;
 
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -66,7 +66,7 @@ int main()
 			break;
 		}
 
-		if((res = alg.Execute()).IsFail())
+		if((res = pointCloudGenerator.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;
@@ -79,7 +79,7 @@ int main()
 		// 뷰가 종료될 때까지 계속 실행
 		while(view3DDst.IsAvailable())
 		{
-			if((res = alg.Execute()).IsFail())
+			if((res = pointCloudGenerator.Execute()).IsFail())
 			{
 				ErrorPrint(res, L"Failed to execute.");
 				break;

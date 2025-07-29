@@ -40,15 +40,15 @@ int main()
 		}
 
 		// Stochastic Downsampler 객체 생성 // Create Stochastic Downsampler object
-		CPointCloudDownsamplerStochastic3D alg;
+		CPointCloudDownsamplerStochastic3D pointCloudDownsampler;
 
 		// 파라미터 설정 // Set parameter
-		alg.SetSourceObject(floSrc);
-		alg.SetDestinationObject(floDst);
-		alg.SetSamplingSize(50000);
-		alg.EnableNormalRetainment(true);
-		alg.EnableColorRetainment(true);
-		alg.EnableFaceRetainment(false);
+		pointCloudDownsampler.SetSourceObject(floSrc);
+		pointCloudDownsampler.SetDestinationObject(floDst);
+		pointCloudDownsampler.SetSamplingSize(50000);
+		pointCloudDownsampler.EnableNormalRetainment(true);
+		pointCloudDownsampler.EnableColorRetainment(true);
+		pointCloudDownsampler.EnableFaceRetainment(false);
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIView3DLayerWrap layer3DSrc = view3DSrc.GetLayer(0);
@@ -67,7 +67,7 @@ int main()
 			break;
 		}
 
-		if((res = alg.Execute()).IsFail())
+		if((res = pointCloudDownsampler.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;

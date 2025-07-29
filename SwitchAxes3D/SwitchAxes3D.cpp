@@ -36,16 +36,16 @@ int main()
 		floSrc.Load(L"../../ExampleImages/DistanceTransform3D/binary-vertex.ply");
 
 		// Switch Axes 3D 객체 생성 // Create Switch Axes 3D object
-		CSwitchAxes3D alg;
+		CSwitchAxes3D switchAxes;
 
 		// 알고리즘 파라미터 설정 // set algorithm parameters
-		alg.SetSourceObject(floSrc);
-		alg.SetDestinationObject(floDst);
+		switchAxes.SetSourceObject(floSrc);
+		switchAxes.SetDestinationObject(floDst);
 
-		alg.SetAxisMappings(CSwitchAxes3D::EAxisMapping_From_PX, CSwitchAxes3D::EAxisMapping_From_NY, CSwitchAxes3D::EAxisMapping_Deduce);
+		switchAxes.SetAxisMappings(CSwitchAxes3D::EAxisMapping_From_PX, CSwitchAxes3D::EAxisMapping_From_NY, CSwitchAxes3D::EAxisMapping_Deduce);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = alg.Execute()).IsFail())
+		if((res = switchAxes.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;
