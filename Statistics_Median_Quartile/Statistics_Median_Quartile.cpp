@@ -120,11 +120,11 @@ int main()
 		CFLString<wchar_t> strMedianValue, strLowerQuartileValue, strUpperQuartileValue;
 		CFLString<wchar_t> strTrimmingMedianValue, strTrimmingLowerQuartileValue, strTrimmingUpperQuartileValue;
 		strMedianValue.Format(L"Median Of Region : %lf", mvMedian.GetAt(0));
-		strLowerQuartileValue.Format(L"25 Quartile Of Region : %lf", mvLowerQuartile.GetAt(0));
-		strUpperQuartileValue.Format(L"75 Quartile Of Region : %lf", mvUpperQuartile.GetAt(0));
+		strLowerQuartileValue.Format(L"1st Quartile Of Region : %lf", mvLowerQuartile.GetAt(0));
+		strUpperQuartileValue.Format(L"3rd Quartile Of Region : %lf", mvUpperQuartile.GetAt(0));
 		strTrimmingMedianValue.Format(L"Median Of Trimmed Region : %lf", mvTrimmingMedian.GetAt(0));
-		strTrimmingLowerQuartileValue.Format(L"25 Quartile Of Trimmed Region : %lf", mvTrimmingLowerQuartile.GetAt(0));
-		strTrimmingUpperQuartileValue.Format(L"75 Quartile Of Trimmed Region : %lf", mvTrimmingUpperQuartile.GetAt(0));
+		strTrimmingLowerQuartileValue.Format(L"1st Quartile Of Trimmed Region : %lf", mvTrimmingLowerQuartile.GetAt(0));
+		strTrimmingUpperQuartileValue.Format(L"3rd Quartile Of Trimmed Region : %lf", mvTrimmingUpperQuartile.GetAt(0));
 
 		wprintf_s(L"%s\n", strMedianValue.GetString());
 		wprintf_s(L"%s\n", strLowerQuartileValue.GetString());
