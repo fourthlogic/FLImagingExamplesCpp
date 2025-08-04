@@ -1665,7 +1665,7 @@
 
   - [Page]
   
-    - [Morphology]	 
+    - [Page Pooling]	 
       - PagePooling_Max
         - The example of an algorithm that outputs the maximum value among the input images as the result image.
         - 입력된 이미지 가운데 최대 값을 결과 이미지로 출력하는 알고리즘 예제.
