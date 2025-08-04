@@ -522,10 +522,10 @@
 
   - [Optical Character]
 
-    - OpticalCharacterRecognition
+    - OCR
       - The example of an algorithm that recognizes character in an image.
       - 이미지 내의 문자를 인식하는 알고리즘 예제.
-    - OpticalCharacterVerification
+    - OCV
       - The example of an algorithm that verifies character in an image.
       - 이미지 내의 문자를 검증하는 알고리즘 예제.
       
@@ -544,6 +544,10 @@
        - 정상 이미지에 대해 AnomalyDetection을 통하여 학습한 모델을 사용하여 이미지의 정상/비정상을 분류하는 알고리즘 예제.
        - Examples of algorithms that operate and classify learning/reasoning images by Tiling
 
+    - CharacterBasedOCR
+       - Examples of optical character recognition algorithms based on deep learning.
+       - 딥러닝 기반의 광학 문자 인식 알고리즘 예제.
+
     - Classifier_PageNameLabel
        - Example of algorithms that classifies validation images using a model learned through training images labeled by page names.
        - 페이지 이름으로 라벨링된 학습 이미지들에 대해 classifier를 통하여 학습한 모델을 사용하여 검증 이미지를 분류하는 알고리즘 예제.
@@ -560,6 +564,18 @@
        - Example of training a model with XOR results using CComputationalGraph Operation layer.
        - CComputationalGraph 연산 layer들을 사용하여 XOR와 같은 결과 나오는 모델을 학습하는 예제.
 
+    - GenerativeAdversarialNetwork_NoLabel
+       - Example of an algorithm that generates images based on a training dataset
+       - 학습 데이터셋에 기반하여 이미지를 생성하는 알고리즘 예제.
+
+    - GenerativeAdversarialNetwork_Label
+       - An example of an algorithm that generates an image by inputting class-specific weights based on a labeled training dataset.
+       - 라벨링된 학습 데이터셋에 기반하여 클래스별 가중치를 입력받아 이미지를 생성하는 알고리즘 예제.
+
+    - GenerativeAdversarialNetwork_Inpainting
+       - An example algorithm that performs an inpainting operation on a specified area using a model learned on training images with figures.
+       - Figure가 있는 학습 이미지들에 대해 학습한 모델을 사용하여 지정한 영역에 Inpainting 동작을 수행하는 알고리즘 예제. 
+
     - SemanticSegmentation
        - Example of an algorithm for SemanticSegmentation validation images with figures using models learned through SemanticSegmentation for training images with figures.
        - Figure가 있는 학습 이미지들에 대해 SemanticSegmentation을 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
@@ -570,10 +586,6 @@
        - Example of an algorithm for SuperResolution validation images using models learned through high resolution for training images with figures.
        - SuperResolution을 통하여 학습한 모델을 사용하여 고화질 이미지를 만다는 알고리즘 예제.
  
-    - Character Based OCR
-       - Examples of character-level optical character recognition algorithms based on deep learning.
-       - 딥러닝 기반의 문자 단위 광학 문자 인식 알고리즘 예제.
-
     - String Based OCR
        - Examples of string-level optical character recognition algorithms based on deep learning.
        - 딥러닝 기반의 문자열 단위 광학 문자 인식 알고리즘 예제.
@@ -581,14 +593,6 @@
     - ObjectDetection
        - Example of finding a desired object using a Bounding Box based on deep learning
        - 딥러닝 기반의 원하는 객체를 Bounding Box로 찾는 알고리즘 예제
-
-    - Generative Adversarial Network
-       - Examples of image creation algorithms based on deep learning.
-       - 딥러닝 기반의 이미지 생성 알고리즘 예제.
-
-    - Generative Adversarial Network Inpainting
-       - Examples of image creation and inpainting algorithms based on deep learning.
-       - 딥러닝 기반의 이미지 생성 및 보간 알고리즘 예제.
 
     - InstanceSegmentation
        - An example of an algorithm that classifies validation images with Figures using a model learned through InstanceSegmentation on training images with Figures.
@@ -1767,6 +1771,9 @@
       - Rotation
         - The example of image rotation transforms.
         - 이미지 회전 변환의 예제.
+      - Rotation Scale
+        - The example of image scale and rotation transforms.
+        - 이미지 회전 및 스케일 변환의 예제.
       - Scale
         - The example of image scale transforms.
         - 이미지 스케일 변환의 예제.
