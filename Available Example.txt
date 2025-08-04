@@ -942,8 +942,8 @@
         - The algorithm example for calculating mean, variance, standard deviation and coefficient of variance value of pixel values in an image.
         - 이미지의 픽셀값들의 평균, 표준편차, 분산, 변동 계수를 계산하는 알고리즘 예제.(Trimming 적용 전, 후)
       - Statistics_Median_Quartile 
-        - The algorithm example for calculating median, 25 quartile and 75 quartile value of pixel values in an image.
-        - 이미지의 픽셀값들의 중간값, 25사분위수, 75사분위수를 계산하는 알고리즘 예제.(Trimming 적용 전, 후)
+        - The algorithm example for calculating median, 1st quartile and 3rd quartile value of pixel values in an image.
+        - 이미지의 픽셀값들의 중간값, 1사분위수, 3사분위수를 계산하는 알고리즘 예제.(Trimming 적용 전, 후)
       - Statistics_MinMax 
         - The algorithm example for calculating min and max value of pixel values in an image.
         - 이미지의 픽셀값들의 최소, 최대값을 계산하는 알고리즘 예제.(Trimming 적용 전, 후)
@@ -1285,7 +1285,7 @@
         - The example of an algorithm that performs smoothing by applying filter filtering to image
         - 이미지에 Binomial 필터링을 적용하여 스무딩하는 알고리즘 예제
       - GaussFilter
-        - The example of an algorithm that performs image smoothing usign gaussian functions
+        - The example of an algorithm that performs image smoothing using gaussian functions
         - Gauss Functions을 이용하여 이미지 스무딩을 수행하는 알고리즘 예제
       - GaussianFilter
         - The example of an algorithm that processes a gaussian differential filter to an image.
@@ -1297,7 +1297,7 @@
         - The example of an algorithm that processes a harmonic mean filter to an image.
         - 이미지에서 조화 평균 필터를 처리하는 알고리즘 예제.
       - InfiniteSymmetricExponentialFilter
-        - The example of an algorithm that performs image smoothing usign Infinite Symmetric Exponential function
+        - The example of an algorithm that performs image smoothing using Infinite Symmetric Exponential function
         - Infinite Symmetric Exponential Function을 이용하여 이미지 스무딩을 수행하는 알고리즘 예제
       - LowpassFilter
         - The example of an algorithm that processes a lowpass differential filter to an image.
