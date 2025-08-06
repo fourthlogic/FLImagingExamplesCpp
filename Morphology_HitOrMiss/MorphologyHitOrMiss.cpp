@@ -136,11 +136,11 @@ int main()
 
 		flarrKernelElement.Clear();
 		flarrKernelElement.Append(1);
-		flarrKernelElement.Append(-1);
-		flarrKernelElement.Append(0);
-		flarrKernelElement.Append(0);
 		flarrKernelElement.Append(0);
 		flarrKernelElement.Append(-1);
+		flarrKernelElement.Append(-1);
+		flarrKernelElement.Append(-1);
+		flarrKernelElement.Append(0);
 		flarrKernelElement.Append(1);
 		flarrKernel.Append(flarrKernelElement);
 
@@ -176,11 +176,11 @@ int main()
 
 		flarrKernelElement.Clear();
 		flarrKernelElement.Append(1);
-		flarrKernelElement.Append(-1);
-		flarrKernelElement.Append(0);
-		flarrKernelElement.Append(0);
 		flarrKernelElement.Append(0);
 		flarrKernelElement.Append(-1);
+		flarrKernelElement.Append(-1);
+		flarrKernelElement.Append(-1);
+		flarrKernelElement.Append(0);
 		flarrKernelElement.Append(1);
 		flarrKernel.Append(flarrKernelElement);
 
