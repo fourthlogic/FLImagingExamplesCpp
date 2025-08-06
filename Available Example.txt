@@ -719,7 +719,10 @@
 
     - DeviceLaserDisplacementSensorKeyence
       - Example of connecting and operating Keyence Laser Displacement Sensor.
-      - Keyence 레이저 변위 센서 연결 및 구동하는 예제. 
+      - Keyence 레이저 변위 센서 연결 및 구동하는 예제.
+    - DeviceLaserProfileSensorKeyence
+      - Example of connecting and operating Keyence Laser Profile Sensor.
+      - Keyence 레이저 프로파일 센서 연결 및 구동하는 예제.
 
   - [Trigger]
 
