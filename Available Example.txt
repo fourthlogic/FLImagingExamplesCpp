@@ -349,7 +349,7 @@
     - [Geometric Match Multi]
     
       - GeometricMatchMulti
-        - The algorithm example that learns geometrical information within one or more different image regions of interest, assigns a unique class name   and searches for matching geometrical patterns in a detected image for the learned class and classifies the class.
+        - The algorithm example that learns geometrical information within one or more different image regions of interest, assigns a unique class name and searches for matching geometrical patterns in a detected image for the learned class and classifies the class.
         - 하나 이상의 서로 다른 이미지 관심영역 내에서 기하학적 정보를 학습 및 고유의 클래스 이름을 부여하고 학습된 클래스에 대해 검출 이미지에서 일치하는 기학적 패턴을 탐색 및 클래스를 분류하는 알고리즘 예제.
       - GeometricMatchMulti_SaveLoad
         - The algorithm example of save and load algorithm for geometric multi match
@@ -358,7 +358,7 @@
     - [Pattern Match]
     
       - PatternMatch
-        - The algorithm example that learns pattern information within a region of interest in an image and searches for matching patterns in a dectectedimage.
+        - The algorithm example that learns pattern information within a region of interest in an image and searches for matching patterns in a dectected image.
         - 하나의 이미지 관심영역 내에서 패턴 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
       - PatternMatch_SaveLoad
         - The algorithm example of save and load algorithm for pattern match
@@ -367,7 +367,7 @@
     - [Pattern Match Sparse]
     
       - PatternMatchSparse
-        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectectedimage.
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectected image.
         - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
       - PatternMatchSparse_SaveLoad
         - The algorithm example of save and load algorithm for pattern match sparse
@@ -376,7 +376,7 @@
     - [Pattern Match Multi]
     
       - PatternMatchMulti
-        - The algorithm example that learns pattern information within one or more different image regions of interest, assigns a unique class name   andsearches for matching patterns in a detected image for the learned class and classifies the class.
+        - The algorithm example that learns pattern information within one or more different image regions of interest, assigns a unique class name and searches for matching patterns in a detected image for the learned class and classifies the class.
         - 하나 이상의 서로 다른 이미지 관심영역 내에서 패턴 정보를 학습 및 고유의 클래스 이름을 부여하고 학습된 클래스에 대해 검출 이미지에서 일치하는 패턴  을탐색 및 클래스를 분류하는 알고리즘 예제.
       - PatternMatchMulti_SaveLoad
         - The algorithm example of save and load algorithm for pattern multi match
@@ -386,7 +386,7 @@
     - [Pattern Match Multi Sparse]
     
       - PatternMatchMultiSparse
-        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in one or more different image and searches for matching patterns in a dectectedimage.
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in one or more different image and searches for matching patterns in a dectected image.
         - 하나 이상의 서로 다른 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
       - PatternMatchMultiSparse_SaveLoad
         - The algorithm example of save and load algorithm for pattern match multi sparse
@@ -732,6 +732,18 @@
 
 - [GUI, Figures]
 
+  - [3D Utilities]
+
+    - ProjectionUtilities3D
+      - ProjectionUtilities3D usage example. This example demonstrates rendering and projecting 3D objects to obtain result images without using a 3DView (GUI Framework).
+      - ProjectionUtilities3D 사용에 관한 예제. 3DView (GUI Framework) 없이 3D 객체를 렌더링 및 투영한 결과를 이미지로 얻어 오는 예제입니다.
+    - ROIUtilities3D
+      - Example of using ROIUtilities3D. This example demonstrates setting the ROI area for a 3D object and obtaining the parts included in the ROI.
+      - ROIUtilities3D 사용에 관한 예제. 3D 객체에 대해 ROI 영역을 설정하고, ROI 에 포함되는 부분을 얻어 오는 예제입니다.
+    - StepReaderConvertTo3DObject
+      - Example of loading and tessellating a STEP file to convert it into a CFL3DObject.
+      - Step 파일을 로드 및 테셀레이션하여 CFL3DOjbect 로 변환하는 예제
+
   - [View3D]
 
     - View3D
@@ -740,9 +752,6 @@
     - View3DIntoDialog 
       - The example of inserting an 3D view into a dialog and using it.
       - 3D 뷰를 다이얼로그에 삽입해서 사용하는 예제.
-    - ROIUtilities3D
-      - Example of using ROIUtilities3D. This example demonstrates setting the ROI area for a 3D object and obtaining the parts included in the ROI.
-      - ROIUtilities3D 사용에 관한 예제. 3D 객체에 대해 ROI 영역을 설정하고, ROI 에 포함되는 부분을 얻어 오는 예제입니다.
       
   - [Figure]
   
@@ -1364,7 +1373,7 @@
         - The example of an algorithm that processes a normalize(MinMax Method).
         - 이미지에서 정규화 처리하는 알고리즘 예제(MinMax 방식).
       - Normalization_Trimming
-        - The example of an algorithm that processes a normalize(MinMax Method ,Trimming Apply).
+        - The example of an algorithm that processes a normalize(MinMax Method, Trimming Apply).
         - 이미지에서 정규화 처리하는 알고리즘 예제(Trimming 적용).
 
     - AdaptiveEqualization
@@ -1616,7 +1625,6 @@
     - OperationTrailingZeros
       - The algorithm that performs the calculation of trailing zeros from the source image.
       - 이미지에 Trailing Zeros 연산을 수행하는 알고리즘
-
 
   - [Inpainting]
     
