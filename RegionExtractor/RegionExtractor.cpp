@@ -66,7 +66,7 @@ int main()
 		// RegionExtractor 객체 생성 // Create RegionExtractor object
 		CRegionExtractor algRegionExtractor;
 
-		// ROI 설정 하기 위해 FLCircleL 생성
+		// ROI 설정 하기 위해 CFLRect 생성 // Create CFLRect for ROI setting
 		CFLRect<int32_t> flrROI(83, 64, 440,337);
 
 		// Source 이미지 설정 // Set the source image

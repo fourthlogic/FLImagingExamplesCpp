@@ -73,7 +73,7 @@ int main()
 		// Paste 객체 생성 // Create Paste object
 		CPaste paste;
 
-		// ROI 설정 하기 위해 FLCircleL 생성
+		// ROI 설정 하기 위해 CFLCircle 생성 // Create CFLCircle for ROI setting
 		CFLCircle<int32_t> flclROI(256, 169, 25);
 
 		// Source 이미지 설정 // Set the source image
