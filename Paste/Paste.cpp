@@ -63,6 +63,13 @@ int main()
 			break;
 		}
 
+		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+		if(IsFail(res = viewImageSrc.SynchronizePointOfView(&viewImageDst)))
+		{
+			ErrorPrint(res, "Failed to synchronize view.\n");
+			break;
+		}
+
 		// Paste 객체 생성 // Create Paste object
 		CPaste paste;
 
@@ -78,7 +85,7 @@ int main()
 		// 항상 공백 영역을 지정한 색으로 채우도록 설정
 		paste.EnableFillBlankColorMode(true);
 		// 공백 영역 색상 지정
-		paste.SetBlankColor(CMultiVar<double>(0., 0., 0.));
+		paste.SetBlankColor(CMultiVar<double>(255., 255., 255.));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = paste.Execute()))
