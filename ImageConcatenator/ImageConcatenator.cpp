@@ -88,17 +88,17 @@ int main()
 		if(bError)
 			break;
 
-		// ImageInsertion 객체 생성 // Create ImageInsertion object
-		CImageInsertion sImageInsertion;
+		// ImageConcatenator 객체 생성 // Create ImageConcatenator object
+		CImageConcatenator sImageConcatenator;
 
 		// Source 이미지 설정 // Set source image 
-		sImageInsertion.SetSourceImage(arrFliImage[EType_Src]);
+		sImageConcatenator.SetSourceImage(arrFliImage[EType_Src]);
 
 		// Operand 이미지 설정 // Set operand image 
-		sImageInsertion.SetOperandImage(arrFliImage[EType_Opr]);
+		sImageConcatenator.SetOperandImage(arrFliImage[EType_Opr]);
 
 		// Destination 이미지 설정 // Set destination image 
-		sImageInsertion.SetDestinationImage(arrFliImage[EType_Dst]);
+		sImageConcatenator.SetDestinationImage(arrFliImage[EType_Dst]);
 
 		// Operand ROI 지정 // Create ROI range
 		CFLRect<int32_t> flrROI(arrFliImage[EType_Opr]);
@@ -106,12 +106,12 @@ int main()
 		flrROI.left = (int32_t)(flrROI.GetWidth() * 0.7);
 
 		// Operand 이미지 설정 // Set operand image 
-		sImageInsertion.SetOperandROI(flrROI);
+		sImageConcatenator.SetOperandROI(flrROI);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = sImageInsertion.Execute()).IsFail())
+		if((res = sImageConcatenator.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute sImageInsertion.");
+			ErrorPrint(res, "Failed to execute sImageConcatenator.");
 			break;
 		}
 
@@ -146,7 +146,7 @@ int main()
 			break;
 		}
 
-		// ImageInsertion 영역 표기 // ImageInsertion Area draw
+		// ImageConcatenator 영역 표기 // ImageConcatenator Area draw
 		if(IsFail(res = arrLayer[EType_Opr].DrawFigureImage(&flrROI, LIME)))
 			ErrorPrint(res, "Failed to draw figure\n");
 

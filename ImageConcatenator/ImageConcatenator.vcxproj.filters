@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ImageInsertion.cpp">
+    <ClCompile Include="ImageConcatenator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
