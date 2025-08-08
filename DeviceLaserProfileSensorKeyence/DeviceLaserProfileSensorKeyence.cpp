@@ -140,10 +140,10 @@ int main()
  			flsConnection = arrInput;
  			flsConnection.Replace(L"\n", L"");
  
- 			CFLString<char> astrIPAddress(flsConnection);
+ 			CFLString<char> flsIPAddress(flsConnection);
  
  			// 입력 받은 IP 주소를 설정합니다. // Set the entered IP address.
- 			if((res = devLaserProfile.SetConnectionIPAddress(astrIPAddress)).IsOK())
+ 			if((res = devLaserProfile.SetConnectionIPAddress(flsIPAddress)).IsOK())
  				break;
  
  			ErrorPrint(res, "Failed to set IP Address.\n");
