@@ -89,16 +89,16 @@ int main()
 			break;
 
 		// ImageConcatenator 객체 생성 // Create ImageConcatenator object
-		CImageConcatenator sImageConcatenator;
+		CImageConcatenator imageConcatenator;
 
 		// Source 이미지 설정 // Set source image 
-		sImageConcatenator.SetSourceImage(arrFliImage[EType_Src]);
+		imageConcatenator.SetSourceImage(arrFliImage[EType_Src]);
 
 		// Operand 이미지 설정 // Set operand image 
-		sImageConcatenator.SetOperandImage(arrFliImage[EType_Opr]);
+		imageConcatenator.SetOperandImage(arrFliImage[EType_Opr]);
 
 		// Destination 이미지 설정 // Set destination image 
-		sImageConcatenator.SetDestinationImage(arrFliImage[EType_Dst]);
+		imageConcatenator.SetDestinationImage(arrFliImage[EType_Dst]);
 
 		// Operand ROI 지정 // Create ROI range
 		CFLRect<int32_t> flrROI(arrFliImage[EType_Opr]);
@@ -106,12 +106,12 @@ int main()
 		flrROI.left = (int32_t)(flrROI.GetWidth() * 0.7);
 
 		// Operand 이미지 설정 // Set operand image 
-		sImageConcatenator.SetOperandROI(flrROI);
+		imageConcatenator.SetOperandROI(flrROI);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = sImageConcatenator.Execute()).IsFail())
+		if((res = imageConcatenator.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute sImageConcatenator.");
+			ErrorPrint(res, "Failed to execute imageConcatenator.");
 			break;
 		}
 
