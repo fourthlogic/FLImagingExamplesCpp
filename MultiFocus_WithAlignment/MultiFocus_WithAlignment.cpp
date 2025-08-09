@@ -170,21 +170,21 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CMultiFocus algObject;
+		CMultiFocus multiFocus;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = multiFocus.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = multiFocus.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetKernel(23)).IsFail())
+		if((res = multiFocus.SetKernel(23)).IsFail())
 			break;
-		if((res = algObject.SetFirstPageAlignment(flqFirstPageAlignment)).IsFail())
+		if((res = multiFocus.SetFirstPageAlignment(flqFirstPageAlignment)).IsFail())
 			break;
-		if((res = algObject.SetLastPageAlignment(flqLastPageAlignment)).IsFail())
+		if((res = multiFocus.SetLastPageAlignment(flqLastPageAlignment)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = multiFocus.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

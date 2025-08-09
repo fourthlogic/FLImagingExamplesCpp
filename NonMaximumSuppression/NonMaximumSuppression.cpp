@@ -61,23 +61,23 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CNonMaximumSuppression algObject;
+		CNonMaximumSuppression nonMaximumSuppression;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = nonMaximumSuppression.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = nonMaximumSuppression.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetFilter(CNonMaximumSuppression::EFilter_Sobel)).IsFail())
+		if((res = nonMaximumSuppression.SetFilter(CNonMaximumSuppression::EFilter_Sobel)).IsFail())
 			break;
-		if((res = algObject.EnableGrayscale(false)).IsFail())
+		if((res = nonMaximumSuppression.EnableGrayscale(false)).IsFail())
 			break;
-		if((res = algObject.SetConflictHandlingMethod(CNonMaximumSuppression::EConflictHandlingMethod_KeepAll)).IsFail())
+		if((res = nonMaximumSuppression.SetConflictHandlingMethod(CNonMaximumSuppression::EConflictHandlingMethod_KeepAll)).IsFail())
 			break;
-		if((res = algObject.SetNMSInterpolationMethod(CNonMaximumSuppression::ENMSInterpolationMethod_NearestNeighbor)).IsFail())
+		if((res = nonMaximumSuppression.SetNMSInterpolationMethod(CNonMaximumSuppression::ENMSInterpolationMethod_NearestNeighbor)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = nonMaximumSuppression.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

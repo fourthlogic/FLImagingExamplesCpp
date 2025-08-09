@@ -121,40 +121,40 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CMoire3D algObject;
+		CMoire3D moire3D;
 
-		if((res = algObject.SetWorkingDistance(330)).IsFail())
+		if((res = moire3D.SetWorkingDistance(330)).IsFail())
 			break;
-		if((res = algObject.SetFieldOfView(400)).IsFail())
+		if((res = moire3D.SetFieldOfView(400)).IsFail())
 			break;
-		if((res = algObject.SetAngleOfProjector(CMultiVar<double>(73, 105))).IsFail())
+		if((res = moire3D.SetAngleOfProjector(CMultiVar<double>(73, 105))).IsFail())
 			break;
-		if((res = algObject.SetBinInterval(CMultiVar<double>(1, 1))).IsFail())
+		if((res = moire3D.SetBinInterval(CMultiVar<double>(1, 1))).IsFail())
 			break;
-		if((res = algObject.SetPatternType(CMoire3D::EPatternType_SquareWave)).IsFail())
+		if((res = moire3D.SetPatternType(CMoire3D::EPatternType_SquareWave)).IsFail())
 			break;
-		if((res = algObject.EnableNoiseReduction(true)).IsFail())
+		if((res = moire3D.EnableNoiseReduction(true)).IsFail())
 			break;
 
-		if((res = algObject.SetLearnImage(flaFliLrnImage)).IsFail())
+		if((res = moire3D.SetLearnImage(flaFliLrnImage)).IsFail())
 			break;
 
 		// 알고리즘 Calibrate // Calibrate the algorithm
-		if((res = algObject.Calibrate()).IsFail())
+		if((res = moire3D.Calibrate()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to calibrate the algorithm.");
 			break;
 		}
 
-		if((res = algObject.SetSourceImage(flaFliSrcImage)).IsFail())
+		if((res = moire3D.SetSourceImage(flaFliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationHeightMapImage(fliDstImage)).IsFail())
+		if((res = moire3D.SetDestinationHeightMapImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationObject(floDstObject)).IsFail())
+		if((res = moire3D.SetDestinationObject(floDstObject)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = moire3D.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute the algorithm.");
 			break;

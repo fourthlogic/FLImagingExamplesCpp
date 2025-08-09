@@ -61,45 +61,45 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CHoleFilling algObject;
+		CHoleFilling holeFilling;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = holeFilling.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = holeFilling.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetMinimumHoleArea(10)).IsFail())
+		if((res = holeFilling.SetMinimumHoleArea(10)).IsFail())
 			break;
-		if((res = algObject.SetMaximumHoleArea(99999999999)).IsFail())
+		if((res = holeFilling.SetMaximumHoleArea(99999999999)).IsFail())
 			break;
-		if((res = algObject.EnableIgnoreBoundaryHole(true)).IsFail())
+		if((res = holeFilling.EnableIgnoreBoundaryHole(true)).IsFail())
 			break;
-		if((res = algObject.SetThresholdPassTarget(CHoleFilling::EThresholdPassTarget_Object)).IsFail())
+		if((res = holeFilling.SetThresholdPassTarget(CHoleFilling::EThresholdPassTarget_Object)).IsFail())
 			break;
-		if((res = algObject.SetThresholdMode(EThresholdMode_Dual_And)).IsFail())
+		if((res = holeFilling.SetThresholdMode(EThresholdMode_Dual_And)).IsFail())
 			break;
-		if((res = algObject.SetLogicalConditionOfChannels(ELogicalConditionOfChannels_And)).IsFail())
+		if((res = holeFilling.SetLogicalConditionOfChannels(ELogicalConditionOfChannels_And)).IsFail())
 			break;
-		if((res = algObject.SetFillingMethod((CHoleFilling::EFillingMethod)0)).IsFail())
+		if((res = holeFilling.SetFillingMethod((CHoleFilling::EFillingMethod)0)).IsFail())
 			break;
-		if((res = algObject.SetPrecision(0.1)).IsFail())
+		if((res = holeFilling.SetPrecision(0.1)).IsFail())
 			break;
-		if((res = algObject.SetMaxIteration(100)).IsFail())
+		if((res = holeFilling.SetMaxIteration(100)).IsFail())
 			break;
 		CMultiVar<uint64_t> mvThresholdCondition1 = CMultiVar<uint64_t>((uint64_t)ELogicalCondition_GreaterEqual, (uint64_t)ELogicalCondition_GreaterEqual, (uint64_t)ELogicalCondition_GreaterEqual);
-		if((res = algObject.SetThresholdCondition(EThresholdIndex_First, mvThresholdCondition1)).IsFail())
+		if((res = holeFilling.SetThresholdCondition(EThresholdIndex_First, mvThresholdCondition1)).IsFail())
 			break;
 		CMultiVar<uint64_t> mvThresholdValue1U64 = CMultiVar<uint64_t>(175, 230, 240);
-		if((res = algObject.SetThresholdValue(EThresholdIndex_First, mvThresholdValue1U64)).IsFail())
+		if((res = holeFilling.SetThresholdValue(EThresholdIndex_First, mvThresholdValue1U64)).IsFail())
 			break;
 		CMultiVar<uint64_t> mvThresholdCondition2 = CMultiVar<uint64_t>((uint64_t)ELogicalCondition_Less, (uint64_t)ELogicalCondition_Less, (uint64_t)ELogicalCondition_Less);
-		if((res = algObject.SetThresholdCondition(EThresholdIndex_Second, mvThresholdCondition2)).IsFail())
+		if((res = holeFilling.SetThresholdCondition(EThresholdIndex_Second, mvThresholdCondition2)).IsFail())
 			break;
 		CMultiVar<uint64_t> mvThresholdValue2U64 = CMultiVar<uint64_t>(200, 240, 255);
-		if((res = algObject.SetThresholdValue(EThresholdIndex_Second, mvThresholdValue2U64)).IsFail())
+		if((res = holeFilling.SetThresholdValue(EThresholdIndex_Second, mvThresholdValue2U64)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = holeFilling.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
@@ -124,7 +124,7 @@ int main()
 			break;
 		}
 
-		const CFLFigure* pFlfHoleContours = algObject.GetSelectedPageFigureObject();
+		const CFLFigure* pFlfHoleContours = holeFilling.GetSelectedPageFigureObject();
 		if(IsFail(res = layerSrc.DrawFigureImage(pFlfHoleContours, CYAN)))
 		{
 			ErrorPrint(res, "Failed to draw figure\n");

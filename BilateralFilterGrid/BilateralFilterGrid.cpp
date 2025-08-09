@@ -60,19 +60,19 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CBilateralFilterGrid algObject;
+		CBilateralFilterGrid bilateralFilterGrid;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = bilateralFilterGrid.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = bilateralFilterGrid.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetSamplingRateSpatial(2)).IsFail())
+		if((res = bilateralFilterGrid.SetSamplingRateSpatial(2)).IsFail())
 			break;
-		if((res = algObject.SetSamplingRateRange(0.5)).IsFail())
+		if((res = bilateralFilterGrid.SetSamplingRateRange(0.5)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = bilateralFilterGrid.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

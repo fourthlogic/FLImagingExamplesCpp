@@ -64,25 +64,25 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CHysteresisThreshold algObject;
+		CHysteresisThreshold hysteresisThreshold;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = hysteresisThreshold.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = hysteresisThreshold.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetMaxLength(100)).IsFail())
+		if((res = hysteresisThreshold.SetMaxLength(100)).IsFail())
 			break;
-		if((res = algObject.SetOutputMode(CHysteresisThreshold::EOutputMode_Binary)).IsFail())
+		if((res = hysteresisThreshold.SetOutputMode(CHysteresisThreshold::EOutputMode_Binary)).IsFail())
 			break;
-		if((res = algObject.SetLogicalConditionOfChannels(ELogicalConditionOfChannels_And)).IsFail())
+		if((res = hysteresisThreshold.SetLogicalConditionOfChannels(ELogicalConditionOfChannels_And)).IsFail())
 			break;
-		if((res = algObject.SetLowThreshold(CMultiVar<double>(110))).IsFail())
+		if((res = hysteresisThreshold.SetLowThreshold(CMultiVar<double>(110))).IsFail())
 			break;
-		if((res = algObject.SetHighThreshold(CMultiVar<double>(190))).IsFail())
+		if((res = hysteresisThreshold.SetHighThreshold(CMultiVar<double>(190))).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = hysteresisThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

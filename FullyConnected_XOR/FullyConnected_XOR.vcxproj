@@ -14,7 +14,7 @@
     <ProjectGuid>{720D0A14-927B-4D7E-9FB9-F7E4EB2DFA95}</ProjectGuid>
     <RootNamespace>FullyConnected_XOR</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <ProjectName>FullyConnected_XOR</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

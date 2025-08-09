@@ -66,16 +66,16 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationPopcount algObject;
+		COperationPopcount operationPopcount;
 
 		// 이미지 설정 // Set the images
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationPopcount.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = operationPopcount.SetDestinationImage(fliDstImage)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationPopcount.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

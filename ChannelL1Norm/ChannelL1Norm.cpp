@@ -61,15 +61,15 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CChannelL1Norm algObject;
+		CChannelL1Norm channelL1Norm;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail()) 
+		if((res = channelL1Norm.SetSourceImage(fliSrcImage)).IsFail()) 
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail()) 
+		if((res = channelL1Norm.SetDestinationImage(fliDstImage)).IsFail()) 
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = channelL1Norm.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

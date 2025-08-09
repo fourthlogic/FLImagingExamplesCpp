@@ -67,29 +67,29 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationMish algObject;
+		COperationMish operationMish;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationMish.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage0)).IsFail())
+		if((res = operationMish.SetDestinationImage(fliDstImage0)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationMish::EOperationMode_Forward)).IsFail())
+		if((res = operationMish.SetOperationMode(COperationMish::EOperationMode_Forward)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationMish.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
 		}
 
-		if((res = algObject.SetDestinationImage(fliDstImage1)).IsFail())
+		if((res = operationMish.SetDestinationImage(fliDstImage1)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationMish::EOperationMode_Backward)).IsFail())
+		if((res = operationMish.SetOperationMode(COperationMish::EOperationMode_Backward)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationMish.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

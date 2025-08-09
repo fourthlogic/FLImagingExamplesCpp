@@ -61,17 +61,17 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CMultiFocus algObject;
+		CMultiFocus multiFocus;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = multiFocus.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = multiFocus.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetKernel(41)).IsFail())
+		if((res = multiFocus.SetKernel(41)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = multiFocus.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

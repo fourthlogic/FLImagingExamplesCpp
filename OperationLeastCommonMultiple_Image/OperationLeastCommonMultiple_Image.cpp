@@ -82,19 +82,19 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationLeastCommonMultiple algObject;
+		COperationLeastCommonMultiple operationLeastCommonMultiple;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationLeastCommonMultiple.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetOperandImage(fliOprImage)).IsFail())
+		if((res = operationLeastCommonMultiple.SetOperandImage(fliOprImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = operationLeastCommonMultiple.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetOperationSource(EOperationSource_Image)).IsFail())
+		if((res = operationLeastCommonMultiple.SetOperationSource(EOperationSource_Image)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationLeastCommonMultiple.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

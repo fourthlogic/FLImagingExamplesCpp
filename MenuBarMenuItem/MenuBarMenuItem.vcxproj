@@ -22,7 +22,7 @@
     <ProjectGuid>{5067C425-1259-44AE-908D-21F646433180}</ProjectGuid>
     <RootNamespace>MenuBarMenuItem</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <ProjectName>MenuBarMenuItem</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

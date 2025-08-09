@@ -67,31 +67,31 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationHardShrinkage algObject;
+		COperationHardShrinkage operationHardShrinkage;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationHardShrinkage.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage0)).IsFail())
+		if((res = operationHardShrinkage.SetDestinationImage(fliDstImage0)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationHardShrinkage::EOperationMode_Forward)).IsFail())
+		if((res = operationHardShrinkage.SetOperationMode(COperationHardShrinkage::EOperationMode_Forward)).IsFail())
 			break;
-		if((res = algObject.SetLambda(0.2)).IsFail())
+		if((res = operationHardShrinkage.SetLambda(0.2)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationHardShrinkage.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
 		}
 
-		if((res = algObject.SetDestinationImage(fliDstImage1)).IsFail())
+		if((res = operationHardShrinkage.SetDestinationImage(fliDstImage1)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationHardShrinkage::EOperationMode_Backward)).IsFail())
+		if((res = operationHardShrinkage.SetOperationMode(COperationHardShrinkage::EOperationMode_Backward)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationHardShrinkage.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

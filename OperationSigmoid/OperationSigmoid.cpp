@@ -67,37 +67,37 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationSigmoid algObject;
+		COperationSigmoid operationSigmoid;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationSigmoid.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage0)).IsFail())
+		if((res = operationSigmoid.SetDestinationImage(fliDstImage0)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationSigmoid::EOperationMode_Forward)).IsFail())
+		if((res = operationSigmoid.SetOperationMode(COperationSigmoid::EOperationMode_Forward)).IsFail())
 			break;
-		if((res = algObject.EnableGeneralizedMode(true)).IsFail())
+		if((res = operationSigmoid.EnableGeneralizedMode(true)).IsFail())
 			break;
-		if((res = algObject.SetB(1)).IsFail())
+		if((res = operationSigmoid.SetB(1)).IsFail())
 			break;
-		if((res = algObject.SetM(0)).IsFail())
+		if((res = operationSigmoid.SetM(0)).IsFail())
 			break;
-		if((res = algObject.SetK(1)).IsFail())
+		if((res = operationSigmoid.SetK(1)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationSigmoid.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
 		}
 
-		if((res = algObject.SetDestinationImage(fliDstImage1)).IsFail())
+		if((res = operationSigmoid.SetDestinationImage(fliDstImage1)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationSigmoid::EOperationMode_Backward)).IsFail())
+		if((res = operationSigmoid.SetOperationMode(COperationSigmoid::EOperationMode_Backward)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationSigmoid.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

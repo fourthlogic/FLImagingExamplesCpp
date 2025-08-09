@@ -241,7 +241,7 @@ int main()
 		// 활성 프로그램 No. 를 전환합니다. // Change active program number.
 		devLaserProfile.SetProgramNumber(0);
 		// 설정 함수의 적용 범위를 설정합니다. // Set the setting depth of the setting function.
-		devLaserProfile.SetSettingDepth(CDeviceLaserProfileSensorKeyence::ESettingDepth::ESettingDepth_Running);
+		devLaserProfile.SetSettingDepth(CDeviceLaserProfileSensorKeyence::ESettingDepth_Running);
 
 
 		// 파라미터 설정 함수 - Keyence 사의 LJ X Navigator 설치 후 C:\Program Files\KEYENCE\LJ-X Navigator\lib\Manual 경로의 매뉴얼 11.3 참고
@@ -255,7 +255,7 @@ int main()
 
 			vctData[0] = 0;
 
-			devLaserProfile.SetTriggerSetting(CDeviceLaserProfileSensorKeyence::ETriggerSettingItem::ETriggerSettingItem_TriggerMode, vctData.data(), i64DataSize);
+			devLaserProfile.SetTriggerSetting(CDeviceLaserProfileSensorKeyence::ETriggerSettingItem_TriggerMode, vctData.data(), i64DataSize);
 		}
 
 		// 배치 측정 설정(0 : 배치 OFF, 1 : 배치 ON)
@@ -266,7 +266,7 @@ int main()
 
 			vctData[0] = 0;
 
-			devLaserProfile.SetTriggerSetting(CDeviceLaserProfileSensorKeyence::ETriggerSettingItem::ETriggerSettingItem_BatchMeasurement, vctData.data(), i64DataSize);
+			devLaserProfile.SetTriggerSetting(CDeviceLaserProfileSensorKeyence::ETriggerSettingItem_BatchMeasurement, vctData.data(), i64DataSize);
 		}
 
 		// 휘도 출력 설정(0 : 높이 데이터만, 1 : 높이 + 휘도 데이터)
@@ -277,7 +277,7 @@ int main()
 
 			vctData[0] = 1;
 
-			devLaserProfile.SetCommonSetting(CDeviceLaserProfileSensorKeyence::ECommonSettingItem::ECommonSettingItem_LuminanceOutput, vctData.data(), i64DataSize);
+			devLaserProfile.SetCommonSetting(CDeviceLaserProfileSensorKeyence::ECommonSettingItem_LuminanceOutput, vctData.data(), i64DataSize);
 		}
 
 		// 프로파일 센서를 Start 합니다. // Start the profile sensor.

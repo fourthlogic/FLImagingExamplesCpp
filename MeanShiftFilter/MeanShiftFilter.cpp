@@ -61,23 +61,23 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CMeanShiftFilter algObject;
+		CMeanShiftFilter meanShiftFilter;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = meanShiftFilter.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage)).IsFail())
+		if((res = meanShiftFilter.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = algObject.SetMaxIteration(2)).IsFail())
+		if((res = meanShiftFilter.SetMaxIteration(2)).IsFail())
 			break;
-		if((res = algObject.SetTolerance(0)).IsFail())
+		if((res = meanShiftFilter.SetTolerance(0)).IsFail())
 			break;
-		if((res = algObject.SetSpatialBandwidth(2)).IsFail())
+		if((res = meanShiftFilter.SetSpatialBandwidth(2)).IsFail())
 			break;
-		if((res = algObject.SetRangeBandwidth(128)).IsFail())
+		if((res = meanShiftFilter.SetRangeBandwidth(128)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = meanShiftFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

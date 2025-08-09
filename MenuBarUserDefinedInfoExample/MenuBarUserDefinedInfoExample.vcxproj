@@ -22,7 +22,7 @@
     <ProjectGuid>{FA9BDEFB-1DD7-435B-95DD-02DD7FF26366}</ProjectGuid>
     <RootNamespace>MenuBarUserDefinedInfoExample</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

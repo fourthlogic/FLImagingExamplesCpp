@@ -67,32 +67,32 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationSwish algObject;
+		COperationSwish operationSwish;
 
 		// 이미지 설정 // Set the images
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationSwish.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage0)).IsFail())
+		if((res = operationSwish.SetDestinationImage(fliDstImage0)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationSwish::EOperationMode_Forward)).IsFail())
+		if((res = operationSwish.SetOperationMode(COperationSwish::EOperationMode_Forward)).IsFail())
 			break;
-		if((res = algObject.SetBeta(1.0)).IsFail())
+		if((res = operationSwish.SetBeta(1.0)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationSwish.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
 		}
 
-		if((res = algObject.SetDestinationImage(fliDstImage1)).IsFail())
+		if((res = operationSwish.SetDestinationImage(fliDstImage1)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationSwish::EOperationMode_Backward)).IsFail())
+		if((res = operationSwish.SetOperationMode(COperationSwish::EOperationMode_Backward)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationSwish.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;

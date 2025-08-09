@@ -67,31 +67,31 @@ int main()
 
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		COperationPReLU algObject;
+		COperationPReLU operationPReLU;
 
-		if((res = algObject.SetSourceImage(fliSrcImage)).IsFail())
+		if((res = operationPReLU.SetSourceImage(fliSrcImage)).IsFail())
 			break;
-		if((res = algObject.SetDestinationImage(fliDstImage0)).IsFail())
+		if((res = operationPReLU.SetDestinationImage(fliDstImage0)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationPReLU::EOperationMode_Forward)).IsFail())
+		if((res = operationPReLU.SetOperationMode(COperationPReLU::EOperationMode_Forward)).IsFail())
 			break;
-		if((res = algObject.SetAlpha(0.2)).IsFail())
+		if((res = operationPReLU.SetAlpha(0.2)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationPReLU.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
 		}
 
-		if((res = algObject.SetDestinationImage(fliDstImage1)).IsFail())
+		if((res = operationPReLU.SetDestinationImage(fliDstImage1)).IsFail())
 			break;
-		if((res = algObject.SetOperationMode(COperationPReLU::EOperationMode_Backward)).IsFail())
+		if((res = operationPReLU.SetOperationMode(COperationPReLU::EOperationMode_Backward)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = algObject.Execute()).IsFail())
+		if((res = operationPReLU.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute the algorithm.");
 			break;
