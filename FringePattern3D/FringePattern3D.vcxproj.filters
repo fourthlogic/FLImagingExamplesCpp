@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Moire3D.cpp">
+    <ClCompile Include="FringePattern3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

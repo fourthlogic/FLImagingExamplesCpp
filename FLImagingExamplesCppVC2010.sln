@@ -676,7 +676,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FuzzyEntropy", "FuzzyEntrop
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutoThreshold", "AutoThreshold\AutoThreshold.vcxproj", "{4029EB31-B23E-4A41-A7B1-429C84A5E648}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moire3D", "Moire3D\FringeProjectionProfilometry.vcxproj", "{05230CF4-C3F6-43D6-BA49-D3DF889CE654}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FringePattern3D", "FringePattern3D\FringePattern3D.vcxproj", "{05230CF4-C3F6-43D6-BA49-D3DF889CE654}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FourierTransformReal", "FourierTransformReal\FourierTransformReal.vcxproj", "{797E3D9E-CF9C-4566-9AA1-3076B2B46036}"
 EndProject

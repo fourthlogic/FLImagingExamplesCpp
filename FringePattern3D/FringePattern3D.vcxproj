@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{05230CF4-C3F6-43D6-BA49-D3DF889CE654}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Moire3D</RootNamespace>
-    <ProjectName>Moire3D</ProjectName>
+    <RootNamespace>FringePattern3D</RootNamespace>
+    <ProjectName>FringePattern3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Moire3D.cpp" />
+    <ClCompile Include="FringePattern3D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
