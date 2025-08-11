@@ -76,15 +76,15 @@ int main()
 			break;
 		if((res = depthImageReconstruction3D.SetPixelAccuracy(0.1)).IsFail())
 			break;
-		if((res = depthImageReconstruction3D.SetDepthPitch(0.2)).IsFail())
+		if((res = depthImageReconstruction3D.SetDepthPitch(0.8)).IsFail())
 			break;
 		if((res = depthImageReconstruction3D.SetFilter(CDepthImageReconstruction3D::EFilter_FLDenoisingType1)).IsFail())
 			break;
-		if((res = depthImageReconstruction3D.SetFLDenoisingKernel(7)).IsFail())
+		if((res = depthImageReconstruction3D.SetFLDenoisingKernel(9)).IsFail())
 			break;
-		if((res = depthImageReconstruction3D.SetFLDenoisingSigma(15.00)).IsFail())
+		if((res = depthImageReconstruction3D.SetFLDenoisingSigma(7)).IsFail())
 			break;
-		if((res = depthImageReconstruction3D.SetFLDenoisingAmplitude(15.00)).IsFail())
+		if((res = depthImageReconstruction3D.SetFLDenoisingAmplitude(30.00)).IsFail())
 			break;
 		if((res = depthImageReconstruction3D.EnableGaussianInterpolation(true)).IsFail())
 		   break;

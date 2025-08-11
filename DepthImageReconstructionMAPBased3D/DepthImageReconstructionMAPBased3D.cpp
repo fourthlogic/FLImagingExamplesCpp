@@ -23,7 +23,7 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/DepthImageReconstructionMAPBased3D/")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/DepthImageReconstruction3D/")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -73,7 +73,7 @@ int main()
 		if((res = depthImageReconstructionMAPBased3D.SetDestinationTextureImage(&fliTxtImage)).IsFail())
 			break;
 
-		if((res = depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(3)).IsFail())
+		if((res = depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(0)).IsFail())
 			break;
 		if((res = depthImageReconstructionMAPBased3D.SetFMBiasValue(0.02)).IsFail())
 			break;
@@ -97,7 +97,7 @@ int main()
 			break;
 		if((res = depthImageReconstructionMAPBased3D.SetPixelAccuracy(1.0)).IsFail())
 			break;
-		if((res = depthImageReconstructionMAPBased3D.SetDepthPitch(2.0)).IsFail())
+		if((res = depthImageReconstructionMAPBased3D.SetDepthPitch(8.0)).IsFail())
 			break;
 
 		if((res = depthImageReconstructionMAPBased3D.Enable3DObjectGeneration(true)).IsFail())
