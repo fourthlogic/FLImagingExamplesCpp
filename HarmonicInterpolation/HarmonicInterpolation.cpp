@@ -79,16 +79,16 @@ int main()
 			break;
 
 		// Harmonic Interpolation 객체 생성 // Create  Harmonic Interpolation object
-		CHarmonicInterpolation harmonic;
+		CHarmonicInterpolation harmonicInterpolation;
 		// Source 이미지 설정 // Set source image
-		harmonic.SetSourceImage(arrFliImage[EType_Source]);
+		harmonicInterpolation.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		harmonic.SetDestinationImage(arrFliImage[EType_Destination]);
+		harmonicInterpolation.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 정밀도 설정 // Set precision value
-		harmonic.SetPrecision(0.001);
+		harmonicInterpolation.SetPrecision(0.001);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = harmonic.Execute()).IsFail())
+		if((res = harmonicInterpolation.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Harmonic Interpolation.");
 			break;

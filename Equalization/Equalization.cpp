@@ -93,16 +93,16 @@ int main()
 			break;
 
 		// Equalization 객체 생성 // Create Equalization object
-		CEqualization equalize;
+		CEqualization equalization;
 
 		// Source 이미지 설정 // Set source image 
-		equalize.SetSourceImage(arrFliImage[EType_Src]);
+		equalization.SetSourceImage(arrFliImage[EType_Src]);
 
 		// Destination 이미지 설정 // Set destination image
-		equalize.SetDestinationImage(arrFliImage[EType_Dst]);
+		equalization.SetDestinationImage(arrFliImage[EType_Dst]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = equalize.Execute()).IsFail())
+		if((res = equalization.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute equalize.");
 			break;

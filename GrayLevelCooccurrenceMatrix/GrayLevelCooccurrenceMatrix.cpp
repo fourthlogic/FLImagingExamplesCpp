@@ -42,23 +42,23 @@ int main()
 		}
 
 		// CGrayLevelCooccurrenceMatrix 객체 생성 // Create CGrayLevelCooccurrenceMatrix object
-		CGrayLevelCooccurrenceMatrix flaGLCM;
+		CGrayLevelCooccurrenceMatrix grayLevelCooccurrenceMatrix;
 
 		// ROI 범위 설정 // Set the ROI value		
 		CFLRect<double> flfSourceROI(143.508137, 70.054249, 295.117540, 213.562386, 0.000000);
 		// Source 이미지 설정 // Set the Source Image
-		flaGLCM.SetSourceImage(fliImage);
+		grayLevelCooccurrenceMatrix.SetSourceImage(fliImage);
 		// Source ROI 설정 // Set the Source ROI
-		flaGLCM.SetSourceROI(flfSourceROI);
+		grayLevelCooccurrenceMatrix.SetSourceROI(flfSourceROI);
 
 		// grayLevel 설정(2^8 = 256) // Set gray level (2^8 = 256)
-		flaGLCM.SetGrayLevel(8);
+		grayLevelCooccurrenceMatrix.SetGrayLevel(8);
 
 		// Matrix Direction 0도 설정 // Set Matrix Direction 0 Degree
-		flaGLCM.SetDirection(CGrayLevelCooccurrenceMatrix::EDirection_Degree0);
+		grayLevelCooccurrenceMatrix.SetDirection(CGrayLevelCooccurrenceMatrix::EDirection_Degree0);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = flaGLCM.Execute()).IsFail())
+		if((res = grayLevelCooccurrenceMatrix.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Gray Level Cooccurrence Matrix.");
 			break;
@@ -71,28 +71,28 @@ int main()
 		Base::CFLArray<Base::CFLArray<double>> flaContrast;
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 Energy를 구하는 함수 // Function that calculate Energy of the image(or the region of ROI)
-		if((res = flaGLCM.GetResultEnergy(flaEnergy)).IsFail())
+		if((res = grayLevelCooccurrenceMatrix.GetResultEnergy(flaEnergy)).IsFail())
 		{
 			ErrorPrint(res, "No Result");
 			break;
 		}
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 Correlation를 구하는 함수 // Function that calculate Correlation of the image(or the region of ROI)
-		if((res = flaGLCM.GetResultCorrelation(flaCorrelation)).IsFail())
+		if((res = grayLevelCooccurrenceMatrix.GetResultCorrelation(flaCorrelation)).IsFail())
 		{
 			ErrorPrint(res, "No Result");
 			break;
 		}
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 Homogeneity를 구하는 함수 // Function that calculate Homogeneity of the image(or the region of ROI)
-		if((res = flaGLCM.GetResultHomogeneity(flaHomogeneity)).IsFail())
+		if((res = grayLevelCooccurrenceMatrix.GetResultHomogeneity(flaHomogeneity)).IsFail())
 		{
 			ErrorPrint(res, "No Result");
 			break;
 		}
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 Contrast를 구하는 함수 // Function that calculate Contrast of the image(or the region of ROI)
-		if((res = flaGLCM.GetResultContrast(flaContrast)).IsFail())
+		if((res = grayLevelCooccurrenceMatrix.GetResultContrast(flaContrast)).IsFail())
 		{
 			ErrorPrint(res, "No Result");
 			break;
