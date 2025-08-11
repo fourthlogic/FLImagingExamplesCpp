@@ -80,18 +80,18 @@ int main()
 		}
 
 		// COperationCompare 객체 생성 // Create COperationCompare object
-		COperationCompare compare;
+		COperationCompare operationCompare;
 		// Source 이미지 설정 // Set source image
-		compare.SetSourceImage(arrFliImage[0]);
+		operationCompare.SetSourceImage(arrFliImage[0]);
 		// Destination 이미지 설정 // Set destination image
-		compare.SetDestinationImage(arrFliImage[1]);
+		operationCompare.SetDestinationImage(arrFliImage[1]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		compare.SetOperationSource(EOperationSource_Scalar);
+		operationCompare.SetOperationSource(EOperationSource_Scalar);
 		// Compare Scalar 값 설정 // Set comparison value of Compare operation
-		compare.SetScalarValue(CMultiVar<double>(110,110,110));
+		operationCompare.SetScalarValue(CMultiVar<double>(110,110,110));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = compare.Execute()).IsFail())
+		if((result = operationCompare.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation compare.");
 			

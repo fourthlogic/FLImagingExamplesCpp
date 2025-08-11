@@ -79,43 +79,43 @@ int main()
 		}
 
 		// HOG 객체 생성 // Create HOG object
-		CHistogramsOfOrientedGradients hog;
+		CHistogramsOfOrientedGradients histogramsOfOrientedGradients;
 
 		// ROI 범위 생성 // Create ROI area
 		CFLRect<int32_t> flrROI(200, 10, 300, 200);
 
 		// Source 이미지 설정 // Set the source image
-		if(IsFail(res = hog.SetSourceImage(fliSrcImage)))
+		if(IsFail(res = histogramsOfOrientedGradients.SetSourceImage(fliSrcImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// 연산할 ROI 설정 // Set ROI to Calculate
-		if(IsFail(res = hog.SetSourceROI(flrROI)))
+		if(IsFail(res = histogramsOfOrientedGradients.SetSourceROI(flrROI)))
 		{
 			ErrorPrint(res, "Failed to set Source ROI.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		if(IsFail(res = hog.SetSourceImage(fliDstImage)))
+		if(IsFail(res = histogramsOfOrientedGradients.SetSourceImage(fliDstImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// Cell Size 설정 // Set Cell Size
-		hog.SetCellSize(4);
+		histogramsOfOrientedGradients.SetCellSize(4);
 
 		// Block Size 설정 // Set Block Size
-		hog.SetBlockSize(3);
+		histogramsOfOrientedGradients.SetBlockSize(3);
 
 		// 비주얼 출력 타입 예측 이미지로 설정 // Set Prediction Image to visual result type
-		hog.SetVisualResultType(CHistogramsOfOrientedGradients::EVisualResultType_PredictionImage);
+		histogramsOfOrientedGradients.SetVisualResultType(CHistogramsOfOrientedGradients::EVisualResultType_PredictionImage);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = hog.Execute()).IsFail())
+		if((res = histogramsOfOrientedGradients.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Histograms Of Oriented Gradients.");
 			break;

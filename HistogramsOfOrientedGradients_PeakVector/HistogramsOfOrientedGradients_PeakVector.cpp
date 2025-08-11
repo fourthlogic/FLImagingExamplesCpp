@@ -49,27 +49,27 @@ int main()
 		layer.Clear();
 
 		// HOG 객체 생성 // Create HOG object
-		CHistogramsOfOrientedGradients hog;
+		CHistogramsOfOrientedGradients histogramsOfOrientedGradients;
 
 		// ROI 범위 생성 // Create ROI area
 		CFLRect<int32_t> flrROI(200, 10, 300, 200);
 
 		// 연산할 이미지 설정 // Set Image to Calculate
-		if(IsFail(res = hog.SetSourceImage(fliImage)))
+		if(IsFail(res = histogramsOfOrientedGradients.SetSourceImage(fliImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// 연산할 ROI 설정 // Set ROI to Calculate
-		if(IsFail(res = hog.SetSourceROI(flrROI)))
+		if(IsFail(res = histogramsOfOrientedGradients.SetSourceROI(flrROI)))
 		{
 			ErrorPrint(res, "Failed to set Source ROI.");
 			break;
 		}
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = hog.Execute()).IsFail())
+		if((res = histogramsOfOrientedGradients.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Histograms Of Oriented Gradients.");
 			break;
@@ -79,7 +79,7 @@ int main()
 		CFLFigureArray flfaPeakVectors;
 
 		// 피크 벡터 추출 // Get Peak Vectors
-		if((res = hog.GetPeakVectorsFigure(0, flfaPeakVectors)).IsFail())
+		if((res = histogramsOfOrientedGradients.GetPeakVectorsFigure(0, flfaPeakVectors)).IsFail())
 		{
 			ErrorPrint(res, "Failed to get result.");
 			break;

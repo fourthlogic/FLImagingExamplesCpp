@@ -116,18 +116,18 @@ int main()
 		}
 
 		// COperationCompare 객체 생성 // Create COperationCompare object
-		COperationCompare compare;
+		COperationCompare operationCompare;
 		// Source 이미지 설정 // Set source image
-		compare.SetSourceImage(arrFliImage[EType_Source]);
+		operationCompare.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set operand image
-		compare.SetOperandImage(arrFliImage[EType_Operand]);
+		operationCompare.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image
-		compare.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationCompare.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 모드로 설정 // Set operation mode to image
-		compare.SetOperationSource(EOperationSource_Image);
+		operationCompare.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = compare.Execute()).IsFail())
+		if((result = operationCompare.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation compare.");
 			

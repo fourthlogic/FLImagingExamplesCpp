@@ -70,22 +70,22 @@ int main()
 		}
 
 		// Adaptive Threshold Gaussian 객체 생성 // Create Adaptive Threshold Gaussian object
-		CAdaptiveThresholdGaussian threshold;
+		CAdaptiveThresholdGaussian adaptiveThresholdGaussian;
 
 		// Source 이미지 설정 // Set source image 
-		threshold.SetSourceImage(fliSrcImage);
+		adaptiveThresholdGaussian.SetSourceImage(fliSrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		threshold.SetDestinationImage(fliDstImage);
+		adaptiveThresholdGaussian.SetDestinationImage(fliDstImage);
 
 		// 커널 사이즈 입력 // Set kernel size
-		threshold.SetKernel(11);
+		adaptiveThresholdGaussian.SetKernel(11);
 
 		// 임계값 옵셋 설정 // Set threshold offset 
-		threshold.SetThresholdOffset(5);
+		adaptiveThresholdGaussian.SetThresholdOffset(5);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = threshold.Execute()).IsFail())
+		if((res = adaptiveThresholdGaussian.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Adaptive Threshold Gaussian.");
 			break;
