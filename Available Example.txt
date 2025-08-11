@@ -50,28 +50,6 @@
         - The example of an algorithm that smooth a given point cloud.
         - 주어진 포인트 클라우드를 스무딩하는 알고리즘 예제.
 
-  - [Generator]
-
-    - [Point Cloud Downsampler Stochastic]
-      - PointCloudDownsamplerStochastic3D
-        - The example of an algorithm that reduces number of points in a point cloud by randomly dropping points.
-        - 무작위 탈락을 통해 포인트 클라우드의 점의 수를 줄이는 알고리즘 예제.
-
-    - [Point Cloud Generator]
-      - PointCloudGenerator3D
-        - The example of an algorithm that generates a point cloud from predefined 3d object.
-        - 미리 정의된 3D 데이터에서 포인트 클라우드를 생성하는 알고리즘 예제.
-
-    - [Point Cloud Upsampler Uniform]
-      - PointCloudUpsamplerUniform3D
-        - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using uniform random sampling.
-        - 포인트 클라우드의 기저 분포를 추정하여 균등난수추출을 통해 데이터를 증강하는 알고리즘 예제.
-
-    - [Point Cloud Upsampler Poisson]
-      - PointCloudUpsamplerPoisson3D
-        - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using poisson disc sampling.
-        - 포인트 클라우드의 기저 분포를 추정하여 포아송 디크스 추출을 통해 데이터를 증강하는 알고리즘 예제.
-
   - [Match]
     
     - [Surface]
@@ -141,6 +119,23 @@
         - The example of an algorithm that performs getting disparity map from a pair of stereo calibrator output images.
         - 스테레오 캘리브레이터의 Rectification 결과 이미지 쌍으로부터 스테레오 Disparity Map을 구하는 알고리즘 예제.
 
+  - [Resampler]
+
+    - [Point Cloud Downsampler Stochastic]
+      - PointCloudDownsamplerStochastic3D
+        - The example of an algorithm that reduces number of points in a point cloud by randomly dropping points.
+        - 무작위 탈락을 통해 포인트 클라우드의 점의 수를 줄이는 알고리즘 예제.
+
+    - [Point Cloud Upsampler Uniform]
+      - PointCloudUpsamplerUniform3D
+        - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using uniform random sampling.
+        - 포인트 클라우드의 기저 분포를 추정하여 균등난수추출을 통해 데이터를 증강하는 알고리즘 예제.
+
+    - [Point Cloud Upsampler Poisson]
+      - PointCloudUpsamplerPoisson3D
+        - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using poisson disc sampling.
+        - 포인트 클라우드의 기저 분포를 추정하여 포아송 디크스 추출을 통해 데이터를 증강하는 알고리즘 예제.
+
   - [Transform]
     
     - [Distance Transform]
@@ -169,6 +164,11 @@
       - DepthMapToPointCloudConverter3D
         - An example of an algorithm that create a point cloud with a depth map image and an camera intrinsic parameter.
         - 깊이맵 이미지와 카메라 내부 행렬로 포인트 클라우드를 생성하는 알고리즘 예제.
+
+    - [Point Cloud Generator]
+      - PointCloudGenerator3D
+        - The example of an algorithm that generates a point cloud from predefined 3d object.
+        - 미리 정의된 3D 데이터에서 포인트 클라우드를 생성하는 알고리즘 예제.
 
     - [Projection]
       - Projection 3D
