@@ -24,9 +24,9 @@ int main()
 
 	do
 	{
-		CFLString<wchar_t> arrPath[3] = {L"../../ExampleImages/Matching/Geometric Mult Learn.flif",
-			L"../../ExampleImages/Matching/Geometric Mult Learn.flif",
-			L"../../ExampleImages/Matching/Geometric Mult Learn.flif" };
+		CFLString<wchar_t> arrPath[3] = {L"../../ExampleImages/Matching/Geometric Multi Learn.flif",
+			L"../../ExampleImages/Matching/Geometric Multi Learn.flif",
+			L"../../ExampleImages/Matching/Geometric Multi Learn.flif" };
 
 		CFLString<wchar_t> arrClassName[3] = {L"A", L"B", L"C"};
 		uint32_t arrColor[3] = {LIME, RED, CYAN};
@@ -170,7 +170,7 @@ int main()
 		}
 		
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliFindImage.Load(L"../../ExampleImages/Matching/Geometric Mult Find.flif")))
+		if(IsFail(res = fliFindImage.Load(L"../../ExampleImages/Matching/Geometric Multi Find.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
