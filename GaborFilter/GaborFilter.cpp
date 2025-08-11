@@ -151,6 +151,9 @@ int main()
 			break;
 		}
 
+		// 커널 이미지 뷰 Zoom Fit 합니다. // Zoom fit the kernel image view
+		arrViewImage[EType_Kernel].ZoomFit();
+
 		// 이미지 뷰를 갱신 합니다. // Update the image view.
 		arrViewImage[EType_Source].Invalidate(true);
 		arrViewImage[EType_Kernel].Invalidate(true);

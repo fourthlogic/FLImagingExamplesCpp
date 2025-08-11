@@ -167,43 +167,43 @@ int main()
 		}
 
 		// FilterGeneratorIdealFD 객체 생성 // Create FilterGeneratorIdealFD object
-		CFilterGeneratorIdealFD filterGenerator;
+		CFilterGeneratorIdealFD filterGeneratorIdealFD;
 
 		// Source 이미지 설정 // Set source image 
-		filterGenerator.SetSourceImage(fliISrcImage);
+		filterGeneratorIdealFD.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		filterGenerator.SetDestinationImage(fliIFilterImage);
+		filterGeneratorIdealFD.SetDestinationImage(fliIFilterImage);
 
 		// 정밀도 설정 // Set Accuracy
-		filterGenerator.SetAccuracy(EFloatingPointAccuracy_Bit32);
+		filterGeneratorIdealFD.SetAccuracy(EFloatingPointAccuracy_Bit32);
 
 		// 필터 타입 설정 // set Filter type
-		filterGenerator.SetType(CFilterGeneratorIdealFD::EFilterBaseFDType_FFT_Shift);
+		filterGeneratorIdealFD.SetType(CFilterGeneratorIdealFD::EFilterBaseFDType_FFT_Shift);
 
 		// Frequency 설정 // set Frequency
-		filterGenerator.SetFrequency(0.4);
+		filterGeneratorIdealFD.SetFrequency(0.4);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = filterGenerator.Execute()).IsFail())
+		if((res = filterGeneratorIdealFD.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute FilterGeneratorIdealFD.");
 			break;
 		}
 
 		// Operation Multiply 객체 생성 // Create Operation Multiply object
-		COperationMultiply multiply;
+		COperationMultiply operationMultiply;
 		// Source 이미지 설정 // Set the source image
-		multiply.SetSourceImage(fliIFFTImage);
+		operationMultiply.SetSourceImage(fliIFFTImage);
 		// Operand 이미지 설정 // Set the operand image
-		multiply.SetOperandImage(fliIFilterImage);
+		operationMultiply.SetOperandImage(fliIFilterImage);
 		// Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliIMultiplyImage);
+		operationMultiply.SetDestinationImage(fliIMultiplyImage);
 		// 연산 방식 설정 // Set operation source
-		multiply.SetOperationSource(EOperationSource_Image);
+		operationMultiply.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = multiply.Execute()))
+		if(IsFail(res = operationMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation multiply.");
 			break;

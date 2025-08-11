@@ -242,111 +242,111 @@ int main()
 		}
 
 		// FilterGeneratorBandpassFD 객체 생성 // Create FilterGeneratorBandpassFD object
-		CFilterGeneratorBandpassFD filterGenerator;
+		CFilterGeneratorBandpassFD filterGeneratorBandpassFD;
 
 		// Source 이미지 설정 // Set source image 
-		filterGenerator.SetSourceImage(fliFFTImage);
+		filterGeneratorBandpassFD.SetSourceImage(fliFFTImage);
 
 		// Destination 이미지 설정 // Set destination image
-		filterGenerator.SetDestinationImage(fliIdealFilter);
+		filterGeneratorBandpassFD.SetDestinationImage(fliIdealFilter);
 
 		// 정밀도 설정 // Set Accuracy
-		filterGenerator.SetAccuracy(EFloatingPointAccuracy_Bit32);
+		filterGeneratorBandpassFD.SetAccuracy(EFloatingPointAccuracy_Bit32);
 
 		// MinFrequency 설정 // set MinFrequency
-		filterGenerator.SetMinFrequency(0.1);
+		filterGeneratorBandpassFD.SetMinFrequency(0.1);
 
 		// MaxFrequency 설정 // set MaxFrequency
-		filterGenerator.SetMaxFrequency(0.6);
+		filterGeneratorBandpassFD.SetMaxFrequency(0.6);
 
 		// Filter Shape 설정 // set Filter Shape
-		filterGenerator.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Ideal);
+		filterGeneratorBandpassFD.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Ideal);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = filterGenerator.Execute()).IsFail())
+		if((res = filterGeneratorBandpassFD.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute FilterGeneratorBandpassFD.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		filterGenerator.SetDestinationImage(fliButterworthFilter);
+		filterGeneratorBandpassFD.SetDestinationImage(fliButterworthFilter);
 
 		// Filter Shape 설정 // set Filter Shape
-		filterGenerator.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Butterworth);
+		filterGeneratorBandpassFD.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Butterworth);
 
 		// Distance 설정 // set Distance
-		filterGenerator.SetDistance(256);
+		filterGeneratorBandpassFD.SetDistance(256);
 
 		// Degree 설정 // set Degree
-		filterGenerator.SetDegree(2);
+		filterGeneratorBandpassFD.SetDegree(2);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = filterGenerator.Execute()).IsFail())
+		if((res = filterGeneratorBandpassFD.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute FilterGeneratorBandpassFD.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		filterGenerator.SetDestinationImage(fliGaussianFilter);
+		filterGeneratorBandpassFD.SetDestinationImage(fliGaussianFilter);
 
 		// Filter Shape 설정 // set Filter Shape
-		filterGenerator.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Gaussian);
+		filterGeneratorBandpassFD.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Gaussian);
 
 		// Sigma1 설정 // set Sigma1
-		filterGenerator.SetSigma1(1);
+		filterGeneratorBandpassFD.SetSigma1(1);
 
 		// Sigma2 설정 // set Sigma2
-		filterGenerator.SetSigma2(1);
+		filterGeneratorBandpassFD.SetSigma2(1);
 
 		// Phi 설정 // set Phi
-		filterGenerator.SetPhi(0);
+		filterGeneratorBandpassFD.SetPhi(0);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = filterGenerator.Execute()).IsFail())
+		if((res = filterGeneratorBandpassFD.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute FilterGeneratorBandpassFD.");
 			break;
 		}
 
 		// Operation Multiply 객체 생성 // Create Operation Multiply object
-		COperationMultiply multiply;
+		COperationMultiply operationMultiply;
 		// Source 이미지 설정 // Set the source image
-		multiply.SetSourceImage(fliFFTImage);
+		operationMultiply.SetSourceImage(fliFFTImage);
 		// Operand 이미지 설정 // Set the operand image
-		multiply.SetOperandImage(fliIdealFilter);
+		operationMultiply.SetOperandImage(fliIdealFilter);
 		// Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliIdealDst);
+		operationMultiply.SetDestinationImage(fliIdealDst);
 		// 연산 방식 설정 // Set operation source
-		multiply.SetOperationSource(EOperationSource_Image);
+		operationMultiply.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = multiply.Execute()))
+		if(IsFail(res = operationMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation multiply.");
 			break;
 		}
 
 		// Operand 이미지 설정 // Set the operand image
-		multiply.SetOperandImage(fliButterworthFilter);
+		operationMultiply.SetOperandImage(fliButterworthFilter);
 		// Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliButterworthDst);
+		operationMultiply.SetDestinationImage(fliButterworthDst);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = multiply.Execute()))
+		if(IsFail(res = operationMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation multiply.");
 			break;
 		}
 
 		// Operand 이미지 설정 // Set the operand image
-		multiply.SetOperandImage(fliGaussianFilter);
+		operationMultiply.SetOperandImage(fliGaussianFilter);
 		// Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliGaussianDst);
+		operationMultiply.SetDestinationImage(fliGaussianDst);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = multiply.Execute()))
+		if(IsFail(res = operationMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation multiply.");
 			break;
