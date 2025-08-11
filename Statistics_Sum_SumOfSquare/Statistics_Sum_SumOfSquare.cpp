@@ -43,48 +43,48 @@ int main()
 		}
 
 		// Statistics 객체 생성 // Create Statistics object
-		CImageStatistics statistics;
+		CImageStatistics imageStatistics;
 
 		// ROI 범위 설정 // Set the ROI value
 		CFLRect<double> flrROI(264, 189, 432, 364);
 		// Source 이미지 설정 // Set the Source Image
-		statistics.SetSourceImage(fliImage);
+		imageStatistics.SetSourceImage(fliImage);
 		// Source ROI 설정 // Set the Source ROI
-		statistics.SetSourceROI(flrROI);
+		imageStatistics.SetSourceROI(flrROI);
 
 		// 결과값을 받아올 CMultiVar<double> 컨테이너 생성 // Create the CMultiVar<double> object to push the result
 		CMultiVar<double> mvSum, mvSumOfSquares;
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 합을 구하는 함수 // Function that calculate the sum of the pixel value of the image(or the region of ROI)
-		if((res = statistics.GetSum(mvSum)).IsFail())
+		if((res = imageStatistics.GetSum(mvSum)).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;
 		}
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 제곱합을 구하는 함수 // Function that calculate the sum of squares of the pixel value of the image(or the region of ROI)
-		if((res = statistics.GetSumOfSquares(mvSumOfSquares)).IsFail())
+		if((res = imageStatistics.GetSumOfSquares(mvSumOfSquares)).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;
 		}
 
 		// trimming 옵션 설정(Lower:0.2, Upper:0.4) // Set the Trimming value(Lower:0.2, Upper:0.4)
-		statistics.SetTrimming(0.2, CImageStatistics::ETrimmingLocation_Lower);
-		statistics.SetTrimming(0.4, CImageStatistics::ETrimmingLocation_Upper);
+		imageStatistics.SetTrimming(0.2, CImageStatistics::ETrimmingLocation_Lower);
+		imageStatistics.SetTrimming(0.4, CImageStatistics::ETrimmingLocation_Upper);
 
 		// trimming 된 결과값을 받아올 CMultiVar<double> 컨테이너 생성 // Create the CMultiVar<double> object to push the trimmed result
 		CMultiVar<double> mvTrimmingSum, mvTrimmingSumOfSquares;
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 합을 구하는 함수 // Function that calculate the sum of the pixel value of the image(or the region of ROI)
-		if((res = statistics.GetSum(mvTrimmingSum)).IsFail())
+		if((res = imageStatistics.GetSum(mvTrimmingSum)).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;
 		}
 
 		// 이미지 전체(혹은 ROI 영역) 픽셀값의 제곱합을 구하는 함수 // Function that calculate the sum of squares of the pixel value of the image(or the region of ROI)
-		if((res = statistics.GetSumOfSquares(mvTrimmingSumOfSquares)).IsFail())
+		if((res = imageStatistics.GetSumOfSquares(mvTrimmingSumOfSquares)).IsFail())
 		{
 			ErrorPrint(res, "Failed to process.");
 			break;
@@ -102,7 +102,7 @@ int main()
 			ErrorPrint(res, "Failed to draw figure.");
 
 		CFLString<wchar_t> strTrimming;
-		strTrimming.Format(L"Trimming Lower : %.2lf, Upper : %.2lf", statistics.GetTrimming(CImageStatistics::ETrimmingLocation_Lower), statistics.GetTrimming(CImageStatistics::ETrimmingLocation_Upper));
+		strTrimming.Format(L"Trimming Lower : %.2lf, Upper : %.2lf", imageStatistics.GetTrimming(CImageStatistics::ETrimmingLocation_Lower), imageStatistics.GetTrimming(CImageStatistics::ETrimmingLocation_Upper));
 
 		CFLString<wchar_t> strSumValue, strSumOfSquaresValue;
 		strSumValue.Format(L"Sum Of Region : %lf", mvSum.GetAt(0));
@@ -120,35 +120,35 @@ int main()
 		wprintf_s(L"%s\n", strTrimmingSumOfSquaresValue.GetString());
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), strSumValue.GetString(), YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), strSumValue.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text.");
 			break;
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 30), strSumOfSquaresValue.GetString(), YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 20), strSumOfSquaresValue.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text.");
 			break;
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 60), strTrimming.GetString(), YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 60), strTrimming.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text.");
 			break;
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 90), strTrimmingSumValue.GetString(), YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 90), strTrimmingSumValue.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text.");
 			break;
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 120), strTrimmingSumOfSquaresValue.GetString(), YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 120), strTrimmingSumOfSquaresValue.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text.");
 			break;
