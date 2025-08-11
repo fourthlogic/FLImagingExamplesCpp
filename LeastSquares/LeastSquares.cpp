@@ -85,10 +85,10 @@ int main()
 			printf(flstrSampleData);
 			printf("\n\n");
 
-			// LeastSquaresD 객체 생성 // Create LeastSquaresD object
-			CLeastSquaresD ls;
+			// LeastSquares<double> 객체 생성 // Create LeastSquares<double> object
+			CLeastSquares<double> leastSqaures;
 			// 데이터를 할당 // Assign data
-			ls.Assign(pF64DataX, pF64DataY, i32DataCount);
+			leastSqaures.Assign(pF64DataX, pF64DataY, i32DataCount);
 
 			for(int32_t i = 1; i <= 5; ++i)
 			{
@@ -98,7 +98,7 @@ int main()
 				double f64TRSqr = 0.;
 
 				// 다항식 계수를 얻는다. // Get polynomial coefficients
-				ls.GetPoly(i, &vctOutput, &f64TRSqr);
+				leastSqaures.GetPoly(i, &vctOutput, &f64TRSqr);
 
 				CFLString<char> flstrEquation = "";
 

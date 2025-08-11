@@ -102,67 +102,67 @@ int main()
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
  		// Uniform Filter 객체 생성 // Create Uniform Filter object
- 		CUniformFilter filterUniform;
+ 		CUniformFilter uniformFilter;
  		// Source 이미지 설정 // Set the source image
- 		filterUniform.SetSourceImage(arrFliImage[EType_Source]); 
+ 		uniformFilter.SetSourceImage(arrFliImage[EType_Source]); 
  		// Source ROI 설정 // Set the source ROI
- 		filterUniform.SetSourceROI(flrROI);
+ 		uniformFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		filterUniform.SetDestinationImage(arrFliImage[EType_Destination1]);
+ 		uniformFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		filterUniform.SetDestinationROI(flrROI);
+ 		uniformFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set kernel size
-		filterUniform.SetKernel(3);
+		uniformFilter.SetKernel(3);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if(IsFail(res = filterUniform.Execute()))
+ 		if(IsFail(res = uniformFilter.Execute()))
  		{
  			ErrorPrint(res, "Failed to execute Uniform filter.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		filterUniform.SetDestinationImage(arrFliImage[EType_Destination2]);
+		uniformFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		filterUniform.SetDestinationROI(flrROI);
+		uniformFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set kernel size
-		filterUniform.SetKernel(5);
+		uniformFilter.SetKernel(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterUniform.Execute()))
+		if(IsFail(res = uniformFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Uniform filter.");
 			break;
 		}
 
 		// Destination3 이미지 설정 // Set the destination3 image
-		filterUniform.SetDestinationImage(arrFliImage[EType_Destination3]);
+		uniformFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Destination3 ROI 설정 // Set Destination3 ROI
-		filterUniform.SetDestinationROI(flrROI);
+		uniformFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set kernel size
-		filterUniform.SetKernel(7);
+		uniformFilter.SetKernel(7);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterUniform.Execute()))
+		if(IsFail(res = uniformFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Uniform filter.");
 			break;
 		}
 
 		// Destination4 이미지 설정 // Set the destination4 image
-		filterUniform.SetDestinationImage(arrFliImage[EType_Destination4]);
+		uniformFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Destination4 ROI 설정 // Set Destination4 ROI
-		filterUniform.SetDestinationROI(flrROI);
+		uniformFilter.SetDestinationROI(flrROI);
 
 		// 커널 크기 설정 // Set kernel size
-		filterUniform.SetKernel(15);
+		uniformFilter.SetKernel(15);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterUniform.Execute()))
+		if(IsFail(res = uniformFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Uniform filter.");
 			break;

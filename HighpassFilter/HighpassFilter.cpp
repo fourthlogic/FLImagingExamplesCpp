@@ -97,37 +97,37 @@ int main()
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
  		// Highpass Filter 객체 생성 // Create Highpass Filter object
- 		CHighpassFilter filterHighpass;
+ 		CHighpassFilter highpassFilter;
  		// Source 이미지 설정 // Set the source image
- 		filterHighpass.SetSourceImage(arrFliImage[EType_Source]); 
+ 		highpassFilter.SetSourceImage(arrFliImage[EType_Source]); 
  		// Source ROI 설정 // Set the source ROI
- 		filterHighpass.SetSourceROI(flrROI);
+ 		highpassFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		filterHighpass.SetDestinationImage(arrFliImage[EType_Destination1]);
+ 		highpassFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		filterHighpass.SetDestinationROI(flrROI);
+ 		highpassFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterHighpass.SetKernelMethod(CHighpassFilter::EKernel_Highpass1);
+		highpassFilter.SetKernelMethod(CHighpassFilter::EKernel_Highpass1);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if(IsFail(res = filterHighpass.Execute()))
+ 		if(IsFail(res = highpassFilter.Execute()))
  		{
  			ErrorPrint(res, "Failed to execute Highpass filter.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		filterHighpass.SetDestinationImage(arrFliImage[EType_Destination2]);
+		highpassFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		filterHighpass.SetDestinationROI(flrROI);
+		highpassFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterHighpass.SetKernelMethod(CHighpassFilter::EKernel_Highpass2);
+		highpassFilter.SetKernelMethod(CHighpassFilter::EKernel_Highpass2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterHighpass.Execute()))
+		if(IsFail(res = highpassFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Highpass filter.");
 			break;

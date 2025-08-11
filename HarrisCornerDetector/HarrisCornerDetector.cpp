@@ -50,55 +50,55 @@ int main()
 		layer.Clear();
 
 		// harris 객체 생성 // Create harris object
-		CHarrisCornerDetector harris;
+		CHarrisCornerDetector harrisCornerDetector;
 
 		// ROI 범위 설정
 		CFLRect<int32_t> flrROI(100, 50, 450, 450);
 
 		// 처리할 이미지 설정
-		if(IsFail(res = harris.SetSourceImage(fliImage)))
+		if(IsFail(res = harrisCornerDetector.SetSourceImage(fliImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// 처리할 ROI 설정
-		if(IsFail(res = harris.SetSourceROI(flrROI)))
+		if(IsFail(res = harrisCornerDetector.SetSourceROI(flrROI)))
 		{
 			ErrorPrint(res, "Failed to set Source ROI.");
 			break;
 		}
 
 		// 코너를 검출하는 이미지의 Scale 값을 설정
-		if(IsFail(res = harris.SetScale(1.0)))
+		if(IsFail(res = harrisCornerDetector.SetScale(1.0)))
 		{
 			ErrorPrint(res, "Failed to set scale.");
 			break;
 		}
 
 		// 검출할 최대 점의 개수를 설정
-		if(IsFail(res = harris.SetMaxPoints(500)))
+		if(IsFail(res = harrisCornerDetector.SetMaxPoints(500)))
 		{
 			ErrorPrint(res, "Failed to set max points.");
 			break;
 		}
 
 		// 검출할 점수의 임계값을 설정
-		if(IsFail(res = harris.SetScoreThreshold(0.8f)))
+		if(IsFail(res = harrisCornerDetector.SetScoreThreshold(0.8f)))
 		{
 			ErrorPrint(res, "Failed to set score threshold.");
 			break;
 		}
 
 		// 해리스 코너 디텍터의 파리미터 K를 설정
-		if(IsFail(res = harris.SetParamK(0.04f)))
+		if(IsFail(res = harrisCornerDetector.SetParamK(0.04f)))
 		{
 			ErrorPrint(res, "Failed to set param K.");
 			break;
 		}
 
 		// 해리스 코너 디텍터 실행 함수
-		if(IsFail(res = harris.Execute()))
+		if(IsFail(res = harrisCornerDetector.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;
@@ -108,14 +108,14 @@ int main()
 		Foundation::CFLFigureArray flfaResultPoints;
 
 		// 해리스 코너 디텍터 실행 함수
-		if(IsFail(res = harris.GetResultPoints(&flfaResultPoints)))
+		if(IsFail(res = harrisCornerDetector.GetResultPoints(&flfaResultPoints)))
 		{
 			ErrorPrint(res, "Failed to get result.");
 			break;
 		}
 
 		// 검출된 점의 개수를 가져오는 함수
-		int64_t i64Count = harris.GetResultCount();
+		int64_t i64Count = harrisCornerDetector.GetResultCount();
 
 		for(int64_t i = 0; i < i64Count; i++)
 		{

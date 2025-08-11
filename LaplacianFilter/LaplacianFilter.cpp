@@ -102,67 +102,67 @@ int main()
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
  		// LaplacianFilter 객체 생성 // Create LaplacianFilter object
- 		CLaplacianFilter filterLaplacian;
+ 		CLaplacianFilter laplacianFilter;
  		// Source 이미지 설정 // Set the source image
- 		filterLaplacian.SetSourceImage(arrFliImage[EType_Source]); 
+ 		laplacianFilter.SetSourceImage(arrFliImage[EType_Source]); 
  		// Source ROI 설정 // Set the source ROI
- 		filterLaplacian.SetSourceROI(flrROI);
+ 		laplacianFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		filterLaplacian.SetDestinationImage(arrFliImage[EType_Destination1]);
+ 		laplacianFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		filterLaplacian.SetDestinationROI(flrROI);
+ 		laplacianFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterLaplacian.SetKernelMethod(CLaplacianFilter::EKernel_LaplacianX);
+		laplacianFilter.SetKernelMethod(CLaplacianFilter::EKernel_LaplacianX);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if(IsFail(res = filterLaplacian.Execute()))
+ 		if(IsFail(res = laplacianFilter.Execute()))
  		{
  			ErrorPrint(res, "Failed to execute Laplacian filter.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		filterLaplacian.SetDestinationImage(arrFliImage[EType_Destination2]);
+		laplacianFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		filterLaplacian.SetDestinationROI(flrROI);
+		laplacianFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterLaplacian.SetKernelMethod(CLaplacianFilter::EKernel_LaplacianY);
+		laplacianFilter.SetKernelMethod(CLaplacianFilter::EKernel_LaplacianY);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterLaplacian.Execute()))
+		if(IsFail(res = laplacianFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Laplacian filter.");
 			break;
 		}
 
 		// Destination3 이미지 설정 // Set the destination3 image
-		filterLaplacian.SetDestinationImage(arrFliImage[EType_Destination3]);
+		laplacianFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Destination3 ROI 설정 // Set Destination3 ROI
-		filterLaplacian.SetDestinationROI(flrROI);
+		laplacianFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterLaplacian.SetKernelMethod(CLaplacianFilter::EKernel_Laplacian4);
+		laplacianFilter.SetKernelMethod(CLaplacianFilter::EKernel_Laplacian4);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterLaplacian.Execute()))
+		if(IsFail(res = laplacianFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Laplacian filter.");
 			break;
 		}
 
 		// Destination4 이미지 설정 // Set the destination4 image
-		filterLaplacian.SetDestinationImage(arrFliImage[EType_Destination4]);
+		laplacianFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Destination4 ROI 설정 // Set Destination4 ROI
-		filterLaplacian.SetDestinationROI(flrROI);
+		laplacianFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterLaplacian.SetKernelMethod(CLaplacianFilter::EKernel_Laplacian8);
+		laplacianFilter.SetKernelMethod(CLaplacianFilter::EKernel_Laplacian8);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterLaplacian.Execute()))
+		if(IsFail(res = laplacianFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Laplacian filter.");
 			break;

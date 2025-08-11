@@ -96,19 +96,19 @@ int main()
 		CFLRect<int32_t> flrROI(20, 100, 420, 500);
 
  		// Roberts Filter 객체 생성 // Create Roberts Filter object
- 		CRobertsFilter filterRoberts;
+ 		CRobertsFilter robertsFilter;
  		// Source 이미지 설정 // Set the source image
- 		filterRoberts.SetSourceImage(arrFliImage[EType_Source]); 
+ 		robertsFilter.SetSourceImage(arrFliImage[EType_Source]); 
  		// Source ROI 설정 // Set the source ROI
- 		filterRoberts.SetSourceROI(flrROI);
+ 		robertsFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		filterRoberts.SetDestinationImage(arrFliImage[EType_Destination1]);
+ 		robertsFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		filterRoberts.SetDestinationROI(flrROI);
+ 		robertsFilter.SetDestinationROI(flrROI);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if(IsFail(res = filterRoberts.Execute()))
+ 		if(IsFail(res = robertsFilter.Execute()))
  		{
  			ErrorPrint(res, "Failed to execute Roberts filter.");
  			break;

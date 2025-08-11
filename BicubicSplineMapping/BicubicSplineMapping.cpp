@@ -90,20 +90,20 @@ int main()
 		layer[2].DrawTextCanvas(&CFLPoint<int32_t>(0, 0), L"Restore Coordinate (from Destination)", YELLOW, BLACK, 30);
 
 		// 좌표 매핑용 클래스 선언 // Class declaration for coordinate mapping
-		CBicubicSplineMapping bcsm;
+		CBicubicSplineMapping bicubicSplineMapping;
 
 		// 보간 방식은 데이터 설정 이후에도 아래 함수를 통해 변경 가능합니다.
 		// The interpolation method can be changed through the function below even after setting the data.
 
 		// 소스의 좌표 보간 형태를 Cubic Spline으로 설정 // Set the source coordinate interpolation type to Cubic Spline
-		bcsm.SetSourceInterpolationMethod(ESourceInterpolationMethod_CubicSpline);
+		bicubicSplineMapping.SetSourceInterpolationMethod(ESourceInterpolationMethod_CubicSpline);
 		// 대상의 좌표 보간 형태를 Cubic Spline으로 설정 // Set the coordinate interpolation type of the destination to Cubic Spline
-		bcsm.SetDestinationInterpolationMethod(EDestinationInterpolationMethod_CubicSpline);
+		bicubicSplineMapping.SetDestinationInterpolationMethod(EDestinationInterpolationMethod_CubicSpline);
 
 		// 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
 		// 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
 		// 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
-		if(IsFail(res = bcsm.Load(L"MappingData.flbcs")))
+		if(IsFail(res = bicubicSplineMapping.Load(L"MappingData.flbcs")))
 		{
 			// 그리드를 (5,5)로 초기화하면서, 가상 확장 영역을 3으로 지정
 			// 확장영역 밖으로 값을 변환하려고 하면 값이 나오지 않기때문에 적절한 크기로 확장을 해야 하며,
@@ -113,7 +113,7 @@ int main()
 			// so you need to expand it to an appropriate size, and if possible, it is recommended to map a large range for accurate mapping.
 			const int32_t i32Extension = 3;
 			CFLPoint<int32_t> flpGridSize(5, 5);
-			bcsm.Initialize(flpGridSize, i32Extension);
+			bicubicSplineMapping.Initialize(flpGridSize, i32Extension);
 
 			CFLPoint<int32_t> flpGridIndex;
 			for(int y = 0; y < flpGridSize.y; ++y)
@@ -131,7 +131,7 @@ int main()
 
 					// 위에서 설정한 좌표들을 바탕으로 BicubicSplineMapping 클래스에 하나의 Vertex를 설정
 					// Set one vertex in the BicubicSplineMapping class based on the coordinates set above
-					bcsm.SetControlPoint(flpGridIndex, flpSource, flpDistortion);
+					bicubicSplineMapping.SetControlPoint(flpGridIndex, flpSource, flpDistortion);
 				}
 			}
 
@@ -139,7 +139,7 @@ int main()
 			// 반드시 이 함수를 호출해서 결과가 OK가 나와야 매핑 사용이 가능합니다.
 			// We proceed with the finishing work so that the set data can be mapped.
 			// You must call this function and the result must be OK to use the mapping.
-			if(IsFail(res = bcsm.Finish()))
+			if(IsFail(res = bicubicSplineMapping.Finish()))
 			{
 				ErrorPrint(res, "Failed to finalize\n");
 				break;
@@ -149,7 +149,7 @@ int main()
 			// 추후 Load함수를 통해 로드 시 위의 Initialize -> Set -> Finalize 과정을 생략할 수 있습니다.
 			// If Finalize is completed, it can be saved to a file through Save.
 			// When loading through the Load function later, the above Initialize -> Set -> Finalize process can be omitted.
-			if(IsFail(res = bcsm.Save(L"MappingData.flbcs")))
+			if(IsFail(res = bicubicSplineMapping.Save(L"MappingData.flbcs")))
 			{
 				ErrorPrint(res, "Failed to save mapping data\n");
 				break;
@@ -161,11 +161,11 @@ int main()
 
 		// BicubicSplineMapping 클래스에 설정된 Vertex 정보를 화면에 Display
 		// Display the vertex information set in the BicubicSplineMapping class on the screen
-		for(int32_t y = 0; y < bcsm.GetRow(); ++y)
+		for(int32_t y = 0; y < bicubicSplineMapping.GetRow(); ++y)
 		{
-			for(int32_t x = 0; x < bcsm.GetColumn(); ++x)
+			for(int32_t x = 0; x < bicubicSplineMapping.GetColumn(); ++x)
 			{
-				const CBicubicSplineMapping::CBicubicSplineMappingVertexInfo* pVertex = bcsm.GetControlPoint(CFLPoint<int32_t>(x, y));
+				const CBicubicSplineMapping::CBicubicSplineMappingVertexInfo* pVertex = bicubicSplineMapping.GetControlPoint(CFLPoint<int32_t>(x, y));
 
 				// 유효한 좌표가 아닌 경우 nullptr이 리턴된다. // If not valid coordinates, nullptr is returned.
 				if(pVertex)
@@ -205,11 +205,11 @@ int main()
 		CFLPoint<double> flpDestination; // Destination 좌표 // Destination coordinates
 		CFLPoint<double> flpConvertedSource; // Destination 좌표를 다시 Source로 변환, 검증 용도의 좌표 // Convert destination coordinates back to source, coordinates for verification purposes
 
-		for(int y = 0; y <= (bcsm.GetRow() - 1) * f64Slice; ++y)
+		for(int y = 0; y <= (bicubicSplineMapping.GetRow() - 1) * f64Slice; ++y)
 		{
 			flpSource.y = (y / f64Slice);
 
-			for(int x = 0; x <= (bcsm.GetColumn() - 1) * f64Slice; ++x)
+			for(int x = 0; x <= (bicubicSplineMapping.GetColumn() - 1) * f64Slice; ++x)
 			{
 				flpSource.x = (x / f64Slice);
 
@@ -221,7 +221,7 @@ int main()
 				}
 
 				// Source 좌표의 공간을 Destination 좌표 공간으로 변환 // Convert the space of source coordinates to destination coordinate space
-				if(IsOK(bcsm.ConvertSourceToDestination(flpSource, flpDestination)))
+				if(IsOK(bicubicSplineMapping.ConvertSourceToDestination(flpSource, flpDestination)))
 				{
 					// Source 좌표에서 Destination 좌표로 변환된 좌표를 View에 Display // Display coordinates converted from source coordinates to destination coordinates on the View
 					if(IsFail(res = layer[1].DrawFigureImage(&flpDestination, LIME)))
@@ -232,7 +232,7 @@ int main()
 
 					// 변환된 Destination 좌표를 그대로 Source 좌표로 변환해서 자신의 위치로 제대로 돌아오는지 검증
 					// Verify that the converted destination coordinates are converted to source coordinates as they are and return to their own position properly
-					if(IsOK(bcsm.ConvertDestinationToSource(flpDestination, flpConvertedSource)))
+					if(IsOK(bicubicSplineMapping.ConvertDestinationToSource(flpDestination, flpConvertedSource)))
 					{
 						printf("Source (%.03lf,%.03lf) -> Destination (%.03lf,%.03lf) -> Source (%.03lf,%.03lf)\n", flpSource.x, flpSource.y, flpDestination.x, flpDestination.y, flpConvertedSource.x, flpConvertedSource.y);
 

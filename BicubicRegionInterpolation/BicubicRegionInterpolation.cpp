@@ -79,17 +79,17 @@ int main()
 			break;
 
 		// Bicubic Region Interpolation 객체 생성 // Create Bicubic Region Interpolation object
-		CBicubicRegionInterpolation sBRI;
+		CBicubicRegionInterpolation bicubicRegionInterpolation;
 		// Source 이미지 설정 // Set the source image
-		sBRI.SetSourceImage(arrFliImage[EType_Source]);
+		bicubicRegionInterpolation.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		sBRI.SetDestinationImage(arrFliImage[EType_Destination]);
+		bicubicRegionInterpolation.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 보정 분할 Depth 설정 // Set calibration division depth
-		sBRI.SetDivisionDepth(5);
+		bicubicRegionInterpolation.SetDivisionDepth(5);
 
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = sBRI.Execute()))
+		if(IsFail(res = bicubicRegionInterpolation.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Bicubic Region Interpolation.");
 			break;

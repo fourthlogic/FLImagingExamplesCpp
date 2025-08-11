@@ -97,37 +97,37 @@ int main()
 		CFLRect<int32_t> flrROI(20, 100, 420, 500);
 
  		// Lowpass Filter 객체 생성 // Create Lowpass Filter object
- 		CLowpassFilter filterLowpass;
+ 		CLowpassFilter lowpassFilter;
  		// Source 이미지 설정 // Set the source image
- 		filterLowpass.SetSourceImage(arrFliImage[EType_Source]); 
+ 		lowpassFilter.SetSourceImage(arrFliImage[EType_Source]); 
  		// Source ROI 설정 // Set the source ROI
- 		filterLowpass.SetSourceROI(flrROI);
+ 		lowpassFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
- 		filterLowpass.SetDestinationImage(arrFliImage[EType_Destination1]);
+ 		lowpassFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
- 		filterLowpass.SetDestinationROI(flrROI);
+ 		lowpassFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterLowpass.SetKernelMethod(CLowpassFilter::EKernel_Lowpass1);
+		lowpassFilter.SetKernelMethod(CLowpassFilter::EKernel_Lowpass1);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if(IsFail(res = filterLowpass.Execute()))
+ 		if(IsFail(res = lowpassFilter.Execute()))
  		{
  			ErrorPrint(res, "Failed to execute Lowpass filter.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		filterLowpass.SetDestinationImage(arrFliImage[EType_Destination2]);
+		lowpassFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		filterLowpass.SetDestinationROI(flrROI);
+		lowpassFilter.SetDestinationROI(flrROI);
 
 		// 커널 연산 방법 설정 // Set kernel operation method
-		filterLowpass.SetKernelMethod(CLowpassFilter::EKernel_Lowpass2);
+		lowpassFilter.SetKernelMethod(CLowpassFilter::EKernel_Lowpass2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = filterLowpass.Execute()))
+		if(IsFail(res = lowpassFilter.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Lowpass filter.");
 			break;

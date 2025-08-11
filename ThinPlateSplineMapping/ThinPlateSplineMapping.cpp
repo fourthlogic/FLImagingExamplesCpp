@@ -90,7 +90,7 @@ int main()
 		layer[2].DrawTextCanvas(&CFLPoint<int32_t>(0, 0), L"Restore Coordinate (from Destination)", YELLOW, BLACK, 30);
 
 		// 좌표 매핑용 클래스 선언 // Class declaration for coordinate mapping
-		CThinPlateSplineMapping tps;
+		CThinPlateSplineMapping thinPlateSplineMapping;
 
 		// 그리드를 (5,5)로 초기화 // initialize the grid to (5,5)
 		CFLPoint<int32_t> flpGridSize(5, 5);
@@ -98,7 +98,7 @@ int main()
 		// 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
 		// 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
 		// 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
-		if(IsFail(res = tps.Load(L"MappingData.fltps")))
+		if(IsFail(res = thinPlateSplineMapping.Load(L"MappingData.flthinPlateSplineMapping")))
 		{
 			CFLPoint<int32_t> flpGridIndex;
 			for(int y = 0; y < flpGridSize.y; ++y)
@@ -116,7 +116,7 @@ int main()
 
 					// 위에서 설정한 좌표들을 바탕으로 ThinPlateSplineMapping 클래스에 하나의 Control Point를 설정
 					// Set one Control Point in the ThinPlateSplineMapping class based on the coordinates set above
-					tps.AddControlPoint(flpSource, flpDistortion);
+					thinPlateSplineMapping.AddControlPoint(flpSource, flpDistortion);
 				}
 			}
 
@@ -124,7 +124,7 @@ int main()
 			// 반드시 이 함수를 호출해서 결과가 OK가 나와야 매핑 사용이 가능합니다.
 			// We proceed with the finishing work so that the set data can be mapped.
 			// You must call this function and the result must be OK to use the mapping.
-			if(IsFail(res = tps.Finish()))
+			if(IsFail(res = thinPlateSplineMapping.Finish()))
 			{
 				ErrorPrint(res, "Failed to finalize\n");
 				break;
@@ -134,7 +134,7 @@ int main()
 			// 추후 Load함수를 통해 로드 시 위의 Initialize -> Set -> Finalize 과정을 생략할 수 있습니다.
 			// If Finalize is completed, it can be saved to a file through Save.
 			// When loading through the Load function later, the above Initialize -> Set -> Finalize process can be omitted.
-			if(IsFail(res = tps.Save(L"MappingData.fltps")))
+			if(IsFail(res = thinPlateSplineMapping.Save(L"MappingData.flthinPlateSplineMapping")))
 			{
 				ErrorPrint(res, "Failed to save mapping data\n");
 				break;
@@ -146,12 +146,12 @@ int main()
 
 		// ThinPlateSplineMapping 클래스에 설정된 Vertex 정보를 화면에 Display
 		// Display the vertex information set in the ThinPlateSplineMapping class on the screen
-		for(int64_t i = 0; i < tps.GetControlPointCount(); ++i)
+		for(int64_t i = 0; i < thinPlateSplineMapping.GetControlPointCount(); ++i)
 		{
 			CFLPoint<double> flpSource;
 			CFLPoint<double> flpDestination;
 
-			tps.GetControlPoint(i, &flpSource, &flpDestination);
+			thinPlateSplineMapping.GetControlPoint(i, &flpSource, &flpDestination);
 
 			for(int32_t i = 0; i < 3; ++i)
 			{
@@ -199,7 +199,7 @@ int main()
 				}
 
 				// Source 좌표의 공간을 Destination 좌표 공간으로 변환 // Convert the space of source coordinates to destination coordinate space
-				if(IsOK(tps.ConvertSourceToDestination(flpSource, flpDestination)))
+				if(IsOK(thinPlateSplineMapping.ConvertSourceToDestination(flpSource, flpDestination)))
 				{
 					// Source 좌표에서 Destination 좌표로 변환된 좌표를 View에 Display // Display coordinates converted from source coordinates to destination coordinates on the View
 					if(IsFail(res = layer[1].DrawFigureImage(&flpDestination, LIME)))
@@ -210,7 +210,7 @@ int main()
 
 					// 변환된 Destination 좌표를 그대로 Source 좌표로 변환해서 자신의 위치로 제대로 돌아오는지 검증
 					// Verify that the converted destination coordinates are converted to source coordinates as they are and return to their own position properly
-					if(IsOK(tps.ConvertDestinationToSource(flpDestination, flpConvertedSource)))
+					if(IsOK(thinPlateSplineMapping.ConvertDestinationToSource(flpDestination, flpConvertedSource)))
 					{
 						printf("Source (%.03lf,%.03lf) -> Destination (%.03lf,%.03lf) -> Source (%.03lf,%.03lf)\n", flpSource.x, flpSource.y, flpDestination.x, flpDestination.y, flpConvertedSource.x, flpConvertedSource.y);
 
