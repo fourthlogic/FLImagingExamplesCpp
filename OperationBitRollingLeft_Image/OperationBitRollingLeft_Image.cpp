@@ -115,18 +115,18 @@ int main()
 		}
 
 		// Operation BitRollingLeft 객체 생성 // Create Operation BitRollingLeft object
-		COperationBitRollingLeft rollingLeft;
+		COperationBitRollingLeft operationBitRollingLeft;
 		// Source 이미지 설정 // Set the source image
-		rollingLeft.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitRollingLeft.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		rollingLeft.SetOperandImage(arrFliImage[EType_Operand]);
+		operationBitRollingLeft.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		rollingLeft.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationBitRollingLeft.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Operation source를 이미지로 설정 // Set operation source to image
-		rollingLeft.SetOperationSource(EOperationSource_Image);
+		operationBitRollingLeft.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res =rollingLeft.Execute()).IsFail())
+		if((res =operationBitRollingLeft.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation rolling.");
 			break;

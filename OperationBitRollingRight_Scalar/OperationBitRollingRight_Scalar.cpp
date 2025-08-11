@@ -113,33 +113,33 @@ int main()
 			break;
 		}
 
-		// Operation Bit rollingRight 객체 생성 // Create Operation Bit rollingRight object
-		COperationBitRollingRight rollingRight;
+		// OperationBitRollingRight 객체 생성 // Create OperationBitRollingRight object
+		COperationBitRollingRight operationBitRollingRight;
 		// Source 이미지 설정 // Set the source image
-		rollingRight.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitRollingRight.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		rollingRight.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationBitRollingRight.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		rollingRight.SetOperationSource(EOperationSource_Scalar);
+		operationBitRollingRight.SetOperationSource(EOperationSource_Scalar);
 		// rolling 값 설정 // Set rolling value
-		rollingRight.SetScalarValue(CMultiVar<double>(1, 1, 1));
+		operationBitRollingRight.SetScalarValue(CMultiVar<double>(1, 1, 1));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res =rollingRight.Execute()).IsFail())
+		if((res =operationBitRollingRight.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation rolling.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		rollingRight.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationBitRollingRight.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Operation source를 scalar로 설정 // Set operation source to scalar
-		rollingRight.SetOperationSource(EOperationSource_Scalar);
+		operationBitRollingRight.SetOperationSource(EOperationSource_Scalar);
 		// rolling 값 설정 // Set rolling value
-		rollingRight.SetScalarValue(CMultiVar<double>(7, 7, 7));
+		operationBitRollingRight.SetScalarValue(CMultiVar<double>(7, 7, 7));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res =rollingRight.Execute()).IsFail())
+		if((res =operationBitRollingRight.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation rolling.");
 			break;
@@ -171,13 +171,13 @@ int main()
 			break;
 		}
 
-		if((res =arrLayer[EType_Destination1].DrawTextCanvas(&flpZero, L"Destination1 Image(BitrollingRight 1)", YELLOW, BLACK, 30)).IsFail())
+		if((res =arrLayer[EType_Destination1].DrawTextCanvas(&flpZero, L"Destination1 Image(BitoperationBitRollingRight 1)", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
 		}
 
-		if((res =arrLayer[EType_Destination2].DrawTextCanvas(&flpZero, L"Destination1 Image(BitrollingRight 7)", YELLOW, BLACK, 30)).IsFail())
+		if((res =arrLayer[EType_Destination2].DrawTextCanvas(&flpZero, L"Destination1 Image(BitoperationBitRollingRight 7)", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;

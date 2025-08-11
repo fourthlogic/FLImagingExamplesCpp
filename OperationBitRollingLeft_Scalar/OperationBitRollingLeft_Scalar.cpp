@@ -114,32 +114,32 @@ int main()
 		}
 
 		// Operation Bit RollingLeft 객체 생성 // Create Operation Bit RollingLeft object
-		COperationBitRollingLeft rollingLeft;
+		COperationBitRollingLeft operationBitRollingLeft;
 		// Source 이미지 설정 // Set the source image
-		rollingLeft.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitRollingLeft.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		rollingLeft.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationBitRollingLeft.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Operation source를 scalar로 설정 // Set operation source to scalar
-		rollingLeft.SetOperationSource(EOperationSource_Scalar);
+		operationBitRollingLeft.SetOperationSource(EOperationSource_Scalar);
 		// rolling 값 설정 // Set rolling value
-		rollingLeft.SetScalarValue(CMultiVar<double>(1, 1, 1));
+		operationBitRollingLeft.SetScalarValue(CMultiVar<double>(1, 1, 1));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res =rollingLeft.Execute()).IsFail())
+		if((res =operationBitRollingLeft.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation rolling.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		rollingLeft.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationBitRollingLeft.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		rollingLeft.SetOperationSource(EOperationSource_Scalar);
+		operationBitRollingLeft.SetOperationSource(EOperationSource_Scalar);
 		// rolling 값 설정 // Set rolling value
-		rollingLeft.SetScalarValue(CMultiVar<double>(7, 7, 7));
+		operationBitRollingLeft.SetScalarValue(CMultiVar<double>(7, 7, 7));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res =rollingLeft.Execute()).IsFail())
+		if((res =operationBitRollingLeft.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation rolling.");
 			break;
