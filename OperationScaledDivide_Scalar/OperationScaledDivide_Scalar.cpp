@@ -116,32 +116,32 @@ int main()
 		}
 
 		// Operation ScaledDivide 객체 생성 // Create Operation ScaledDivide object
-		COperationScaledDivide scaledDivide;
+		COperationScaledDivide operationScaledDivide;
 		// Source 이미지 설정 // Set the source image
-		scaledDivide.SetSourceImage(arrFliImage[EType_Source]);
+		operationScaledDivide.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		scaledDivide.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationScaledDivide.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		scaledDivide.SetOperationSource(EOperationSource_Scalar);
+		operationScaledDivide.SetOperationSource(EOperationSource_Scalar);
 		// ScaledDivide 값 설정 // Set ScaledDivide value
-		scaledDivide.SetScalarValue(CMultiVar<double>(192, 192, 192));
+		operationScaledDivide.SetScalarValue(CMultiVar<double>(192, 192, 192));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = scaledDivide.Execute()))
+		if(IsFail(res = operationScaledDivide.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledDivide.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		scaledDivide.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationScaledDivide.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		scaledDivide.SetOperationSource(EOperationSource_Scalar);
+		operationScaledDivide.SetOperationSource(EOperationSource_Scalar);
 		// ScaledDivide 값 설정 // Set ScaledDivide value
-		scaledDivide.SetScalarValue(CMultiVar<double>(512, 512, 512));
+		operationScaledDivide.SetScalarValue(CMultiVar<double>(512, 512, 512));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = scaledDivide.Execute()))
+		if(IsFail(res = operationScaledDivide.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledDivide.");
 			break;

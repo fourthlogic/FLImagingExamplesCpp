@@ -190,7 +190,7 @@ protected:
 	CGUIViewImageWrap* m_pViewImage;
 };
 
-bool Calibration(CStereoCalibrator3D& stereoCalibrator, CFLImage& fliLearnImage, CFLImage& fliLearnImage2)
+bool Calibration(CStereoCalibrator3D& stereoCalibrator3D, CFLImage& fliLearnImage, CFLImage& fliLearnImage2)
 {
 	bool bResult = false;
 
@@ -200,35 +200,35 @@ bool Calibration(CStereoCalibrator3D& stereoCalibrator, CFLImage& fliLearnImage,
 	do
 	{
 		// Learn 이미지 설정 // Declare the learn image
-		if((res = stereoCalibrator.SetLearnImage(&fliLearnImage)).IsFail())
+		if((res = stereoCalibrator3D.SetLearnImage(&fliLearnImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image.\n");
 			break;
 		}
 
 		// Learn 이미지 2 설정 // Declare the learn image
-		if((res = stereoCalibrator.SetLearnImage2(&fliLearnImage2)).IsFail())
+		if((res = stereoCalibrator3D.SetLearnImage2(&fliLearnImage2)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image.\n");
 			break;
 		}
 
 		// Optimal solution accuracy 설정 // Set optimal solution accuracy
-		if((res = stereoCalibrator.SetOptimalSolutionAccuracy(1e-5)).IsFail())
+		if((res = stereoCalibrator3D.SetOptimalSolutionAccuracy(1e-5)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set Optimal Solution Accuracy.\n");
 			break;
 		}
 
 		// Grid Type 설정 // Set grid type
-		if((res = stereoCalibrator.SetGridType(CStereoCalibrator3D::EGridType_ChessBoard)).IsFail())
+		if((res = stereoCalibrator3D.SetGridType(CStereoCalibrator3D::EGridType_ChessBoard)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set Grid Type.\n");
 			break;
 		}
 
 		// Calibration 실행 // Execute Calibration
-		if((res = stereoCalibrator.Calibrate()).IsFail())
+		if((res = stereoCalibrator3D.Calibrate()).IsFail())
 		{
 			ErrorPrint(res, L"Calibration failed.\n");
 			break;
@@ -241,7 +241,7 @@ bool Calibration(CStereoCalibrator3D& stereoCalibrator, CFLImage& fliLearnImage,
 	return bResult;
 }
 
-bool Undistortion(CStereoCalibrator3D& stereoCalibrator, CFLImage& fliSourceImage, CFLImage& fliSourceImage2, CFLImage& fliDestinationImage, CFLImage& fliDestinationImage2)
+bool Undistortion(CStereoCalibrator3D& stereoCalibrator3D, CFLImage& fliSourceImage, CFLImage& fliSourceImage2, CFLImage& fliDestinationImage, CFLImage& fliDestinationImage2)
 {
 	bool bResult = false;
 
@@ -251,42 +251,42 @@ bool Undistortion(CStereoCalibrator3D& stereoCalibrator, CFLImage& fliSourceImag
 	do
 	{
 		// Source 이미지 설정 // Set source image
-		if((res = stereoCalibrator.SetSourceImage(&fliSourceImage)).IsFail())
+		if((res = stereoCalibrator3D.SetSourceImage(&fliSourceImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to Loads image.\n");
 			break;
 		}
 
 		// Source 이미지 2 설정 // Set source image 2
-		if((res = stereoCalibrator.SetSourceImage2(&fliSourceImage2)).IsFail())
+		if((res = stereoCalibrator3D.SetSourceImage2(&fliSourceImage2)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to Loads image.\n");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image 
-		if((res = stereoCalibrator.SetDestinationImage(&fliDestinationImage)).IsFail())
+		if((res = stereoCalibrator3D.SetDestinationImage(&fliDestinationImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to Loads image.\n");
 			break;
 		}
 
 		// Destination 이미지 2 설정 // Set destination image 2
-		if((res = stereoCalibrator.SetDestinationImage2(&fliDestinationImage2)).IsFail())
+		if((res = stereoCalibrator3D.SetDestinationImage2(&fliDestinationImage2)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to Loads image.\n");
 			break;
 		}
 
 		// Interpolation 메소드 설정 // Set interpolation method
-		if((res = stereoCalibrator.SetInterpolationMethod(ImageProcessing::EInterpolationMethod_Bilinear)).IsFail())
+		if((res = stereoCalibrator3D.SetInterpolationMethod(ImageProcessing::EInterpolationMethod_Bilinear)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set interpolation method.\n");
 			break;
 		}
 
 		// Undistortion 실행 // Execute undistortion
-		if((res = stereoCalibrator.Execute()).IsFail())
+		if((res = stereoCalibrator3D.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Undistortion failed.\n");
 			break;
@@ -321,7 +321,7 @@ int main()
 	CMessageReceiver msgReceiver2(&viewImageLearn2);
 
 	// Stereo Calibrator 객체 생성 // Create Camera Calibrator object
-	CStereoCalibrator3D stereoCalibrator;
+	CStereoCalibrator3D stereoCalibrator3D;
 
 	do
 	{
@@ -346,7 +346,7 @@ int main()
 		fliLearnImage2.SelectPage(0);
 
 		// Stereo calibration 수행 // Execute stereo calibration
-		if(!Calibration(stereoCalibrator, fliLearnImage, fliLearnImage2))
+		if(!Calibration(stereoCalibrator3D, fliLearnImage, fliLearnImage2))
 			break;
 
 		// Source 이미지에 Learn 이미지를 복사 (얕은 복사) // Copy the learn image to source image (Shallow Copy)
@@ -356,7 +356,7 @@ int main()
 		fliSourceImage2.Assign(fliLearnImage2, false);
 
 		// Undistortion 수행 // Execute undistortion
-		if(!Undistortion(stereoCalibrator, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2))
+		if(!Undistortion(stereoCalibrator3D, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2))
 			break;
 
 		// 화면에 격자 탐지 결과 출력 // Display the res of grid detection
@@ -365,7 +365,7 @@ int main()
 		for(int64_t i64ImgIdx = 0; i64ImgIdx < (int64_t)fliLearnImage.GetPageCount(); ++i64ImgIdx)
 		{
 			SGridDisplay& sGridDisplay = sArrGridDisplay[i64ImgIdx];
-			stereoCalibrator.GetResultGridPoints(&sGridDisplay.sGridData, i64ImgIdx);
+			stereoCalibrator3D.GetResultGridPoints(&sGridDisplay.sGridData, i64ImgIdx);
 			sGridDisplay.i64ImageIdx = i64ImgIdx;
 		}
 
@@ -374,7 +374,7 @@ int main()
 		for(int64_t i64ImgIdx = 0; i64ImgIdx < (int64_t)fliLearnImage2.GetPageCount(); ++i64ImgIdx)
 		{
 			SGridDisplay& sGridDisplay = sArrGridDisplay2[i64ImgIdx];
-			stereoCalibrator.GetResultGridPoints2(&sGridDisplay.sGridData, i64ImgIdx);
+			stereoCalibrator3D.GetResultGridPoints2(&sGridDisplay.sGridData, i64ImgIdx);
 			sGridDisplay.i64ImageIdx = i64ImgIdx;
 		}
 
@@ -489,19 +489,19 @@ int main()
 		}
 
 		// Calibration data 출력 // Display the calibration data
-		CStereoCalibrator3D::SIntrinsicParameters sIntrinsicParam = stereoCalibrator.GetResultIntrinsicParameters();
-		CStereoCalibrator3D::SDistortionCoefficients sDistortCoeef = stereoCalibrator.GetResultDistortionCoefficients();
+		CStereoCalibrator3D::SIntrinsicParameters sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters();
+		CStereoCalibrator3D::SDistortionCoefficients sDistortCoeef = stereoCalibrator3D.GetResultDistortionCoefficients();
 
-		CStereoCalibrator3D::SIntrinsicParameters sIntrinsicParam2 = stereoCalibrator.GetResultIntrinsicParameters2();
-		CStereoCalibrator3D::SDistortionCoefficients sDistortCoeef2 = stereoCalibrator.GetResultDistortionCoefficients2();
+		CStereoCalibrator3D::SIntrinsicParameters sIntrinsicParam2 = stereoCalibrator3D.GetResultIntrinsicParameters2();
+		CStereoCalibrator3D::SDistortionCoefficients sDistortCoeef2 = stereoCalibrator3D.GetResultDistortionCoefficients2();
 
-		CStereoCalibrator3D::SRotationParameters sRotationParam = stereoCalibrator.GetResultRotationParameters();
-		CStereoCalibrator3D::SRotationParameters sRotationParam2 = stereoCalibrator.GetResultRotationParameters2();
+		CStereoCalibrator3D::SRotationParameters sRotationParam = stereoCalibrator3D.GetResultRotationParameters();
+		CStereoCalibrator3D::SRotationParameters sRotationParam2 = stereoCalibrator3D.GetResultRotationParameters2();
 
-		CStereoCalibrator3D::STranslationParameters sTranslationParam = stereoCalibrator.GetResultTranslationParameters();
-		CStereoCalibrator3D::STranslationParameters sTranslationParam2 = stereoCalibrator.GetResultTranslationParameters2();
+		CStereoCalibrator3D::STranslationParameters sTranslationParam = stereoCalibrator3D.GetResultTranslationParameters();
+		CStereoCalibrator3D::STranslationParameters sTranslationParam2 = stereoCalibrator3D.GetResultTranslationParameters2();
 
-		double f64ReprojError = stereoCalibrator.GetResultReProjectionError();
+		double f64ReprojError = stereoCalibrator3D.GetResultReProjectionError();
 
 		CFLString<wchar_t> strMatrix, strDistVal;
 		CFLString<wchar_t> strMatrix2, strDistVal2;

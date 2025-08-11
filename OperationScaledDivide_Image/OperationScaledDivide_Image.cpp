@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation ScaledDivide 객체 생성 // Create Operation ScaledDivide object
-		COperationScaledDivide scaledDivide;
+		COperationScaledDivide operationScaledDivide;
 		// Source 이미지 설정 // Set the source image
-		scaledDivide.SetSourceImage(arrFliImage[EType_Source]);
+		operationScaledDivide.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		scaledDivide.SetOperandImage(arrFliImage[EType_Operand]);
+		operationScaledDivide.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		scaledDivide.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationScaledDivide.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		scaledDivide.SetOperationSource(EOperationSource_Image);
+		operationScaledDivide.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = scaledDivide.Execute()))
+		if(IsFail(res = operationScaledDivide.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledDivide.");
 			break;

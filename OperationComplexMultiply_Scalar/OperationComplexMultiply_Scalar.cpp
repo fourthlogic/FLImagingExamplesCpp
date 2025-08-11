@@ -80,25 +80,25 @@ int main()
 		}
 
 		// Operation ComplexMultiply 객체 생성 // Create Operation ComplexMultiply object
-		COperationComplexMultiply complexMultiply;
+		COperationComplexMultiply operationComplexMultiply;
 
 		// Source 이미지 설정 // Set the source image
-		complexMultiply.SetSourceImage(fliSourceImage);
+		operationComplexMultiply.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		complexMultiply.SetDestinationImage(fliDestinationImage);
+		operationComplexMultiply.SetDestinationImage(fliDestinationImage);
 
 		// 연산 방식 스칼라로 설정 // Set operation source to scalar
-		complexMultiply.SetOperationSource(EOperationSource_Scalar);
+		operationComplexMultiply.SetOperationSource(EOperationSource_Scalar);
 
 		// 오버플로 처리 방법 설정 // Set the overflow handling method
-		complexMultiply.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationComplexMultiply.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// 곱할 스칼라 값 지정 // Set the Scalar multiplier
-		complexMultiply.SetScalarValue(CMultiVar<double>(2, 1));
+		operationComplexMultiply.SetScalarValue(CMultiVar<double>(2, 1));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = complexMultiply.Execute()).IsFail())
+		if((res = operationComplexMultiply.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation complex multiply.");
 			break;
