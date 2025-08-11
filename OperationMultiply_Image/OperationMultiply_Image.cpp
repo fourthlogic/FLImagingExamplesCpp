@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation Multiply 객체 생성 // Create Operation Multiply object
-		COperationMultiply multiply;
+		COperationMultiply operationMultiply;
 		// Source 이미지 설정 // Set the source image
-		multiply.SetSourceImage(arrFliImage[EType_Source]);
+		operationMultiply.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		multiply.SetOperandImage(arrFliImage[EType_Operand]);
+		operationMultiply.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationMultiply.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		multiply.SetOperationSource(EOperationSource_Image);
+		operationMultiply.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = multiply.Execute()))
+		if(IsFail(res = operationMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation multiply.");
 			break;

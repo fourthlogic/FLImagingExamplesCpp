@@ -116,20 +116,20 @@ int main()
 		}
 
 		// Operation Bit Shift 객체 생성 // Create Operation Bit Shift object
-		COperationBitShift shift;
+		COperationBitShift operationBitShift;
 		// Source 이미지 설정 // Set the source image
-		shift.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitShift.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		shift.SetOperandImage(arrFliImage[EType_Operand]);
+		operationBitShift.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		shift.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationBitShift.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 모드로 설정 // Set operation mode to image
-		shift.SetOperationSource(EOperationSource_Image);
+		operationBitShift.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = shift.Execute()))
+		if(IsFail(res = operationBitShift.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute operation shift.");
+			ErrorPrint(res, "Failed to execute operation bit shift.");
 			break;
 		}
 

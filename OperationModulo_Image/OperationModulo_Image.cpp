@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation Modulo 객체 생성 // Create Operation Modulo object
-		COperationModulo modulo;
+		COperationModulo operationModulo;
 		// Source 이미지 설정 // Set the source image
-		modulo.SetSourceImage(arrFliImage[EType_Source]);
+		operationModulo.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		modulo.SetOperandImage(arrFliImage[EType_Operand]);
+		operationModulo.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		modulo.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationModulo.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		modulo.SetOperationSource(EOperationSource_Image);
+		operationModulo.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = modulo.Execute()))
+		if(IsFail(res = operationModulo.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation modulo.");
 			break;

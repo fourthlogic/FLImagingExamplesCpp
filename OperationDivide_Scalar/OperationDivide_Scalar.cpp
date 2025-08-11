@@ -116,30 +116,30 @@ int main()
 		}
 
 		// Operation Divide 객체 생성 // Create Operation Divide object
-		COperationDivide divide;
+		COperationDivide operationDivide;
 		// Source 이미지 설정 // Set the source image
-		divide.SetSourceImage(fliSourceImage);
+		operationDivide.SetSourceImage(fliSourceImage);
 		// 연산 방식 설정 // Set operation source
-		divide.SetOperationSource(EOperationSource_Scalar);
+		operationDivide.SetOperationSource(EOperationSource_Scalar);
 		// Destination1 이미지 설정 // Set the destination1 image
-		divide.SetDestinationImage(fliDestinationImage1);
+		operationDivide.SetDestinationImage(fliDestinationImage1);
 		// Scalar 값 설정 // Set Scalar value
-		divide.SetScalarValue(CMultiVar<double>(1.5, 1.5, 1.5));
+		operationDivide.SetScalarValue(CMultiVar<double>(1.5, 1.5, 1.5));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = divide.Execute()))
+		if(IsFail(res = operationDivide.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation divide.");
 			break;
 		}
 
 		// Destination1 이미지 설정 // Set the destination1 image
-		divide.SetDestinationImage(fliDestinationImage2);
+		operationDivide.SetDestinationImage(fliDestinationImage2);
 		// Scalar 값 설정 // Set Scalar value
-		divide.SetScalarValue(CMultiVar<double>(3.0, 3.0, 3.0));
+		operationDivide.SetScalarValue(CMultiVar<double>(3.0, 3.0, 3.0));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = divide.Execute()))
+		if(IsFail(res = operationDivide.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation divide.");
 			break;

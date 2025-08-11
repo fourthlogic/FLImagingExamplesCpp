@@ -116,16 +116,16 @@ int main()
 		}
 
 		// Operation Overlay 객체 생성 // Create Operation Overlay object
-		COperationOverlay overlay;
+		COperationOverlay operationOverlay;
 		// Source 이미지 설정 // Set the source image
-		overlay.SetSourceImage(arrFliImage[EType_Source]);
+		operationOverlay.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		overlay.SetOperandImage(arrFliImage[EType_Operand]);
+		operationOverlay.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		overlay.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationOverlay.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = overlay.Execute()))
+		if(IsFail(res = operationOverlay.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation overlay.");
 			break;

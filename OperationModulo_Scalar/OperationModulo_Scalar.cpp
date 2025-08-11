@@ -116,32 +116,32 @@ int main()
 		}
 
 		// Operation Modulo 객체 생성 // Create Operation Modulo object
-		COperationModulo modulo;
+		COperationModulo operationModulo;
 		// Source 이미지 설정 // Set the source image
-		modulo.SetSourceImage(arrFliImage[EType_Source]);
+		operationModulo.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		modulo.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationModulo.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		modulo.SetOperationSource(EOperationSource_Scalar);
+		operationModulo.SetOperationSource(EOperationSource_Scalar);
 		// Modulo 값 설정 // Set Modulo value
-		modulo.SetScalarValue(CMultiVar<double>(50, 50, 50));
+		operationModulo.SetScalarValue(CMultiVar<double>(50, 50, 50));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = modulo.Execute()))
+		if(IsFail(res = operationModulo.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation modulo.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		modulo.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationModulo.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		modulo.SetOperationSource(EOperationSource_Scalar);
+		operationModulo.SetOperationSource(EOperationSource_Scalar);
 		// Modulo 값 설정 // Set Modulo value
-		modulo.SetScalarValue(CMultiVar<double>(200, 200, 200));
+		operationModulo.SetScalarValue(CMultiVar<double>(200, 200, 200));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = modulo.Execute()))
+		if(IsFail(res = operationModulo.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation modulo.");
 			break;

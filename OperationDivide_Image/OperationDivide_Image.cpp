@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation Divide 객체 생성 // Create Operation Divide object
-		COperationDivide divide;
+		COperationDivide operationDivide;
 		// Source 이미지 설정 // Set the source image
-		divide.SetSourceImage(arrFliImage[EType_Source]);
+		operationDivide.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		divide.SetOperandImage(arrFliImage[EType_Operand]);
+		operationDivide.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		divide.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationDivide.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		divide.SetOperationSource(EOperationSource_Image);
+		operationDivide.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = divide.Execute()))
+		if(IsFail(res = operationDivide.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation divide.");
 			break;

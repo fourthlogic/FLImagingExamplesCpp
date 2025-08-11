@@ -116,38 +116,38 @@ int main()
 		}
 
 		// Operation Bit Shift 객체 생성 // Create Operation Bit Shift object
-		COperationBitShift shift;
+		COperationBitShift operationBitShift;
 		// Source 이미지 설정 // Set the source image
-		shift.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitShift.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		shift.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationBitShift.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		shift.SetOperationSource(EOperationSource_Scalar);
+		operationBitShift.SetOperationSource(EOperationSource_Scalar);
 		// Shift 방향 설정
-		shift.SetShiftDirection(COperationBitShift::EShiftDirection_Left);
+		operationBitShift.SetShiftDirection(COperationBitShift::EShiftDirection_Left);
 		// Shift 값 설정 // Set Shift value
-		shift.SetScalarValue(CMultiVar<double>(1, 1, 1));
+		operationBitShift.SetScalarValue(CMultiVar<double>(1, 1, 1));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = shift.Execute()))
+		if(IsFail(res = operationBitShift.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute operation shift.");
+			ErrorPrint(res, "Failed to execute operation bit shift.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		shift.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationBitShift.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Image Operation 모드로 설정 // Set operation mode to image
-		shift.SetOperationSource(EOperationSource_Scalar);
+		operationBitShift.SetOperationSource(EOperationSource_Scalar);
 		// Shift 방향 설정
-		shift.SetShiftDirection(COperationBitShift::EShiftDirection_Right);
+		operationBitShift.SetShiftDirection(COperationBitShift::EShiftDirection_Right);
 		// Shift 값 설정 // Set Shift value
-		shift.SetScalarValue(CMultiVar<double>(2, 2, 2));
+		operationBitShift.SetScalarValue(CMultiVar<double>(2, 2, 2));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = shift.Execute()))
+		if(IsFail(res = operationBitShift.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute operation shift.");
+			ErrorPrint(res, "Failed to execute operation bit shift.");
 			break;
 		}
 
