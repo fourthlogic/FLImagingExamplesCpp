@@ -116,16 +116,16 @@ int main()
 		}
 
 		// Operation Square 객체 생성 // Create Operation Square object
-		COperationSquare square;
+		COperationSquare operationSquare;
 		// Source 이미지 설정 // Set the source image
-		square.SetSourceImage(arrFliImage[EType_Source]);
+		operationSquare.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		square.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationSquare.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		square.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationSquare.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = square.Execute()).IsFail())
+		if((result = operationSquare.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation square.");
 			
@@ -133,12 +133,12 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		square.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationSquare.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		square.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationSquare.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = square.Execute()).IsFail())
+		if((result = operationSquare.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation square.");
 			

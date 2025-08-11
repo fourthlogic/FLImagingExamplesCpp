@@ -116,32 +116,32 @@ int main()
 		}
 
 		// Operation GreatestCommonDivisor 객체 생성 // Create Operation GreatestCommonDivisor object
-		COperationGreatestCommonDivisor gcd;
+		COperationGreatestCommonDivisor operationGreatestCommonDivisor;
 		// Source 이미지 설정 // Set the source image
-		gcd.SetSourceImage(arrFliImage[EType_Source]);
+		operationGreatestCommonDivisor.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		gcd.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationGreatestCommonDivisor.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		gcd.SetOperationSource(EOperationSource_Scalar);
+		operationGreatestCommonDivisor.SetOperationSource(EOperationSource_Scalar);
 		// GCD 값 설정 // Set GCD value
-		gcd.SetScalarValue(CMultiVar<uint64_t>(50, 50, 50));
+		operationGreatestCommonDivisor.SetScalarValue(CMultiVar<uint64_t>(50, 50, 50));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = gcd.Execute()))
+		if(IsFail(res = operationGreatestCommonDivisor.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation GCD.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		gcd.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationGreatestCommonDivisor.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		gcd.SetOperationSource(EOperationSource_Scalar);
+		operationGreatestCommonDivisor.SetOperationSource(EOperationSource_Scalar);
 		// gcd 값 설정 // Set gcd value
-		gcd.SetScalarValue(CMultiVar<uint64_t>(200, 200, 200));
+		operationGreatestCommonDivisor.SetScalarValue(CMultiVar<uint64_t>(200, 200, 200));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = gcd.Execute()))
+		if(IsFail(res = operationGreatestCommonDivisor.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation GCD.");
 			break;

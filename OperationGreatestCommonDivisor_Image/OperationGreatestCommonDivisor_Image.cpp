@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation GreatestCommonDivisor 객체 생성 // Create Operation GreatestCommonDivisor object
-		COperationGreatestCommonDivisor gcd;
+		COperationGreatestCommonDivisor operationGreatestCommonDivisor;
 		// Source 이미지 설정 // Set the source image
-		gcd.SetSourceImage(arrFliImage[EType_Source]);
+		operationGreatestCommonDivisor.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		gcd.SetOperandImage(arrFliImage[EType_Operand]);
+		operationGreatestCommonDivisor.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		gcd.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationGreatestCommonDivisor.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		gcd.SetOperationSource(EOperationSource_Image);
+		operationGreatestCommonDivisor.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = gcd.Execute()))
+		if(IsFail(res = operationGreatestCommonDivisor.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation GCD.");
 			break;

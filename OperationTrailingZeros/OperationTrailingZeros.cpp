@@ -80,16 +80,16 @@ int main()
 		}
 
 		// Operation Trailing Zeros 객체 생성 // Create Operation Trailing Zeros object
-		COperationTrailingZeros tz;
+		COperationTrailingZeros operationTrailingZeros;
 
 		// Source 이미지 설정 // Set the source image
-		tz.SetSourceImage(fliSourceImage);
+		operationTrailingZeros.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		tz.SetDestinationImage(fliDestinationImage);
+		operationTrailingZeros.SetDestinationImage(fliDestinationImage);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = tz.Execute()).IsFail())
+		if((res = operationTrailingZeros.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation trailing zeros.");
 			break;

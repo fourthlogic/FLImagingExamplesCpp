@@ -87,16 +87,16 @@ int main()
 		}
 
 		// Operation SquareRoot 객체 생성 // Create Operation SquareRoot object
-		COperationSquareRoot squareRoot;
+		COperationSquareRoot operationSquareRoot;
 		// Source 이미지 설정 // Set the source image
-		squareRoot.SetSourceImage(arrFliImage[EType_Source]);
+		operationSquareRoot.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		squareRoot.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationSquareRoot.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		squareRoot.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationSquareRoot.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = squareRoot.Execute()).IsFail())
+		if((result = operationSquareRoot.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation squareRoot.");
 			
