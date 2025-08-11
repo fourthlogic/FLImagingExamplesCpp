@@ -45,7 +45,7 @@ int main()
 		CResult eResult = EResult_UnknownError;
 
 		// 이미지 로드 // Load the image
-		if((eResult = fliSource.Load(L"../../ExampleImages/CameraPose3D/ChessBoard(9).flif")).IsFail())
+		if((eResult = fliSource.Load(L"../../ExampleImages/CameraPose3D/ChessBoard(4p).flif")).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to load the image.\n");
 			break;
@@ -70,26 +70,26 @@ int main()
 		
 		const int32_t i32PageCount = fliSource.GetPageCount();
 
-		CGUIViewImageWrap arrViewWrap[9];
-		int32_t i32WindowWidth = 300;
-		int32_t i32WindowHeight = 300;
+		CGUIViewImageWrap arrViewWrap[4];
+		int32_t i32WindowWidth = 500;
+		int32_t i32WindowHeight = 500;
 
-		for(int32_t i = 0; i < i32PageCount / 3; ++i)
+		for(int32_t i = 0; i < i32PageCount / 2; ++i)
 		{
 			int32_t i32Height = i32WindowHeight * i;
 
-			for(int32_t j = 0 ; j < i32PageCount / 3; ++j)
+			for(int32_t j = 0 ; j < i32PageCount / 2; ++j)
 			{
 				int32_t i32Width = i32WindowWidth * j;
 
-				arrViewWrap[i * 3 + j].Create(10 + i32Height, i32Width, 10 + i32Height + i32WindowHeight, i32Width + i32WindowWidth);
+				arrViewWrap[i * 2 + j].Create(10 + i32Height, i32Width, 10 + i32Height + i32WindowHeight, i32Width + i32WindowWidth);
 			}
 		}
 
 		for(int32_t i = 1; i < i32PageCount; ++i)
 			arrViewWrap[0].SynchronizeWindow(&arrViewWrap[i]);
 
-		CFLImage fliPage[9];
+		CFLImage fliPage[4];
 
 		for(int32_t i = 0; i < i32PageCount; i++)
 		{			

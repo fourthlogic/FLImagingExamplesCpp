@@ -165,7 +165,7 @@ int main()
 		COrthogonalCalibrator orthogonalCalibrator;
 
 		// Learn 이미지 로드 // Load the Learn image
-		if(IsFail(res = fliDistortionChessBoard.Load(L"C:\\Users\\Public\\Documents\\FLImaging\\ExampleImages\\Measurement\\ChessBoard.flif")))
+		if(IsFail(res = fliDistortionChessBoard.Load(L"../../ExampleImages/Measurement/ChessBoard.flif")))
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -185,7 +185,7 @@ int main()
 			break;
 
 		// 측정 이미지 로드 // Load the measurement image
-		if((res = fliDistortedMeasurementImage.Load(L"C:\\Users\\Public\\Documents\\FLImaging\\ExampleImages\\Measurement\\Measurement.flif")).IsFail())
+		if((res = fliDistortedMeasurementImage.Load(L"../../ExampleImages/Measurement/Measurement.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -201,7 +201,7 @@ int main()
 		rectangleGauge.SetSourceImage(fliUndistortedMeasurementImage);
 
 		// 측정할 영역을 설정합니다. // Set the area to measure.
-		CFLRect<double> flrMeasureRegion(1095.69367959050714, 1337.99846331160370, 1970.73350513123319, 1924.77041713468020, -8.06731650598383);
+		CFLRect<double> flrMeasureRegion(274, 335, 493, 481, -8.06731650598383);
 		rectangleGauge.SetMeasurementRegion(flrMeasureRegion, 20.000000);
 
 		// 알고리즘 수행 // Execute the algorithm
