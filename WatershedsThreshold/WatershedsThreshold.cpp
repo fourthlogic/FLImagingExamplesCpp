@@ -24,7 +24,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliISrcImage.Load(L"../../ExampleImages/AnisotropicDiffusion/Source.flif")))
+		if(IsFail(res = fliISrcImage.Load(L"../../ExampleImages/Threshold/Sun.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -71,16 +71,16 @@ int main()
 		}
 
 		// Watersheds Threshold 객체 생성 // Create Watersheds Threshold object
-		CWatershedsThreshold threshold;
+		CWatershedsThreshold watershedsThreshold;
 
 		// Source 이미지 설정 // Set source image 
-		threshold.SetSourceImage(fliISrcImage);
+		watershedsThreshold.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		threshold.SetDestinationImage(fliIDstImage);
+		watershedsThreshold.SetDestinationImage(fliIDstImage);
 
 		// threshold 모드 설정(Single) // Set threshold mode(Single)
-		threshold.SetThresholdMode(EThresholdMode_Single);
+		watershedsThreshold.SetThresholdMode(EThresholdMode_Single);
 
 		// MultiVar 객체 생성 // Create MultiVar object
 		CMultiVar<double> mvThresholdValue;
@@ -90,16 +90,16 @@ int main()
 		mvThresholdValue.PushBack(50);
 
 		// 임계값 설정 (다채널 경우 CMultiVar<double> 사용) // Set threshold value(Use CMultiVar<double> for multi-channel)
-		threshold.SetThreshold(mvThresholdValue);
+		watershedsThreshold.SetThreshold(mvThresholdValue);
 
 		// 1채널 논리조건 입력 // 1Channel condition push
 		mvCondition.PushBack(ELogicalCondition_Greater);
 
 		// 논리 조건 설정 // Set condition value
-		threshold.SetLogicalCondition(mvCondition);
+		watershedsThreshold.SetLogicalCondition(mvCondition);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = threshold.Execute()).IsFail())
+		if((res = watershedsThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Watersheds Threshold.");
 			break;
@@ -114,7 +114,7 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if(IsFail(res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), L"50 < threshold", YELLOW, BLACK, 30, false, 0, EGUIViewImageTextAlignment_LEFT_TOP, L"", 1.f, 1.f, EGUIViewImageFontWeight_BOLD, false)))
+		if(IsFail(res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Threshold = 50", YELLOW, BLACK, 30, false, 0, EGUIViewImageTextAlignment_LEFT_TOP, L"", 1.f, 1.f, EGUIViewImageFontWeight_BOLD, false)))
 		{
 			ErrorPrint(res, "Failed to draw text on the image view.\n");
 			break;

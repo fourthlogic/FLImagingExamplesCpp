@@ -80,25 +80,25 @@ int main()
 		}
 
 		// Operation BitwiseNand 객체 생성 // Create Operation BitwiseNand object
-		COperationBitwiseNand bitnand;
+		COperationBitwiseNand operationBitwiseNand;
 
 		// Source 이미지 설정 // Set the source image
-		bitnand.SetSourceImage(fliSourceDestinationImage);
+		operationBitwiseNand.SetSourceImage(fliSourceDestinationImage);
 
 		// Source 이미지의 ROI 범위 설정 // Set the Source ROI value
 		CFLCircle<int32_t> flcSourceROI(128, 128, 80, 0, 0, 360, EArcClosingMethod_EachOther);
 
 		// Source 이미지의 ROI 지정 // Set the Source ROI
-		bitnand.SetSourceROI(flcSourceROI);
+		operationBitwiseNand.SetSourceROI(flcSourceROI);
 
 		// Scalar Operation 소스로 설정 // Set Operation Source to scalar
-		bitnand.SetOperationSource(EOperationSource_Scalar);
+		operationBitwiseNand.SetOperationSource(EOperationSource_Scalar);
 
 		// 스칼라 값 지정 // Set the Scalar value
-		bitnand.SetScalarValue(CMultiVar<double>(111));
+		operationBitwiseNand.SetScalarValue(CMultiVar<double>(111));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitnand.Execute()).IsFail())
+		if((res = operationBitwiseNand.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwise nand.");
 			break;

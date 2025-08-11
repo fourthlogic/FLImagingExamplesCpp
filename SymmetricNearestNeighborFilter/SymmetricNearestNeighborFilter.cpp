@@ -96,35 +96,35 @@ int main()
 			break;
 
 		// SymmetricNearestNeighbor filter 객체 생성 // Create SymmetricNearestNeighbor filter object
-		CSymmetricNearestNeighborFilter snnFilter;
+		CSymmetricNearestNeighborFilter symmetricNearestNeighborFilter;
 		// Source 이미지 설정 // Set the source image
-		snnFilter.SetSourceImage(arrFliImage[EType_Source]);
+		symmetricNearestNeighborFilter.SetSourceImage(arrFliImage[EType_Source]);
 
 		// Destination1 이미지 설정 // Set the destination1 image
-		snnFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+		symmetricNearestNeighborFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
 
 		// Kernel Width = 9 설정 // Set the Kernel Width = 9
 		// Kernel Height = 9 설정 // Set the Kernel Height = 9
-		snnFilter.SetKernel(9, 9);
+		symmetricNearestNeighborFilter.SetKernel(9, 9);
 
 		// Distribution 설정 // Set the Distribution
-		snnFilter.SetDistribution(CSymmetricNearestNeighborFilter::EDistribution_Uniform);
+		symmetricNearestNeighborFilter.SetDistribution(CSymmetricNearestNeighborFilter::EDistribution_Uniform);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = snnFilter.Execute()).IsFail())
+		if((res = symmetricNearestNeighborFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		snnFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		symmetricNearestNeighborFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 
 		// Distribution 설정 // Set the Distribution
-		snnFilter.SetDistribution(CSymmetricNearestNeighborFilter::EDistribution_Gaussian);
+		symmetricNearestNeighborFilter.SetDistribution(CSymmetricNearestNeighborFilter::EDistribution_Gaussian);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = snnFilter.Execute()).IsFail())
+		if((res = symmetricNearestNeighborFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

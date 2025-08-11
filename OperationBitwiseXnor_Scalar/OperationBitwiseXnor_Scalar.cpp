@@ -115,32 +115,32 @@ int main()
 		}
 
 		// Operation BitwiseXnor 객체 생성 // Create Operation BitwiseXnor object
-		COperationBitwiseXnor bitwiseXnor;
+		COperationBitwiseXnor operationBitwiseXnor;
 		// Source 이미지 설정 // Set the source image
-		bitwiseXnor.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitwiseXnor.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseXnor.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationBitwiseXnor.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseXnor.SetOperationSource(EOperationSource_Scalar);
+		operationBitwiseXnor.SetOperationSource(EOperationSource_Scalar);
 		// BitwiseXnor 값 설정 // Set BitwiseXnor value
-		bitwiseXnor.SetScalarValue(CMultiVar<double>(64, 64, 64));
+		operationBitwiseXnor.SetScalarValue(CMultiVar<double>(64, 64, 64));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseXnor.Execute()).IsFail())
+		if((res = operationBitwiseXnor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseXnor.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseXnor.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationBitwiseXnor.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseXnor.SetOperationSource(EOperationSource_Scalar);
+		operationBitwiseXnor.SetOperationSource(EOperationSource_Scalar);
 		// BitwiseXnor 값 설정 // Set BitwiseXnor value
-		bitwiseXnor.SetScalarValue(CMultiVar<double>(128, 128, 128));
+		operationBitwiseXnor.SetScalarValue(CMultiVar<double>(128, 128, 128));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseXnor.Execute()).IsFail())
+		if((res = operationBitwiseXnor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseXnor.");
 			break;

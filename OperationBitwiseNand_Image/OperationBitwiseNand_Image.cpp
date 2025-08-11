@@ -117,26 +117,26 @@ int main()
 		}
 
 		// OperationBitwiseNand 객체 생성 // Create OperationBitwiseNand object
-		COperationBitwiseNand bitnand;
+		COperationBitwiseNand operationBitwiseNand;
 
 		// Source 이미지 설정 // Set the source image
-		bitnand.SetSourceImage(fliSourceImage);
+		operationBitwiseNand.SetSourceImage(fliSourceImage);
 
 		// Operand 이미지 설정 // Set the operand image
-		bitnand.SetOperandImage(fliOperandImage);
+		operationBitwiseNand.SetOperandImage(fliOperandImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		bitnand.SetDestinationImage(fliDestinationImage);
+		operationBitwiseNand.SetDestinationImage(fliDestinationImage);
 
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitnand.SetOperationSource(EOperationSource_Image);
+		operationBitwiseNand.SetOperationSource(EOperationSource_Image);
 
 		// 공백 색상 칠하기 모드 해제 // Set the Fill blank color mode false
 		// 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. // If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
-		bitnand.EnableFillBlankColorMode(false);
+		operationBitwiseNand.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitnand.Execute()).IsFail())
+		if((res = operationBitwiseNand.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwise nand.");
 			break;

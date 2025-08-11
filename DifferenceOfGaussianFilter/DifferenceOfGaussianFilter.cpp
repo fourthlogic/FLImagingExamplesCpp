@@ -103,73 +103,73 @@ int main()
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
  		// Difference Of Gaussian filter 객체 생성 // Create Difference Of Gaussian filter object
-		CDifferenceOfGaussianFilter dogFilter;
+		CDifferenceOfGaussianFilter differenceOfGaussianFilter;
  		// Source 이미지 설정 // Set the source image
-		dogFilter.SetSourceImage(arrFliImage[EType_Source]);
+		differenceOfGaussianFilter.SetSourceImage(arrFliImage[EType_Source]);
  		// Source ROI 설정 // Set the source ROI
-		dogFilter.SetSourceROI(flrROI);
+		differenceOfGaussianFilter.SetSourceROI(flrROI);
 
  		// Destination1 이미지 설정 // Set the destination1 image
-		dogFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
+		differenceOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination1]);
  		// Destination1 ROI 설정 // Set the destination1 ROI
-		dogFilter.SetDestinationROI(flrROI);
+		differenceOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		dogFilter.SetSigma(1);
+		differenceOfGaussianFilter.SetSigma(1);
 
 		// SigFactor 값 설정 // Set the SigFactor value
-		dogFilter.SetSigFactor(1.6);
+		differenceOfGaussianFilter.SetSigFactor(1.6);
  
  		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
- 		if((res = dogFilter.Execute()).IsFail())
+ 		if((res = differenceOfGaussianFilter.Execute()).IsFail())
  		{
  			ErrorPrint(res, L"Failed to execute algorithm.");
  			break;
  		}
 
 		// Destination2 이미지 설정 // Set the destination2 image
-		dogFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
+		differenceOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Destination2 ROI 설정 // Set the destination2 ROI
-		dogFilter.SetDestinationROI(flrROI);
+		differenceOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// gauss filter 커널 크기 설정
-		dogFilter.SetSigma(2);
+		differenceOfGaussianFilter.SetSigma(2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = dogFilter.Execute()).IsFail())
+		if((res = differenceOfGaussianFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
 		}
 
 		// Destination3 이미지 설정 // Set the destination3 image
-		dogFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
+		differenceOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Destination3 ROI 설정
-		dogFilter.SetDestinationROI(flrROI);
+		differenceOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		dogFilter.SetSigma(3);
+		differenceOfGaussianFilter.SetSigma(3);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = dogFilter.Execute()).IsFail())
+		if((res = differenceOfGaussianFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute DifferenceOfGaussian filter.");
 			break;
 		}
 
 		// Destination4 이미지 설정 // Set the destination4 image
-		dogFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
+		differenceOfGaussianFilter.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Destination4 ROI 설정
-		dogFilter.SetDestinationROI(flrROI);
+		differenceOfGaussianFilter.SetDestinationROI(flrROI);
 
 		// Sigma 값 설정 // Set the sigma value
-		dogFilter.SetSigma(2);
+		differenceOfGaussianFilter.SetSigma(2);
 
 		// SigFactor 값 설정 // Set the SigFactor value
-		dogFilter.SetSigFactor(2);
+		differenceOfGaussianFilter.SetSigFactor(2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = dogFilter.Execute()).IsFail())
+		if((res = differenceOfGaussianFilter.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
