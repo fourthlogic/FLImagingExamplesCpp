@@ -71,16 +71,16 @@ int main()
 		}
 
 		// Absolute Threshold 객체 생성 // Create Absolute Threshold object
-		CAbsoluteThreshold threshold;
+		CAbsoluteThreshold absoluteThreshold;
 
 		// Source 이미지 설정 // Set source image 
-		threshold.SetSourceImage(fliISrcImage);
+		absoluteThreshold.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		threshold.SetDestinationImage(fliIDstImage);
+		absoluteThreshold.SetDestinationImage(fliIDstImage);
 
 		// threshold 모드 설정(Dual) // Set Threshold Mode(Dual)
-		threshold.SetThresholdMode(EThresholdMode_Dual_And);
+		absoluteThreshold.SetThresholdMode(EThresholdMode_Dual_And);
 
 		// MultiVar 객체 생성 // Create MultiVar object
 		CMultiVar<double> mvThresholdValue1, mvThresholdValue2;
@@ -91,17 +91,17 @@ int main()
 		mvThresholdValue2.PushBack(168);
 
 		// 임계값 설정 (다채널 경우 CMultiVar<double> 사용) // Set threshold value(Use CMultiVar<double> for multi-channel)
-		threshold.SetThreshold(mvThresholdValue1, mvThresholdValue2);
+		absoluteThreshold.SetThreshold(mvThresholdValue1, mvThresholdValue2);
 
 		// 1채널 논리조건 입력 // 1Channel condition push
 		mvCondition1.PushBack(ELogicalCondition_Greater);
 		mvCondition2.PushBack(ELogicalCondition_Less);
 
 		// 논리 조건 설정 // Set condition value
-		threshold.SetLogicalCondition(mvCondition1, mvCondition2);
+		absoluteThreshold.SetLogicalCondition(mvCondition1, mvCondition2);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = threshold.Execute()).IsFail())
+		if((res = absoluteThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Absolute Threshold.");
 			break;

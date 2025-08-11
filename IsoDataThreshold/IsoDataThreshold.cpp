@@ -70,13 +70,13 @@ int main()
 		}
 
 		// IsoDataThreshold 객체 생성 // Create IsoDataThreshold object
-		CIsoDataThreshold threshold;
+		CIsoDataThreshold isoDataThreshold;
 
 		// Source 이미지 설정 // Set source image 
-		threshold.SetSourceImage(fliISrcImage);
+		isoDataThreshold.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		threshold.SetDestinationImage(fliIDstImage);
+		isoDataThreshold.SetDestinationImage(fliIDstImage);
 
 		// MultiVar 객체 생성 // Create MultiVar object
 		CMultiVarL mvCondition;
@@ -86,16 +86,16 @@ int main()
 		mvCondition.PushBack(ELogicalCondition_Greater);
 
 		// 논리 조건 설정 // Set condition value
-		threshold.SetLogicalCondition(mvCondition);
+		isoDataThreshold.SetLogicalCondition(mvCondition);
 
 		// 계산된 Threshold 값을 추출 // get result threshold value
-		mvThreshold = threshold.GetResultThreshold();
+		mvThreshold = isoDataThreshold.GetResultThreshold();
 
 		// Console창에 Threshold 값 출력 // Output the threshold value to the console window
 		printf("Result Threshold Value : %d", (int)mvThreshold[0]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = threshold.Execute()).IsFail())
+		if((res = isoDataThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute IsoData Threshold.");
 			break;
