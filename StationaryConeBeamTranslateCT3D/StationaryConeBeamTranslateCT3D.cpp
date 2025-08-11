@@ -99,7 +99,7 @@ int main()
 		if((res = stationaryConeBeamTranslateCT3D.SetDestinationSinogramIndex(15)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamTranslateCT3D.SetDetectorCellSizeUnit(0.08354)).IsFail())
+		if((res = stationaryConeBeamTranslateCT3D.SetDetectorCellSizeUnit(0.16708)).IsFail())
 			break;
 		if((res = stationaryConeBeamTranslateCT3D.SetObjectTranslateDirection(CStationaryConeBeamTranslateCT3D::EObjectTranslateDirection_RightToLeft)).IsFail())
 			break;
@@ -124,7 +124,7 @@ int main()
 			break;
 		if((res = stationaryConeBeamTranslateCT3D.SetFrequencyWindow(CStationaryConeBeamTranslateCT3D::EFrequencyWindow_Gaussian)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSigma(0.50)).IsFail())
+		if((res = stationaryConeBeamTranslateCT3D.SetSigma(0.30)).IsFail())
 			break;
 
 		if((res = stationaryConeBeamTranslateCT3D.SetReconstructionPlaneCount(140)).IsFail())
@@ -137,7 +137,7 @@ int main()
 			break;
 		if((res = stationaryConeBeamTranslateCT3D.SetSigmoidB(1.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSigmoidM(1.00)).IsFail())
+		if((res = stationaryConeBeamTranslateCT3D.SetSigmoidM(0.00)).IsFail())
 			break;
 		if((res = stationaryConeBeamTranslateCT3D.SetIntensityThreshold(190)).IsFail())
 			break;
