@@ -41,14 +41,27 @@ BOOL CView3DExamplesApp::InitInstance()
 	CLibraryUtilities::Initialize();
 
 	CWinAppEx::InitInstance();
-	SetRegistryKey(L"Fourth Logic Incorporated");
+
+	if(CWinApp* pApp = AfxGetApp())
+	{
+		if(pApp->m_pszAppName)
+		{
+			free((void*)pApp->m_pszAppName);
+			pApp->m_pszAppName = nullptr;
+		}
+		pApp->m_pszAppName = _wcsdup(L"View3D Examples App");
+
+		if(pApp->m_pMainWnd && ::IsWindow(pApp->m_pMainWnd->GetSafeHwnd()))
+			pApp->m_pMainWnd->SetWindowText(L"View3D Examples App");
+	}
+
+	SetRegistryKey(L"Fourth Logic Incorporated\\Examples\\Cpp");
 
 	// GUI Manager 초기화 전처리를 수행합니다.
 	CGUIManager::PreInitialize();
 
 	// 예제 프로퍼티 메뉴를 등록합니다.
 	CGUIManager::RegisterMenu(CPropertyView3DExamples(), L"View3D Example", L"Menu", false);
-
 
 	// GUI 상에서 사용될 뷰를 생성합니다.
 	std::vector<CGUIFixedViewDeclaration*> vctFixedViewDecl;
@@ -173,16 +186,7 @@ BOOL CView3DExamplesApp::InitInstance()
 
 	// "View3D Example" 이라는 이름의 메뉴 아이템이 있을 경우, 프로퍼티 창 열기
 	if(pPropertyMenu)
-	{
-		if(!pPropertyMenu->OnLButtonDoubleClick())
-			pPropertyMenu->OnLButtonDoubleClick();
-
-		pPropertyMenu->GetPaneProperties()->UndockPane();
-		pPropertyMenu->GetPaneProperties()->SetWindowPos(nullptr, 0, 0, 400, 1000, SWP_NOMOVE | SWP_NOZORDER);
-		pPropertyMenu->GetPaneProperties()->DockToFrameWindow(CBRS_ALIGN_RIGHT, nullptr, DT_DOCK_FIRST, nullptr, -1, true);
-		pPropertyMenu->GetPaneProperties()->GetPropertyGridCtrl()->Invalidate();
-		pPropertyMenu->ShowPaneWindow();
-	}
+		pPropertyMenu->OnLButtonDoubleClick();
 
 	return TRUE;
 }

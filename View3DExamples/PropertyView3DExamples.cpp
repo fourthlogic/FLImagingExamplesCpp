@@ -864,7 +864,7 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::PushObjectPLY(CGUIView3D*
 		// 객체에 버텍스, 컬러, 노멀, 페이스 등의 정보를 저장
 		// Load the PLY file through the Load() function of the CFL3DObject object
 		// and store information such as vertices, colors, normals, faces, etc., in the object
-		if((res = p3DObject->Load(L"../../ExampleImages/View3DExamples/Car wheel example.ply")).IsFail())
+		if((res = p3DObject->Load(L"../../ExampleImages/View3DExamples/Bolt.ply")).IsFail())
 			break;
 
 		// CGUIView3DObject 객체의 내부 데이터 객체인 CFL3DObject 가 변경되었으므로 
