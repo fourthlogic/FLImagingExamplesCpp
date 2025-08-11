@@ -87,16 +87,16 @@ int main()
 		}
 
 		// Operation CubeRoot 객체 생성 // Create Operation CubeRoot object
-		COperationCubeRoot cubeRoot;
+		COperationCubeRoot operationCubeRoot;
 		// Source 이미지 설정 // Set the source image
-		cubeRoot.SetSourceImage(arrFliImage[EType_Source]);
+		operationCubeRoot.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		cubeRoot.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationCubeRoot.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		cubeRoot.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationCubeRoot.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = cubeRoot.Execute()).IsFail())
+		if((result = operationCubeRoot.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation CubeRoot.");
 			

@@ -115,18 +115,18 @@ int main()
 		}
 
 		// Operation LogicalXnor 객체 생성 // Create Operation LogicalXnor object
-		COperationLogicalXnor logicalXnor;
+		COperationLogicalXnor operationLogicalXnor;
 		// Source 이미지 설정 // Set the source image
-		logicalXnor.SetSourceImage(arrFliImage[EType_Source]);
+		operationLogicalXnor.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		logicalXnor.SetOperandImage(arrFliImage[EType_Operand]);
+		operationLogicalXnor.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		logicalXnor.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationLogicalXnor.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalXnor.SetOperationSource(EOperationSource_Image);
+		operationLogicalXnor.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalXnor.Execute()).IsFail())
+		if((res = operationLogicalXnor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation logicalXnor.");
 			break;

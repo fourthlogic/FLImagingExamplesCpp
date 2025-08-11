@@ -80,16 +80,16 @@ int main()
 		}
 
 		// Operation Leading Zeros 객체 생성 // Create Operation Leading Zeros object
-		COperationLeadingZeros to;
+		COperationLeadingZeros operationLeadingZeros;
 
 		// Source 이미지 설정 // Set the source image
-		to.SetSourceImage(fliSourceImage);
+		operationLeadingZeros.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		to.SetDestinationImage(fliDestinationImage);
+		operationLeadingZeros.SetDestinationImage(fliDestinationImage);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = to.Execute()).IsFail())
+		if((res = operationLeadingZeros.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation leading zeros.");
 			break;

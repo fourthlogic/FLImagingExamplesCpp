@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation absolute 객체 생성 // Create Absolute object
-		COperationAbsolute absolute;
+		COperationAbsolute operationAbsolute;
 		// Source 이미지 설정 // Set source image
-		absolute.SetSourceImage(arrFliImage[EType_Source]);
+		operationAbsolute.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		absolute.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationAbsolute.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = absolute.Execute()).IsFail())
+		if((res = operationAbsolute.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation absolute.");
 			break;

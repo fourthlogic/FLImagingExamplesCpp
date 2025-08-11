@@ -115,32 +115,32 @@ int main()
 		}
 
 		// Operation LogicalXnor 객체 생성 // Create Operation LogicalXnor object
-		COperationLogicalXnor logicalXnor;
+		COperationLogicalXnor operationLogicalXnor;
 		// Source 이미지 설정 // Set the source image
-		logicalXnor.SetSourceImage(arrFliImage[EType_Source]);
+		operationLogicalXnor.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		logicalXnor.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationLogicalXnor.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalXnor.SetOperationSource(EOperationSource_Scalar);
+		operationLogicalXnor.SetOperationSource(EOperationSource_Scalar);
 		// Logical Xnor 값 설정 // Set Logical Xnor value
-		logicalXnor.SetScalarValue(CMultiVar<double>(0, 0, 0));
+		operationLogicalXnor.SetScalarValue(CMultiVar<double>(0, 0, 0));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalXnor.Execute()).IsFail())
+		if((res = operationLogicalXnor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation logical Xnor.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		logicalXnor.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationLogicalXnor.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalXnor.SetOperationSource(EOperationSource_Scalar);
+		operationLogicalXnor.SetOperationSource(EOperationSource_Scalar);
 		// LogicalXnor 값 설정 // Set LogicalXnor value
-		logicalXnor.SetScalarValue(CMultiVar<double>(255, 255, 255));
+		operationLogicalXnor.SetScalarValue(CMultiVar<double>(255, 255, 255));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalXnor.Execute()).IsFail())
+		if((res = operationLogicalXnor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation logical Xnor.");
 			break;

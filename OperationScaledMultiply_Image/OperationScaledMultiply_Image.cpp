@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation ScaledMultiply 객체 생성 // Create Operation ScaledMultiply object
-		COperationScaledMultiply scaledMultiply;
+		COperationScaledMultiply operationScaledMultiply;
 		// Source 이미지 설정 // Set the source image
-		scaledMultiply.SetSourceImage(arrFliImage[EType_Source]);
+		operationScaledMultiply.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		scaledMultiply.SetOperandImage(arrFliImage[EType_Operand]);
+		operationScaledMultiply.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		scaledMultiply.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationScaledMultiply.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		scaledMultiply.SetOperationSource(EOperationSource_Image);
+		operationScaledMultiply.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = scaledMultiply.Execute()))
+		if(IsFail(res = operationScaledMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledMultiply.");
 			break;

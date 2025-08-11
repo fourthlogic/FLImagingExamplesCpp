@@ -116,32 +116,32 @@ int main()
 		}
 
 		// Operation ScaledMultiply 객체 생성 // Create Operation ScaledMultiply object
-		COperationScaledMultiply scaledMultiply;
+		COperationScaledMultiply operationScaledMultiply;
 		// Source 이미지 설정 // Set the source image
-		scaledMultiply.SetSourceImage(arrFliImage[EType_Source]);
+		operationScaledMultiply.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		scaledMultiply.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationScaledMultiply.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		scaledMultiply.SetOperationSource(EOperationSource_Scalar);
+		operationScaledMultiply.SetOperationSource(EOperationSource_Scalar);
 		// ScaledMultiply 값 설정 // Set ScaledMultiply value
-		scaledMultiply.SetScalarValue(CMultiVar<double>(128, 128, 128));
+		operationScaledMultiply.SetScalarValue(CMultiVar<double>(128, 128, 128));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = scaledMultiply.Execute()))
+		if(IsFail(res = operationScaledMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledMultiply.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		scaledMultiply.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationScaledMultiply.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		scaledMultiply.SetOperationSource(EOperationSource_Scalar);
+		operationScaledMultiply.SetOperationSource(EOperationSource_Scalar);
 		// ScaledMultiply 값 설정 // Set ScaledMultiply value
-		scaledMultiply.SetScalarValue(CMultiVar<double>(430, 430, 430));
+		operationScaledMultiply.SetScalarValue(CMultiVar<double>(430, 430, 430));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = scaledMultiply.Execute()))
+		if(IsFail(res = operationScaledMultiply.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute operation ScaledMultiply.");
 			break;

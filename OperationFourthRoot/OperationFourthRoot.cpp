@@ -87,16 +87,16 @@ int main()
 		}
 
 		// Operation FourthRoot 객체 생성 // Create Operation FourthRoot object
-		COperationFourthRoot fourthRoot;
+		COperationFourthRoot operationFourthRoot;
 		// Source 이미지 설정 // Set the source image
-		fourthRoot.SetSourceImage(arrFliImage[EType_Source]);
+		operationFourthRoot.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		fourthRoot.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationFourthRoot.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		fourthRoot.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationFourthRoot.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = fourthRoot.Execute()).IsFail())
+		if((result = operationFourthRoot.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation FourthRoot.");
 			
