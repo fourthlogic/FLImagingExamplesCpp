@@ -122,11 +122,9 @@ int main()
 		// 결과 이미지의 크기 지정유무 옵션 설정 // Set whether or not to specify the size of the resulting image
 		alignmentTiling.SetResizeMethod(EResizeMethod_Resize);
 		// Resize일 경우, 결과 이미지의 크기 설정 // In case of Resize, set the size of the resulting image
-		alignmentTiling.SetResultImageSize(1500, 1500);
+		alignmentTiling.SetResultImageSize(780, 780);
 		// 보정에 사용할 Accuracy 설정 // Set the Accuracy to be used for calibration
 		alignmentTiling.SetAccuracy(EFloatingPointAccuracy_Bit32);
-		// 결과 이미지의 중심이 될 위치를 설정 // Set the location to be the center of the resulting image
-		alignmentTiling.SetSourcePivot(Foundation::CFLPoint<int32_t>(192, 778));
 		// Pivot이 지정된 Page Index를 설정 // Set the Page Index with Pivot specified
 		alignmentTiling.SetPivotPageIndex(1);
 
