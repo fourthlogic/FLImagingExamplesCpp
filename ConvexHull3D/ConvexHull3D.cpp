@@ -27,7 +27,7 @@ int main()
 		}
 		
 		// CConvexHull3D 객체 생성 // Create CConvexHull3D object
-		CConvexHull3D convexHull;
+		CConvexHull3D convexHull3D;
 
 
 		{
@@ -40,19 +40,19 @@ int main()
 			}
 
 			// 처리할 3D 객체 설정 // Set 3D object to process
-			convexHull.SetSourceObject(floSrc);
-			convexHull.SetDestinationObject(floDst);
+			convexHull3D.SetSourceObject(floSrc);
+			convexHull3D.SetDestinationObject(floDst);
 			
 			// 생성될 볼록껍질 객체의 컬러를 설정 // Set color of new 3D object
-			convexHull.EnableVertexRecoloring(true);
-			convexHull.SetTargetVertexColor(TPoint3<uint8_t>(255, 125, 0));
+			convexHull3D.EnableVertexRecoloring(true);
+			convexHull3D.SetTargetVertexColor(TPoint3<uint8_t>(255, 125, 0));
 
 			// 3D 뷰에 표시할 3D 객체 추가 // Add 3D object to the 3D view
 			view3DSrc.PushObject(floSrc);
 			view3DSrc.SetPointSize(3);
 
 			// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-			if((res = convexHull.Execute()).IsFail())
+			if((res = convexHull3D.Execute()).IsFail())
 			{
 				ErrorPrint(res, L"Failed to execute Convex Hull 3D.");
 				break;

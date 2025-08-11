@@ -36,22 +36,22 @@ int main()
 		fl3DObjectSrc.Load(L"../../ExampleImages/DistanceTransform3D/binary-vertex.ply");
 
 		// Perspective Transform 3D 객체 생성 // Create Perspective Transform 3D object
-		CPerspectiveTransform3D perspectiveTransform;
+		CPerspectiveTransform3D perspectiveTransform3D;
 
 		TPoint3<float> tpPosition = TPoint3<float>(2.0, 0.0f, 1.5f);
 		TPoint3<float> tpDirection = TPoint3<float>(-1.0f, 0.0f, -1.0f);
 		TPoint3<float> tpUpVector = TPoint3<float>(0.0f, 1.0f, 0.0f);
 
 		// 파라미터 설정 // Set parameter
-		perspectiveTransform.SetSourceObject(fl3DObjectSrc);
-		perspectiveTransform.SetDestinationObject(fl3DObjectDst);
-		perspectiveTransform.SetPosition(tpPosition);
-		perspectiveTransform.SetDirection(tpDirection);
-		perspectiveTransform.SetDirectionType(EDirectionType_Decrement);
-		perspectiveTransform.SetUpVector(tpUpVector);
+		perspectiveTransform3D.SetSourceObject(fl3DObjectSrc);
+		perspectiveTransform3D.SetDestinationObject(fl3DObjectDst);
+		perspectiveTransform3D.SetPosition(tpPosition);
+		perspectiveTransform3D.SetDirection(tpDirection);
+		perspectiveTransform3D.SetDirectionType(EDirectionType_Decrement);
+		perspectiveTransform3D.SetUpVector(tpUpVector);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = perspectiveTransform.Execute()).IsFail())
+		if((res = perspectiveTransform3D.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute.");
 			break;

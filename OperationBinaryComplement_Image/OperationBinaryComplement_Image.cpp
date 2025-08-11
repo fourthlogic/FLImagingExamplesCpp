@@ -117,26 +117,26 @@ int main()
 		}
 
 		// OperationBitwiseAnd 객체 생성 // Create OperationBitwiseAnd object
-		COperationBinaryComplement bc;
+		COperationBinaryComplement operationBinaryComplement;
 
 		// Source 이미지 설정 // Set the source image
-		bc.SetSourceImage(fliSourceImage);
+		operationBinaryComplement.SetSourceImage(fliSourceImage);
 
 		// Operand 이미지 설정 // Set the operand image
-		bc.SetOperandImage(fliOperandImage);
+		operationBinaryComplement.SetOperandImage(fliOperandImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		bc.SetDestinationImage(fliDestinationImage);
+		operationBinaryComplement.SetDestinationImage(fliDestinationImage);
 
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bc.SetOperationSource(EOperationSource_Image);
+		operationBinaryComplement.SetOperationSource(EOperationSource_Image);
 
 		// 공백 색상 칠하기 모드 해제 // Set the Fill blank color mode false
 		// 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. // If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
-		bc.EnableFillBlankColorMode(false);
+		operationBinaryComplement.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bc.Execute()).IsFail())
+		if((res = operationBinaryComplement.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation binary complement.");
 			break;

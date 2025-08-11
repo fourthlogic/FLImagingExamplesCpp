@@ -46,22 +46,10 @@ int main()
 			break;
 		}
 
-		// Source 이미지 뷰 생성 // Create Source image view
-		if((res = viewImageSource.Create(100, 0, 600, 545)).IsFail())
-		{
-			ErrorPrint(res, "Failed to create the image view.\n");
-			break;
-		}
-
-		// Operand 이미지 뷰 생성 // Creates operand image view
-		if((res = viewImageOperand.Create(600, 0, 1100, 545)).IsFail())
-		{
-			ErrorPrint(res, "Failed to create the image view.\n");
-			break;
-		}
-
-		// Destination 이미지 뷰 생성 // Create destination image view
-		if((res = viewImageDestination.Create(1100, 0,1600, 545)).IsFail())
+		// 이미지 뷰 생성 // Create image views
+		if((res = viewImageSource.Create(100, 0, 600, 545)).IsFail() ||
+		   (res = viewImageOperand.Create(600, 0, 1100, 545)).IsFail() ||
+		   (res = viewImageDestination.Create(1100, 0,1600, 545)).IsFail())
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
@@ -117,29 +105,29 @@ int main()
 		}
 
 		// OperationComplexDivide 객체 생성 // Create OperationComplexDivide object
-		COperationComplexDivide cd;
+		COperationComplexDivide operationComplexDivide;
 
 		// Source 이미지 설정 // Set the source image
-		cd.SetSourceImage(fliSourceImage);
+		operationComplexDivide.SetSourceImage(fliSourceImage);
 
 		// Operand 이미지 설정 // Set the operand image
-		cd.SetOperandImage(fliOperandImage);
+		operationComplexDivide.SetOperandImage(fliOperandImage);
 		
 		// Destination 이미지 설정 // Set the destination image
-		cd.SetDestinationImage(fliDestinationImage);
+		operationComplexDivide.SetDestinationImage(fliDestinationImage);
 
 		// 오버플로 처리 방법 설정 // Set the overflow handling method
-		cd.SetOverflowMethod(EOverflowMethod_Wrapping);
+		operationComplexDivide.SetOverflowMethod(EOverflowMethod_Wrapping);
 
 		// 연산 방식 이미지로 설정 // Set operation source to image
-		cd.SetOperationSource(EOperationSource_Image);
+		operationComplexDivide.SetOperationSource(EOperationSource_Image);
 
 		// 공백 색상 칠하기 모드 해제 // Set the Fill blank color mode false
 		// 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. // If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
-		cd.EnableFillBlankColorMode(false);
+		operationComplexDivide.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = cd.Execute()).IsFail())
+		if((res = operationComplexDivide.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation complex divide.");
 			break;

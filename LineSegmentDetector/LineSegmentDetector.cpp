@@ -47,12 +47,12 @@ int main()
 			break;
 		}
 
-		//lsd 객체 생성 //create lsd object
-		CLineSegmentDetector lsd;
-		lsd.SetSourceImage(&fliSourceImage);
+		// 알고리즘 객체 생성 //create algorithm object
+		CLineSegmentDetector lineSegmentDetector;
+		lineSegmentDetector.SetSourceImage(&fliSourceImage);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = lsd.Execute()))
+		if(IsFail(res = lineSegmentDetector.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute HoughTransform.");
 			break;
@@ -61,10 +61,10 @@ int main()
 		CFLArray<double> arrScores;
 		CFLFigureArray flfaResults;
 
-		double f64ScoreThreshold = lsd.GetScoreThreshold();
+		double f64ScoreThreshold = lineSegmentDetector.GetScoreThreshold();
 
-		lsd.GetResultLineSegments(flfaResults);
-		lsd.GetResultScores(arrScores);
+		lineSegmentDetector.GetResultLineSegments(flfaResults);
+		lineSegmentDetector.GetResultScores(arrScores);
 
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately

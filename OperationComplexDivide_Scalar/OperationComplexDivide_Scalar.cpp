@@ -37,15 +37,9 @@ int main()
 			break;
 		}
 
-		// Source 이미지 뷰 생성 // Create Source image view
-		if((res = viewImageSrc.Create(100, 0, 600, 545)).IsFail())
-		{
-			ErrorPrint(res, "Failed to create the image view.\n");
-			break;
-		}
-
-		// Destination 이미지 뷰 생성 // Create the Destination image view
-		if((res = viewImageDst.Create(600, 0,1100, 545)).IsFail())
+		// 이미지 뷰 생성 // Create image views
+		if((res = viewImageSrc.Create(100, 0, 600, 545)).IsFail() ||
+		   (res = viewImageDst.Create(600, 0,1100, 545)).IsFail())
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
