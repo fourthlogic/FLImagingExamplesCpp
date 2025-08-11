@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Operation Hypotenuse 객체 생성 // Create Hypotenuse object
-		COperationHypotenuse hypotenuse;
+		COperationHypotenuse operationHypotenuse;
 		// Source 이미지 설정 // Set source image
-		hypotenuse.SetSourceImage(arrFliImage[EType_Source]);
+		operationHypotenuse.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		hypotenuse.SetOperandImage(arrFliImage[EType_Operand]);
+		operationHypotenuse.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		hypotenuse.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationHypotenuse.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		hypotenuse.SetOperationSource(EOperationSource_Image);
+		operationHypotenuse.SetOperationSource(EOperationSource_Image);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = hypotenuse.Execute()).IsFail())
+		if((res = operationHypotenuse.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation hypotenuse.");
 			break;

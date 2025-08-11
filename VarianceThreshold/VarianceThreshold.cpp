@@ -70,25 +70,25 @@ int main()
 		}
 
 		// Variance Threshold 객체 생성 // Create Variance Threshold object
-		CVarianceThreshold threshold;
+		CVarianceThreshold varianceThreshold;
 
 		// Source 이미지 설정 // Set source image 
-		threshold.SetSourceImage(fliISrcImage);
+		varianceThreshold.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		threshold.SetDestinationImage(fliIDstImage);
+		varianceThreshold.SetDestinationImage(fliIDstImage);
 
 		// 커널 사이즈 입력 // set kernel size
-		threshold.SetKernel(15, 15);
+		varianceThreshold.SetKernel(15, 15);
 
 		// StdDevScale 설정 // set StdDevScale
-		threshold.SetStdDevScale(0.2);
+		varianceThreshold.SetStdDevScale(0.2);
 
 		// AbsThreshold 설정 // set AbsThreshold
-		threshold.SetAbsThreshold(2);
+		varianceThreshold.SetAbsThreshold(2);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = threshold.Execute()).IsFail())
+		if((res = varianceThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Variance Threshold.");
 			break;
