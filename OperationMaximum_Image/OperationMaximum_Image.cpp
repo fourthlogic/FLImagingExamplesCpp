@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Operation Maximum 객체 생성 // Create Operation Maximum object
-		COperationMaximum maximum;
+		COperationMaximum operationMaximum;
 		// Source 이미지 설정 // Set source image
-		maximum.SetSourceImage(arrFliImage[EType_Source]);
+		operationMaximum.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		maximum.SetOperandImage(arrFliImage[EType_Operand]);
+		operationMaximum.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		maximum.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationMaximum.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		maximum.SetOperationSource(EOperationSource_Image);
+		operationMaximum.SetOperationSource(EOperationSource_Image);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = maximum.Execute()).IsFail())
+		if((res = operationMaximum.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation maximum.");
 			break;

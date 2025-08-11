@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Operation Add 객체 생성 // Create Add object
-		COperationAdd add;
+		COperationAdd operationAdd;
 		// Source 이미지 설정 // Set source image
-		add.SetSourceImage(arrFliImage[EType_Source]);
+		operationAdd.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		add.SetOperandImage(arrFliImage[EType_Operand]);
+		operationAdd.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		add.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationAdd.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		add.SetOperationSource(EOperationSource_Image);
+		operationAdd.SetOperationSource(EOperationSource_Image);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = add.Execute()).IsFail())
+		if((res = operationAdd.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation add.");
 			break;

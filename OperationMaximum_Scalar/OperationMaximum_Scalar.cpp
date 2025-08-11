@@ -113,32 +113,32 @@ int main()
 		}
 
 		// Operation Maximum 객체 생성 // Create Operation Maximum object
-		COperationMaximum maximum;
+		COperationMaximum operationMaximum;
 		// Source 이미지 설정 // Set source image
-		maximum.SetSourceImage(arrFliImage[EType_Source]);
+		operationMaximum.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		maximum.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationMaximum.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		maximum.SetOperationSource(EOperationSource_Scalar);
+		operationMaximum.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		maximum.SetScalarValue(CMultiVar<double>(100, 100, 100));
+		operationMaximum.SetScalarValue(CMultiVar<double>(100, 100, 100));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = maximum.Execute()).IsFail())
+		if((res = operationMaximum.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation maximum.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image 
-		maximum.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationMaximum.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		maximum.SetOperationSource(EOperationSource_Scalar);
+		operationMaximum.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		maximum.SetScalarValue(CMultiVar<double>(200, 200, 200));
+		operationMaximum.SetScalarValue(CMultiVar<double>(200, 200, 200));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = maximum.Execute()).IsFail())
+		if((res = operationMaximum.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation maximum.");
 			break;

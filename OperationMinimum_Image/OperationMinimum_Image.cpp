@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Operation Minimum 객체 생성 // Create Operation Minimum object
-		COperationMinimum minimum;
+		COperationMinimum operationMinimum;
 		// Source 이미지 설정 // Set source image
-		minimum.SetSourceImage(arrFliImage[EType_Source]);
+		operationMinimum.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		minimum.SetOperandImage(arrFliImage[EType_Operand]);
+		operationMinimum.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		minimum.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationMinimum.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		minimum.SetOperationSource(EOperationSource_Image);
+		operationMinimum.SetOperationSource(EOperationSource_Image);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = minimum.Execute()).IsFail())
+		if((res = operationMinimum.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation minimum.");
 			break;

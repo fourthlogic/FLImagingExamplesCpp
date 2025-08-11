@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Operation Subtract 객체 생성 // Create Operation Subtract object
-		COperationSubtract subtract;
+		COperationSubtract operationsubtract;
 		// Source 이미지 설정 // Set source image
-		subtract.SetSourceImage(arrFliImage[EType_Source]);
+		operationsubtract.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		subtract.SetOperandImage(arrFliImage[EType_Operand]);
+		operationsubtract.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		subtract.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationsubtract.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		subtract.SetOperationSource(EOperationSource_Image);
+		operationsubtract.SetOperationSource(EOperationSource_Image);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = subtract.Execute()).IsFail())
+		if((res = operationsubtract.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation subtract.");
 			break;

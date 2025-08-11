@@ -113,32 +113,32 @@ int main()
 		}
 
 		// Operation add 객체 생성 // Create Add object
-		COperationAdd add;
+		COperationAdd operationAdd;
 		// Source 이미지 설정 // Set source image
-		add.SetSourceImage(arrFliImage[EType_Source]);
+		operationAdd.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		add.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationAdd.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		add.SetOperationSource(EOperationSource_Scalar);
+		operationAdd.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		add.SetScalarValue(CMultiVar<double>(30, 0, 0));
+		operationAdd.SetScalarValue(CMultiVar<double>(30, 0, 0));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = add.Execute()).IsFail())
+		if((res = operationAdd.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation add.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image 
-		add.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationAdd.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		add.SetOperationSource(EOperationSource_Scalar);
+		operationAdd.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		add.SetScalarValue(CMultiVar<double>(0, 30, 0));
+		operationAdd.SetScalarValue(CMultiVar<double>(0, 30, 0));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = add.Execute()).IsFail())
+		if((res = operationAdd.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation add.");
 			break;
