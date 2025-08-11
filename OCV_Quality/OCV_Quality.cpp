@@ -117,7 +117,7 @@ int main()
 		layer2.Clear();
 		layer3.Clear();
 
-		// OpticalCharacterReader 객체 생성 // Create OpticalCharacterReader object
+		// OCV 객체 생성 // Create OCV object
 		COCV ocv;
 
 		// OCR Font 파일을 로드

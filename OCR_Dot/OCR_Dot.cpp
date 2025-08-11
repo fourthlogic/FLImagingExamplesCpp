@@ -52,7 +52,7 @@ int main()
 			break;
 		}
 
-		// OpticalCharacterReader 객체 생성 // Create OpticalCharacterReader object
+		// OCR 객체 생성 // Create OCR object
 		COCR ocr;
 
 		// 문자를 학습할 이미지 설정

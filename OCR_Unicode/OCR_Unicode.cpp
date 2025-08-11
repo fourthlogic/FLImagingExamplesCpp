@@ -96,7 +96,7 @@ int main()
 			break;
 		}
 
-		// OpticalCharacterReader 객체 생성 // Create OpticalCharacterReader object
+		// OCR 객체 생성 // Create OCR object
 		COCR ocr;
 
 		// 문자를 학습할 이미지 설정
@@ -141,7 +141,7 @@ int main()
 			}
 		}
 
-	   // 문자를 인식할 이미지 설정
+	    // 문자를 인식할 이미지 설정
 		if(IsFail(res = ocr.SetSourceImage(fliRecognizeImage)))
 		{
 			ErrorPrint(res, L"Failed to set Source Image.");

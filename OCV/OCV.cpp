@@ -11,6 +11,7 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare image object
+	CFLImage fliLearn;
 	CFLImage fliImage1;
 	CFLImage fliImage2;
 	CFLImage fliImage3;
@@ -29,6 +30,12 @@ int main()
 	do
 	{
 		// 이미지 로드 // Load image
+		if((res = fliLearn.Load(L"../../ExampleImages/OCV/Print_Example_Learn.flif")).IsFail())
+		{
+			ErrorPrint(res, L"Failed to load the image file.\n");
+			break;
+		}
+
 		if((res = fliImage1.Load(L"../../ExampleImages/OCV/Print_Example1.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
@@ -141,7 +148,38 @@ int main()
 		layer2.Clear();
 		layer3.Clear();
 
-		// OpticalCharacterReader 객체 생성 // Create OpticalCharacterReader object
+		// 학습을 진행할 OCR 객체 생성 // Create OCR object to Learn
+		COCR ocr;
+
+		// 문자를 학습할 이미지 설정
+		if(IsFail(res = ocr.SetLearnImage(fliLearn)))
+		{
+			ErrorPrint(res, L"Failed to set Learn Image.");
+			break;
+		}
+
+		// 학습할 이미지에 저장되어있는 Figure 학습
+		if(IsFail(res = ocr.Learn()))
+		{
+			ErrorPrint(res, L"Failed to learn.");
+			break;
+		}
+
+		// 인식할 문자의 각도 범위를 설정
+		if(IsFail(res = ocr.SetRecognizingAngleTolerance(45.)))
+		{
+			ErrorPrint(res, L"Failed to set recognizing angle tolerance.");
+			break;
+		}
+
+		 // 학습 정보 파일 및 입력 파라미터를 저장
+		if(IsFail(res = ocr.Save(L"../../ExampleImages/OCV/Font_A-Z_0-9.flocr")))
+		{
+			ErrorPrint(res, L"Failed to save Font file.");
+			break;
+		}
+
+		// OCV 객체 생성 // Create OCV object
 		COCV ocv;
 
 		// OCR Font 파일을 로드
