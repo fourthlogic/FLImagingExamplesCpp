@@ -22,7 +22,7 @@ int main()
 	CResult res = EResult_UnknownError;
 
 	// Ezi Motion Plus R V6 선언 // Declare Ezi Motion Plus R V6
-	CDeviceMotionEziMotionPlusRV6 motionEziMotionPluse;
+	CDeviceMotionEziMotionPlusRV6 motionEziMotionPluseRV6;
 
 	do
 	{
@@ -45,20 +45,20 @@ int main()
 		i32PortNumber = flsInput.ToInt32();
 
 		// 포트 번호를 설정합니다. // Set Port Number.
-		motionEziMotionPluse.SetPortNo(i32PortNumber);
+		motionEziMotionPluseRV6.SetPortNo(i32PortNumber);
 
 		// 연결할 축 갯수 // connected axis Count
-		motionEziMotionPluse.SetAxisCount(1);
+		motionEziMotionPluseRV6.SetAxisCount(1);
 
 		// 장치 초기화 // devices initialize
-		if(IsFail(res = motionEziMotionPluse.Initialize()))
+		if(IsFail(res = motionEziMotionPluseRV6.Initialize()))
 		{
 			ErrorPrint(res, "Failed to initialize the motion.\n");
 			break;
 		}
 
 		// 모션 축 객체 // motion axis object
-		CDeviceMotionAxisEziMotionPlusRV6* pDMAxis = (CDeviceMotionAxisEziMotionPlusRV6*)motionEziMotionPluse.GetMotionAxis(i32AxisNumber);
+		CDeviceMotionAxisEziMotionPlusRV6* pDMAxis = (CDeviceMotionAxisEziMotionPlusRV6*)motionEziMotionPluseRV6.GetMotionAxis(i32AxisNumber);
 
 		if(!pDMAxis)
 		{
@@ -223,7 +223,7 @@ int main()
 	while(false);
 
 	// Motion 객체에 연결을 종료 합니다. // Terminate the connection to the motion object.
-	if(IsFail(res = motionEziMotionPluse.Terminate()))
+	if(IsFail(res = motionEziMotionPluseRV6.Terminate()))
 	{
 		ErrorPrint(res, "Failed to terminate the motion.\n");
 	}
