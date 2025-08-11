@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation Cosecant 객체 생성 // Create Cosecant object
-		COperationCosecant cosecant;
+		COperationCosecant operationCosecant;
 		// Source 이미지 설정 // Set source image
-		cosecant.SetSourceImage(arrFliImage[EType_Source]);
+		operationCosecant.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		cosecant.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationCosecant.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = cosecant.Execute()).IsFail())
+		if((res = operationCosecant.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation Cosecant.");
 			break;

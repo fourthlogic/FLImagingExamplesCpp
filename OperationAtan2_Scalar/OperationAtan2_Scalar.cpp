@@ -99,33 +99,33 @@ int main()
 			break;
 		}
 
-		// Operation atan2 객체 생성 // Create Atan2 object
-		COperationAtan2 atan2;
+		// Operation operationAtan2 객체 생성 // Create Atan2 object
+		COperationAtan2 operationAtan2;
 		// Source 이미지 설정 // Set source image
-		atan2.SetSourceImage(arrFliImage[EType_Source]);
+		operationAtan2.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		atan2.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationAtan2.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		atan2.SetOperationSource(EOperationSource_Scalar);
+		operationAtan2.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		atan2.SetScalarValue(CMultiVar<double>(1, 1, 1));
+		operationAtan2.SetScalarValue(CMultiVar<double>(1, 1, 1));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = atan2.Execute()).IsFail())
+		if((res = operationAtan2.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation atan2.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image 
-		atan2.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationAtan2.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		atan2.SetOperationSource(EOperationSource_Scalar);
+		operationAtan2.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		atan2.SetScalarValue(CMultiVar<double>(65535, 65535, 65535));
+		operationAtan2.SetScalarValue(CMultiVar<double>(65535, 65535, 65535));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = atan2.Execute()).IsFail())
+		if((res = operationAtan2.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation atan2.");
 			break;

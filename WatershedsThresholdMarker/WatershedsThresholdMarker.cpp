@@ -71,16 +71,16 @@ int main()
 		}
 
 		// Watersheds Threshold Marker 객체 생성 // Create Watersheds Threshold Marker object
-		CWatershedsThresholdMarker watershedsThreshold;
+		CWatershedsThresholdMarker watershedsThresholdMarker;
 
 		// Source 이미지 설정 // Set source image 
-		watershedsThreshold.SetSourceImage(fliISrcImage);
+		watershedsThresholdMarker.SetSourceImage(fliISrcImage);
 
 		// Destination 이미지 설정 // Set destination image
-		watershedsThreshold.SetDestinationImage(fliIDstImage);
+		watershedsThresholdMarker.SetDestinationImage(fliIDstImage);
 
 		// threshold 모드 설정(Single) // Set threshold mode(Single)
-		watershedsThreshold.SetThresholdMode(EThresholdMode_Single);
+		watershedsThresholdMarker.SetThresholdMode(EThresholdMode_Single);
 
 		// MultiVar 객체 생성 // Create MultiVar object
 		CMultiVar<double> mvThresholdValue;
@@ -90,16 +90,16 @@ int main()
 		mvThresholdValue.PushBack(10);
 
 		// 임계값 설정 (다채널 경우 CMultiVar<double> 사용) // Set threshold value(Use CMultiVar<double> for multi-channel)
-		watershedsThreshold.SetThreshold(mvThresholdValue);
+		watershedsThresholdMarker.SetThreshold(mvThresholdValue);
 
 		// 1채널 논리조건 입력 // 1Channel condition push
 		mvCondition.PushBack(ELogicalCondition_GreaterEqual);
 
 		// 논리 조건 설정 // Set condition value
-		watershedsThreshold.SetLogicalCondition(mvCondition);
+		watershedsThresholdMarker.SetLogicalCondition(mvCondition);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = watershedsThreshold.Execute()).IsFail())
+		if((res = watershedsThresholdMarker.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Watersheds Threshold.");
 			break;
