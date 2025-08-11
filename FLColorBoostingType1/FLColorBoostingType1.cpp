@@ -97,7 +97,7 @@ int main()
 		// 알고리즘 수행 // Execute the algorithm
 		if((eResult = flColorBoostingType1.Execute()).IsFail())
 		{
-			ErrorPrint(eResult, "Failed to process.");
+			ErrorPrint(eResult, "Failed to execute.");
 			break;
 		}
 

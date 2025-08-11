@@ -88,16 +88,16 @@ int main()
 
 		// Operation TangentH 객체 생성
 		// Create TangentH object
-		COperationTangentH tangentH;
+		COperationTangentH operationTangentH;
 		// Source 이미지 설정
 		// Set source image
-		tangentH.SetSourceImage(arrFliImage[EType_Source]);
+		operationTangentH.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정
 		// Set destination image 
-		tangentH.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationTangentH.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = tangentH.Execute()).IsFail())
+		if((res = operationTangentH.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;

@@ -116,26 +116,26 @@ int main()
 		}
 
 		// Operation Logical Nand 객체 생성 // Create Operation Logical Nand object
-		COperationLogicalNand logicalNand;
+		COperationLogicalNand operationLogicalNand;
 
 		// Source 이미지 설정 // Set the source image
-		logicalNand.SetSourceImage(fliSourceImage);
+		operationLogicalNand.SetSourceImage(fliSourceImage);
 
 		// Operand 이미지 설정 // Set the operand image
-		logicalNand.SetOperandImage(fliOperandImage);
+		operationLogicalNand.SetOperandImage(fliOperandImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		logicalNand.SetDestinationImage(fliDestinationImage);
+		operationLogicalNand.SetDestinationImage(fliDestinationImage);
 
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalNand.SetOperationSource(EOperationSource_Image);
+		operationLogicalNand.SetOperationSource(EOperationSource_Image);
 
 		// 공백 색상 칠하기 모드 해제 // Set the Fill blank color mode false
 		// 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. // If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
-		logicalNand.EnableFillBlankColorMode(false);
+		operationLogicalNand.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalNand.Execute()).IsFail())
+		if((res = operationLogicalNand.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;

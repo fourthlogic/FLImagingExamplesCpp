@@ -80,25 +80,25 @@ int main()
 		}
 
 		// Operation Logical And 객체 생성 // Create Operation Logical And object
-		COperationLogicalAnd logicalAnd;
+		COperationLogicalAnd operationLogicalAnd;
 
 		// Source 이미지 설정 // Set the source image
-		logicalAnd.SetSourceImage(fliSourceDestinationImage);
+		operationLogicalAnd.SetSourceImage(fliSourceDestinationImage);
 
 		// Source 이미지의 ROI 범위 설정 // Set the Source ROI value
 		CFLCircle<int32_t> flcSourceROI(128, 128, 80, 0, 0, 360, EArcClosingMethod_EachOther);
 
 		// Source 이미지의 ROI 지정 // Set the Source ROI
-		logicalAnd.SetSourceROI(flcSourceROI);
+		operationLogicalAnd.SetSourceROI(flcSourceROI);
 
 		// Scalar Operation 소스로 설정 // Set Operation Source to scalar
-		logicalAnd.SetOperationSource(EOperationSource_Scalar);
+		operationLogicalAnd.SetOperationSource(EOperationSource_Scalar);
 
 		// 스칼라 값 지정 // Set the Scalar value
-		logicalAnd.SetScalarValue(CMultiVar<double>(111));
+		operationLogicalAnd.SetScalarValue(CMultiVar<double>(111));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalAnd.Execute()).IsFail())
+		if((res = operationLogicalAnd.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;

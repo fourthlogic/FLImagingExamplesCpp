@@ -116,32 +116,32 @@ int main()
 		}
 
 		// Operation Logical Or 객체 생성 // Create Operation Logical Or object
-		COperationLogicalOr logicalOr;
+		COperationLogicalOr operationLogicalOr;
 		// Source 이미지 설정 // Set the source image
-		logicalOr.SetSourceImage(arrFliImage[EType_Source]);
+		operationLogicalOr.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		logicalOr.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationLogicalOr.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalOr.SetOperationSource(EOperationSource_Scalar);
+		operationLogicalOr.SetOperationSource(EOperationSource_Scalar);
 		// LogicalOr 값 설정 // Set LogicalOr value
-		logicalOr.SetScalarValue(CMultiVar<double>(0, 0, 0));
+		operationLogicalOr.SetScalarValue(CMultiVar<double>(0, 0, 0));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalOr.Execute()).IsFail())
+		if((res = operationLogicalOr.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		logicalOr.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationLogicalOr.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalOr.SetOperationSource(EOperationSource_Scalar);
+		operationLogicalOr.SetOperationSource(EOperationSource_Scalar);
 		// LogicalOr 값 설정 // Set LogicalOr value
-		logicalOr.SetScalarValue(CMultiVar<double>(255, 255, 255));
+		operationLogicalOr.SetScalarValue(CMultiVar<double>(255, 255, 255));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalOr.Execute()).IsFail())
+		if((res = operationLogicalOr.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;

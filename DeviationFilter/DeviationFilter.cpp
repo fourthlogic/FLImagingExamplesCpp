@@ -127,7 +127,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((result = deviationFilter.Execute()).IsFail())
 		{
-			ErrorPrint(result, L"Failed to execute Sigma Filter.");
+			ErrorPrint(result, L"Failed to execute.");
 			break;
 		}
 
@@ -139,7 +139,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((result = deviationFilter.Execute()).IsFail())
 		{
-			ErrorPrint(result, L"Failed to execute Sigma Filter.");
+			ErrorPrint(result, L"Failed to execute.");
 			break;
 		}
 

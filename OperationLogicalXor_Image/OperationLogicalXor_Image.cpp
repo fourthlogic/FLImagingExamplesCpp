@@ -115,18 +115,18 @@ int main()
 		}
 
 		// Operation Logical Xor 객체 생성 // Create Operation Logical Xor object
-		COperationLogicalXor logicalXor;
+		COperationLogicalXor operationLogicalXor;
 		// Source 이미지 설정 // Set the source image
-		logicalXor.SetSourceImage(arrFliImage[EType_Source]);
+		operationLogicalXor.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		logicalXor.SetOperandImage(arrFliImage[EType_Operand]);
+		operationLogicalXor.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		logicalXor.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationLogicalXor.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		logicalXor.SetOperationSource(EOperationSource_Image);
+		operationLogicalXor.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = logicalXor.Execute()).IsFail())
+		if((res = operationLogicalXor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;

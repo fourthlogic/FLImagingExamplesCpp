@@ -73,14 +73,14 @@ int main()
 		}
 
 		// Thin Plate Spline Warping 객체 생성 // Create Thin Plate Spline Warping object
-		CThinPlateSplineWarping tpsWarping;
+		CThinPlateSplineWarping thinPlateSplineWarping;
 
 		// Source 이미지 설정 // Set the source image
-		tpsWarping.SetSourceImage(fliSrcImage);
+		thinPlateSplineWarping.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		tpsWarping.SetDestinationImage(fliDstImage);
+		thinPlateSplineWarping.SetDestinationImage(fliDstImage);
 		// Interpolation Method 설정 // Set the interpolation method
-		tpsWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		thinPlateSplineWarping.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// 그리드를 (5,5)로 초기화 // Initialize grid to (5, 5)
 		CFLPoint<int32_t> flpGridSize(5, 5);
@@ -111,7 +111,7 @@ int main()
 			}
 		}
 
-		tpsWarping.SetCalibrationPointArray(flpaSourcePoints, flpaDestinationPoints);
+		thinPlateSplineWarping.SetCalibrationPointArray(flpaSourcePoints, flpaDestinationPoints);
 
 		// Calibration Point Array를 화면에 Display // Display calibration point array
 
@@ -149,14 +149,14 @@ int main()
 		}
 
 		// 앞서 설정된 Source Image, Calibration Point Array를 기반으로 Calibrate 수행 // Calibrate based on previously set Source Image, Calibration Point Array
-		if((res = tpsWarping.Calibrate()).IsFail())
+		if((res = thinPlateSplineWarping.Calibrate()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to Calibrate.");
 			break;
 		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = tpsWarping.Execute()).IsFail())
+		if((res = thinPlateSplineWarping.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to Execute.");
 			break;
