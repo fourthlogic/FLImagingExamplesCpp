@@ -126,15 +126,15 @@
         - The example of an algorithm that reduces number of points in a point cloud by randomly dropping points.
         - 무작위 탈락을 통해 포인트 클라우드의 점의 수를 줄이는 알고리즘 예제.
 
+    - [Point Cloud Upsampler Poisson]
+      - PointCloudUpsamplerPoisson3D
+        - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using poisson disc sampling.
+        - 포인트 클라우드의 기저 분포를 추정하여 포아송 디스크 추출을 통해 데이터를 증강하는 알고리즘 예제.
+
     - [Point Cloud Upsampler Uniform]
       - PointCloudUpsamplerUniform3D
         - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using uniform random sampling.
         - 포인트 클라우드의 기저 분포를 추정하여 균등난수추출을 통해 데이터를 증강하는 알고리즘 예제.
-
-    - [Point Cloud Upsampler Poisson]
-      - PointCloudUpsamplerPoisson3D
-        - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using poisson disc sampling.
-        - 포인트 클라우드의 기저 분포를 추정하여 포아송 디크스 추출을 통해 데이터를 증강하는 알고리즘 예제.
 
   - [Transform]
     
