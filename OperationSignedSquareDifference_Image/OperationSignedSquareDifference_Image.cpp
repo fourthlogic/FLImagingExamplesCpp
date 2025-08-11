@@ -110,31 +110,31 @@ int main()
 		}
 
 		// Operation SignedSquareDifference 객체 생성 // Create Operation SignedSquareDifference object
-		COperationSignedSquareDifference signedSquareDifference;
+		COperationSignedSquareDifference operationSignedSquareDifference;
 
 		// Source 이미지 설정 // Set the source image
-		signedSquareDifference.SetSourceImage(fliSourceImage);
+		operationSignedSquareDifference.SetSourceImage(fliSourceImage);
 
 		// Operand 이미지 설정 // Set the operand image
-		signedSquareDifference.SetOperandImage(fliOperandImage);
+		operationSignedSquareDifference.SetOperandImage(fliOperandImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		signedSquareDifference.SetDestinationImage(fliDestinationImage);
+		operationSignedSquareDifference.SetDestinationImage(fliDestinationImage);
 
 		// Operation Overflow Method 설정 // Set operation overflow method
-		signedSquareDifference.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationSignedSquareDifference.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// Image Operation 모드로 설정 // Set operation mode to image
-		signedSquareDifference.SetOperationSource(EOperationSource_Image);
+		operationSignedSquareDifference.SetOperationSource(EOperationSource_Image);
 
 		// 공백 색상 칠하기 모드 해제
 		// 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다.
-		signedSquareDifference.EnableFillBlankColorMode(false);
+		operationSignedSquareDifference.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res =res = signedSquareDifference.Execute()))
+		if(IsFail(res =res = operationSignedSquareDifference.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute operation signedSquareDifference.\n");
+			ErrorPrint(res, "Failed to execute Operation Signed Square Difference.\n");
 			break;
 		}
 

@@ -73,30 +73,30 @@ int main()
 		}
 
 		// Operation SignedSquareDifference 객체 생성 // Create Operation SignedSquareDifference object
-		COperationSignedSquareDifference signedSquareDifference;
+		COperationSignedSquareDifference operationSignedSquareDifference;
 
 		// Source 이미지 설정 // Set the source image
-		signedSquareDifference.SetSourceImage(fliSourceImage);
+		operationSignedSquareDifference.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set the destination image
-		signedSquareDifference.SetDestinationImage(fliDestinationImage);
+		operationSignedSquareDifference.SetDestinationImage(fliDestinationImage);
 
 		// Operation Overflow Method 설정 // Set operation overflow method
-		signedSquareDifference.SetOverflowMethod(EOverflowMethod_Wrapping);
+		operationSignedSquareDifference.SetOverflowMethod(EOverflowMethod_Wrapping);
 
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		signedSquareDifference.SetOperationSource(EOperationSource_Scalar);
+		operationSignedSquareDifference.SetOperationSource(EOperationSource_Scalar);
 
 		// 스칼라 색상 지정
-		signedSquareDifference.SetScalarValue(CMultiVar<double>(0));
+		operationSignedSquareDifference.SetScalarValue(CMultiVar<double>(0));
 
 		// 공백 영역을 지정한 색으로 채우지 않도록 설정
-		signedSquareDifference.EnableFillBlankColorMode(false);
+		operationSignedSquareDifference.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = res = signedSquareDifference.Execute()))
+		if(IsFail(res = res = operationSignedSquareDifference.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute operation signedSquareDifference.\n");
+			ErrorPrint(res, "Failed to execute Operation Signed Square Difference.\n");
 			break;
 		}
 
