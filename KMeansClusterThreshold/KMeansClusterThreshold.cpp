@@ -135,17 +135,17 @@ int main()
 		}
 
 		// K-means Cluster Threshold 객체 생성 // Create K-means Cluster Threshold object
-		CKMeansClusterThreshold kMeans;
+		CKMeansClusterThreshold kMeansClusterThreshold;
 		// Source 이미지 설정 // Set the source image
-		kMeans.SetSourceImage(arrFliImage[0]);
+		kMeansClusterThreshold.SetSourceImage(arrFliImage[0]);
 		// Destination 이미지 설정 // Set the destination image
-		kMeans.SetDestinationImage(arrFliImage[1]);
+		kMeansClusterThreshold.SetDestinationImage(arrFliImage[1]);
 
 		// Cluster 갯수 설정 // Set the number of clusters
-		kMeans.SetNumOfCluster(2);
+		kMeansClusterThreshold.SetNumOfCluster(2);
 
 		// 앞에서 설정된 파라미터 대로 K-means Cluster Threshold 수행 // Execute K-means Cluster Threshold algorithm according to previously set parameters
-		if((res = kMeans.Execute()).IsFail())
+		if((res = kMeansClusterThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute K-means Cluster Threshold.");
 			wprintf(res.GetString());
@@ -153,13 +153,13 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		kMeans.SetDestinationImage(arrFliImage[2]);
+		kMeansClusterThreshold.SetDestinationImage(arrFliImage[2]);
 
 		// Cluster 갯수 설정 // Set the number of clusters
-		kMeans.SetNumOfCluster(4);
+		kMeansClusterThreshold.SetNumOfCluster(4);
 
 		// 앞에서 설정된 파라미터 대로 K-means Cluster Threshold 수행 // Execute K-means Cluster Threshold algorithm according to previously set parameters
-		if((res = kMeans.Execute()).IsFail())
+		if((res = kMeansClusterThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute K-means Cluster Threshold.");
 			wprintf(res.GetString());
@@ -167,13 +167,13 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		kMeans.SetDestinationImage(arrFliImage[3]);
+		kMeansClusterThreshold.SetDestinationImage(arrFliImage[3]);
 
 		// Cluster 갯수 설정 // Set the number of clusters
-		kMeans.SetNumOfCluster(8);
+		kMeansClusterThreshold.SetNumOfCluster(8);
 
 		// 앞에서 설정된 파라미터 대로 K-means Cluster Threshold 수행 // Execute K-means Cluster Threshold algorithm according to previously set parameters
-		if((res = kMeans.Execute()).IsFail())
+		if((res = kMeansClusterThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute K-means Cluster Threshold.");
 			wprintf(res.GetString());
