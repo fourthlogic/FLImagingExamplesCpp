@@ -103,23 +103,23 @@ int main()
 		viewImagesResult.RedrawWindow();
 
 		// CLabelRenamerDL 객체 생성 // Create CLabelRenamerDL object
-		CLabelRenamerDL labelRenamer;
+		CLabelRenamerDL labelRenamerDL;
 
 		// Source 이미지 설정 // Set source image
-		labelRenamer.SetSourceImage(fliSourceImage);
+		labelRenamerDL.SetSourceImage(fliSourceImage);
 		// Destination 이미지 설정 // Set destination image
-		labelRenamer.SetDestinationImage(fliResultImage);
+		labelRenamerDL.SetDestinationImage(fliResultImage);
 
 		// 파라미터 값 설정 // Set parameter value
-		labelRenamer.EnablePathMode(false);
-		labelRenamer.EnableRegularExpression(false);
-		labelRenamer.EnableMatchCase(true);
-		labelRenamer.SetCompareMode(CLabelRenamerDL::ECompareMode_TextMode);
-		labelRenamer.SetOriginalName(L"1(OK)");
-		labelRenamer.SetSubstituteName(L"1(PASS)");
+		labelRenamerDL.EnablePathMode(false);
+		labelRenamerDL.EnableRegularExpression(false);
+		labelRenamerDL.EnableMatchCase(true);
+		labelRenamerDL.SetCompareMode(CLabelRenamerDL::ECompareMode_TextMode);
+		labelRenamerDL.SetOriginalName(L"1(OK)");
+		labelRenamerDL.SetSubstituteName(L"1(PASS)");
 
 		// LabelRenamer 실행 // LabelRenamer Execute 
-		if(IsFail(res = labelRenamer.Execute()))
+		if(IsFail(res = labelRenamerDL.Execute()))
 		{
 			ErrorPrint(res, "Failed to Process\n");
 			break;

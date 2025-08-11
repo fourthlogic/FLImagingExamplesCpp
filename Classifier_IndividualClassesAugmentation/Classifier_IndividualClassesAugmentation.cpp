@@ -157,40 +157,40 @@ int main()
 		viewImageValidate.Invalidate(true);
 
 		// Classifier 객체 생성 // Create Classifier object
-		CClassifierDL classifier;
+		CClassifierDL classifierDL;
 
 		// OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		COptimizerSpecAdamGradientDescent optSpec;
 
 		// 학습할 이미지 설정 // Set the image to learn
-		classifier.SetLearningImage(fliLearnImage);
+		classifierDL.SetLearningImage(fliLearnImage);
 		// 검증할 이미지 설정 // Set the image to validate
-		classifier.SetLearningValidationImage(fliValidateImage);
+		classifierDL.SetLearningValidationImage(fliValidateImage);
 		// 분류할 이미지 설정 // Set the image to classify
-		classifier.SetInferenceImage(fliSourceImage);
-		classifier.SetInferenceResultImage(fliSourceImage);
+		classifierDL.SetInferenceImage(fliSourceImage);
+		classifierDL.SetInferenceResultImage(fliSourceImage);
 
 		// 학습할 Classifier 모델 설정 // Set up Classifier model to learn
-		classifier.SetModel(CClassifierDL::EModel_FL_CF_C);
+		classifierDL.SetModel(CClassifierDL::EModel_FL_CF_C);
 		// 학습할 Classifier 모델 설정 // Set up Classifier model to learn
-		classifier.SetModelVersion(CClassifierDL::EModelVersion_FL_CF_C_V1_32);
+		classifierDL.SetModelVersion(CClassifierDL::EModelVersion_FL_CF_C_V1_32);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
-		classifier.SetLearningEpoch(300);
+		classifierDL.SetLearningEpoch(300);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		classifier.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		classifierDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-3f);
 
 		// 설정한 Optimizer를 Classifier에 적용 // Apply the Optimizer that we set up to Classifier
-		classifier.SetLearningOptimizerSpec(optSpec);
+		classifierDL.SetLearningOptimizerSpec(optSpec);
 
 		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		classifier.EnableOptimalLearningStatePreservation(true);
+		classifierDL.EnableOptimalLearningStatePreservation(true);
 
 		// 학습을 종료할 조건식 설정. f1score값이 0.999 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
 		// Set Conditional Expression to End Learning. If the f1score value is 0.999 or higher, end the learning. Same value as metric.
-		classifier.SetLearningStopCondition(L"f1score >= 0.999");
+		classifierDL.SetLearningStopCondition(L"f1score >= 0.999");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		CAutoSaveSpec autoSaveSpec;
@@ -205,7 +205,7 @@ int main()
 		autoSaveSpec.SetAutoSaveCondition(L"f1score > max('f1score')");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
-		classifier.SetLearningAutoSaveSpec(autoSaveSpec);
+		classifierDL.SetLearningAutoSaveSpec(autoSaveSpec);
 
 		CAugmentationSpec augSpec1;
 
@@ -223,7 +223,7 @@ int main()
 		augmentationPreset1.SetClassNumbers(flaClassNum1);
 		augmentationPreset1.SetName(L"Class 0");
 		augmentationPreset1.SetAugmentationSpec(augSpec1);
-		classifier.AddLearningAugmentationPreset(augmentationPreset1);
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset1);
 		CAugmentationSpec augSpec2;
 
 		augSpec2.EnableAugmentation(true);
@@ -240,7 +240,7 @@ int main()
 		augmentationPreset2.SetClassNumbers(flaClassNum2);
 		augmentationPreset2.SetName(L"Class 2");
 		augmentationPreset2.SetAugmentationSpec(augSpec2);
-		classifier.AddLearningAugmentationPreset(augmentationPreset2);
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset2);
 		CAugmentationSpec augSpec3;
 
 		augSpec3.EnableAugmentation(true);
@@ -257,7 +257,7 @@ int main()
 		augmentationPreset3.SetClassNumbers(flaClassNum3);
 		augmentationPreset3.SetName(L"Class 3");
 		augmentationPreset3.SetAugmentationSpec(augSpec3);
-		classifier.AddLearningAugmentationPreset(augmentationPreset3);
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset3);
 		CAugmentationSpec augSpec4;
 
 		augSpec4.EnableAugmentation(true);
@@ -275,17 +275,17 @@ int main()
 		augmentationPreset4.SetClassNumbers(flaClassNum4);
 		augmentationPreset4.SetName(L"Class 4,5");
 		augmentationPreset4.SetAugmentationSpec(augSpec4);
-		classifier.AddLearningAugmentationPreset(augmentationPreset4);
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset4);
 		// Learn 동작을 하는 핸들 객체 선언 // Declare HANDLE object execute learn function
 		HANDLE hThread;
 
 		// Classifier learn function을 진행하는 스레드 생성 // Create the Classifier Learn function thread
-		hThread = (HANDLE)_beginthreadex(NULL, 0, LearnThread, (void*)&classifier, 0, nullptr);
+		hThread = (HANDLE)_beginthreadex(NULL, 0, LearnThread, (void*)&classifierDL, 0, nullptr);
 
-		while(!classifier.IsRunning() && !g_bTerminated)
+		while(!classifierDL.IsRunning() && !g_bTerminated)
 			CThreadUtilities::Sleep(1);
 
-		int32_t i32MaxEpoch = classifier.GetLearningEpoch();
+		int32_t i32MaxEpoch = classifierDL.GetLearningEpoch();
 		int32_t i32PrevEpoch = 0;
 		int32_t i32PrevCostCount = 0;
 		int32_t i32PrevValidationCount = 0;
@@ -295,11 +295,11 @@ int main()
 			CThreadUtilities::Sleep(1);
 
 			// 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			int32_t i32MaxIteration = classifier.GetActualMiniBatchCount();
+			int32_t i32MaxIteration = classifierDL.GetActualMiniBatchCount();
 			// 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			int32_t i32Iteration = classifier.GetLearningResultCurrentIteration();
+			int32_t i32Iteration = classifierDL.GetLearningResultCurrentIteration();
 			// 마지막 학습 횟수 받기 // Get the last epoch learning
-			int32_t i32Epoch = classifier.GetLastEpoch();
+			int32_t i32Epoch = classifierDL.GetLastEpoch();
 
 			// 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
 			// Get the history of cost and validation and print it at graph view
@@ -308,7 +308,7 @@ int main()
 			CFLArray<float> vctF1Score;
 			CFLArray<int32_t> vctValidationEpoch;
 
-			classifier.GetLearningResultAllHistory(vctCosts, vctValidations, vctF1Score, vctValidationEpoch);
+			classifierDL.GetLearningResultAllHistory(vctCosts, vctValidations, vctF1Score, vctValidationEpoch);
 
 			// 미니 배치 반복이 완료되면 cost와 validation 값을 디스플레이 
 			// Display cost and validation value if iterations of the mini batch is completed 
@@ -333,7 +333,7 @@ int main()
 					// Graph View 데이터 입력 // Input Graph View Data
 					viewGraph.Plot(vctCosts, EChartType_Line, RED, L"Cost");
 
-					int32_t i32Step = classifier.GetLearningValidationStep();
+					int32_t i32Step = classifierDL.GetLearningValidationStep();
 					CFLArray<float> flaX;
 
 					for(int64_t i = 0; i < vctValidations.GetCount() - 1; ++i)
@@ -350,7 +350,7 @@ int main()
 				// 검증 결과가 1.0일 경우 또는 esc 키를 누른 경우 학습을 중단하고 분류 진행 
 				// If the validation result is 1.0 or press ESC key, stop learning and classify images 
 				if(f32Validation == 1.f || GetAsyncKeyState(VK_ESCAPE))
-					classifier.Stop();
+					classifierDL.Stop();
 
 				i32PrevEpoch = i32Epoch;
 				i32PrevCostCount = (int32_t)vctCosts.GetCount();
@@ -358,7 +358,7 @@ int main()
 			}
 
 			// epoch만큼 학습이 완료되면 종료 // End when learning progresses as much as epoch
-			if(!classifier.IsRunning())
+			if(!classifierDL.IsRunning())
 			{
 				// learn 동작 스레드가 완전히 종료될 까지 대기 // Wait until learning is completely terminated
 				WaitForSingleObject(hThread, INFINITE);
@@ -375,10 +375,10 @@ int main()
 		}
 
 		// 추론 결과 정보에 대한 설정 // Set for the inference result information
-		classifier.SetInferenceResultItemSettings(CClassifierDL::EInferenceResultItemSettings_ClassNum_ClassName_ConfidenceScore);
+		classifierDL.SetInferenceResultItemSettings(CClassifierDL::EInferenceResultItemSettings_ClassNum_ClassName_ConfidenceScore);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if(IsFail(res = classifier.Execute()))
+		if(IsFail(res = classifierDL.Execute()))
 		{
 			ErrorPrint(res, L"Failed to execute Learn.\n");
 			break;

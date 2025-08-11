@@ -162,31 +162,31 @@ int main()
 		viewImagesLabelFigure.RedrawWindow();
 
 		// AnomalyDetection 객체 생성 // Create AnomalyDetection object
-		CAnomalyDetectionDL anomalyDetection;
+		CAnomalyDetectionDL anomalyDetectionDL;
 
 		// OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		COptimizerSpecAdamGradientDescent optSpec;
 
 		// 학습할 이미지 설정 // Set the image to learn
-		anomalyDetection.SetLearningImage(fliLearnImage);
+		anomalyDetectionDL.SetLearningImage(fliLearnImage);
 		// 검증할 이미지 설정 // Set the image to Validation
-		anomalyDetection.SetLearningValidationImage(fliValidationImage);
+		anomalyDetectionDL.SetLearningValidationImage(fliValidationImage);
 		// 학습할 AnomalyDetection 모델 설정 // Set up AnomalyDetection model to learn
-		anomalyDetection.SetModel(CAnomalyDetectionDL::EModel_FLDefNet);
+		anomalyDetectionDL.SetModel(CAnomalyDetectionDL::EModel_FLDefNet);
 		// 학습할 AnomalyDetection 모델의 버전 설정 // Set up AnomalyDetection model version to learn
-		anomalyDetection.SetModelVersion(CAnomalyDetectionDL::EModelVersion_FLDefNet_V1_64);
+		anomalyDetectionDL.SetModelVersion(CAnomalyDetectionDL::EModelVersion_FLDefNet_V1_64);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
-		anomalyDetection.SetLearningEpoch(10000);
+		anomalyDetectionDL.SetLearningEpoch(10000);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		anomalyDetection.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		anomalyDetectionDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		anomalyDetection.EnableOptimalLearningStatePreservation(true);
+		anomalyDetectionDL.EnableOptimalLearningStatePreservation(true);
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-3f);
 
 		// 설정한 Optimizer를 AnomalyDetection에 적용 // Apply the Optimizer that we set up to AnomalyDetection
-		anomalyDetection.SetLearningOptimizerSpec(optSpec);
+		anomalyDetectionDL.SetLearningOptimizerSpec(optSpec);
 
 		// AugmentationSpec 설정 // Set the AugmentationSpec
 		CAugmentationSpec augSpec;
@@ -205,11 +205,11 @@ int main()
 		augSpec.EnablePerspective(true);
 		augSpec.SetPerspectiveParam(0., 0.050000);
 
-		anomalyDetection.SetLearningAugmentationSpec(&augSpec);
+		anomalyDetectionDL.SetLearningAugmentationSpec(&augSpec);
 
 		// 학습을 종료할 조건식 설정. accuracy값이 0.9 이상인 경우 학습 종료한다.
 		// Set Conditional Expression to End Learning. If the accuracy value is 0.9 or more, end learning.
-		anomalyDetection.SetLearningStopCondition(L"accuracy >= 0.9");
+		anomalyDetectionDL.SetLearningStopCondition(L"accuracy >= 0.9");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		CAutoSaveSpec autoSaveSpec;
@@ -224,18 +224,18 @@ int main()
 		autoSaveSpec.SetAutoSaveCondition(L"cost < min('cost') & accuracy > max('accuracy')");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
-		anomalyDetection.SetLearningAutoSaveSpec(autoSaveSpec);
+		anomalyDetectionDL.SetLearningAutoSaveSpec(autoSaveSpec);
 
 		// Learn 동작을 하는 핸들 객체 선언 // Declare HANDLE object execute learn function
 		HANDLE hThread;
 
 		// AnomalyDetection learn function을 진행하는 스레드 생성 // Create the AnomalyDetection Learn function thread
-		hThread = (HANDLE)_beginthreadex(NULL, 0, LearnThread, (void*)&anomalyDetection, 0, nullptr);
+		hThread = (HANDLE)_beginthreadex(NULL, 0, LearnThread, (void*)&anomalyDetectionDL, 0, nullptr);
 
-		while(!anomalyDetection.IsRunning() && !g_bTerminated)
+		while(!anomalyDetectionDL.IsRunning() && !g_bTerminated)
 			CThreadUtilities::Sleep(1);
 
-		int32_t i32MaxEpoch = anomalyDetection.GetLearningEpoch();
+		int32_t i32MaxEpoch = anomalyDetectionDL.GetLearningEpoch();
 		int32_t i32PrevEpoch = 0;
 		int32_t i32PrevCostCount = 0;
 		int32_t i32PrevValidationCount = 0;
@@ -245,20 +245,20 @@ int main()
 			CThreadUtilities::Sleep(1);
 
 			// 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			int32_t i32MaxIteration = anomalyDetection.GetActualMiniBatchCount();
+			int32_t i32MaxIteration = anomalyDetectionDL.GetActualMiniBatchCount();
 			// 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			int32_t i32Iteration = anomalyDetection.GetLearningResultCurrentIteration();
+			int32_t i32Iteration = anomalyDetectionDL.GetLearningResultCurrentIteration();
 			// 마지막 학습 횟수 받기 // Get the last epoch learning
-			int32_t i32Epoch = anomalyDetection.GetLastEpoch();
+			int32_t i32Epoch = anomalyDetectionDL.GetLastEpoch();
 
 			// 미니 배치 반복이 완료되면 cost와 validation 값을 디스플레이 
 			// Display cost and validation value if iterations of the mini batch is completed 
 			if(i32Epoch != i32PrevEpoch && i32Iteration == i32MaxIteration && i32Epoch > 0)
 			{
 				// 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
-				float f32CurrCost = anomalyDetection.GetLearningResultLastCost();
+				float f32CurrCost = anomalyDetectionDL.GetLearningResultLastCost();
 				// 마지막 검증 결과 받기 // Get the last validation result
-				float f32ValidationPa = anomalyDetection.GetLearningResultLastAccuracy();
+				float f32ValidationPa = anomalyDetectionDL.GetLearningResultLastAccuracy();
 
 				// 해당 epoch의 비용과 검증 결과 값 출력 // Print cost and validation value for the relevant epoch
 				printf("Cost : %.6f Accuracy : %.6f Epoch %d / %d\n", f32CurrCost, f32ValidationPa, i32Epoch, i32MaxEpoch);
@@ -269,12 +269,12 @@ int main()
 				CFLArray<float> flaValidationHistory;
 				CFLArray<int32_t> vctValidationEpoch;
 
-				anomalyDetection.GetLearningResultAllHistory(&flaCostHistory, &flaValidationHistory, &vctValidationEpoch);
+				anomalyDetectionDL.GetLearningResultAllHistory(&flaCostHistory, &flaValidationHistory, &vctValidationEpoch);
 
 				// 비용 기록이나 검증 결과 기록이 있다면 출력 // Print results if cost or validation history exists
 				if((flaCostHistory.GetCount() && i32PrevCostCount != (int32_t)flaCostHistory.GetCount()) || (flaValidationHistory.GetCount() && i32PrevValidationCount != (int32_t)flaValidationHistory.GetCount()))
 				{
-					int32_t i32Step = anomalyDetection.GetLearningValidationStep();
+					int32_t i32Step = anomalyDetectionDL.GetLearningValidationStep();
 					CFLArray<float> flaX;
 
 					for(int64_t i = 0; i < flaValidationHistory.GetCount() - 1; ++i)
@@ -300,14 +300,14 @@ int main()
 				// 검증 결과가 1.0일 경우 학습을 중단하고 분류 진행 
 				// If the validation result is 1.0, stop learning and classify images 
 				if(f32ValidationPa == 1.f || GetAsyncKeyState(VK_ESCAPE))
-					anomalyDetection.Stop();
+					anomalyDetectionDL.Stop();
 
 				i32PrevEpoch = i32Epoch;
 				i32PrevCostCount = (int32_t)flaCostHistory.GetCount();
 				i32PrevValidationCount = (int32_t)flaValidationHistory.GetCount();
 			}
 			// epoch만큼 학습이 완료되면 종료 // End when learning progresses as much as epoch
-			if(!anomalyDetection.IsRunning() && g_bTerminated)
+			if(!anomalyDetectionDL.IsRunning() && g_bTerminated)
 			{
 				// learn 동작 스레드가 완전히 종료될 까지 대기 // Wait until learning is completely terminated
 				WaitForSingleObject(hThread, INFINITE);
@@ -319,16 +319,16 @@ int main()
 
 		// Result Label Image에 피겨를 포함하지 않는 Execute
 		// 분류할 이미지 설정 // Set the image to classify
-		anomalyDetection.SetInferenceImage(fliValidationImage);
+		anomalyDetectionDL.SetInferenceImage(fliValidationImage);
 		// 추론 결과 이미지 설정 // Set the inference result Image
-		anomalyDetection.SetInferenceResultImage(fliResultLabelFigureImage);
+		anomalyDetectionDL.SetInferenceResultImage(fliResultLabelFigureImage);
 		// 추론 결과 옵션 설정 // Set the inference result options;
 		// 비정상 결과 비교 Threshold 설정 // Set Anomaly Threshold
-		anomalyDetection.SetInferenceAnomalyThreshold(0.6f);
+		anomalyDetectionDL.SetInferenceAnomalyThreshold(0.6f);
 		// 비정상 최소 크기 설정 // Set Minimum Anomaly Area
-		anomalyDetection.SetInferenceMinimumAnomalyArea(4);
+		anomalyDetectionDL.SetInferenceMinimumAnomalyArea(4);
 		// 알고리즘 수행 // Execute the algorithm
-		if(IsFail(res = anomalyDetection.Execute()))
+		if(IsFail(res = anomalyDetectionDL.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute.\n");
 			break;
