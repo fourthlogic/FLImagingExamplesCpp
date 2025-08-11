@@ -203,6 +203,23 @@ int main()
 			break;
 		}
 
+		if(IsFail(layer1.DrawFigureImage(flfaROI1, LIME, 5)))
+		{
+			printf("Failed to draw Source ROI");
+			break;
+		}
+
+		for(int64_t i = 0; i < flfaROI1.GetCount(); ++i)
+		{
+			CFLQuad<double> flqROI(flfaROI1[i]);
+
+			if((res = layer1.DrawTextImage(flqROI.flpPoints[0], flqROI.GetName(), LIME, BLACK, 20, false, 0., EGUIViewImageTextAlignment_LEFT_BOTTOM)).IsFail())
+			{
+				ErrorPrint(res, L"Failed to draw text");
+				break;
+			}
+		}
+
 		if((res = layer1.DrawTextCanvas(&CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
@@ -286,6 +303,23 @@ int main()
 		{
 			ErrorPrint(res, res.GetString());
 			break;
+		}
+
+		if(IsFail(layer2.DrawFigureImage(flfaROI2, LIME, 5)))
+		{
+			printf("Failed to draw Source ROI");
+			break;
+		}
+
+		for(int64_t i = 0; i < flfaROI2.GetCount(); ++i)
+		{
+			CFLQuad<double> flqROI(flfaROI2[i]);
+
+			if((res = layer2.DrawTextImage(flqROI.flpPoints[0], flqROI.GetName(), LIME, BLACK, 20, false, 0., EGUIViewImageTextAlignment_LEFT_BOTTOM)).IsFail())
+			{
+				ErrorPrint(res, L"Failed to draw text");
+				break;
+			}
 		}
 
 		if((res = layer2.DrawTextCanvas(&CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
