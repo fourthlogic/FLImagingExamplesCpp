@@ -11,12 +11,14 @@ int main()
 	CFLImage fliSrcImage;
 	CFLImage fliCalImage;
 	CFLImage fliDstImage;
+	CFLImage fliCurImage;
 	CFLImage fliTxtImage;
 
 	// 이미지 뷰 선언 // Declare image view
 	CGUIViewImageWrap viewImageSrc;
 	CGUIViewImageWrap viewImageCal;
 	CGUIViewImageWrap viewImageTxt;
+	CGUIViewImageWrap viewImageCur;
 	CGUIView3DWrap view3DDst;
 
 	do
@@ -70,15 +72,29 @@ int main()
 			break;
 		}
 
-		// Destination 이미지 뷰 생성 // Create the destination image view
+		// Destination texture 이미지 뷰 생성 // Create the destination texture image view
 		if((res = viewImageTxt.Create(100, 398, 498, 796)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
+		// Destination texture 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination texture image view
 		if((res = viewImageTxt.SetImagePtr(&fliTxtImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set image object on the image view.\n");
+			break;
+		}
+
+		// Destination curvature 이미지 뷰 생성 // Create the destination curvature image view
+		if((res = viewImageCur.Create(498, 398, 896, 796)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to create the image view.\n");
+			break;
+		}
+
+		// Destination curvature 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination curvature image view
+		if((res = viewImageCur.SetImagePtr(&fliCurImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
@@ -93,6 +109,13 @@ int main()
 
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
 		if((res = viewImageSrc.SynchronizeWindow(&viewImageCal)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to synchronize window.\n");
+			break;
+		}
+
+		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+		if((res = viewImageSrc.SynchronizeWindow(&viewImageCur)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to synchronize window.\n");
 			break;
@@ -127,6 +150,8 @@ int main()
 		photometricStereo3D.SetDestinationHeightMapImage(fliDstImage);
 		// Destination Texture 이미지 설정 // Set the destination texture image
 		photometricStereo3D.SetDestinationTextureImage(fliTxtImage);
+		// Destination Curvature 이미지 설정 // Set the destination curvature image
+		photometricStereo3D.SetCurvatureImage(fliCurImage);
 		// Destination 3D Object 설정 // Set the destination 3D object 
 		photometricStereo3D.SetDestinationObject(fl3DOHM);
 		// Calibration 데이터 설정 // Set Calibration Settings
@@ -135,6 +160,8 @@ int main()
 		photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
 		photometricStereo3D.SetValidPixelThreshold(0.25);
+		// Curvature 이미지 Normalization 여부 설정 // Set curvature image normalization option
+		photometricStereo3D.EnableCurvatureNormalization(true);
 
 		CMatrix<double> cmatdTemp(3, 3);
 
@@ -193,8 +220,15 @@ int main()
 			break;
 		}
 
-		// Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
+		// Destination texture 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination texture image, the image magnification displayed through Zoom fit is adjusted to the screen.
 		if((res = viewImageTxt.ZoomFit()).IsFail())
+		{
+			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
+			break;
+		}
+
+		// Destination curvature 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination curvature image, the image magnification displayed through Zoom fit is adjusted to the screen.
+		if((res = viewImageCur.ZoomFit()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
 			break;
@@ -204,12 +238,14 @@ int main()
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
 		CGUIViewImageLayerWrap layerCal = viewImageCal.GetLayer(0);
+		CGUIViewImageLayerWrap layerCur = viewImageCur.GetLayer(0);
 		CGUIViewImageLayerWrap layerTxt = viewImageTxt.GetLayer(0);
 		CGUIView3DLayerWrap layer3D = view3DDst.GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSrc.Clear();
 		layerCal.Clear();
+		layerCur.Clear();
 		layerTxt.Clear();
 		layer3D.Clear();
 
@@ -233,6 +269,12 @@ int main()
 		}
 
 		if((res = layerTxt.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to draw text.\n");
+			break;
+		}
+
+		if((res = layerCur.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Curvature Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
@@ -281,10 +323,11 @@ int main()
 		viewImageSrc.Invalidate(true);
 		viewImageTxt.Invalidate(true);
 		viewImageCal.Invalidate(true);
+		viewImageCur.Invalidate(true);
 		view3DDst.Invalidate(true);
 
 		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
-		while(viewImageSrc.IsAvailable() && viewImageTxt.IsAvailable() && viewImageCal.IsAvailable() && view3DDst.IsAvailable())
+		while(viewImageSrc.IsAvailable() && viewImageTxt.IsAvailable() && viewImageCal.IsAvailable() && viewImageCur.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
