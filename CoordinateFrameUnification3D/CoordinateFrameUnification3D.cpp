@@ -27,7 +27,7 @@ int main()
 		floWorld.Load(L"../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Middle).ply");
 		floSource1.Load(L"../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Right).ply");
 
-		CCoordinateFrameUnification3D cfu;
+		CCoordinateFrameUnification3D coordinateFrameUnification3D;
 
 		// Scene 0와 World 좌표 간 점 대응을 추가
 		// Add point correpondence between Scene 0 & World
@@ -46,7 +46,7 @@ int main()
 		flaWorld0[3] = TPoint3<float>(0.339934f, -0.020669f, -0.646000f);
 		flaScene0[3] = TPoint3<float>(0.189541f, -0.046209f, -0.589000f);
 
-		cfu.AddSourceObject(floSource0, flaWorld0, flaScene0);
+		coordinateFrameUnification3D.AddSourceObject(floSource0, flaWorld0, flaScene0);
 
 		// Scene 1과 World 좌표 간 점 대응을 추가
 		// Add point correpondence between Scene 1 & World
@@ -68,13 +68,13 @@ int main()
 		flaWorld1[5] = TPoint3<float>(-0.016503f, -0.275241f, -1.050700f);
 		flaScene1[5] = TPoint3<float>(0.568925f, -0.122618f, -0.588000f);
 
-		cfu.AddSourceObject(floSource1, flaWorld1, flaScene1);
+		coordinateFrameUnification3D.AddSourceObject(floSource1, flaWorld1, flaScene1);
 
-		cfu.SetDestinationObject(floDst);
+		coordinateFrameUnification3D.SetDestinationObject(floDst);
 
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = cfu.Execute()).IsFail())
+		if((res = coordinateFrameUnification3D.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute.\n");
 			break;
