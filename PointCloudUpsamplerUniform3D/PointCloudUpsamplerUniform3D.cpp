@@ -24,6 +24,9 @@ int main()
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
+		
+		view3DSrc.SetTopologyType(ETopologyType3D_PointCloud);
+		view3DDst.SetTopologyType(ETopologyType3D_PointCloud);
 
 		view3DDst.PushObject(CFL3DObject());
 		CGUIView3DObject* pViewObjectDst = (CGUIView3DObject*)view3DDst.GetView3DObject(0);
@@ -75,14 +78,11 @@ int main()
 			break;
 		}
 
-		pViewObjectDst->SetTopologyType(ETopologyType3D_PointCloud);
-		pViewObjectSrc->SetTopologyType(ETopologyType3D_PointCloud);
+		view3DSrc.UpdateObject(0);
+		view3DDst.UpdateObject(0);
 
 		pViewObjectSrc->UpdateAll();
-		view3DSrc.UpdateObject(0);
-
 		pViewObjectDst->UpdateAll();
-		view3DDst.UpdateObject(0);
 
 		view3DSrc.SynchronizePointOfView(&view3DDst);
 		view3DSrc.SynchronizeWindow(&view3DDst);
