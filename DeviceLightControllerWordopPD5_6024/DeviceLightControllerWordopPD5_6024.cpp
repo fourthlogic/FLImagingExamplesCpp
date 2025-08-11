@@ -13,7 +13,7 @@ int main()
 	CResult res = EResult_UnknownError;
 
 	// 조명 컨트롤러 WordopPD5_6024 선언 // Declare the WordopPD5_6024 Light Controller
-	CDeviceLightControllerWordopPD5_6024 lightController;
+	CDeviceLightControllerWordopPD5_6024 lightControllerWordopPD56024;
 
 	do
 	{
@@ -65,7 +65,7 @@ int main()
 			eConnectionMethod = CDeviceLightControllerWordopPD5_6024::EConnectionMethod_UDP;
 
 		// 연결 방식을 설정합니다. // Set the connection method.
-		lightController.SetConnectionMethod(eConnectionMethod);
+		lightControllerWordopPD56024.SetConnectionMethod(eConnectionMethod);
 
 		if(i32ConnectionType == 1) // RS232C
 		{
@@ -77,7 +77,7 @@ int main()
 			i32ComPortNumber = flsInput.ToInt32();
 			system("cls");
 			// 컴포트 번호 설정 // Set the COM port number.
-			lightController.SetConnectionComPortNumber(i32ComPortNumber);
+			lightControllerWordopPD56024.SetConnectionComPortNumber(i32ComPortNumber);
 		}
 		else
 		{
@@ -98,11 +98,11 @@ int main()
 			u16Port = flsInput.ToInt32();
 
 			// IP 주소, Port 설정 // Set the IP address and port.
-			lightController.SetConnectionIPAddress(flsIPAddress);
-			lightController.SetConnectionPort(u16Port);
+			lightControllerWordopPD56024.SetConnectionIPAddress(flsIPAddress);
+			lightControllerWordopPD56024.SetConnectionPort(u16Port);
 		}
 
-		if(IsFail(res = lightController.Initialize()))
+		if(IsFail(res = lightControllerWordopPD56024.Initialize()))
 		{
 			ErrorPrint(res, "Failed to initialize the light controller.\n");
 			break;
@@ -146,7 +146,7 @@ int main()
 			eLightChannel = CDeviceLightControllerWordopPD5_6024::ELightChannel_Port_8;
 
 		// 채널 갯수 설정 // Set the number of channels.
-		lightController.SetLightChannel(eLightChannel);
+		lightControllerWordopPD56024.SetLightChannel(eLightChannel);
 
 		int32_t i32CommuticationType = 0;
 
@@ -186,7 +186,7 @@ int main()
 			eCommunicationType = CDeviceLightControllerWordopPD5_6024::ECommunicationType_Hexadecimal;
 
 		// 통신 방식을 설정합니다. // Set the communication type.
-		lightController.SetCommunicationType(eCommunicationType);
+		lightControllerWordopPD56024.SetCommunicationType(eCommunicationType);
 
 		int32_t i32TriggerMethod = 0;
 
@@ -255,7 +255,7 @@ int main()
 					eTriggerMethod = CDeviceLightControllerWordopPD5_6024::ETriggerMethod_RisingEdge;
 
 				// 트리거 방식을 설정합니다. // Set the trigger method.
-				lightController.SetTriggerMethod(eTriggerMethod);
+				lightControllerWordopPD56024.SetTriggerMethod(eTriggerMethod);
 			}
 			else
 			{
@@ -281,9 +281,9 @@ int main()
 
 					// 채널별 On/Off 상태를 설정합니다. // Set the On/Off state for the channel.
 					if(i32OnOff == 0)
-						lightController.SetChannelState(i32Channel, true);
+						lightControllerWordopPD56024.SetChannelState(i32Channel, true);
 					else if(i32OnOff == 1)
-						lightController.SetChannelState(i32Channel, false);
+						lightControllerWordopPD56024.SetChannelState(i32Channel, false);
 				}
 				else if(i32SelectMode == 2)
 				{
@@ -294,7 +294,7 @@ int main()
 					system("cls");
 					uint8_t u8Value = (uint8_t)flsInput.ToInt32();
 
-					lightController.SetLightValue(i32Channel, u8Value);
+					lightControllerWordopPD56024.SetLightValue(i32Channel, u8Value);
 				}
 				else if(i32SelectMode == 3)
 				{
@@ -305,12 +305,12 @@ int main()
 					system("cls");
 					uint16_t u16StrobeTime = (uint16_t)flsInput.ToInt32();
 
-					lightController.SetStrobeTime(i32Channel, u16StrobeTime);
+					lightControllerWordopPD56024.SetStrobeTime(i32Channel, u16StrobeTime);
 				}
 			}
 
 			// 입력된 파라미터를 적용합니다. // Apply the configured parameters.
-			lightController.Apply();
+			lightControllerWordopPD56024.Apply();
 		}
 
 		if(bExit)
@@ -319,7 +319,7 @@ int main()
 	while(false);
 
 	// 조명 컨트롤러에 연결을 종료합니다. // Terminate the connection to the light controller.
-	if(IsFail(res = lightController.Terminate()))
+	if(IsFail(res = lightControllerWordopPD56024.Terminate()))
 	{
 		ErrorPrint(res, "Failed to terminate the motion.\n");
 	}

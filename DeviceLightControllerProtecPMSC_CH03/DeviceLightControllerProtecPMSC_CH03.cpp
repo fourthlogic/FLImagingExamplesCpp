@@ -13,7 +13,7 @@ int main()
 	CResult res = EResult_UnknownError;
 
 	// 조명 컨트롤러 ProtecPMSC_CH03 선언 // Declare the ProtecPMSC_CH03 Light Controller
-	CDeviceLightControllerProtecPMSC_CH03 lightController;
+	CDeviceLightControllerProtecPMSC_CH03 lightControllerProtecPMSCCH03;
 
 	do
 	{
@@ -31,10 +31,10 @@ int main()
 			i32ComPortNumber = flsInput.ToInt32();
 			system("cls");
 			// 컴포트 번호 설정 // Set the COM port number.
-			lightController.SetComPortNumber(i32ComPortNumber);
+			lightControllerProtecPMSCCH03.SetComPortNumber(i32ComPortNumber);
 		}
 
-		if(IsFail(res = lightController.Initialize()))
+		if(IsFail(res = lightControllerProtecPMSCCH03.Initialize()))
 		{
 			ErrorPrint(res, "Failed to initialize the light controller.\n");
 			break;
@@ -79,11 +79,11 @@ int main()
 
 				int32_t i32OnOff = flsInput.ToInt32();
 
-				lightController.SetOperationMode(CDeviceLightControllerProtecPMSC_CH03::EOperationMode_Live);
+				lightControllerProtecPMSCCH03.SetOperationMode(CDeviceLightControllerProtecPMSC_CH03::EOperationMode_Live);
 
 				if(i32OnOff == 1)
 				{
-					lightController.EnableLiveTurnOn(true);
+					lightControllerProtecPMSCCH03.EnableLiveTurnOn(true);
 
 					// 설정할 채널 값을 입력합니다. // Enter the channel value to configure.
 					printf("Select Channel Index: ");
@@ -99,14 +99,14 @@ int main()
 					system("cls");
 					uint8_t u8Value = (uint8_t)flsInput.ToInt32();
 
-					lightController.SetLightValue(i32Channel, u8Value);
+					lightControllerProtecPMSCCH03.SetLightValue(i32Channel, u8Value);
 				}
 				else if(i32OnOff == 2)
-					lightController.EnableLiveTurnOn(false);
+					lightControllerProtecPMSCCH03.EnableLiveTurnOn(false);
 			}
 			else if(i32SelectMode == 2)
 			{
-				lightController.SetOperationMode(CDeviceLightControllerProtecPMSC_CH03::EOperationMode_Strobe);
+				lightControllerProtecPMSCCH03.SetOperationMode(CDeviceLightControllerProtecPMSC_CH03::EOperationMode_Strobe);
 
 				// 설정할 트리거 Index을 입력합니다. // Enter the trigger index value to configure.
 				printf("Select Trigger Index: ");
@@ -129,11 +129,11 @@ int main()
 				system("cls");
 				uint16_t u16StrobeTime = (uint16_t)flsInput.ToInt32();
 
-				lightController.SetStrobe(i32TriggerIndex, i32Channel, u16StrobeTime);
+				lightControllerProtecPMSCCH03.SetStrobe(i32TriggerIndex, i32Channel, u16StrobeTime);
 			}
 			else if(i32SelectMode == 3)
 			{
-				lightController.SetOperationMode(CDeviceLightControllerProtecPMSC_CH03::EOperationMode_MultiShotStrobe);
+				lightControllerProtecPMSCCH03.SetOperationMode(CDeviceLightControllerProtecPMSC_CH03::EOperationMode_MultiShotStrobe);
 
 				// 설정할 트리거 Index을 입력합니다. // Enter the trigger index value to configure.
 				printf("Select Trigger Index: ");
@@ -163,11 +163,11 @@ int main()
 				system("cls");
 				uint16_t u16StrobeTime = (uint16_t)flsInput.ToInt32();
 
-				lightController.SetMultiShotStrobe(i32TriggerIndex, i32MemoryIndex, i32Channel, u16StrobeTime);
+				lightControllerProtecPMSCCH03.SetMultiShotStrobe(i32TriggerIndex, i32MemoryIndex, i32Channel, u16StrobeTime);
 			}
 
 			// 입력된 파라미터를 적용합니다. // Apply the configured parameters.
-			if(IsFail(res = lightController.Apply(i32TriggerIndex)))
+			if(IsFail(res = lightControllerProtecPMSCCH03.Apply(i32TriggerIndex)))
 			{
 				ErrorPrint(res, "Failed to apply the light controller.\n");
 				break;
@@ -180,7 +180,7 @@ int main()
 	while(false);
 
 	// 조명 컨트롤러에 연결을 종료합니다. // Terminate the connection to the light controller.
-	if(IsFail(res = lightController.Terminate()))
+	if(IsFail(res = lightControllerProtecPMSCCH03.Terminate()))
 	{
 		ErrorPrint(res, "Failed to terminate the motion.\n");
 	}
