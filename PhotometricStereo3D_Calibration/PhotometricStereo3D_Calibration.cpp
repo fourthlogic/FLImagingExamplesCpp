@@ -130,11 +130,11 @@ int main()
 		// Destination 3D Object 설정 // Set the destination 3D object 
 		photometricStereo.SetDestinationObject(fl3DOHM);
 		// Calibration 데이터 설정 // Set Calibration Settings
-		photometricStereo.SetCalibrationCircleROI(CFLCircle<double>(386.439657, 346.491239, 259.998140, 0.000000, 0.000000, 360.000000, EArcClosingMethod_EachOther));
+		photometricStereo.SetCalibrationCircleROI(CFLCircle<double>(117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, EArcClosingMethod_EachOther));
 		// 동작 방식 설정 // Set operation mode
 		photometricStereo.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
-		photometricStereo.SetValidPixelThreshold(0.125);
+		photometricStereo.SetValidPixelThreshold(0.25);
 
 		CMatrix<double> cmatdTemp(3, 3);
 
@@ -245,7 +245,7 @@ int main()
 
 		TPoint3<float> tp3dFrom(f32CenterX, f32CenterY, f32CenterZ);
 
-		float f32MulNum = 2000.;
+		float f32MulNum = 800.;
 
 		for(long i = 0; i < i32CalibPageNum; i++)
 		{

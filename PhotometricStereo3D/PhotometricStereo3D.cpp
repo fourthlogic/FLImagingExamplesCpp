@@ -98,7 +98,7 @@ int main()
 		// 동작 방식 설정 // Set Operation Mode
 		photometricStereo.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
-		photometricStereo.SetValidPixelThreshold(0.125);
+		photometricStereo.SetValidPixelThreshold(0.25);
 		
 		// 각 이미지의 광원 Slant 값 입력
 		CMultiVar<double> mvdSlant;
