@@ -101,22 +101,22 @@ int main()
 		}
 
 		// Image Threshold 객체 생성 // Create Image Threshold object
-		CImageThreshold threshold;
+		CImageThreshold imageThreshold;
 
 		// Source 이미지 설정 // Set source image 
-		threshold.SetSourceImage(fliSrcImage);
+		imageThreshold.SetSourceImage(fliSrcImage);
 
 		// Operand 이미지 설정 // Set operand image 
-		threshold.SetOperandImage(fliOprImage);
+		imageThreshold.SetOperandImage(fliOprImage);
 
 		// Destination 이미지 설정 // Set destination image
-		threshold.SetDestinationImage(fliDstImage);
+		imageThreshold.SetDestinationImage(fliDstImage);
 
 		// 임계값 오프셋 설정 // set threshold offset 
-		threshold.SetThresholdOffset(5);
+		imageThreshold.SetThresholdOffset(5);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = threshold.Execute()).IsFail())
+		if((res = imageThreshold.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute Image Threshold.");
 			break;
