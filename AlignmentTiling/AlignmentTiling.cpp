@@ -125,8 +125,6 @@ int main()
 		alignmentTiling.SetResultImageSize(780, 780);
 		// 보정에 사용할 Accuracy 설정 // Set the Accuracy to be used for calibration
 		alignmentTiling.SetAccuracy(EFloatingPointAccuracy_Bit32);
-		// Pivot이 지정된 Page Index를 설정 // Set the Page Index with Pivot specified
-		alignmentTiling.SetPivotPageIndex(1);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = alignmentTiling.Execute()))
