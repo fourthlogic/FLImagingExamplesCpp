@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation sine 객체 생성 // Create Sine object
-		COperationSine sine;
+		COperationSine operationSine;
 		// Source 이미지 설정 // Set source image
-		sine.SetSourceImage(arrFliImage[EType_Source]);
+		operationSine.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		sine.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationSine.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = sine.Execute()).IsFail())
+		if((res = operationSine.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation sine.");
 			break;

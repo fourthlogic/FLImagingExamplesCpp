@@ -116,18 +116,18 @@ int main()
 		}
 
 		// Operation BitwiseXor 객체 생성 // Create Operation BitwiseXor object
-		COperationBitwiseXor bitwiseXor;
+		COperationBitwiseXor operationBitwiseXor;
 		// Source 이미지 설정 // Set the source image
-		bitwiseXor.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitwiseXor.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		bitwiseXor.SetOperandImage(arrFliImage[EType_Operand]);
+		operationBitwiseXor.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseXor.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationBitwiseXor.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseXor.SetOperationSource(EOperationSource_Image);
+		operationBitwiseXor.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseXor.Execute()).IsFail())
+		if((res = operationBitwiseXor.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseXor.");
 			break;

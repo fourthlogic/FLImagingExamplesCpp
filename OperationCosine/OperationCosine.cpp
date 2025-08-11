@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation cosine 객체 생성 // Create Cosine object
-		COperationCosine cosine;
+		COperationCosine operationCosine;
 		// Source 이미지 설정 // Set source image
-		cosine.SetSourceImage(arrFliImage[EType_Source]);
+		operationCosine.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		cosine.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationCosine.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = cosine.Execute()).IsFail())
+		if((res = operationCosine.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation cosine.");
 			break;

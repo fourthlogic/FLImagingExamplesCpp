@@ -203,21 +203,21 @@ int main()
 		}
 
 		// Operation Power 객체 생성 // Create Operation Power object
-		COperationPower power;
+		COperationPower operationPower;
 		// Source 이미지 설정 // Set the source image
-		power.SetSourceImage(arrFliImage[EType_Source]);
+		operationPower.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationPower.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		power.SetOperationSource(EOperationSource_Scalar);
+		operationPower.SetOperationSource(EOperationSource_Scalar);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationPower.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// exponent 값 설정 // Set exponent value
-		power.SetScalarValue(CMultiVar<double>(1.1, 1.2, 1.5));
+		operationPower.SetScalarValue(CMultiVar<double>(1.1, 1.2, 1.5));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			
@@ -225,17 +225,17 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationPower.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		power.SetOperationSource(EOperationSource_Scalar);
+		operationPower.SetOperationSource(EOperationSource_Scalar);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationPower.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// exponent 값 설정 // Set exponent value
-		power.SetScalarValue(CMultiVar<double>(0.8, 0.8, 1.1));
+		operationPower.SetScalarValue(CMultiVar<double>(0.8, 0.8, 1.1));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			
@@ -243,17 +243,17 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage[EType_Destination3]);
+		operationPower.SetDestinationImage(arrFliImage[EType_Destination3]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		power.SetOperationSource(EOperationSource_Scalar);
+		operationPower.SetOperationSource(EOperationSource_Scalar);
 		// Overflow Method Wrapping 옵션으로 설정 // Set Overflow Method to Wrapping option
-		power.SetOverflowMethod(EOverflowMethod_Wrapping);
+		operationPower.SetOverflowMethod(EOverflowMethod_Wrapping);
 
 		// power 값 설정 // Set power value
-		power.SetScalarValue(CMultiVar<double>(2.5, 2.5, 2.5));
+		operationPower.SetScalarValue(CMultiVar<double>(2.5, 2.5, 2.5));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			
@@ -261,17 +261,17 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage[EType_Destination4]);
+		operationPower.SetDestinationImage(arrFliImage[EType_Destination4]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		power.SetOperationSource(EOperationSource_Scalar);
+		operationPower.SetOperationSource(EOperationSource_Scalar);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod_Clamping);
+		operationPower.SetOverflowMethod(EOverflowMethod_Clamping);
 
 		// exponent 값 설정 // Set exponent value
-		power.SetScalarValue(CMultiVar<double>(2.5, 2.5, 2.5));
+		operationPower.SetScalarValue(CMultiVar<double>(2.5, 2.5, 2.5));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			
@@ -279,17 +279,17 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage[EType_Destination5]);
+		operationPower.SetDestinationImage(arrFliImage[EType_Destination5]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		power.SetOperationSource(EOperationSource_Scalar);
+		operationPower.SetOperationSource(EOperationSource_Scalar);
 		// Overflow Method Wrapping 옵션으로 설정 // Set Overflow Method to Wrapping option
-		power.SetOverflowMethod(EOverflowMethod_Wrapping);
+		operationPower.SetOverflowMethod(EOverflowMethod_Wrapping);
 
 		// exponent 값 설정 // Set exponent value
-		power.SetScalarValue(CMultiVar<double>(10, 10, 10));
+		operationPower.SetScalarValue(CMultiVar<double>(10, 10, 10));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			

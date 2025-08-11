@@ -113,18 +113,18 @@ int main()
 		}
 
 		// Operation Mean 객체 생성 // Create Mean object
-		COperationMean mean;
+		COperationMean operationMean;
 		// Source 이미지 설정 // Set source image
-		mean.SetSourceImage(arrFliImage[EType_Source]);
+		operationMean.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set Operand image
-		mean.SetOperandImage(arrFliImage[EType_Operand]);
+		operationMean.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		mean.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationMean.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 연산 방식 설정 // Set operation source
-		mean.SetOperationSource(EOperationSource_Image);
+		operationMean.SetOperationSource(EOperationSource_Image);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = mean.Execute()).IsFail())
+		if((res = operationMean.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation mean.");
 			break;

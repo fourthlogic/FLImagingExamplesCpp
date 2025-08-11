@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation tangent 객체 생성 // Create Tangent object
-		COperationTangent tangent;
+		COperationTangent operationTangent;
 		// Source 이미지 설정 // Set source image
-		tangent.SetSourceImage(arrFliImage[EType_Source]);
+		operationTangent.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		tangent.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationTangent.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = tangent.Execute()).IsFail())
+		if((res = operationTangent.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation tangent.");
 			break;

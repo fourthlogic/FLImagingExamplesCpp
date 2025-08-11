@@ -87,14 +87,14 @@ int main()
 		}
 
 		// Operation BitwiseOr 객체 생성 // Create Operation BitwiseOr object
-		COperationBitwiseNot bitwiseNot;
+		COperationBitwiseNot operationBitwiseNot;
 		// Source 이미지 설정 // Set the source image
-		bitwiseNot.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitwiseNot.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseNot.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationBitwiseNot.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// Operation BitwiseNot 수행 // Execute the Bitwise algorithm
-		if((res = bitwiseNot.Execute()).IsFail())
+		if((res = operationBitwiseNot.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseNot.");
 			break;

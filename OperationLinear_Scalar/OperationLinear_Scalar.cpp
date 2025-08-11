@@ -80,27 +80,27 @@ int main()
 		}
 
 		// Operation Linear 객체 생성 // Create Operation Linear object
-		COperationLinear linear;
+		COperationLinear operationLinear;
 
 		// Source 이미지 설정 // Set the source image
-		linear.SetSourceImage(fliSourceImage);
+		operationLinear.SetSourceImage(fliSourceImage);
 
 		// Source 이미지의 ROI 범위 설정 // Set the Source ROI value
 		CFLCircle<int32_t> flcSourceROI(128, 128, 80, 0, 0, 360, EArcClosingMethod_EachOther);
 
 		// Source 이미지의 ROI 지정 // Set the Source ROI
-		linear.SetSourceROI(flcSourceROI);
+		operationLinear.SetSourceROI(flcSourceROI);
 
 		// Scalar Operation 소스로 설정 // Set Operation Source to scalar
-		linear.SetOperationSource(EOperationSource_Scalar);
-		linear.SetOperationOrder(EOperationOrder_CoefficientConstant);
-		linear.SetDestinationImage(fliSourceDestinationImage);
+		operationLinear.SetOperationSource(EOperationSource_Scalar);
+		operationLinear.SetOperationOrder(EOperationOrder_CoefficientConstant);
+		operationLinear.SetDestinationImage(fliSourceDestinationImage);
 
 		// 스칼라 값 지정 // Set the Scalar value
-		linear.SetScalarValue(CMultiVar<double>(2), CMultiVar<double>(1));
+		operationLinear.SetScalarValue(CMultiVar<double>(2), CMultiVar<double>(1));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = linear.Execute()).IsFail())
+		if((res = operationLinear.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation Linear.");
 			break;

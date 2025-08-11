@@ -152,31 +152,31 @@ int main()
 		}
 
 		// Operation Linear 객체 생성 // Create Operation Linear object
-		COperationLinear linear;
+		COperationLinear operationLinear;
 
 		// Source 이미지 설정 // Set the source image
-		linear.SetSourceImage(fliSourceImage);
+		operationLinear.SetSourceImage(fliSourceImage);
 
 		// Operand 이미지 설정 // Set the operand image
-		linear.SetOperandImage(fliOperandImage1);
-		linear.SetOperandImage2(fliOperandImage2);
+		operationLinear.SetOperandImage(fliOperandImage1);
+		operationLinear.SetOperandImage2(fliOperandImage2);
 
 
-		linear.SetOperationOrder(EOperationOrder_CoefficientConstant);
-		linear.SetOverflowMethod(EOverflowMethod_Wrapping);
+		operationLinear.SetOperationOrder(EOperationOrder_CoefficientConstant);
+		operationLinear.SetOverflowMethod(EOverflowMethod_Wrapping);
 
 		// Destination 이미지 설정 // Set the destination image
-		linear.SetDestinationImage(fliDestinationImage);
+		operationLinear.SetDestinationImage(fliDestinationImage);
 
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		linear.SetOperationSource(EOperationSource_Image);
+		operationLinear.SetOperationSource(EOperationSource_Image);
 
 		// 공백 색상 칠하기 모드 해제 // Set the Fill blank color mode false
 		// 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. // If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
-		linear.EnableFillBlankColorMode(false);
+		operationLinear.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = linear.Execute()).IsFail())
+		if((res = operationLinear.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation Linear.");
 			break;

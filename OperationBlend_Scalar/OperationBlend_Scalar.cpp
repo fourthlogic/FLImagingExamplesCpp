@@ -118,34 +118,34 @@ int main()
 		res = EResult_UnknownError;
 
 		// Operation Blend 객체 생성 // Create Operation Blend object
-		COperationBlend blend;
+		COperationBlend operationBlend;
 		// Source 이미지 설정 // Set the source image
-		blend.SetSourceImage(arrFliImage[EType_Source]);
+		operationBlend.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		blend.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationBlend.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		blend.SetOperationSource(EOperationSource_Scalar);
+		operationBlend.SetOperationSource(EOperationSource_Scalar);
 		// blend 값 설정 // Set Blend value
-		blend.SetScalarValue(CMultiVar<double>(30, 0, 0));
+		operationBlend.SetScalarValue(CMultiVar<double>(30, 0, 0));
 		// Blend Ratio 설정 // Set Blend Ratio
-		blend.SetSourceRatio(0.75f);
+		operationBlend.SetSourceRatio(0.75f);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = blend.Execute()).IsFail())
+		if((res = operationBlend.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation blend.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		blend.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationBlend.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		blend.SetOperationSource(EOperationSource_Scalar);
+		operationBlend.SetOperationSource(EOperationSource_Scalar);
 		// blend 값 설정 // Set blend value
-		blend.SetScalarValue(CMultiVar<double>(0, 30, 0));
+		operationBlend.SetScalarValue(CMultiVar<double>(0, 30, 0));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = blend.Execute()).IsFail())
+		if((res = operationBlend.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute operation blend.");
 			break;

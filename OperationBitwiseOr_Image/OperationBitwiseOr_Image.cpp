@@ -115,18 +115,18 @@ int main()
 		}
 
 		// Operation BitwiseOr 객체 생성 // Create Operation BitwiseOr object
-		COperationBitwiseOr bitwiseOr;
+		COperationBitwiseOr operationBitwiseOr;
 		// Source 이미지 설정 // Set the source image
-		bitwiseOr.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitwiseOr.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		bitwiseOr.SetOperandImage(arrFliImage[EType_Operand]);
+		operationBitwiseOr.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseOr.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationBitwiseOr.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseOr.SetOperationSource(EOperationSource_Image);
+		operationBitwiseOr.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseOr.Execute()).IsFail())
+		if((res = operationBitwiseOr.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseOr.");
 			break;

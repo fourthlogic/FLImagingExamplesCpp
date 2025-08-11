@@ -80,25 +80,25 @@ int main()
 		}
 
 		// Operation BitwiseAnd 객체 생성 // Create Operation BitwiseAnd object
-		COperationBitwiseAnd bitwiseAnd;
+		COperationBitwiseAnd operationBitwiseAnd;
 
 		// Source 이미지 설정 // Set the source image
-		bitwiseAnd.SetSourceImage(fliSourceDestinationImage);
+		operationBitwiseAnd.SetSourceImage(fliSourceDestinationImage);
 
 		// Source 이미지의 ROI 범위 설정 // Set the Source ROI value
 		CFLCircle<int32_t> flcSourceROI(128, 128, 80, 0, 0, 360, EArcClosingMethod_EachOther);
 
 		// Source 이미지의 ROI 지정 // Set the Source ROI
-		bitwiseAnd.SetSourceROI(flcSourceROI);
+		operationBitwiseAnd.SetSourceROI(flcSourceROI);
 
 		// Scalar Operation 소스로 설정 // Set Operation Source to scalar
-		bitwiseAnd.SetOperationSource(EOperationSource_Scalar);
+		operationBitwiseAnd.SetOperationSource(EOperationSource_Scalar);
 
 		// 스칼라 값 지정 // Set the Scalar value
-		bitwiseAnd.SetScalarValue(CMultiVar<double>(111));
+		operationBitwiseAnd.SetScalarValue(CMultiVar<double>(111));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseAnd.Execute()).IsFail())
+		if((res = operationBitwiseAnd.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwise and.");
 			break;

@@ -79,14 +79,14 @@ int main()
 		}
 
 		// Operation CosineH 객체 생성 // Create CosineH object
-		COperationCosineH cosineH;
+		COperationCosineH operationCosineH;
 		// Source 이미지 설정 // Set source image
-		cosineH.SetSourceImage(arrFliImage[EType_Source]);
+		operationCosineH.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		cosineH.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationCosineH.SetDestinationImage(arrFliImage[EType_Destination]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = cosineH.Execute()).IsFail())
+		if((res = operationCosineH.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation SineH.");
 			break;

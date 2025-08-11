@@ -204,18 +204,18 @@ int main()
 		}
 
 		// Operation Power 객체 생성 // Create Operation Power object
-		COperationPower power;
+		COperationPower operationPower;
 		// Source 이미지 설정 // Set the source image
-		power.SetSourceImage(arrFliImage0[EType_Source]);
+		operationPower.SetSourceImage(arrFliImage0[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		power.SetOperandImage(arrFliImage0[EType_Operand]);
+		operationPower.SetOperandImage(arrFliImage0[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage0[EType_Destination]);
+		operationPower.SetDestinationImage(arrFliImage0[EType_Destination]);
 		// Image Operation 모드로 설정 // Set operation mode to image
-		power.SetOperationSource(EOperationSource_Image);
+		operationPower.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			
@@ -223,18 +223,18 @@ int main()
 		}
 
 		// Source 이미지 설정 // Set the source image
-		power.SetSourceImage(arrFliImage1[EType_Source]);
+		operationPower.SetSourceImage(arrFliImage1[EType_Source]);
 		// Operand 이미지 설정 // Set the operand image
-		power.SetOperandImage(arrFliImage1[EType_Operand]);
+		operationPower.SetOperandImage(arrFliImage1[EType_Operand]);
 		// Destination 이미지 설정 // Set the destination image
-		power.SetDestinationImage(arrFliImage1[EType_Destination]);
+		operationPower.SetDestinationImage(arrFliImage1[EType_Destination]);
 		// Overflow Method Wrapping 옵션으로 설정 // Set Overflow Method to Wrapping option
-		power.SetOverflowMethod(EOverflowMethod_Wrapping);
+		operationPower.SetOverflowMethod(EOverflowMethod_Wrapping);
 		// Image Operation 모드로 설정 // Set operation mode to image
-		power.SetOperationSource(EOperationSource_Image);
+		operationPower.SetOperationSource(EOperationSource_Image);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = power.Execute()).IsFail())
+		if((result = operationPower.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation power.");
 			

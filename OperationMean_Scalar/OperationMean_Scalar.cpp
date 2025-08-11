@@ -113,32 +113,32 @@ int main()
 		}
 
 		// Operation mean 객체 생성 // Create Mean object
-		COperationMean mean;
+		COperationMean operationMean;
 		// Source 이미지 설정 // Set source image
-		mean.SetSourceImage(arrFliImage[EType_Source]);
+		operationMean.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		mean.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationMean.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// 연산 방식 설정 // Set operation source
-		mean.SetOperationSource(EOperationSource_Scalar);
+		operationMean.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		mean.SetScalarValue(CMultiVar<double>(100, 100, 100));
+		operationMean.SetScalarValue(CMultiVar<double>(100, 100, 100));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = mean.Execute()).IsFail())
+		if((res = operationMean.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation mean.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set destination image 
-		mean.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationMean.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// 연산 방식 설정 // Set operation source
-		mean.SetOperationSource(EOperationSource_Scalar);
+		operationMean.SetOperationSource(EOperationSource_Scalar);
 		// Scalar 값 설정 // Set Scalar value
-		mean.SetScalarValue(CMultiVar<double>(0, 0, 0));
+		operationMean.SetScalarValue(CMultiVar<double>(0, 0, 0));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = mean.Execute()).IsFail())
+		if((res = operationMean.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation mean.");
 			break;

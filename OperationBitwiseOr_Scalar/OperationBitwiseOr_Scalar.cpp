@@ -115,32 +115,32 @@ int main()
 		}
 
 		// Operation BitwiseOr 객체 생성 // Create Operation BitwiseOr object
-		COperationBitwiseOr bitwiseOr;
+		COperationBitwiseOr operationBitwiseOr;
 		// Source 이미지 설정 // Set the source image
-		bitwiseOr.SetSourceImage(arrFliImage[EType_Source]);
+		operationBitwiseOr.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseOr.SetDestinationImage(arrFliImage[EType_Destination1]);
+		operationBitwiseOr.SetDestinationImage(arrFliImage[EType_Destination1]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseOr.SetOperationSource(EOperationSource_Scalar);
+		operationBitwiseOr.SetOperationSource(EOperationSource_Scalar);
 		// BitwiseOr 값 설정 // Set BitwiseOr value
-		bitwiseOr.SetScalarValue(CMultiVar<double>(64, 64, 64));
+		operationBitwiseOr.SetScalarValue(CMultiVar<double>(64, 64, 64));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseOr.Execute()).IsFail())
+		if((res = operationBitwiseOr.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseOr.");
 			break;
 		}
 
 		// Destination 이미지 설정 // Set the destination image
-		bitwiseOr.SetDestinationImage(arrFliImage[EType_Destination2]);
+		operationBitwiseOr.SetDestinationImage(arrFliImage[EType_Destination2]);
 		// Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseOr.SetOperationSource(EOperationSource_Scalar);
+		operationBitwiseOr.SetOperationSource(EOperationSource_Scalar);
 		// BitwiseOr 값 설정 // Set BitwiseOr value
-		bitwiseOr.SetScalarValue(CMultiVar<double>(128, 128, 128));
+		operationBitwiseOr.SetScalarValue(CMultiVar<double>(128, 128, 128));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = bitwiseOr.Execute()).IsFail())
+		if((res = operationBitwiseOr.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute operation bitwiseOr.");
 			break;
