@@ -64,24 +64,24 @@ int main()
 		}
 
 		// RegionExtractor 객체 생성 // Create RegionExtractor object
-		CRegionExtractor algRegionExtractor;
+		CRegionExtractor regionExtractor;
 
 		// ROI 설정 하기 위해 CFLRect 생성 // Create CFLRect for ROI setting
 		CFLRect<int32_t> flrROI(83, 64, 440,337);
 
 		// Source 이미지 설정 // Set the source image
-		algRegionExtractor.SetSourceImage(fliSrcImage);
+		regionExtractor.SetSourceImage(fliSrcImage);
 		// Source ROI 설정 // Set the source ROI
-		algRegionExtractor.SetSourceROI(flrROI);
+		regionExtractor.SetSourceROI(flrROI);
 		// Destination 이미지 설정 // Set the destination image
-		algRegionExtractor.SetDestinationImage(fliDstImage);
+		regionExtractor.SetDestinationImage(fliDstImage);
 		// 항상 공백 영역을 지정한 색으로 채우도록 설정
-		algRegionExtractor.EnableFillBlankColorMode(true);
+		regionExtractor.EnableFillBlankColorMode(true);
 		// 공백 영역 색상 지정
-		algRegionExtractor.SetBlankColor(CMultiVar<double>(0.));
+		regionExtractor.SetBlankColor(CMultiVar<double>(0.));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = algRegionExtractor.Execute()))
+		if(IsFail(res = regionExtractor.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute algRegionExtractor.");
 			break;

@@ -80,23 +80,23 @@ int main()
 		}
 
 		// COperationGreater 객체 생성 // Create COperationGreater object
-		COperationGreater greater;
+		COperationGreater operationGreater;
 		// Source 이미지 설정 // Set source image
-		greater.SetSourceImage(arrFliImage[0]);
+		operationGreater.SetSourceImage(arrFliImage[0]);
 		// Destination 이미지 설정 // Set destination image
-		greater.SetDestinationImage(arrFliImage[1]);
+		operationGreater.SetDestinationImage(arrFliImage[1]);
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
-		greater.SetOperationSource(EOperationSource_Scalar);
-		// Greater Scalar 값 설정 // Set comparsion value of greater operation
-		greater.SetScalarValue(CMultiVar<double>(128));
+		operationGreater.SetOperationSource(EOperationSource_Scalar);
+		// Greater Scalar 값 설정 // Set comparsion value of operationGreater operation
+		operationGreater.SetScalarValue(CMultiVar<double>(128));
 
 		// Source가 Scalar보다 클 경우 값 설정 // Set output value if source is greater than scalar
-		greater.SetRangeValue(CMultiVar<double>(255));
+		operationGreater.SetRangeValue(CMultiVar<double>(255));
 		// Source가 Scalar보다 작거나 같을 경우 값 설정 // Set output value if source is less than or equal to scalar
-		greater.SetOutOfRangeValue(CMultiVar<double>(50));
+		operationGreater.SetOutOfRangeValue(CMultiVar<double>(50));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = greater.Execute()).IsFail())
+		if((result = operationGreater.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation greater.");
 			

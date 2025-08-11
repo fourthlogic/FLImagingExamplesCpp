@@ -116,23 +116,23 @@ int main()
 		}
 
 		// COperationLesser 객체 생성 // Create COperationLesser object
-		COperationLesser lesser;
+		COperationLesser operationLesser;
 		// Source 이미지 설정 // Set source image
-		lesser.SetSourceImage(arrFliImage[EType_Source]);
+		operationLesser.SetSourceImage(arrFliImage[EType_Source]);
 		// Operand 이미지 설정 // Set operand image
-		lesser.SetOperandImage(arrFliImage[EType_Operand]);
+		operationLesser.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image
-		lesser.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationLesser.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Image Operation 모드로 설정 // Set operation mode to image
-		lesser.SetOperationSource(EOperationSource_Image);
+		operationLesser.SetOperationSource(EOperationSource_Image);
 
 		// Source가 Scalar보다 작을 경우 값 설정 // Set output value if source is lesser than scalar
-		lesser.SetRangeValue(CMultiVar<double>(240));
+		operationLesser.SetRangeValue(CMultiVar<double>(240));
 		// Source가 Scalar보다 크거나 같을 경우 값 설정 // Set output value if source is greater than or equal to scalar
-		lesser.SetOutOfRangeValue(CMultiVar<double>(0));
+		operationLesser.SetOutOfRangeValue(CMultiVar<double>(0));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((result = lesser.Execute()).IsFail())
+		if((result = operationLesser.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation lesser.");
 			
