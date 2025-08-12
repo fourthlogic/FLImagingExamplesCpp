@@ -182,7 +182,11 @@ int main()
 		CFLArray<TPoint3<uint8_t>>* pFlaColors = (CFLArray<TPoint3<uint8_t>>*)floSourceObject.GetVertexColors();
 
 		for(int32_t i = 0; i < (int32_t)pFlaColors->GetCount(); ++i)
-			pFlaColors->GetAt(i) = { 127, 127, 127 };
+		{
+			pFlaColors->GetAt(i).x = 127;
+			pFlaColors->GetAt(i).y = 127;
+			pFlaColors->GetAt(i).z = 127;
+		}
 
 		if((eResult = view3DDst.PushObject(floSourceObject)).IsFail())
 		{
