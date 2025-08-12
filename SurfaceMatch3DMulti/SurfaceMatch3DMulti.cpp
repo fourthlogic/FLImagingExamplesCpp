@@ -29,7 +29,7 @@ int main()
 		int32_t arrMaxObject[3] = { 1, 1, 3 };
 
 		// SurfaceMatch3DMulti 객체 생성 // Create SurfaceMatch3DMulti object
-		CSurfaceMatch3DMulti SurfaceMatch3DMulti;
+		CSurfaceMatch3DMulti surfaceMatch3DMulti;
 
 		// Source 3D 뷰 생성
 		if(IsFail(eResult = view3DSource.Create(100, 500, 500, 900)))
@@ -70,10 +70,10 @@ int main()
 			arrView3DLearn[i].SetShadingType(EShadingType3D_Flat);
 
 			// Learn object 설정 // Set the learn object
-			SurfaceMatch3DMulti.SetLearnObject(arrLearnObject[i]);
+			surfaceMatch3DMulti.SetLearnObject(arrLearnObject[i]);
 
 			// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-			if((eResult = SurfaceMatch3DMulti.Learn(arrClassName[i])).IsFail())
+			if((eResult = surfaceMatch3DMulti.Learn(arrClassName[i])).IsFail())
 			{
 				ErrorPrint(eResult, L"Failed to learn Surface Match 3D Multi.");
 				break;
@@ -97,31 +97,31 @@ int main()
 		}
 
 		// Source object 설정 // Set the source object
-		SurfaceMatch3DMulti.SetSourceObject(floSourceObject);
+		surfaceMatch3DMulti.SetSourceObject(floSourceObject);
 		// Min score 설정 // Set the min score
-		SurfaceMatch3DMulti.SetMinScore(0.3);
+		surfaceMatch3DMulti.SetMinScore(0.3);
 		// 학습 샘플링 거리 설정 // Set the learn sampling distance
-		SurfaceMatch3DMulti.SetLearnSamplingDistance(0.03);
+		surfaceMatch3DMulti.SetLearnSamplingDistance(0.03);
 		// 장면 샘플링 거리 설정 // Set the scene sampling distance
-		SurfaceMatch3DMulti.SetSceneSamplingDistance(0.03);
+		surfaceMatch3DMulti.SetSceneSamplingDistance(0.03);
 		// 키포인트 비율 설정 // Set the keypoint ratio.
-		SurfaceMatch3DMulti.SetKeypointRatio(0.5);
+		surfaceMatch3DMulti.SetKeypointRatio(0.5);
 		// 엣지 학습 여부 설정 // Set the edge train
-		SurfaceMatch3DMulti.EnableTrainEdge(false);
+		surfaceMatch3DMulti.EnableTrainEdge(false);
 		// 클러스터링 범위 설정 // Set the clustering range
-		SurfaceMatch3DMulti.SetClusterRange(0.02);
+		surfaceMatch3DMulti.SetClusterRange(0.02);
 		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		SurfaceMatch3DMulti.SetIteration(5);
+		surfaceMatch3DMulti.SetIteration(5);
 
 		// 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
-		SurfaceMatch3DMulti.SetMaxObjectMode(CMatchBase3DMulti::EMaxObjectMode_Class);
+		surfaceMatch3DMulti.SetMaxObjectMode(CMatchBase3DMulti::EMaxObjectMode_Class);
 
 		// 최대 결과 개수 설정 // Set the max count of match result
 		for(int64_t i = 0; i < 3; ++i)
-			SurfaceMatch3DMulti.SetMaxObject(arrClassName[i], arrMaxObject[i]);
+			surfaceMatch3DMulti.SetMaxObject(arrClassName[i], arrMaxObject[i]);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((eResult = SurfaceMatch3DMulti.Execute()).IsFail())
+		if((eResult = surfaceMatch3DMulti.Execute()).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to execute Surface Match 3D Multi.");
 			break;
@@ -191,7 +191,7 @@ int main()
 		}
 
 		ThreeDim::SPoseMatrixParametersMulti sResult;
-		int64_t i64ResultCount = SurfaceMatch3DMulti.GetResultCount();
+		int64_t i64ResultCount = surfaceMatch3DMulti.GetResultCount();
 		TPoint3<double> tp3F64Rotation, tp3F64RotVec;
 		CFLString<wchar_t> strText;
 		CFLPoint3<double> flp3F64Translation;
@@ -209,14 +209,14 @@ int main()
 			Base::TPoint3<double> tp3Center;
 
 			// 추정된 포즈 행렬 가져오기
-			if((eResult = SurfaceMatch3DMulti.GetResultPoseMatrix(i, sResult)).IsFail())
+			if((eResult = surfaceMatch3DMulti.GetResultPoseMatrix(i, sResult)).IsFail())
 			{
 				ErrorPrint(eResult, L"Failed to estimate pose matrix.\n");
 				break;
 			}
 
 			// 추정된 포즈 행렬이 적용된 결과 오브젝트 가져오기
-			if((eResult = SurfaceMatch3DMulti.GetResultObject(i, floLearnTransform, tp3Center)).IsFail())
+			if((eResult = surfaceMatch3DMulti.GetResultObject(i, floLearnTransform, tp3Center)).IsFail())
 			{
 				ErrorPrint(eResult, L"Failed to estimate pose matrix.\n");
 				break;
