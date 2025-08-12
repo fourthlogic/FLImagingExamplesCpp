@@ -52,15 +52,25 @@
 
   - [Match]
     
-    - [Surface]
+    - [Surface Match]
       - Surface Match 3D
         - The example of an algorithm that estimate pose matrix for a given point clouds.
         - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
 
-    - [Vertex]
+    - [Surface Match Multi]
+      - Surface Match 3D Multi
+        - The example of an algorithm that estimate pose matrix for one or more point cloud models.
+        - 하나 이상의 포인트 클라우드 모델에 대해 포즈 행렬을 추정하는 알고리즘 예제.
+
+    - [Vertex Match]
       - Vertex Match 3D
         - The example of an algorithm that estimate pose matrix for a given point clouds.
         - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
+
+    - [Vertex Match Multi]
+      - Vertex Match 3D Multi
+        - The example of an algorithm that estimate pose matrix for one or more point cloud models.
+        - 하나 이상의 포인트 클라우드 모델에 대해 포즈 행렬을 추정하는 알고리즘 예제.
 
     - [Registration]
       - Registration 3D
