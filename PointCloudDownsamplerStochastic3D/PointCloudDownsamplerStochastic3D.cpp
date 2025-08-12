@@ -48,7 +48,7 @@ int main()
 		// 파라미터 설정 // Set parameter
 		pointCloudDownsamplerStochastic3D.SetSourceObject(floSrc);
 		pointCloudDownsamplerStochastic3D.SetDestinationObject(floDst);
-		pointCloudDownsamplerStochastic3D.SetSamplingSize(50000);
+		pointCloudDownsamplerStochastic3D.SetSamplingSize(20000);
 		pointCloudDownsamplerStochastic3D.EnableNormalRetainment(true);
 		pointCloudDownsamplerStochastic3D.EnableColorRetainment(true);
 		pointCloudDownsamplerStochastic3D.EnableFaceRetainment(false);
