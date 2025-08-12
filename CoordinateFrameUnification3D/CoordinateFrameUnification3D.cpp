@@ -99,10 +99,10 @@ int main()
 		view3DSrc1.PushObject(floSource1);
 		view3DDst.PushObject(floDst);
 
-		view3DDst.SynchronizePointOfView(&view3DSrc0);
 		view3DDst.SynchronizePointOfView(&view3DWorld);
+		
+		view3DDst.SynchronizePointOfView(&view3DSrc0);
 		view3DDst.SynchronizePointOfView(&view3DSrc1);
-
 
 		// 3D 뷰에 카메라 위치 직접 세팅 // Set 3d view camera pose manually
 		CFL3DCamera cam;
@@ -114,6 +114,9 @@ int main()
 		cam.SetAngleOfViewY(45);
 
 		view3DWorld.SetCamera(cam);
+
+		view3DDst.DesynchronizePointOfView(&view3DSrc0);
+		view3DDst.DesynchronizePointOfView(&view3DSrc1);
 		
 		CGUIView3DLayerWrap layer3DSrc0 = view3DSrc0.GetLayer(0);
 		CGUIView3DLayerWrap layer3DSrc1 = view3DSrc1.GetLayer(0);
