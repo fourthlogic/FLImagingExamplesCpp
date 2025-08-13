@@ -121,7 +121,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = gradientFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute gradient fliter.");
+			ErrorPrint(res, "Failed to execute gradient filter.");
 			break;
 		}
 
@@ -143,7 +143,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = prewittFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute prewitt fllter.");
+			ErrorPrint(res, "Failed to execute prewitt filter.");
 			break;
 		}
 
@@ -165,7 +165,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = sobelFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute sobel fliter.");
+			ErrorPrint(res, "Failed to execute sobel filter.");
 			break;
 		}
 
