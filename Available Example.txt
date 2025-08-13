@@ -373,16 +373,7 @@
       - PatternMatch_SaveLoad
         - The algorithm example of save and load algorithm for pattern match
         - 패턴 싱글매칭의 저장 및 로드 예제.
-        
-    - [Pattern Match Sparse]
-    
-      - PatternMatchSparse
-        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectected image.
-        - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
-      - PatternMatchSparse_SaveLoad
-        - The algorithm example of save and load algorithm for pattern match sparse
-        - 패턴 싱글매칭의 저장 및 로드 예제.
-
+      
     - [Pattern Match Multi]
     
       - PatternMatchMulti
@@ -401,6 +392,15 @@
       - PatternMatchMultiSparse_SaveLoad
         - The algorithm example of save and load algorithm for pattern match multi sparse
         - 패턴 멀티매칭의 저장 및 로드 예제.
+
+    - [Pattern Match Sparse]
+    
+      - PatternMatchSparse
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectected image.
+        - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
+      - PatternMatchSparse_SaveLoad
+        - The algorithm example of save and load algorithm for pattern match sparse
+        - 패턴 싱글매칭의 저장 및 로드 예제.
 
     - RectangleArrayMatch
       - The algorithm example that searchs for matching pattern array in detection image through pattern information on ROI array
@@ -1001,12 +1001,12 @@
 
   - [Channel]
 
-    - ChannelExtraction
-      - The example of an algorithm that extracts a specific channel from a multichannel image and make it an image.
-      - 다채널 이미지에서 특정 하나의 채널을 추출하여 이미지화하는 알고리즘 예제.
     - ChannelCombination
       - The example of an algorithm that combines channels selected from multiple images.
       - 여러 이미지에서 선택된 채널들을 결합하는 알고리즘 예제.
+    - ChannelExtraction
+      - The example of an algorithm that extracts a specific channel from a multichannel image and make it an image.
+      - 다채널 이미지에서 특정 하나의 채널을 추출하여 이미지화하는 알고리즘 예제.
     - ChannelInsertion
       - The example of an algorithm that Inserts channels selected from multiple images.
       - 여러 이미지에서 선택된 채널들을 삽입하는 알고리즘 예제. 
@@ -1802,6 +1802,15 @@
         - The example of image scale and rotation transforms.
         - 이미지 스케일 및 회전 변환의 예제.
 
+    - [Fourier]
+
+      - Fourier Transform
+        - The algorithm that transforms images into fourier transforms.
+        - 이미지를 푸리에 변환을 하는 알고리즘.
+      - Fourier Transform Real
+        - The algorithm that transforms images into real fourier transforms.
+        - 이미지를 실푸리에 변환으로 변환하는 알고리즘.
+
     - [Hough]
 
       - Generalized Hough Transform
@@ -1813,12 +1822,6 @@
       - Hough Transform Line
         - The example of Hough Transform Line Algorithm.
         - HoughTransform 을 사용한 선 검출 알고리즘 예제
-        
-    - [Fourier]
-
-      - Fouier Transform
-        - The algorithm that transforms images into Fourier transforms.
-        - 이미지를 푸리에 변환을 하는 알고리즘.
         
     - Census Transform
       - The example of an algorithm that performs the census transformation of images.
