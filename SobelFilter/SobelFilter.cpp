@@ -77,30 +77,30 @@ int main()
 			break;
 		}
 
-		// Convolution Sobel 객체 생성 // Create Convolution Sobel object
-		CSobelFilter convolutionSobel;
+		// SobelFilter 객체 생성 // Create SobelFilter object
+		CSobelFilter sobelFilter;
 
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
 		// Source 이미지 설정 // Set the source image
-		convolutionSobel.SetSourceImage(fliSrcImage);
+		sobelFilter.SetSourceImage(fliSrcImage);
 
 		// Source ROI 설정 // Set the source ROI
-		convolutionSobel.SetSourceROI(flrROI);
+		sobelFilter.SetSourceROI(flrROI);
 
 		// Destination 이미지 설정 // Set the destination image
-		convolutionSobel.SetDestinationImage(fliDstImage);
+		sobelFilter.SetDestinationImage(fliDstImage);
 
 		// Destination ROI 설정
-		convolutionSobel.SetDestinationROI(flrROI);
+		sobelFilter.SetDestinationROI(flrROI);
 
-		// Convolution Sobel 커널 연산 방법 설정
-		convolutionSobel.SetKernelMethod(CSobelFilter::EKernel_Sobel);
+		// SobelFilter 커널 연산 방법 설정
+		sobelFilter.SetKernelMethod(CSobelFilter::EKernel_Sobel);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = convolutionSobel.Execute()))
+		if(IsFail(res = sobelFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute convolution sobel.");
+			ErrorPrint(res, "Failed to execute sobel fllter.");
 			break;
 		}
 

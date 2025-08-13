@@ -77,30 +77,30 @@ int main()
 			break;
 		}
 
-		// Convolution Gradient 객체 생성 // Create Convolution Gradient object
-		CGradientFilter convolutionGradient;
+		// GradientFilter 객체 생성 // Create GradientFilter object
+		CGradientFilter gradientFilter;
 
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
 		// Source 이미지 설정 // Set the source image
-		convolutionGradient.SetSourceImage(fliSrcImage);
+		gradientFilter.SetSourceImage(fliSrcImage);
 
 		// Source ROI 설정 // Set the source ROI
-		convolutionGradient.SetSourceROI(flrROI);
+		gradientFilter.SetSourceROI(flrROI);
 
 		// Destination 이미지 설정 // Set the destination image
-		convolutionGradient.SetDestinationImage(fliDstImage);
+		gradientFilter.SetDestinationImage(fliDstImage);
 
 		// Destination ROI 설정
-		convolutionGradient.SetDestinationROI(flrROI);
+		gradientFilter.SetDestinationROI(flrROI);
 
-		// Convolution Gradient 커널 연산 방법 설정
-		convolutionGradient.SetKernelMethod(CGradientFilter::EKernel_Gradient);
+		// GradientFilter 커널 연산 방법 설정
+		gradientFilter.SetKernelMethod(CGradientFilter::EKernel_Gradient);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = convolutionGradient.Execute()))
+		if(IsFail(res = gradientFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute convolution gradient.");
+			ErrorPrint(res, "Failed to execute gradient filter.");
 			break;
 		}
 

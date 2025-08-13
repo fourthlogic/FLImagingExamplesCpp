@@ -104,68 +104,68 @@ int main()
 		// ROI 설정을 위한 FLRectL 생성
 		CFLRect<int32_t> flrROI(200, 200, 500, 500);
 
-		// Convolution Gradient 객체 생성 // Create Convolution Gradient object
-		CGradientFilter convolutionGradient;
+		// GradientFilter 객체 생성 // Create GradientFilter object
+		CGradientFilter gradientFilter;
 
 		// Source 이미지 설정 // Set the source image
-		convolutionGradient.SetSourceImage(fliSrcImage);
+		gradientFilter.SetSourceImage(fliSrcImage);
 		// Source ROI 설정 // Set the source ROI
-		convolutionGradient.SetSourceROI(flrROI);
+		gradientFilter.SetSourceROI(flrROI);
 		// Destination 이미지 설정 // Set the destination image
-		convolutionGradient.SetDestinationImage(arrFliDstImage[EDst_Gradient]);
+		gradientFilter.SetDestinationImage(arrFliDstImage[EDst_Gradient]);
 		// Destination ROI 설정
-		convolutionGradient.SetDestinationROI(flrROI);
-		// Convolution Gradient 커널 연산 방법 설정
-		convolutionGradient.SetKernelMethod(CGradientFilter::EKernel_Gradient);
+		gradientFilter.SetDestinationROI(flrROI);
+		// GradientFilter 커널 연산 방법 설정
+		gradientFilter.SetKernelMethod(CGradientFilter::EKernel_Gradient);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = convolutionGradient.Execute()))
+		if(IsFail(res = gradientFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute convolution gradient.");
+			ErrorPrint(res, "Failed to execute gradient fliter.");
 			break;
 		}
 
 
-		// Convolution Prewitt 객체 생성 // Create Convolution Prewitt object
-		CPrewittFilter convolutionPrewitt;
+		// PrewittFilter 객체 생성 // Create PrewittFilter object
+		CPrewittFilter prewittFilter;
 
 		// Source 이미지 설정 // Set the source image
-		convolutionPrewitt.SetSourceImage(fliSrcImage);
+		prewittFilter.SetSourceImage(fliSrcImage);
 		// Source ROI 설정 // Set the source ROI
-		convolutionPrewitt.SetSourceROI(flrROI);
+		prewittFilter.SetSourceROI(flrROI);
 		// Destination 이미지 설정 // Set the destination image
-		convolutionPrewitt.SetDestinationImage(arrFliDstImage[EDst_Prewitt]);
+		prewittFilter.SetDestinationImage(arrFliDstImage[EDst_Prewitt]);
 		// Destination ROI 설정
-		convolutionPrewitt.SetDestinationROI(flrROI);
-		// Convolution Prewitt 커널 연산 방법 설정
-		convolutionPrewitt.SetKernelMethod(CPrewittFilter::EKernel_Prewitt);
+		prewittFilter.SetDestinationROI(flrROI);
+		// PrewittFilter 커널 연산 방법 설정
+		prewittFilter.SetKernelMethod(CPrewittFilter::EKernel_Prewitt);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = convolutionPrewitt.Execute()))
+		if(IsFail(res = prewittFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute convolution prewitt.");
+			ErrorPrint(res, "Failed to execute prewitt fllter.");
 			break;
 		}
 
 
-		// Convolution Sobel 객체 생성 // Create Convolution Sobel object
-		CSobelFilter convolutionSobel;
+		// SobelFilter 객체 생성 // Create SobelFilter object
+		CSobelFilter sobelFilter;
 
 		// Source 이미지 설정 // Set the source image
-		convolutionSobel.SetSourceImage(fliSrcImage);
+		sobelFilter.SetSourceImage(fliSrcImage);
 		// Source ROI 설정 // Set the source ROI
-		convolutionSobel.SetSourceROI(flrROI);
+		sobelFilter.SetSourceROI(flrROI);
 		// Destination 이미지 설정 // Set the destination image
-		convolutionSobel.SetDestinationImage(arrFliDstImage[EDst_Sobel]);
+		sobelFilter.SetDestinationImage(arrFliDstImage[EDst_Sobel]);
 		// Destination ROI 설정
-		convolutionSobel.SetDestinationROI(flrROI);
-		// Convolution Sobel 커널 연산 방법 설정
-		convolutionSobel.SetKernelMethod(CSobelFilter::EKernel_Sobel);
+		sobelFilter.SetDestinationROI(flrROI);
+		// SobelFilter 커널 연산 방법 설정
+		sobelFilter.SetKernelMethod(CSobelFilter::EKernel_Sobel);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res = convolutionSobel.Execute()))
+		if(IsFail(res = sobelFilter.Execute()))
 		{
-			ErrorPrint(res, "Failed to execute convolution sobel.");
+			ErrorPrint(res, "Failed to execute sobel fliter.");
 			break;
 		}
 
