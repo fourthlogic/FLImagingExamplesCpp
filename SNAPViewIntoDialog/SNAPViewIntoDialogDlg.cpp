@@ -108,7 +108,7 @@ BOOL CSNAPViewIntoDialogDlg::OnInitDialog()
 	CResult res = m_viewSNAP.CreateAndFitParent((size_t)GetSafeHwnd());
 
 	// 스냅 파일 로드 // Load SNAP file
-	res = m_viewSNAP.Load(L"C:\\Users\\Public\\Documents\\FLImaging\\FLImagingExamplesSNAP\\Advanced Functions\\Object\\Blob.flsf");
+	res = m_viewSNAP.Load(L"..\\..\\FLImagingExamplesSNAP\\Advanced Functions\\Object\\Blob\\Blob.flsf");
 
 	m_viewSNAP.ZoomFit();
 

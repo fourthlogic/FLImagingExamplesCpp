@@ -18,7 +18,7 @@ int main()
 		CSNAPBuild snapBuild;
 
 		// 스냅 파일 로드 // Load SNAP file
-		if((res = snapBuild.Load(L"C:\\Users\\Public\\Documents\\FLImaging\\FLImagingExamplesSNAP\\Advanced Functions\\Object\\Blob.flsf")).IsFail())
+		if((res = snapBuild.Load(L"..\\..\\FLImagingExamplesSNAP\\Advanced Functions\\Object\\Blob\\Blob.flsf")).IsFail())
 		{
 			ErrorPrint(res, "Failed to load the SNAP file.\n");
 			break;
