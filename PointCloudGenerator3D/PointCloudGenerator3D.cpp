@@ -23,9 +23,7 @@ int main()
 			break;
 		}
 
-		view3DDst.PushObject(CFL3DObject());
-		CGUIView3DObject* pViewObject = (CGUIView3DObject *)view3DDst.GetView3DObject(0);
-		CFL3DObject& floDst = *(CFL3DObject*)pViewObject->Get3DObject();
+		CFL3DObject floDst;
 
 		// Perspective Transform 3D 객체 생성 // Create Perspective Transform 3D object
 		CPointCloudGenerator3D pointCloudGenerator;
@@ -71,12 +69,12 @@ int main()
 			ErrorPrint(res, L"Failed to execute.");
 			break;
 		}
-
-		pViewObject->UpdateAll();
-		view3DDst.UpdateObject(0);
+		
+		view3DDst.PushObject(floDst);
+		// 출력 뷰의 시점을 계산 // Calculate the viewpoint of destination view
 		view3DDst.ZoomFit();
 
-		// 뷰가 종료될 때까지 계속 실행
+		// 이미지 뷰, 3D 뷰가 종료될 때까지 계속 반복// Repeat until image and 3D view is closed
 		while(view3DDst.IsAvailable())
 		{
 			if((res = pointCloudGenerator.Execute()).IsFail())
@@ -84,15 +82,21 @@ int main()
 				ErrorPrint(res, L"Failed to execute.");
 				break;
 			}
-			
+
 			if(!view3DDst.IsAvailable())
 				break;
 
-			pViewObject->UpdateVertex();
-			view3DDst.UpdateObject(0);
+			view3DDst.LockUpdate();
+			view3DDst.ClearObjects();
 
-			view3DDst.UpdateScreen();
-			CThreadUtilities::Sleep(100);
+			if(!view3DDst.IsAvailable())
+				break;
+
+			view3DDst.PushObject(floDst);
+			if(!view3DDst.IsAvailable())
+				break;
+
+			view3DDst.UnlockUpdate();
 		}
 	}
 	while(false);
