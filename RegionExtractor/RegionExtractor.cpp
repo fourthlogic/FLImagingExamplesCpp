@@ -75,10 +75,19 @@ int main()
 		regionExtractor.SetSourceROI(flrROI);
 		// Destination 이미지 설정 // Set the destination image
 		regionExtractor.SetDestinationImage(fliDstImage);
-		// 항상 공백 영역을 지정한 색으로 채우도록 설정
+		// 항상 공백 영역을 지정한 색으로 채우도록 설정 // Always fill the blank area with the specified color.
 		regionExtractor.EnableFillBlankColorMode(true);
-		// 공백 영역 색상 지정
+		// 공백 영역 색상 지정 // Set the background color of the blank area
 		regionExtractor.SetBlankColor(CMultiVar<double>(0.));
+
+		// 추가 추출 영역 생성 // Add an additional extraction area
+		CFLFigureArray flfaExtractRegion;
+
+		flfaExtractRegion.PushBack(CFLCircle<double>(314, 197, 60));
+		flfaExtractRegion.PushBack(CFLCircle<double>(103, 198, 60));
+
+		// 추출 영역을 추가로 API로 지정 // Additional extraction areas can be specified via the API
+		regionExtractor.SetExtractRegion(flfaExtractRegion);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = regionExtractor.Execute()))
