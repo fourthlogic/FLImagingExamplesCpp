@@ -734,6 +734,16 @@
       - Example of connecting and operating Keyence Laser Profile Sensor.
       - Keyence 레이저 프로파일 센서 연결 및 구동하는 예제.
 
+  - [Socket]
+
+    - ServerClient
+      - Example of socket server–client connection and operation.
+      - Socket Server Client 연결 및 구동하는 예제.
+    - ServerClient_ASCII
+      - Example of socket server–client connection and operation using ASCII communication.
+      - Socket Server Client ASCII 연결 및 구동하는 예제.
+
+
   - [Trigger]
 
     - DeviceTriggerAxl
