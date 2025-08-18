@@ -9,6 +9,7 @@ enum EType
 	EType_Src = 0,
 	EType_Opr,
 	EType_Dst,
+	EType_DstExpand,
 	ETypeCount,
 };
 
@@ -46,8 +47,8 @@ int main()
 
 		for(int32_t i = 0; i < ETypeCount; ++i)
 		{
-			int32_t i32X = i % ETypeCount;
-			int32_t i32Y = i / ETypeCount;
+			int32_t i32X = i % 2;
+			int32_t i32Y = i / 2;
 
 			// 이미지 뷰 생성 // Create image view
 			if(IsFail(res = arrViewImage[i].Create(i32X * 400 + 400, i32Y * 400, i32X * 400 + 400 + 400, i32Y * 400 + 400)))
@@ -65,7 +66,7 @@ int main()
 				break;
 			}
 
-			if(i != EType_Src && i != EType_Dst)
+			if(i != EType_Src && i != EType_DstExpand)
 			{
 				// 두개의 뷰의 시점을 동기화  // Synchronize the viewpoints of the two image views. 
 				if(IsFail(res = arrViewImage[EType_Src].SynchronizePointOfView(&arrViewImage[i])))
@@ -97,9 +98,6 @@ int main()
 		// Operand 이미지 설정 // Set operand image 
 		imageConcatenator.SetOperandImage(arrFliImage[EType_Opr]);
 
-		// Destination 이미지 설정 // Set destination image 
-		imageConcatenator.SetDestinationImage(arrFliImage[EType_Dst]);
-
 		// Operand ROI 지정 // Create ROI range
 		CFLRect<int32_t> flrROI(arrFliImage[EType_Opr]);
 
@@ -107,6 +105,28 @@ int main()
 
 		// Operand 이미지 설정 // Set operand image 
 		imageConcatenator.SetOperandROI(flrROI);
+
+		// 결과 이미지 확장 여부 설정 // Enable or disable output image expansion
+		imageConcatenator.EnableResultImageExpansion(false);
+
+		// 이미지를 이어붙일 방향을 설정 // Set image concatenation direction
+		imageConcatenator.SetConcatenationPosition(CImageConcatenator::EConcatenationPosition_Right);
+
+		// Destination 이미지 설정 // Set destination image 
+		imageConcatenator.SetDestinationImage(arrFliImage[EType_Dst]);
+
+		// 알고리즘 수행 // Execute the algorithm
+		if((res = imageConcatenator.Execute()).IsFail())
+		{
+			ErrorPrint(res, "Failed to execute imageConcatenator.");
+			break;
+		}
+
+		// 결과 이미지 확장 여부 설정 // Enable or disable output image expansion
+		imageConcatenator.EnableResultImageExpansion(true);
+
+		// Destination 이미지 설정 // Set destination image 
+		imageConcatenator.SetDestinationImage(arrFliImage[EType_DstExpand]);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = imageConcatenator.Execute()).IsFail())
@@ -141,6 +161,12 @@ int main()
 		}
 
 		if(IsFail(res = arrLayer[EType_Dst].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = arrLayer[EType_DstExpand].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image(Expanded)", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
