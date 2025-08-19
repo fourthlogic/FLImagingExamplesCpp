@@ -31,7 +31,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = arrFliImage[EType_Src].Load(L"../../ExampleImages/Integral/Lake.flif")))
+		if(IsFail(res = arrFliImage[EType_Src].Load(L"../../ExampleImages/IntegralImage/Lake.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -92,29 +92,29 @@ int main()
 		if(bError)
 			break;
 
-		// Integral 객체 생성 // Create Integral object
-		CIntegral integral;
+		// IntegralImage 객체 생성 // Create IntegralImage object
+		CIntegralImage integralImage;
 
 		// Source 이미지 설정 // Set source image
-		integral.SetSourceImage(arrFliImage[EType_Src]);
+		integralImage.SetSourceImage(arrFliImage[EType_Src]);
 
 		// Destination 이미지 설정 // Set destination image 
-		integral.SetDestinationImage(arrFliImage[EType_Dst]);
+		integralImage.SetDestinationImage(arrFliImage[EType_Dst]);
 
 		// 적분합 자료형 타입을 설정합니다. // Set integral data type.
-		integral.SetDataType(CIntegral::EDataType_Uint32);
+		integralImage.SetDataType(CIntegralImage::EDataType_Uint32);
 
-		// Integral 누적합 연산 모드 설정 // Set integration operation method.
-		// ECalculationMode_Sum : bx 화소 합 // ECalculationMode_Sum : bx Sum
-		integral.SetCalculationMode(CIntegral::ECalculationMode_Sum);
+		// IntegralImage 누적합 연산 모드 설정 // Set integration operation method.
+		// ECalculationMode_SquaredLinearConstant : ax^2 + bx + c 형태의 다항식 누적합 // ECalculationMode_SquaredLinearConstant : Polynomial sum with constant (ax^2 + bx + c)
+		integralImage.SetCalculationMode(CIntegralImage::ECalculationMode_SquaredLinearConstant);
 
-		// ax^2 + bx + c 계수 설정(a = 0, b = 2.1, c = 0) // ax^2 + bx + c Setting the coefficient (a = 0, b = 2.1, c = 0)
-		integral.SetCoefficients(CMultiVar<double>(0, 2.1, 0));
+		// ax^2 + bx + c 계수 설정(a = 1.7, b = 2.1, c = 1.5) // ax^2 + bx + c Setting the coefficient (a = 1.7, b = 2.1, c = 1.5)
+		integralImage.SetCoefficients(CMultiVar<double>(1.7, 2.1, 1.5));
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = integral.Execute()).IsFail())
+		if((res = integralImage.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute Integral.");
+			ErrorPrint(res, "Failed to execute IntegralImage.");
 			break;
 		}
 
@@ -147,6 +147,7 @@ int main()
 
 		for(int32_t i = 0; i < ETypeCount; ++i)
 		{
+			// 이미지 뷰 확대 비율을 갱신 // Update image view magnification ratio
 			// 이미지 뷰를 갱신 합니다. // Update the image view.
 			arrViewImage[i].ZoomFit();
 			arrViewImage[i].Invalidate(true);
@@ -154,6 +155,7 @@ int main()
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
 		bool bRun = true;
+
 		while(bRun)
 		{
 			for(int32_t i = 0; i < ETypeCount; ++i)

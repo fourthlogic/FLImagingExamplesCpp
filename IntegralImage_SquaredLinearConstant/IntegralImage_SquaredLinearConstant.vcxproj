@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{12BD89CF-AE5F-4D91-B868-7E3D321FE173}</ProjectGuid>
+    <ProjectGuid>{27EECD06-BC83-4590-9321-CF1B6C8932C6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Integral_Sum</RootNamespace>
+    <RootNamespace>IntegralImage_SquaredLinearConstant</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Integral_Sum.cpp" />
+    <ClCompile Include="IntegralImage_SquaredLinearConstant.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

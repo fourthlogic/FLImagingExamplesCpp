@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Integral_SumAndSquareSum.cpp">
+    <ClCompile Include="IntegralImage_Squared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

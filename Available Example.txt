@@ -1918,18 +1918,21 @@
 
     - [Integral]
 
-      - Integral_Polynomial
-        - The algorithm example for generating an integral image.(Polynomial Mode y = aX^2 + bX + C)
-        - 적분합 이미지를 생성하는 알고리즘 예제.(Polynomial Mode y = aX^2 + bX + C)
-      - Integral_SquareSum	     
-        - The algorithm example for generating an integral image.(SquareSum Mode y = aX^2)
-        - 적분합 이미지를 생성하는 알고리즘 예제.(SquareSum Mode y = aX^2)
-      - Integral_Sum	     
-        - The algorithm example for generating an integral image.(Sum Mode y = bX)
-        - 적분합 이미지를 생성하는 알고리즘 예제.(Sum Mode y = bX)
-      - Integral_SumAndSquareSum	     
-        - The algorithm example for generating an integral image.(SumAndSquareSum Mode y = aX^2 + bX)
-        - 적분합 이미지를 생성하는 알고리즘 예제.(SumAndSquareSum Mode y = aX^2 + bX)
+      - IntegralImage_Linear	     
+        - The algorithm example for generating an integral image.(Linear Mode y = bX)
+        - 적분합 이미지를 생성하는 알고리즘 예제.(Linear Mode y = bX)
+      - IntegralImage_LinearConstant	     
+        - The algorithm example for generating an integral image.(LinearConstant Mode y = bX + c)
+        - 적분합 이미지를 생성하는 알고리즘 예제.(LinearConstant Mode y = bX + c)
+      - IntegralImage_Squared	     
+        - The algorithm example for generating an integral image.(Squared Mode y = aX^2)
+        - 적분합 이미지를 생성하는 알고리즘 예제.(Squared Mode y = aX^2)
+      - IntegralImage_SquaredLinear	     
+        - The algorithm example for generating an integral image.(SquaredLinear Mode y = aX^2 + bX)
+        - 적분합 이미지를 생성하는 알고리즘 예제.(SquaredLinear Mode y = aX^2 + bX)
+      - IntegralImage_SquaredLinearConstant
+        - The algorithm example for generating an integral image.(SquaredLinearConstant Mode y = aX^2 + bX + C)
+        - 적분합 이미지를 생성하는 알고리즘 예제.(SquaredLinearConstant Mode y = aX^2 + bX + C)
         
     - [PixelCounter]
 

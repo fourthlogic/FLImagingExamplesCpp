@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{27EECD06-BC83-4590-9321-CF1B6C8932C6}</ProjectGuid>
+    <ProjectGuid>{95869C71-3186-4E78-B76A-9FD77D92F901}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Integral_Polynomial</RootNamespace>
+    <RootNamespace>IntegralImage_Squared</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Integral_Polynomial.cpp" />
+    <ClCompile Include="IntegralImage_Squared.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
