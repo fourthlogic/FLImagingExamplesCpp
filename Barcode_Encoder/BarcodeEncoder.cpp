@@ -21,12 +21,6 @@ int main()
 	do
 	{
 		CResult res = EResult_UnknownError;
-		// 이미지 뷰 생성 // Create image view
-		if(IsFail(res = viewImage.Create(400, 0, 1424, 768)))
-		{
-			ErrorPrint(res, "Failed to create the image view.\n");
-			break;
-		}
 
 		// 문자열을 입력 받을 wchar_t 형 배열 선언
 		wchar_t arrWcEncoding[4096] = { 0, };
@@ -35,6 +29,13 @@ int main()
 
 		// 문자열을 입력 받는다
 		fgetws(arrWcEncoding, 4096, stdin);
+
+		// 이미지 뷰 생성 // Create image view
+		if(IsFail(res = viewImage.Create(400, 0, 1424, 768)))
+		{
+			ErrorPrint(res, "Failed to create the image view.\n");
+			break;
+		}
 
 		int32_t i32StrLen = (int32_t)wcslen(arrWcEncoding);
 
