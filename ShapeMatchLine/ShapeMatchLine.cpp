@@ -74,6 +74,9 @@ int main()
 		shapeMatch.SetAngleBias(90);
 		// 검출할 각도 범위를 설정합니다. // Sets the angle range to be detected.
 		shapeMatch.SetAngleTolerance(10);
+		// 검출할 객체 개수 설정. 0이하의 값을 입력 시 모든 객체 검출 
+		// Set the number of objects to detect. If a value less than or equal to 0 is entered, all objects will be detected.
+		shapeMatch.SetMaxObject(5);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = shapeMatch.Execute()))
