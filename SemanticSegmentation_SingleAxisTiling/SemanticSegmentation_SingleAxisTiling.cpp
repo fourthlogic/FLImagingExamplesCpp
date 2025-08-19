@@ -49,13 +49,13 @@ int main()
 		CThreadUtilities::Sleep(1000);
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliLearnImage.Load(L"../../ExampleImages/SemanticSegmentation/Cityscape.flif")))
+		if(IsFail(res = fliLearnImage.Load(L"../../ExampleImages/SemanticSegmentation/Train.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
-		if(IsFail(res = fliValidationImage.Load(L"../../ExampleImages/SemanticSegmentation/Cityscape.flif")))
+		if(IsFail(res = fliValidationImage.Load(L"../../ExampleImages/SemanticSegmentation/Validation.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -159,13 +159,10 @@ int main()
 
 		// View 정보를 디스플레이 합니다. // Display View information.
 		// 아래 함수 DrawTextCanvas 는 Screen좌표를 기준으로 하는 String을 Drawing 한다.// The function DrawTextCanvas below draws a String based on the screen coordinates.
-		// 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 
-		//                 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 
-		//                 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> 
-		//                  Area color -> font size -> actual size -> angle -> Align -> Font Name -> 
-		//                  Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> 
-		//                  Font Thickness -> Font Italic
+		// 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
+		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
+		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
 		if(IsFail(res = layerLearn.DrawTextCanvas(&CFLPoint<double>(0, 0), L"LEARN", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
@@ -209,9 +206,9 @@ int main()
 		// 학습할 SemanticSegmentation 모델 설정 // Set up SemanticSegmentation model to learn
 		semanticSegmentationDL.SetModel(CSemanticSegmentationDL::EModel_FLSegNet);
 		// 학습할 SemanticSegmentation 모델의 버전 설정 // Set up SemanticSegmentation model version to learn
-		semanticSegmentationDL.SetModelVersion(CSemanticSegmentationDL::EModelVersion_FLSegNet_V1_256_B1);
+		semanticSegmentationDL.SetModelVersion(CSemanticSegmentationDL::EModelVersion_FLSegNet_V1_512_B3);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
-		semanticSegmentationDL.SetLearningEpoch(1000);
+		semanticSegmentationDL.SetLearningEpoch(120);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		semanticSegmentationDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
@@ -223,21 +220,22 @@ int main()
 		// 설정한 Optimizer를 SemanticSegmentation에 적용 // Apply the Optimizer that we set up to SemanticSegmentation
 		semanticSegmentationDL.SetLearningOptimizerSpec(optSpec);
 
-		// 학습을 종료할 조건식 설정. mIoU.ze값이 0.85 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
-		// Set Conditional Expression to End Learning. If the mIoU.ze value is 0.85 or higher, end the learning. Same value as metric.ze.
-		semanticSegmentationDL.SetLearningStopCondition(L"mIoU.ze >= 0.85");
-	
-		// 학습 이미지 분할 모드 설정.
-		// 정사각형 비율을 유지하여 원본 이미지를 나누어 처리한다.
-		// Set the training image segmentation mode.
-		// The original image is divided and processed by maintaining the square ratio.
-		semanticSegmentationDL.SetImageTilingMode(ETilingMode_SingleAxisTiling_ProportionalFit);
-		// 학습 이미지 분할 모드의 겹치는 비율을 설정 // Set the overlap ratio of the learning image in tiling mode
-		semanticSegmentationDL.SetImageTilingOverlapRatio(0.25);
+		// AugmentationSpec 설정 // Set the AugmentationSpec
+		CAugmentationSpec augSpec;
+
+		augSpec.EnableAugmentation(true);
+		augSpec.SetCommonActivationRate(0.5);
+		augSpec.SetCommonInterpolationMethod(FLImaging::ImageProcessing::EInterpolationMethod_Bilinear);
+		augSpec.EnableRotation(true);
+		augSpec.SetRotationParam(-180., 180., false);
+		augSpec.EnableHorizontalFlip(true);
+		augSpec.EnableVerticalFlip(true);
+
+		semanticSegmentationDL.SetLearningAugmentationSpec(&augSpec);
 
 		// 학습을 종료할 조건식 설정. mIoU.ze값이 0.85 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
 		// Set Conditional Expression to End Learning. If the mIoU.ze value is 0.85 or higher, end the learning. Same value as metric.ze.
-		semanticSegmentationDL.SetLearningStopCondition(L"miou.ze >= 0.85");
+		semanticSegmentationDL.SetLearningStopCondition(L"mIoU.ze >= 0.85");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		CAutoSaveSpec autoSaveSpec;
@@ -386,12 +384,22 @@ int main()
 			break;
 		}
 
-		// 결과 이미지를 이미지 뷰에 맞게 조정합니다. // Fit the result image to the image view.
-		viewImagesLabel.ZoomFit();
-		viewImagesLabelFigure.ZoomFit();
+		int64_t i64LearningClassCount = semanticSegmentationDL.GetLearningResultClassCount();
+		// ResultContours 인덱스와 매칭 되는 라벨 번호배열을 가져오기 // ResultContours Get an array of label numbers matching the index.
+		for(int64_t classNum = 1; classNum < i64LearningClassCount; ++classNum)
+		{
+			Base::CFLArray<Base::CFLStringW> flaNames;
+	
+			semanticSegmentationDL.GetLearningResultClassNames(classNum, &flaNames);
+			viewImagesLabel.SetSegmentationLabelText(0, (double)classNum, flaNames[0].GetString());
+		}
 
 		// ResultLabel 뷰에 Floating Value Range를 설정 // Set Floating Value Range in ResultLabel view
 		viewImagesLabel.SetFloatingImageValueRange(0.f, (float)semanticSegmentationDL.GetLearningResultClassCount());
+
+		// 결과 이미지를 이미지 뷰에 맞게 조정합니다. // Fit the result image to the image view.
+		viewImagesLabel.ZoomFit();
+		viewImagesLabelFigure.ZoomFit();
 
 		// 이미지 뷰를 갱신 // Update the image view.
 		viewImageLearn.RedrawWindow();
