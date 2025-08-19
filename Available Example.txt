@@ -204,6 +204,11 @@
       - VoxelGrid3D
         - The example of an algorithm that sampling a given point cloud.
         - 주어진 포인트 클라우드를 샘플링하는 알고리즘 예제.
+        
+    - [XYZ Image To Point Cloud Converter 3D]
+      - XYZImageToPointCloudConverter3D
+        - An example of an algorithm that create a point cloud with a XYZ image.
+        - XYZ 이미지로 포인트 클라우드를 생성하는 알고리즘 예제.
 
 - [Advanced Functions]
 
