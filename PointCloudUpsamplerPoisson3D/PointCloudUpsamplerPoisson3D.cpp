@@ -48,7 +48,7 @@ int main()
 		// 파라미터 설정 // Set parameter
 		pointCloudUpsamplerPoisson3D.SetSourceObject(floSrc);
 		pointCloudUpsamplerPoisson3D.SetDestinationObject(floDst);
-		pointCloudUpsamplerPoisson3D.SetColoringMode(CPointCloudUpsampler3DBase::EColoringMode_Interpolate);
+		pointCloudUpsamplerPoisson3D.SetColoringMode(EColoringMode_Interpolate);
 		pointCloudUpsamplerPoisson3D.EnableNormalInterpolation(true);
 		pointCloudUpsamplerPoisson3D.EnableAutoDistance(true);
 		pointCloudUpsamplerPoisson3D.EnableCopyVertex(true);
