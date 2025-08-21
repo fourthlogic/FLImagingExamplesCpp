@@ -87,10 +87,10 @@ int main()
 		// Scalar Operation 모드로 설정 // Set operation mode to scalar
 		operationSignedSquareDifference.SetOperationSource(EOperationSource_Scalar);
 
-		// 스칼라 색상 지정
+		// 스칼라 Operand 값 지정 // Set scalar operand value
 		operationSignedSquareDifference.SetScalarValue(CMultiVar<double>(0));
 
-		// 공백 영역을 지정한 색으로 채우지 않도록 설정
+		// 공백 영역을 지정한 색으로 채우지 않도록 설정 // Set the blank area to not be filled with the specified color
 		operationSignedSquareDifference.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters

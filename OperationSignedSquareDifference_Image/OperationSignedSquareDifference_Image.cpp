@@ -22,88 +22,88 @@ int main()
 
 	do
 	{
-        // 알고리즘 동작 결과 // Algorithmic executation result
+		// 알고리즘 동작 결과 // Algorithmic executation result
 		CResult res = EResult_UnknownError;
 
 		// Source 이미지 로드 // Load the source image
-		if(IsFail(res =fliSourceImage.Load(L"../../ExampleImages/OperationSignedSquareDifference/Valley1.flif")))
+		if(IsFail(res = fliSourceImage.Load(L"../../ExampleImages/OperationSignedSquareDifference/Valley1.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// Operand 이미지 로드 // Loads the operand image
-		if(IsFail(res =fliOperandImage.Load(L"../../ExampleImages/OperationSignedSquareDifference/Valley2.flif")))
+		if(IsFail(res = fliOperandImage.Load(L"../../ExampleImages/OperationSignedSquareDifference/Valley2.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// Source 이미지 뷰 생성 // Create Source image view
-		if(IsFail(res =viewImageSource.Create(100, 0, 612, 512)))
+		if(IsFail(res = viewImageSource.Create(100, 0, 612, 512)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
 		// Operand 이미지 뷰 생성 // Creates operand image view
-		if(IsFail(res =viewImageOperand.Create(612, 0, 1124, 512)))
+		if(IsFail(res = viewImageOperand.Create(612, 0, 1124, 512)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
 		// Destination 이미지 뷰 생성 // Create destination image view
-		if(IsFail(res =viewImageDestination.Create(1124, 0,1636, 512)))
+		if(IsFail(res = viewImageDestination.Create(1124, 0, 1636, 512)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
 		// Source 이미지 뷰와 Operand 이미지 뷰의 시점을 동기화 한다
-		if(IsFail(res =viewImageSource.SynchronizePointOfView(&viewImageOperand)))
+		if(IsFail(res = viewImageSource.SynchronizePointOfView(&viewImageOperand)))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
 		// Source 이미지 뷰와 Destination 이미지 뷰의 시점을 동기화 한다
-		if(IsFail(res =viewImageSource.SynchronizePointOfView(&viewImageDestination)))
+		if(IsFail(res = viewImageSource.SynchronizePointOfView(&viewImageDestination)))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
 		// Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		if(IsFail(res =viewImageSource.SetImagePtr(&fliSourceImage)))
+		if(IsFail(res = viewImageSource.SetImagePtr(&fliSourceImage)))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// Operand 이미지 뷰에 이미지를 디스플레이
-		if(IsFail(res =viewImageOperand.SetImagePtr(&fliOperandImage)))
+		if(IsFail(res = viewImageOperand.SetImagePtr(&fliOperandImage)))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
-		if(IsFail(res =viewImageDestination.SetImagePtr(&fliDestinationImage)))
+		if(IsFail(res = viewImageDestination.SetImagePtr(&fliDestinationImage)))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if(IsFail(res =viewImageSource.SynchronizeWindow(&viewImageOperand)))
+		if(IsFail(res = viewImageSource.SynchronizeWindow(&viewImageOperand)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
 		}
 
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if(IsFail(res =viewImageSource.SynchronizeWindow(&viewImageDestination)))
+		if(IsFail(res = viewImageSource.SynchronizeWindow(&viewImageDestination)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
@@ -132,7 +132,7 @@ int main()
 		operationSignedSquareDifference.EnableFillBlankColorMode(false);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(IsFail(res =res = operationSignedSquareDifference.Execute()))
+		if(IsFail(res = res = operationSignedSquareDifference.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Operation Signed Square Difference.\n");
 			break;
@@ -151,19 +151,19 @@ int main()
 
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if(IsFail(res =layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res =layerOperand.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerOperand.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res =layerDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
