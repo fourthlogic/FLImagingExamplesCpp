@@ -74,14 +74,6 @@ int main()
 
 			if(i != EType_Src)
 			{
-				// 두개의 뷰의 시점을 동기화  // Synchronize the viewpoints of the two image views. 
-				if(IsFail(res = arrViewImage[EType_Src].SynchronizePointOfView(&arrViewImage[i])))
-				{
-					ErrorPrint(res, "Failed to synchronize window.\n");
-					bError = true;
-					break;
-				}
-
 				// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
 				if(IsFail(res = arrViewImage[EType_Src].SynchronizeWindow(&arrViewImage[i])))
 				{
@@ -135,7 +127,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Crop].DrawTextCanvas(&CFLPoint<double>(0, 0), L"crop Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Crop].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Crop Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
