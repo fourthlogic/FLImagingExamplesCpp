@@ -98,7 +98,7 @@ int main()
 		// 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
 		// 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
 		// 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
-		if(IsFail(res = thinPlateSplineMapping.Load(L"MappingData.flthinPlateSplineMapping")))
+		if(IsFail(res = thinPlateSplineMapping.Load(L"MappingData.fltps")))
 		{
 			CFLPoint<int32_t> flpGridIndex;
 			for(int y = 0; y < flpGridSize.y; ++y)
@@ -134,7 +134,7 @@ int main()
 			// 추후 Load함수를 통해 로드 시 위의 Initialize -> Set -> Finalize 과정을 생략할 수 있습니다.
 			// If Finalize is completed, it can be saved to a file through Save.
 			// When loading through the Load function later, the above Initialize -> Set -> Finalize process can be omitted.
-			if(IsFail(res = thinPlateSplineMapping.Save(L"MappingData.flthinPlateSplineMapping")))
+			if(IsFail(res = thinPlateSplineMapping.Save(L"MappingData.fltps")))
 			{
 				ErrorPrint(res, "Failed to save mapping data\n");
 				break;
