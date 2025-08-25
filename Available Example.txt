@@ -194,6 +194,11 @@
       - PointCloudToDepthMapConverter3D
         - An example of an algorithm that generate depth images using a given point cloud and internal camera matrix.
         - 포인트 클라우드 및 카메라 내부 행렬을 입력 받아 깊이 이미지를 생성하는 알고리즘 예제.
+        
+    - [Point Cloud To XYZ Image Converter 3D]
+      - PointCloudToXYZImageConverter3D
+        - An example of an algorithm that generate XYZ images using a given point cloud.
+        - 포인트 클라우드를 입력 받아 XYZ 이미지를 생성하는 알고리즘 예제.
 
     - [Scanned Point Cloud Generator]
       - Scanned Point Cloud Generator 3D
