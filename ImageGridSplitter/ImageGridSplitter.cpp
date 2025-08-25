@@ -62,7 +62,7 @@ int main()
 		if(bError)
 			break;
 
-		// CImageGridSplitter 객체 생성 // Create CImageGridSplitter object
+		// Image Grid Splitter 객체 생성 // Create Image Grid Splitter object
 		CImageGridSplitter imageGridSplitter;
 		
 		// Source 이미지 설정 // Set source image 
@@ -109,12 +109,13 @@ int main()
 			break;
 		}
 
+		// Image 분할 영역 계산 // Calculate image split regions.
 		CFLRect<double> flrSource(arrFliImage[EType_Src]);
 		CFLFigureArray flgaGrid;
 
 		flrSource.Split(4, 4, flgaGrid);
 
-		// ImageGridSplitter 분할 영역 표기 // ImageGridSplitter draw split area
+		// Image 분할 영역을 원본 이미지 레이어에 디스플레이 // Display grid of split Image to image layer.
 		if(IsFail(res = arrLayer[EType_Src].DrawFigureImage(&flgaGrid, RED)))
 			ErrorPrint(res, "Failed to draw figure\n");
 
