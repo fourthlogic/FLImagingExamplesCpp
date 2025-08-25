@@ -25,7 +25,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/StationaryConeBeamTranslateCT3D/")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/StationaryConeBeamTranslationCT/")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -85,65 +85,65 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CStationaryConeBeamTranslateCT3D stationaryConeBeamTranslateCT3D;
+		CStationaryConeBeamTranslationCT stationaryConeBeamTranslationCT;
 
-		if((res = stationaryConeBeamTranslateCT3D.SetSourceImage(&fliSrcImage)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetSourceImage(&fliSrcImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetDestinationImage(&fliDstImage)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetDestinationImage(&fliDstImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetDestinationSinogramImage(&fliDstSinoImage)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetDestinationSinogramImage(&fliDstSinoImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetDestinationObject(&floDstObject)).IsFail())
-			break;
-
-		if((res = stationaryConeBeamTranslateCT3D.SetDestinationSinogramIndex(15)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetDestinationObject(&floDstObject)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamTranslateCT3D.SetDetectorCellSizeUnit(0.16708)).IsFail())
-			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetObjectTranslateDirection(CStationaryConeBeamTranslateCT3D::EObjectTranslateDirection_RightToLeft)).IsFail())
-			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSourceObjectDistanceUnit(13.60)).IsFail())
-			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSourceDetectorDistanceUnit(60.00)).IsFail())
-			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetObjectTranslationDistanceUnit(24.00)).IsFail())
-			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetPrincipalDeltaXPixel(0.00)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetDestinationSinogramIndex(15)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamTranslateCT3D.SetNormalizedAirThreshold(0.60)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetDetectorCellSizeUnit(0.16708)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSinogramKeepRatio(0.30)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetObjectTranslateDirection(CStationaryConeBeamTranslationCT::EObjectTranslateDirection_RightToLeft)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetInterpolationCoefficient(6)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetSourceObjectDistanceUnit(13.60)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetMergeCoefficient(21)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetSourceDetectorDistanceUnit(60.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.EnableFrequencyRampFilter(true)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetObjectTranslationDistanceUnit(24.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetFrequencyWindow(CStationaryConeBeamTranslateCT3D::EFrequencyWindow_Gaussian)).IsFail())
-			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSigma(0.30)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetPrincipalDeltaXPixel(0.00)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamTranslateCT3D.SetReconstructionPlaneCount(140)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetNormalizedAirThreshold(0.60)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.EnableNegativeClip(true)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetSinogramKeepRatio(0.30)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.EnableCircularMask(true)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetInterpolationCoefficient(6)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.EnableSigmoid(true)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetMergeCoefficient(21)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSigmoidB(1.00)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.EnableFrequencyRampFilter(true)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetSigmoidM(0.00)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetFrequencyWindow(CStationaryConeBeamTranslationCT::EFrequencyWindow_Gaussian)).IsFail())
 			break;
-		if((res = stationaryConeBeamTranslateCT3D.SetIntensityThreshold(190)).IsFail())
+		if((res = stationaryConeBeamTranslationCT.SetSigma(0.30)).IsFail())
+			break;
+
+		if((res = stationaryConeBeamTranslationCT.SetReconstructionPlaneCount(140)).IsFail())
+			break;
+		if((res = stationaryConeBeamTranslationCT.EnableNegativeClip(true)).IsFail())
+			break;
+		if((res = stationaryConeBeamTranslationCT.EnableCircularMask(true)).IsFail())
+			break;
+		if((res = stationaryConeBeamTranslationCT.EnableSigmoid(true)).IsFail())
+			break;
+		if((res = stationaryConeBeamTranslationCT.SetSigmoidB(1.00)).IsFail())
+			break;
+		if((res = stationaryConeBeamTranslationCT.SetSigmoidM(0.00)).IsFail())
+			break;
+		if((res = stationaryConeBeamTranslationCT.SetIntensityThreshold(190)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = stationaryConeBeamTranslateCT3D.Execute()).IsFail())
+		if((res = stationaryConeBeamTranslationCT.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
