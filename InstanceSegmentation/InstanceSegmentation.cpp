@@ -209,6 +209,8 @@ int main()
 		// 학습을 종료할 조건식 설정. mAP값이 0.85 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
 		// Set Conditional Expression to End Learning. If the mAP value is 0.85 or higher, end the learning. Same value as metric.
 		instanceSegmentationDL.SetLearningStopCondition(L"mAP >= 0.85");
+		// 검증 IoU Threshold를 0.7로 설정 // Set IoU Threshold Of Validating to 0.7 
+		instanceSegmentationDL.SetValidationIoUThreshold(0.7f);
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-4f);
@@ -233,9 +235,9 @@ int main()
 
 		instanceSegmentationDL.SetLearningAugmentationSpec(&augSpec);
 
-		// 학습을 종료할 조건식 설정. mAP값이 0.85 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
-		// Set Conditional Expression to End Learning. If the mAP value is 0.85 or higher, end the learning. Same value as metric.
-		instanceSegmentationDL.SetLearningStopCondition(L"map >= 0.85");
+		// 학습을 종료할 조건식 설정. mAP값이 0.95 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
+		// Set Conditional Expression to End Learning. If the mAP value is 0.95 or higher, end the learning. Same value as metric.
+		instanceSegmentationDL.SetLearningStopCondition(L"map >= 0.95");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		CAutoSaveSpec autoSaveSpec;
