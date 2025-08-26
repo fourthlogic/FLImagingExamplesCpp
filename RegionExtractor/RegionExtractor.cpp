@@ -87,7 +87,7 @@ int main()
 		flfaExtractRegion.PushBack(CFLCircle<double>(103, 198, 60));
 
 		// 추출 영역을 추가로 API로 지정 // Additional extraction areas can be specified via the API
-		regionExtractor.SetExtractRegion(flfaExtractRegion);
+		regionExtractor.SetExtractionRegion(flfaExtractRegion);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = regionExtractor.Execute()))
