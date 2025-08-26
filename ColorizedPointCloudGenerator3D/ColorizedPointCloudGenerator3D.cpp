@@ -8,12 +8,13 @@ int main()
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-    // 이미지 객체 선언 // Declare the image object
+	// 이미지 객체 선언 // Declare the image object
 	CFLImage fliCaliSrcXYZVImage;
 	CFLImage fliCaliSrcRGBImage;
 	CFLImage fliExecSrcXYZVImage;
 	CFLImage fliExecSrcRGBImage;
 	CFLImage fliExecDstRGBImage;
+	CFLImage fliSampDstRGBImage;
 
 	// 이미지 뷰 선언 // Declare image view
 	CGUIViewImageWrap viewImageCaliSrcXYZV;
@@ -21,6 +22,7 @@ int main()
 	CGUIViewImageWrap viewImageExecSrcXYZV;
 	CGUIViewImageWrap viewImageExecSrcRGB;
 	CGUIViewImageWrap viewImageExecDstRGB;
+	CGUIViewImageWrap viewImageSampDstRGB;
 	CGUIView3DWrap view3DDst;
 
 	do
@@ -132,8 +134,23 @@ int main()
 		}
 
 
+		// Execution Sampled RGB 이미지 뷰 생성 // Create the execution destination RGB image view
+		if((res = viewImageSampDstRGB.Create(700, 300, 1000, 600)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to create the image view.\n");
+			break;
+		}
+
+		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the execution destination RGB image view
+		if((res = viewImageSampDstRGB.SetImagePtr(&fliSampDstRGBImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set image object on the image view.\n");
+			break;
+		}
+
+
 		// Destination 3D 이미지 뷰 생성 // Create the destination 3D image view
-		if((res = view3DDst.Create(700, 300, 1300, 900)).IsFail())
+		if((res = view3DDst.Create(1000, 0, 1600, 600)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
@@ -284,6 +301,20 @@ int main()
 			break;
 		}
 
+		// Destination Sampled RGB 이미지 설정 // Set the destination sampled RGB image
+		if((res = colorizedPointCloudGenerator3D.SetSampledImageRGB(fliSampDstRGBImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set destination sampled RGB source.\n");
+			break;
+		}
+
+		// Sampled 픽셀 표시 RGB 설정 // Set the color of the sampled pixels in RGB
+		if((res = colorizedPointCloudGenerator3D.SetSampledRGBValue(0, 255, 255)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set destination sampled RGB source.\n");
+			break;
+		}
+
 		// Destination 3D Object 설정 // Set the destination 3D object
 		if((res = colorizedPointCloudGenerator3D.SetDestination3DObject(fli3DDstObj)).IsFail())
 		{
@@ -315,8 +346,82 @@ int main()
 
 		view3DDst.SetCamera(fl3DCam);
 
+		// 출력을 위한 이미지 레이어를 얻어옵니다. //  Gets the image layer for output.
+		// 따로 해제할 필요 없음 // No need to release separately
+		CGUIViewImageLayerWrap layerImageCaliSrcXYZV = viewImageCaliSrcXYZV.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageCaliSrcRGB = viewImageCaliSrcRGB.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageExecSrcXYZV = viewImageExecSrcXYZV.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageExecSrcRGB = viewImageExecSrcRGB.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageExecDstRGB = viewImageExecDstRGB.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageSampDstRGB = viewImageSampDstRGB.GetLayer(0);
+		CGUIView3DLayerWrap layer3DDst = view3DDst.GetLayer(0);
+
+		// 기존에 Layer에 그려진 도형들을 삭제 // Delete the shapes drawn on the existing layer
+		layerImageCaliSrcXYZV.Clear();
+		layerImageCaliSrcRGB.Clear();
+		layerImageExecSrcXYZV.Clear();
+		layerImageExecSrcRGB.Clear();
+		layerImageExecDstRGB.Clear();
+		layerImageSampDstRGB.Clear();
+		layer3DDst.Clear();
+
+		// View 정보를 디스플레이 합니다. // Display View information.
+		// 아래 함수 DrawTextCanvas 는 Screen좌표를 기준으로 하는 String을 Drawing 한다.// The function DrawTextCanvas below draws a String based on the screen coordinates.
+		// 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
+		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
+		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+		if(IsFail(res = layerImageCaliSrcXYZV.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Source XYZV Image", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = layerImageCaliSrcRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Source RGB Image", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = layerImageExecSrcXYZV.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Source XYZV Image", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = layerImageExecSrcRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Source RGB Image", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = layerImageExecDstRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Destination RGB Image", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = layerImageSampDstRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Sampled RGB Image", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+		if(IsFail(res = layer3DDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"3D Colored Point Cloud", YELLOW, BLACK, 15)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
+
 		// Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
 		if((res = viewImageExecDstRGB.ZoomFit()).IsFail())
+		{
+			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
+			break;
+		}
+
+		if((res = viewImageSampDstRGB.ZoomFit()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
 			break;
@@ -328,10 +433,11 @@ int main()
 		viewImageExecSrcXYZV.Invalidate(true);
 		viewImageExecSrcRGB.Invalidate(true);
 		viewImageExecDstRGB.Invalidate(true);
+		viewImageSampDstRGB.Invalidate(true);
 		view3DDst.Invalidate(true);
 
 		// 이미지 뷰와 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
-		while(viewImageCaliSrcXYZV.IsAvailable() && viewImageCaliSrcRGB.IsAvailable() && viewImageExecSrcXYZV.IsAvailable() && viewImageExecSrcRGB.IsAvailable() && viewImageExecDstRGB.IsAvailable() && view3DDst.IsAvailable())
+		while(viewImageCaliSrcXYZV.IsAvailable() && viewImageCaliSrcRGB.IsAvailable() && viewImageExecSrcXYZV.IsAvailable() && viewImageExecSrcRGB.IsAvailable() && viewImageExecDstRGB.IsAvailable() && viewImageSampDstRGB.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
