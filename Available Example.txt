@@ -632,6 +632,10 @@
        - Algorithm example that replace specific label names in a dataset with user-defined names.
        - 입력받은 이미지의 특정한 이름을 가진 라벨들을 사용자가 설정한 이름으로 치환하는 알고리즘 예제
 
+    - RandomTextImageGenerator
+       - Algorithm example that randomly generate and label strings from images based on user-defined parameters.
+       - 입력받은 이미지에서 사용자가 설정한 파라미터에 따라 무작위적으로 문자열을 생성하고 라벨링하는 알고리즘 예제
+
     - UnnamedLabelRemover
        - Algorithm example that removes labels (figures) without names in an image.
        - 이미지의 이름이 없는 라벨(피겨)을 제거하는 알고리즘 예제
