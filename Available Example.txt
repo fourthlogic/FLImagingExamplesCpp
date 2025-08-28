@@ -114,11 +114,17 @@
         - The example of an algorithm that performs getting the height map from a images with different light source positions using sphere calibration.
         - Sphere Calibration을 사용하여 광원의 위치만 다른 여러 이미지들로부터 Height Map을 구하는 알고리즘 예제.
         
+    - [Stationary Cone Beam Rotation CT]
+
+      - StationaryConeBeamRotationCT
+        - The example of an algorithm that reconstructs cross-sectional images in a fixed cone-beam CT with rotating object motion.
+        - 고정된 콘빔 CT 시스템에서 회전하는 물체의 움직임을 고려하여 단면 영상을 복원하는 알고리즘 예제.
+  
     - [Stationary Cone Beam Translation CT]
 
       - StationaryConeBeamTranslationCT
         - The example of an algorithm that reconstructs cross-sectional images in a fixed cone-beam CT with translating object motion.
-        - 고정된 콘빔 CT 시스템에서 검출기에 대해 물체가 이동하는 경우의 단면 영상 복원 알고리즘 예제.
+        - 고정된 콘빔 CT 시스템에서 평행 이동하는 물체의 움직임을 고려하여 단면 영상을 복원하는 알고리즘 예제.
   
     - [Stereo]
     
