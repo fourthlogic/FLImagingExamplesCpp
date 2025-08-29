@@ -10,19 +10,19 @@ int main()
 
 	// 이미지 객체 선언 // Declare the image object
 	CFLImage fliCaliSrcXYZVImage;
-	CFLImage fliCaliSrcRGBImage;
+	CFLImage fliCaliSrcColorImage;
 	CFLImage fliExecSrcXYZVImage;
-	CFLImage fliExecSrcRGBImage;
-	CFLImage fliExecDstRGBImage;
-	CFLImage fliSampDstRGBImage;
+	CFLImage fliExecSrcColorImage;
+	CFLImage fliExecDstColorImage;
+	CFLImage fliSampDstColorImage;
 
 	// 이미지 뷰 선언 // Declare image view
 	CGUIViewImageWrap viewImageCaliSrcXYZV;
-	CGUIViewImageWrap viewImageCaliSrcRGB;
+	CGUIViewImageWrap viewImageCaliSrcColor;
 	CGUIViewImageWrap viewImageExecSrcXYZV;
-	CGUIViewImageWrap viewImageExecSrcRGB;
-	CGUIViewImageWrap viewImageExecDstRGB;
-	CGUIViewImageWrap viewImageSampDstRGB;
+	CGUIViewImageWrap viewImageExecSrcColor;
+	CGUIViewImageWrap viewImageExecDstColor;
+	CGUIViewImageWrap viewImageSampDstColor;
 	CGUIView3DWrap view3DDst;
 
 	do
@@ -53,22 +53,22 @@ int main()
 		}
 
 
-		// Calibration Source RGB 이미지 로드 // Load the calibration source RGB image
-		if((res = fliCaliSrcRGBImage.Load(L"../../ExampleImages/ColorizedPointCloudGenerator3D/CalibRGB.flif")).IsFail())
+		// Calibration Source Color 이미지 로드 // Load the calibration source Color image
+		if((res = fliCaliSrcColorImage.Load(L"../../ExampleImages/ColorizedPointCloudGenerator3D/CalibRGB.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
 		}
 
-		// Calibration Source RGB 이미지 뷰 생성 // Create the calibration source RGB image view
-		if((res = viewImageCaliSrcRGB.Create(100, 300, 400, 600)).IsFail())
+		// Calibration Source Color 이미지 뷰 생성 // Create the calibration source Color image view
+		if((res = viewImageCaliSrcColor.Create(100, 300, 400, 600)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Calibration Source RGB 이미지 뷰에 이미지를 디스플레이 // Display the image in the calibration source RGB image view
-		if((res = viewImageCaliSrcRGB.SetImagePtr(&fliCaliSrcRGBImage)).IsFail())
+		// Calibration Source Color 이미지 뷰에 이미지를 디스플레이 // Display the image in the calibration source Color image view
+		if((res = viewImageCaliSrcColor.SetImagePtr(&fliCaliSrcColorImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
@@ -97,52 +97,52 @@ int main()
 		}
 
 
-		// Execution Source RGB 이미지 로드 // Load the Execution source RGB image
-		if((res = fliExecSrcRGBImage.Load(L"../../ExampleImages/ColorizedPointCloudGenerator3D/ExecRGB.flif")).IsFail())
+		// Execution Source Color 이미지 로드 // Load the Execution source Color image
+		if((res = fliExecSrcColorImage.Load(L"../../ExampleImages/ColorizedPointCloudGenerator3D/ExecRGB.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
 		}
 
-		// Execution Source RGB 이미지 뷰 생성 // Create the Execution source RGB image view
-		if((res = viewImageExecSrcRGB.Create(400, 300, 700, 600)).IsFail())
+		// Execution Source Color 이미지 뷰 생성 // Create the Execution source Color image view
+		if((res = viewImageExecSrcColor.Create(400, 300, 700, 600)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Execution Source RGB 이미지 뷰에 이미지를 디스플레이 // Display the image in the Execution source RGB image view
-		if((res = viewImageExecSrcRGB.SetImagePtr(&fliExecSrcRGBImage)).IsFail())
+		// Execution Source Color 이미지 뷰에 이미지를 디스플레이 // Display the image in the Execution source Color image view
+		if((res = viewImageExecSrcColor.SetImagePtr(&fliExecSrcColorImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
 
-		// Execution Destination RGB 이미지 뷰 생성 // Create the execution destination RGB image view
-		if((res = viewImageExecDstRGB.Create(700, 0, 1000, 300)).IsFail())
+		// Execution Destination Color 이미지 뷰 생성 // Create the execution destination Color image view
+		if((res = viewImageExecDstColor.Create(700, 0, 1000, 300)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the execution destination RGB image view
-		if((res = viewImageExecDstRGB.SetImagePtr(&fliExecDstRGBImage)).IsFail())
+		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the execution destination Color image view
+		if((res = viewImageExecDstColor.SetImagePtr(&fliExecDstColorImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
 
-		// Execution Sampled RGB 이미지 뷰 생성 // Create the execution destination RGB image view
-		if((res = viewImageSampDstRGB.Create(700, 300, 1000, 600)).IsFail())
+		// Execution Sampled Color 이미지 뷰 생성 // Create the execution destination Color image view
+		if((res = viewImageSampDstColor.Create(700, 300, 1000, 600)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the execution destination RGB image view
-		if((res = viewImageSampDstRGB.SetImagePtr(&fliSampDstRGBImage)).IsFail())
+		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the execution destination Color image view
+		if((res = viewImageSampDstColor.SetImagePtr(&fliSampDstColorImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
@@ -158,7 +158,7 @@ int main()
 
 
 		// 두 이미지 뷰 윈도우의 Page를 동기화 한다 // Synchronize the pages of the two image view windows
-		if((res = viewImageCaliSrcXYZV.SynchronizePageIndex(&viewImageCaliSrcRGB)).IsFail())
+		if((res = viewImageCaliSrcXYZV.SynchronizePageIndex(&viewImageCaliSrcColor)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to synchronize window.\n");
 			break;
@@ -169,16 +169,16 @@ int main()
 		CColorizedPointCloudGenerator3D colorizedPointCloudGenerator3D;
 
 		// Calibration XYZV 이미지 설정 // Set the calibration XYZV image
-		if((res = colorizedPointCloudGenerator3D.SetCalibrationImageXYZV(fliCaliSrcXYZVImage)).IsFail())
+		if((res = colorizedPointCloudGenerator3D.SetCalibrationXYZVImage(fliCaliSrcXYZVImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set calibration XYZV source.\n");
 			break;
 		}
 
-		// Calibration RGB 이미지 설정 // Set the calibration RGB image
-		if((res = colorizedPointCloudGenerator3D.SetCalibrationImageRGB(fliCaliSrcRGBImage)).IsFail())
+		// Calibration Color 이미지 설정 // Set the calibration Color image
+		if((res = colorizedPointCloudGenerator3D.SetCalibrationColorImage(fliCaliSrcColorImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set calibration RGB source.\n");
+			ErrorPrint(res, L"Failed to set calibration Color source.\n");
 			break;
 		}
 
@@ -214,7 +214,7 @@ int main()
 		// Calibration 결과 출력 // Print calibration results
 		printf(" < Calibration Result >\n\n");
 
-		// RGB 카메라의 Intrinsic Parameter 출력 // Print the intrinsic parameters of the RGB camera
+		// Color 카메라의 Intrinsic Parameter 출력 // Print the intrinsic parameters of the Color camera
 		AdvancedFunctions::CCameraCalibrator::CCalibratorIntrinsicParameters cCalibIntrinsic;
 
 		cCalibIntrinsic = colorizedPointCloudGenerator3D.GetIntrinsicParameters();
@@ -227,7 +227,7 @@ int main()
 		printf("Principal Point Y ->\t%0.7lf\n", cCalibIntrinsic.f64PrincipalPointY);
 		printf("Skew ->\t%0.7lf\n", cCalibIntrinsic.f64Skew);
 
-		// RGB 카메라의 Distortion Coefficient 출력 // Print the distortion coefficients of the RGB camera
+		// Color 카메라의 Distortion Coefficient 출력 // Print the distortion coefficients of the Color camera
 		AdvancedFunctions::CCameraCalibrator::CCalibratorDistortionCoefficients cCalibDistortion;
 
 		cCalibDistortion = colorizedPointCloudGenerator3D.GetDistortionCoefficients();
@@ -281,37 +281,37 @@ int main()
 		CFL3DObject fli3DDstObj;
 
 		// Execution XYZV 이미지 설정 // Set the execution XYZV image
-		if((res = colorizedPointCloudGenerator3D.SetSourceImageXYZV(fliExecSrcXYZVImage)).IsFail())
+		if((res = colorizedPointCloudGenerator3D.SetSourceXYZVImage(fliExecSrcXYZVImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set execution XYZV source.\n");
 			break;
 		}
 
-		// Execution RGB 이미지 설정 // Set the execution RGB image
-		if((res = colorizedPointCloudGenerator3D.SetSourceImageRGB(fliExecSrcRGBImage)).IsFail())
+		// Execution Color 이미지 설정 // Set the execution Color image
+		if((res = colorizedPointCloudGenerator3D.SetSourceColorImage(fliExecSrcColorImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set execution RGB source.\n");
+			ErrorPrint(res, L"Failed to set execution Color source.\n");
 			break;
 		}
 
-		// Destination RGB 이미지 설정 // Set the destination RGB image
-		if((res = colorizedPointCloudGenerator3D.SetDestinationImageRGB(fliExecDstRGBImage)).IsFail())
+		// Destination Color 이미지 설정 // Set the destination Color image
+		if((res = colorizedPointCloudGenerator3D.SetDestinationColorImage(fliExecDstColorImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set destination RGB source.\n");
+			ErrorPrint(res, L"Failed to set destination Color source.\n");
 			break;
 		}
 
-		// Destination Sampled RGB 이미지 설정 // Set the destination sampled RGB image
-		if((res = colorizedPointCloudGenerator3D.SetSampledImageRGB(fliSampDstRGBImage)).IsFail())
+		// Destination Sampled Color 이미지 설정 // Set the destination sampled Color image
+		if((res = colorizedPointCloudGenerator3D.SetDestinationSampledColorImage(fliSampDstColorImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set destination sampled RGB source.\n");
+			ErrorPrint(res, L"Failed to set destination sampled Color source.\n");
 			break;
 		}
 
-		// Sampled 픽셀 표시 RGB 설정 // Set the color of the sampled pixels in RGB
-		if((res = colorizedPointCloudGenerator3D.SetSampledRGBValue(0, 255, 255)).IsFail())
+		// Sampled 픽셀 표시 Color 설정 // Set the color of the sampled pixels in Color
+		if((res = colorizedPointCloudGenerator3D.SetSampledBGRValue(255, 255, 0)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set destination sampled RGB source.\n");
+			ErrorPrint(res, L"Failed to set destination sampled Color source.\n");
 			break;
 		}
 
@@ -349,20 +349,20 @@ int main()
 		// 출력을 위한 이미지 레이어를 얻어옵니다. //  Gets the image layer for output.
 		// 따로 해제할 필요 없음 // No need to release separately
 		CGUIViewImageLayerWrap layerImageCaliSrcXYZV = viewImageCaliSrcXYZV.GetLayer(0);
-		CGUIViewImageLayerWrap layerImageCaliSrcRGB = viewImageCaliSrcRGB.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageCaliSrcColor = viewImageCaliSrcColor.GetLayer(0);
 		CGUIViewImageLayerWrap layerImageExecSrcXYZV = viewImageExecSrcXYZV.GetLayer(0);
-		CGUIViewImageLayerWrap layerImageExecSrcRGB = viewImageExecSrcRGB.GetLayer(0);
-		CGUIViewImageLayerWrap layerImageExecDstRGB = viewImageExecDstRGB.GetLayer(0);
-		CGUIViewImageLayerWrap layerImageSampDstRGB = viewImageSampDstRGB.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageExecSrcColor = viewImageExecSrcColor.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageExecDstColor = viewImageExecDstColor.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageSampDstColor = viewImageSampDstColor.GetLayer(0);
 		CGUIView3DLayerWrap layer3DDst = view3DDst.GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Delete the shapes drawn on the existing layer
 		layerImageCaliSrcXYZV.Clear();
-		layerImageCaliSrcRGB.Clear();
+		layerImageCaliSrcColor.Clear();
 		layerImageExecSrcXYZV.Clear();
-		layerImageExecSrcRGB.Clear();
-		layerImageExecDstRGB.Clear();
-		layerImageSampDstRGB.Clear();
+		layerImageExecSrcColor.Clear();
+		layerImageExecDstColor.Clear();
+		layerImageSampDstColor.Clear();
 		layer3DDst.Clear();
 
 		// View 정보를 디스플레이 합니다. // Display View information.
@@ -377,7 +377,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = layerImageCaliSrcRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Source RGB Image", YELLOW, BLACK, 15)))
+		if(IsFail(res = layerImageCaliSrcColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Source Color Image", YELLOW, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
@@ -389,19 +389,19 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = layerImageExecSrcRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Source RGB Image", YELLOW, BLACK, 15)))
+		if(IsFail(res = layerImageExecSrcColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Source Color Image", YELLOW, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerImageExecDstRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Destination RGB Image", YELLOW, BLACK, 15)))
+		if(IsFail(res = layerImageExecDstColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Destination Color Image", YELLOW, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerImageSampDstRGB.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Sampled RGB Image", YELLOW, BLACK, 15)))
+		if(IsFail(res = layerImageSampDstColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Sampled Color Image", YELLOW, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
@@ -415,13 +415,13 @@ int main()
 
 
 		// Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
-		if((res = viewImageExecDstRGB.ZoomFit()).IsFail())
+		if((res = viewImageExecDstColor.ZoomFit()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
 			break;
 		}
 
-		if((res = viewImageSampDstRGB.ZoomFit()).IsFail())
+		if((res = viewImageSampDstColor.ZoomFit()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
 			break;
@@ -429,15 +429,15 @@ int main()
 
 		// 이미지 뷰와 3D 뷰를 갱신 합니다. // Update image views and 3D view
 		viewImageCaliSrcXYZV.Invalidate(true);
-		viewImageCaliSrcRGB.Invalidate(true);
+		viewImageCaliSrcColor.Invalidate(true);
 		viewImageExecSrcXYZV.Invalidate(true);
-		viewImageExecSrcRGB.Invalidate(true);
-		viewImageExecDstRGB.Invalidate(true);
-		viewImageSampDstRGB.Invalidate(true);
+		viewImageExecSrcColor.Invalidate(true);
+		viewImageExecDstColor.Invalidate(true);
+		viewImageSampDstColor.Invalidate(true);
 		view3DDst.Invalidate(true);
 
 		// 이미지 뷰와 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
-		while(viewImageCaliSrcXYZV.IsAvailable() && viewImageCaliSrcRGB.IsAvailable() && viewImageExecSrcXYZV.IsAvailable() && viewImageExecSrcRGB.IsAvailable() && viewImageExecDstRGB.IsAvailable() && viewImageSampDstRGB.IsAvailable() && view3DDst.IsAvailable())
+		while(viewImageCaliSrcXYZV.IsAvailable() && viewImageCaliSrcColor.IsAvailable() && viewImageExecSrcXYZV.IsAvailable() && viewImageExecSrcColor.IsAvailable() && viewImageExecDstColor.IsAvailable() && viewImageSampDstColor.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
