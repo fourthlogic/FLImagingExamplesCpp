@@ -37,7 +37,7 @@ int main()
 		pointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination);
 
 		// Destination Texture 이미지 설정 // Set the texture image.
-		pointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture);
+		pointCloudToDepthMapConverter3D.SetDestinationTextureImage(fliDestinationTexture);
 
 		// Camera Matrix 설정 // Set the camera matrix
 		CFLPoint<float> flpFocalLength;
