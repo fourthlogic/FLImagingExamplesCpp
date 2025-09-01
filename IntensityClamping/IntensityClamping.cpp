@@ -120,7 +120,7 @@ int main()
 			break;
 		}
 
-		if((result = arrLayer[1].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image(IntensityClamping Min 150 Max 200)", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer[1].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image(IntensityClamping Min 150 Max 200)", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
