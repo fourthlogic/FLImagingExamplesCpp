@@ -105,7 +105,7 @@ int main()
 			break;
 		}
 
-		if((eResult = layerView3D.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Point Cloud", YELLOW, BLACK, 20)).IsFail())
+		if((eResult = layerView3D.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Point Cloud", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to draw text.\n");
 			break;
