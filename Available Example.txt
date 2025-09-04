@@ -56,6 +56,10 @@
       - The example of an algorithm that generates linear interpolated image based on a multi pages image.
       - 멀티 페이지 이미지를 기반으로 선형 보간 이미지를 생성하는 알고리즘 예제.
 
+    - DepthImageNearestNeighborInterpolation3D
+      - The example of an algorithm that generates nearest neighbor interpolated image based on a multi pages image.
+      - 멀티 페이지 이미지를 기반으로 최근접 보간 이미지를 생성하는 알고리즘 예제.
+
   - [Match]
     
     - [Surface Match]
