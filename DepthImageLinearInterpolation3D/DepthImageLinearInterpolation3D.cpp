@@ -24,7 +24,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliSourceImage.Load(L"../../ExampleImages/DepthImageLinearInterpolation3D/Source.flif")))
+		if(IsFail(res = fliSourceImage.Load(L"../../ExampleImages/DepthImageInterpolation3D/Source.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -84,6 +84,8 @@ int main()
 		flaPagePosition.PushBack(0);
 		flaPagePosition.PushBack(1);
 		flaPagePosition.PushBack(2);
+		flaPagePosition.PushBack(3);
+		flaPagePosition.PushBack(4);
 
 		depthImageLinearInterpolation3D.SetPagePosition(flaPagePosition);
 
@@ -91,10 +93,10 @@ int main()
 		depthImageLinearInterpolation3D.SetInterval(0.1);
 
 		// Start Position 설정 // Set start position
-		depthImageLinearInterpolation3D.SetStartPosition(0);
+		depthImageLinearInterpolation3D.SetStartPosition(1);
 
 		// End Position 설정 // Set end position
-		depthImageLinearInterpolation3D.SetEndPosition(2);
+		depthImageLinearInterpolation3D.SetEndPosition(3);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = depthImageLinearInterpolation3D.Execute()).IsFail())

@@ -70,14 +70,14 @@ int main()
 			break;
 		}
 
-		// Depth Image Nearest Neighbor Interpolation 3D 객체 생성 // Create Depth Image Nearest Neighbor Interpolation 3D object
-		CDepthImageNearestNeighborInterpolation3D depthImageNearestNeighborInterpolation3D;
+		// Depth Image Cubic Interpolation 3D 객체 생성 // Create Depth Image Cubic Interpolation 3D object
+		CDepthImageCubicInterpolation3D depthImageCubicInterpolation3D;
 
 		// Source 이미지 설정 // Set source image 
-		depthImageNearestNeighborInterpolation3D.SetSourceImage(fliSourceImage);
+		depthImageCubicInterpolation3D.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set destination image
-		depthImageNearestNeighborInterpolation3D.SetDestinationImage(fliDestinationImage);
+		depthImageCubicInterpolation3D.SetDestinationImage(fliDestinationImage);
 
 		// Page Position 설정 // Set page position
 		CFLArray<double> flaPagePosition;
@@ -87,21 +87,21 @@ int main()
 		flaPagePosition.PushBack(3);
 		flaPagePosition.PushBack(4);
 
-		depthImageNearestNeighborInterpolation3D.SetPagePosition(flaPagePosition);
+		depthImageCubicInterpolation3D.SetPagePosition(flaPagePosition);
 
 		// Interval 설정 // Set interval
-		depthImageNearestNeighborInterpolation3D.SetInterval(0.1);
+		depthImageCubicInterpolation3D.SetInterval(0.1);
 
 		// Start Position 설정 // Set start position
-		depthImageNearestNeighborInterpolation3D.SetStartPosition(1);
+		depthImageCubicInterpolation3D.SetStartPosition(1);
 
 		// End Position 설정 // Set end position
-		depthImageNearestNeighborInterpolation3D.SetEndPosition(3);
+		depthImageCubicInterpolation3D.SetEndPosition(3);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = depthImageNearestNeighborInterpolation3D.Execute()).IsFail())
+		if((res = depthImageCubicInterpolation3D.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute Depth Image Nearest Neighbor Interpolation 3D.\n");
+			ErrorPrint(res, "Failed to execute Depth Image Cubic Interpolation 3D.\n");
 
 			break;
 		}
