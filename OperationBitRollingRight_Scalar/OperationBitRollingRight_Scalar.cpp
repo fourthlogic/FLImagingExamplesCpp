@@ -171,13 +171,13 @@ int main()
 			break;
 		}
 
-		if((res =arrLayer[EType_Destination1].DrawTextCanvas(&flpZero, L"Destination1 Image(BitoperationBitRollingRight 1)", YELLOW, BLACK, 30)).IsFail())
+		if((res =arrLayer[EType_Destination1].DrawTextCanvas(&flpZero, L"Destination1 Image(BitRollingRight 1)", YELLOW, BLACK, 25)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
 		}
 
-		if((res =arrLayer[EType_Destination2].DrawTextCanvas(&flpZero, L"Destination1 Image(BitoperationBitRollingRight 7)", YELLOW, BLACK, 30)).IsFail())
+		if((res =arrLayer[EType_Destination2].DrawTextCanvas(&flpZero, L"Destination1 Image(BitRollingRight 7)", YELLOW, BLACK, 25)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
