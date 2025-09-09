@@ -115,7 +115,14 @@ int main()
 			break;
 		}
 
-		// 세 개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the three image view windows
+		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+		if(IsFail(res = viewImageSource.SynchronizePointOfView(&viewImagesResult)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
+
+		// 두 개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
 		if(IsFail(res = viewImageSource.SynchronizeWindow(&viewImagesResult)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");

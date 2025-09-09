@@ -79,15 +79,22 @@ int main()
 		}
 
 		// Graph 뷰 생성 // Create graph view
-		if(IsFail(res = viewGraph.Create(600, 500, 1100, 1000)))
+		if(IsFail(res = viewGraph.Create(1100, 0, 1600, 500)))
 		{
 			ErrorPrint(res, " Failed to create the graph view. \n");
 			break;
 		}
 
 		viewGraph.SetDarkMode();
+		
+		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+		if(IsFail(res = viewImageValidation.SynchronizePointOfView(&viewImagesLabel)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
 
-		// 다섯 개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the four image view windows
+		// 4개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the four image view windows
 		if(IsFail(res = viewImageLearn.SynchronizeWindow(&viewImageValidation)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
@@ -95,6 +102,12 @@ int main()
 		}
 
 		if(IsFail(res = viewImageLearn.SynchronizeWindow(&viewImagesLabel)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
+
+		if(IsFail(res = viewImageLearn.SynchronizeWindow(&viewGraph)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
