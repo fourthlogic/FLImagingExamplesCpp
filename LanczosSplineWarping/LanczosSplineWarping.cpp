@@ -26,7 +26,7 @@ int main()
 		int32_t arrBottom[4] = { 500, 500, 1000, 1000 };
 
 		// Source 이미지 로드 // Load the source image
-		if(IsFail(res = arrFliImage[0].Load(L"../../ExampleImages/LanczosSplineWarping/chess.flif")))
+		if(IsFail(res = arrFliImage[0].Load(L"../../ExampleImages/LanczosWarping/chess.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -176,6 +176,13 @@ int main()
 		if(IsFail(res = lanczosSplineWarping.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute LanczosSplineWarping.");
+			break;
+		}
+
+		// Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
+		if(IsFail(res = arrViewImage[3].ZoomFit()))
+		{
+			ErrorPrint(res, "Failed to zoom fit of the image view.\n");
 			break;
 		}
 
