@@ -22,7 +22,7 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/ColorAdjustment/ColorExample.flif")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/ColorSpaceAdjustment/ColorExample.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -70,24 +70,24 @@ int main()
 			break;
 		}
 
-		// Color Adjustment 객체 생성 // Create Color Adjustment object
-		CColorAdjustment colorAdjustment;
+		// 객체 생성 // Create object
+		CColorSpaceAdjustment colorSpaceAdjustment;
 
 		// Source 이미지 설정 // Set the source image
-		colorAdjustment.SetSourceImage(fliSrcImage);
+		colorSpaceAdjustment.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
-		colorAdjustment.SetDestinationImage(fliDstImage);
+		colorSpaceAdjustment.SetDestinationImage(fliDstImage);
 
 		// Color Spcae 설정 // Set Color Space
-		colorAdjustment.SetColorSpace(CColorAdjustment::EColorSpace_CIELCh);
+		colorSpaceAdjustment.SetColorSpace(CColorSpaceAdjustment::EColorSpace_CIELCh);
 
 		// Offset 설정 // Set Offset
-		colorAdjustment.SetOffset(CMultiVar<double>(-10, 20, -50));
+		colorSpaceAdjustment.SetOffset(CMultiVar<double>(-10, 20, -50));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if((res = colorAdjustment.Execute()).IsFail())
+		if((res = colorSpaceAdjustment.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute Color Adjustment.");
+			ErrorPrint(res, "Failed to execute.");
 			break;
 		}
 

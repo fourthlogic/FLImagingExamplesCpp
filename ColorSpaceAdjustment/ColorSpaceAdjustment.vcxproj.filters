@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ColorAdjustment.cpp">
+    <ClCompile Include="ColorSpaceAdjustment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

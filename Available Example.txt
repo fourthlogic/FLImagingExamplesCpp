@@ -984,7 +984,7 @@
     - Contrast
       - The algorithm example for adjusting image contrast.
       - 이미지 대비를 조정하는 알고리즘 예제.
-    - ColorAdjustment
+    - ColorSpaceAdjustment
       - The algorithm example for adjusting color space.
       - 색공간을 조정하는 알고리즘 예제.
     - GainOffset

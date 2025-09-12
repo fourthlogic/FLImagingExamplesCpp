@@ -21,7 +21,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{35A460F4-6B98-446A-8B35-7AAA73FE4B09}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ColorAdjustment</RootNamespace>
+    <RootNamespace>ColorSpaceAdjustment</RootNamespace>
+    <ProjectName>ColorSpaceAdjustment</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ColorAdjustment.cpp" />
+    <ClCompile Include="ColorSpaceAdjustment.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
