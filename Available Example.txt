@@ -204,6 +204,11 @@
         - An example of an algorithm that create a point cloud with a depth map image and an camera intrinsic parameter.
         - 깊이맵 이미지와 카메라 내부 행렬로 포인트 클라우드를 생성하는 알고리즘 예제.
 
+    - [Occlusion Culling 3D]
+      - OcclusionCulling3D
+        - An example of an algorithm that remove invisible points from the set viewpoints.
+        - 설정된 시점에서 보이지 않는 점을 제거하는 알고리즘 예제.
+
     - [Point Cloud Generator]
       - PointCloudGenerator3D
         - The example of an algorithm that generates a point cloud from predefined 3d object.
