@@ -65,6 +65,8 @@ int main() {
 		tp3ViewPoint.y = 192.843323f;
 		tp3ViewPoint.z = 151.733078f;
 		occlusionCulling3D.SetViewPoint(tp3ViewPoint);
+
+		// 후면 제거 방법 설정 // Set the occlusion culling method
 		occlusionCulling3D.SetCullingMethod(COcclusionCulling3D::ECullingMethod_RayCasting_Normal);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
