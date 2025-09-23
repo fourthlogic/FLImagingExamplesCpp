@@ -71,7 +71,7 @@ int main()
 		// 이미지 분할 방향을 설정 // Set image split direction
 		imageGridSplitter.SetSplitDirection(CImageGridSplitter::ESplitDirection_LeftTopToRight);
 
-		// 이미지 분할 크기 설정 // Set image split size;
+		// 이미지 분할 크기 설정 // Set image split size
 		imageGridSplitter.SetSplitSize(128, 128);
 
 		// Destination 이미지 설정 // Set destination image 
