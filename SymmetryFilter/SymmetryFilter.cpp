@@ -23,14 +23,14 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSourceImage.Load(L"../../ExampleImages/EdgeDetection/Alphabat.flif")).IsFail())
+		if((res = fliSourceImage.Load(L"../../ExampleImages/SymmetryFilter/Monkey.flif")).IsFail())
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// Destination 이미지 로드 // Load the destination image
-		if((res = fliDestinationImage.Load(L"../../ExampleImages/EdgeDetection/Alphabat.flif")).IsFail())
+		if((res = fliDestinationImage.Load(L"../../ExampleImages/SymmetryFilter/Monkey.flif")).IsFail())
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -87,11 +87,11 @@ int main()
 		// Destination 이미지 설정 // Set the destination image
 		symmetryFilter.SetDestinationImage(fliDestinationImage);
 
-		// Kernel Size = 101 설정 // Set the Kernel Size = 101
-		symmetryFilter.SetKernel(101);
+		// Kernel Size = 141 설정 // Set the Kernel Size = 141
+		symmetryFilter.SetKernel(141);
 
-		// Exponent = 0.3 설정 // Set the Exponent = 0.3
-		symmetryFilter.SetExponent(0.3);
+		// Exponent = 0.5 설정 // Set the Exponent = 0.5
+		symmetryFilter.SetExponent(0.5);
 
 		// Angle = 0 설정 // Set the Angle = 0
 		symmetryFilter.SetAngle(0.);
