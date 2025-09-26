@@ -1186,6 +1186,9 @@
     - LanserEdgeDetector
       - The example of Lanser Edge Detection Algorithm.
       - 랜서 엣지 검출 알고리즘 예제
+    - LineSegmentDetector
+      - The example of Line Segment Detector Algorithm.
+      - 선분 검출 알고리즘 예제
     - DericheEdgeDetector
       - The example of Deriche Edge Detection Algorithm.
       - 데리체 엣지 검출 알고리즘 예제
