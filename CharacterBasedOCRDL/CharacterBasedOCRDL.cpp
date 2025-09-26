@@ -194,6 +194,8 @@ int main()
 		characterBasedOCRDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
 		characterBasedOCRDL.EnableOptimalLearningStatePreservation(true);
+		// 학습시 이미지당 최대 인스턴스 개수를 256개로 설정 // 학습 시 Set the maximum number of instances per image to 256
+		characterBasedOCRDL.SetLearningMaximumInstanceCount(256);
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-4f);
@@ -336,6 +338,8 @@ int main()
 		// 추론 결과 옵션 설정 // Set the inference result options;
 		// Result item settings enum 설정 // Set the result item settings
 		characterBasedOCRDL.SetInferenceResultItemSettings(CCharacterBasedOCRDL::EInferenceResultItemSettings_ClassName_Contour);
+		// 추론 시 이미지당 최대 인스턴스 개수를 256개로 설정 // 학습 시 Set the maximum number of instances per image to 256
+		characterBasedOCRDL.SetInferenceMaximumInstanceCount(256);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = characterBasedOCRDL.Execute()))
