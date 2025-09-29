@@ -93,6 +93,11 @@ int main()
 		if((res = stationaryConeBeamRotationCT.SetObjectRotationAngleDistanceDegree(360.00)).IsFail())
 			break;
 
+		if((res = stationaryConeBeamRotationCT.SetMergeXCoefficient(1.00)).IsFail())
+			break;
+		if((res = stationaryConeBeamRotationCT.SetMergeYCoefficient(1.00)).IsFail())
+			break;
+
 		Base::TPoint3<double> tpObjectRotationPivotUnit;
 		tpObjectRotationPivotUnit.x = 0.00;
 		tpObjectRotationPivotUnit.y = 0.00;
