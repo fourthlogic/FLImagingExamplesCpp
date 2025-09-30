@@ -15,125 +15,143 @@ int main()
 	CFLImage fliDestinationImage;
 
 	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap viewImageSrc;
-	CGUIViewImageWrap viewImageDst;
+	CGUIViewImageWrap viewSourceImage;
+	CGUIViewImageWrap viewDestinationImage;
 
-	 // 수행 결과 객체 선언 // Declare the execution result object
+	// 수행 결과 객체 선언 // Declare execution result object
 	CResult res = EResult_UnknownError;
 
 	do
 	{
-		// Source 이미지 로드 // Load the source image
+		// Source 이미지 로드 // Load Source image
 		if((res = fliSourceImage.Load(L"../../ExampleImages/OperationComplexMultiply/ExampleSource.flif")).IsFail())
 		{
-			ErrorPrint(res, "Failed to load the image file.\n");
+			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
 		}
 
-		// Destination 이미지를 Source 이미지와 동일하게 설정 // Assign the Source image to Destination image
+		// Destination 이미지를 Source 이미지와 동일하도록 설정 // Assign Source image to Destination image
 		if((res = fliDestinationImage.Assign(fliSourceImage)).IsFail())
 		{
-			ErrorPrint(res, "Failed to load the image file.\n");
+			ErrorPrint(res, L"Failed to assign the image.\n");
 			break;
 		}
 
 		// Source 이미지 뷰 생성 // Create Source image view
-		if((res = viewImageSrc.Create(100, 0, 600, 545)).IsFail())
+		if((res = viewSourceImage.Create(100, 0, 600, 545)).IsFail())
 		{
-			ErrorPrint(res, "Failed to create the image view.\n");
+			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰 생성 // Create the Destination image view
-		if((res = viewImageDst.Create(600, 0,1100, 545)).IsFail())
+		// Destination 이미지 뷰 생성 // Create Destination image view
+		if((res = viewDestinationImage.Create(600, 0, 1100, 545)).IsFail())
 		{
-			ErrorPrint(res, "Failed to create the image view.\n");
+			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// 두 이미지 뷰의 시점을 동기화한다 // Synchronize the viewpoints of the two image views
-		if((res = viewImageSrc.SynchronizePointOfView(&viewImageDst)).IsFail())
+		// 두 이미지 뷰의 시점을 동기화 // Synchronize viewpoints of two image views
+		if((res = viewSourceImage.SynchronizePointOfView(&viewDestinationImage)).IsFail())
 		{
-			ErrorPrint(res, "Failed to synchronize view\n");
+			ErrorPrint(res, L"Failed to synchronize point of view between image views.\n");
 			break;
 		}
 
-		// Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		if((res = viewImageSrc.SetImagePtr(&fliSourceImage)).IsFail())
+		// Source 이미지 뷰에 이미지를 디스플레이 // Display image in Source image view
+		if((res = viewSourceImage.SetImagePtr(&fliSourceImage)).IsFail())
 		{
-			ErrorPrint(res, "Failed to set image object on the image view.\n");
+			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
-		if((res = viewImageDst.SetImagePtr(&fliDestinationImage)).IsFail())
+		// Destination 이미지 뷰에 이미지를 디스플레이 // Display image in Destination image view
+		if((res = viewDestinationImage.SetImagePtr(&fliDestinationImage)).IsFail())
 		{
-			ErrorPrint(res, "Failed to set image object on the image view.\n");
+			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// 두 이미지 뷰 윈도우의 위치를 동기화한다 // Synchronize the positions of the two image view windows
-		if((res = viewImageSrc.SynchronizeWindow(&viewImageDst)).IsFail())
+		// 두 뷰 윈도우의 위치를 동기화 // Synchronize positions of two views
+		if((res = viewSourceImage.SynchronizeWindow(&viewDestinationImage)).IsFail())
 		{
-			ErrorPrint(res, "Failed to synchronize window.\n");
+			ErrorPrint(res, L"Failed to synchronize window between views.\n");
 			break;
 		}
 
-		// Operation ComplexMultiply 객체 생성 // Create Operation ComplexMultiply object
+		// Operation Complex Multiply 객체 생성 // Create Operation Complex Multiply object
 		COperationComplexMultiply operationComplexMultiply;
 
-		// Source 이미지 설정 // Set the source image
-		operationComplexMultiply.SetSourceImage(fliSourceImage);
+		// Source 이미지 설정 // Set Source image
+		if((res = operationComplexMultiply.SetSourceImage(fliSourceImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Source image.\n");
+			break;
+		}
 
-		// Destination 이미지 설정 // Set the destination image
-		operationComplexMultiply.SetDestinationImage(fliDestinationImage);
+		// Destination 이미지 설정 // Set Destination image
+		if((res = operationComplexMultiply.SetDestinationImage(fliDestinationImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination image.\n");
+			break;
+		}
 
-		// 연산 방식 스칼라로 설정 // Set operation source to scalar
-		operationComplexMultiply.SetOperationSource(EOperationSource_Scalar);
+		// 연산 방식 스칼라로 설정 // Set operation source to image
+		if((res = operationComplexMultiply.SetOperationSource(EOperationSource_Scalar)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set operation source.\n");
+			break;
+		}
 
-		// 오버플로 처리 방법 설정 // Set the overflow handling method
-		operationComplexMultiply.SetOverflowMethod(EOverflowMethod_Clamping);
+		// 오버플로 처리 방법 설정 // Set overflow handling method
+		if((res = operationComplexMultiply.SetOverflowMethod(EOverflowMethod_Wrapping)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set overflow method.\n");
+			break;
+		}
 
-		// 곱할 스칼라 값 지정 // Set the Scalar multiplier
-		operationComplexMultiply.SetScalarValue(CMultiVar<double>(2, 1));
+		// 스칼라 값 지정 // Set scalar value
+		if((res = operationComplexMultiply.SetScalarValue(CMultiVar<double>(2, 1))).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set the scalar value.\n");
+			break;
+		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = operationComplexMultiply.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute operation complex multiply.");
+			ErrorPrint(res, L"Failed to execute Operation Complex Multiply.\n");
 			break;
 		}
 
-		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		CGUIViewImageLayerWrap layerSource = viewImageSrc.GetLayer(0);
-		CGUIViewImageLayerWrap layerDestination = viewImageDst.GetLayer(0);
+		// 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
+        // 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released
+		CGUIViewImageLayerWrap layerSource = viewSourceImage.GetLayer(0);
+		CGUIViewImageLayerWrap layerDestination = viewDestinationImage.GetLayer(0);
 
-		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		// 기존에 Layer에 그려진 도형들을 삭제 // Clear figures drawn on existing layer
 		layerSource.Clear();
 		layerDestination.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		CFLPoint<double> flpPoint = CFLPoint<double>(0, 0);
-
-		if((res = layerSource.DrawTextCanvas(&flpPoint, L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
-			ErrorPrint(res, "Failed to draw text\n");
+			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerDestination.DrawTextCanvas(&flpPoint, L"Destination Image(Multiplied by 2 + 1i)", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image(Multiplied by 2 + 1i)", YELLOW, BLACK, 20)).IsFail())
 		{
-			ErrorPrint(res, "Failed to draw text\n");
+			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
 		// 이미지 뷰를 갱신 // Update image view
-		viewImageSrc.Invalidate(true);
-		viewImageDst.Invalidate(true);
+		viewSourceImage.Invalidate(true);
+		viewDestinationImage.Invalidate(true);
 
-		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable())
+		// 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until a view is closed before exiting
+		while(viewSourceImage.IsAvailable() && viewDestinationImage.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);

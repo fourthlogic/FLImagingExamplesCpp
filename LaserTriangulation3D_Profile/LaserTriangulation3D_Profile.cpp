@@ -8,159 +8,211 @@ int main()
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-	CFLImage fliSrcImage;
-	CFLImage fliDstImage;
+	// 이미지 객체 선언 // Declare image object
+	CFLImage fliSourceImage;
+	CFLImage fliDestinationImage;
 
 	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap viewImageSrc;
-	CGUIViewImageWrap viewImageDst;
-	CGUIView3DWrap view3DDst;
+	CGUIViewImageWrap viewSourceImage;
+	CGUIViewImageWrap viewDestinationImage;
+
+	// 3D 뷰 선언 // Declare 3D view
+	CGUIView3DWrap viewDestination3D;
 
 	do
 	{
-		// 알고리즘 동작 결과 // Algorithm execution result
+		// 수행 결과 객체 선언 // Declare execution result object
 		CResult res = EResult_UnknownError;
 
-		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/LaserTriangulation3D/SrcProfile.flif")).IsFail())
+		// Source 이미지 로드 // Load Source image
+		if((res = fliSourceImage.Load(L"../../ExampleImages/LaserTriangulation3D/SrcProfile.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
 		}
 
-		fliSrcImage.SelectPage(0);
-
-		// Source 이미지 뷰 생성 // Create the source image view
-		if((res = viewImageSrc.Create(100, 0, 600, 448)).IsFail())
+		// Source 이미지 뷰 생성 // Create Source image view
+		if((res = viewSourceImage.Create(100, 0, 600, 448)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		if((res = viewImageSrc.SetImagePtr(&fliSrcImage)).IsFail())
+		// Source 이미지 뷰에 이미지를 디스플레이 // Display image in Source image view
+		if((res = viewSourceImage.SetImagePtr(&fliSourceImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰 생성 // Create the destination image view
-		if((res = viewImageDst.Create(600, 0, 1100, 448)).IsFail())
+		// Destination 이미지 뷰 생성 // Create Destination image view
+		if((res = viewDestinationImage.Create(600, 0, 1100, 448)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
-		if((res = viewImageDst.SetImagePtr(&fliDstImage)).IsFail())
+		// Destination 이미지 뷰에 이미지를 디스플레이 // Display image in Destination image view
+		if((res = viewDestinationImage.SetImagePtr(&fliDestinationImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Destination 3D 이미지 뷰 생성 // Create the destination 3D image view
-		if((res = view3DDst.Create(100, 448, 1100, 896)).IsFail())
+		// Destination 3D 뷰 생성 // Create Destination 3D view
+		if((res = viewDestination3D.Create(100, 448, 1100, 896)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to create the image view.\n");
+			ErrorPrint(res, L"Failed to create the 3D view.\n");
 			break;
 		}
 
-		// 두 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two view windows
-		if((res = viewImageSrc.SynchronizeWindow(&viewImageDst)).IsFail())
+		// 두 뷰 윈도우의 위치를 동기화 // Synchronize positions of two views
+		if((res = viewSourceImage.SynchronizeWindow(&viewDestinationImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to synchronize window.\n");
+			ErrorPrint(res, L"Failed to synchronize window between views.\n");
 			break;
 		}
 
-		viewImageSrc.SetFixThumbnailView(true);
+		// 두 뷰 윈도우의 위치를 동기화 // Synchronize positions of two views
+		if((res = viewSourceImage.SynchronizeWindow(&viewDestination3D)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to synchronize window between views.\n");
+			break;
+		}
 
-		// Laser Triangulation 객체 생성 // Create Laser Triangulation object
+		// Laser Triangulation 3D 객체 생성 // Create Laser Triangulation 3D object
 		CLaserTriangulation3D laserTriangulation3D;
 
+		// 출력에 사용되는 3D Height Map 객채 생성 // Create 3D height map used as output
 		CFL3DObjectHeightMap fl3DOHM;
 
-		// Source 이미지 설정 // Set the source image
-		laserTriangulation3D.SetSourceImage(fliSrcImage);
-		// Destination Height Map 이미지 설정 // Set the destination height map image
-		laserTriangulation3D.SetDestinationHeightMapImage(fliDstImage);
-		// Destination 3D Object 설정 // Set the Destination 3D Object 
-		laserTriangulation3D.SetDestinationObject(fl3DOHM);
-		// Source 이미지 타입 설정 // Set the type of the source image
-		laserTriangulation3D.SetSourceType(CLaserTriangulation3D::ESourceType_Profile);
-		// Pixel Accuracy 설정 // Set the pixel accuracy
-		laserTriangulation3D.SetPixelAccuracy(0.33);
-		// Scan Accuracy 설정 // Set the scan accuracy
-		laserTriangulation3D.SetScanAccuracy(0.2);
-		// Working Distance 설정 // Set the working distance
-		laserTriangulation3D.SetWorkingDistance(214.7);
-		// 레이저 각도 설정 // Set the angle of laser
-		laserTriangulation3D.SetAngleOfLaser(60);
+		// Source 이미지 설정 // Set Source image
+		if((res = laserTriangulation3D.SetSourceImage(fliSourceImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Source image.\n");
+			break;
+		}
+
+		// Destination Height Map 이미지 설정 // Set Destination Height Map image
+		if((res = laserTriangulation3D.SetDestinationHeightMapImage(fliDestinationImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination Height Map image.\n");
+			break;
+		}
+
+		// Destination 3D Object 설정 // Set Destination 3D Object 
+		if((res = laserTriangulation3D.SetDestinationObject(fl3DOHM)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination 3D Object.\n");
+			break;
+		}
+
+		// Source 이미지 타입 설정 // Set type of Source image
+		if((res = laserTriangulation3D.SetSourceType(CLaserTriangulation3D::ESourceType_Profile)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set source image type.\n");
+			break;
+		}
+
+		// Pixel Accuracy 설정 // Set pixel accuracy
+		if((res = laserTriangulation3D.SetPixelAccuracy(0.33)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set pixel accuracy.\n");
+			break;
+		}
+
+		// Scan Accuracy 설정 // Set scan accuracy
+		if((res = laserTriangulation3D.SetScanAccuracy(0.2)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set scan accuracy.\n");
+			break;
+		}
+
+		// Working Distance 설정 // Set working distance
+		if((res = laserTriangulation3D.SetWorkingDistance(214.7)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set working distance.\n");
+			break;
+		}
+
+		// 레이저 각도 설정 // Set angle of laser
+		if((res = laserTriangulation3D.SetAngleOfLaser(60)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set angle of laser.\n");
+			break;
+		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = laserTriangulation3D.Execute()).IsFail())
 		{
-			ErrorPrint(res, L"Failed to execute Laser Triangulation.");
+			ErrorPrint(res, L"Failed to execute Laser Triangulation 3D.\n");
 			break;
 		}
 
-		// Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
-		if((res = viewImageDst.ZoomFit()).IsFail())
+		// 결과 3D 객체 출력 // Print resulting 3D Object
+		if((res = viewDestination3D.PushObject(fl3DOHM)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
+			ErrorPrint(res, L"Failed to display the 3D Object.\n");
 			break;
 		}
 
-		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
-		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
-		CGUIView3DLayerWrap layer3D = view3DDst.GetLayer(0);
+		// 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
+		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released
+		CGUIViewImageLayerWrap layerImageSource = viewSourceImage.GetLayer(0);
+		CGUIViewImageLayerWrap layerImageDestination = viewDestinationImage.GetLayer(0);
 
-		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
-		layerSrc.Clear();
-		layerDst.Clear();
+		// 화면에 출력하기 위해 3D 뷰에서 레이어 0번을 얻어옴 // Obtain layer 0 number from 3D view for display
+		// 이 객체는 3D 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an 3D view and does not need to be released
+		CGUIView3DLayerWrap layer3DDestination = viewDestination3D.GetLayer(0);
 
-		// View 정보를 디스플레이 한다. // Display view information
-		// 아래 함수 DrawTextCanvas 는 Screen좌표를 기준으로 하는 String을 Drawing 한다. // The function DrawTextCanvas below draws a String based on the screen coordinates.
-		// 색상 파라미터를 EGUIViewImageLayerTransparencyColor 으로 넣어주게되면 배경색으로 처리함으로 불투명도를 0으로 한것과 같은 효과가 있다. // If the color parameter is added as EGUIViewImageLayerTransparencyColor, it has the same effect as setting the opacity to 0 by processing it as a background color.
-		// 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
-		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
-		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if((res = layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		// 기존에 Layer에 그려진 도형들을 삭제 // Clear figures drawn on existing layer
+		layerImageSource.Clear();
+		layerImageDestination.Clear();
+		layer3DDestination.Clear();
+
+		// 이미지 뷰 정보 표시 // Display image view information
+		if((res = layerImageSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerImageDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		// 3D 이미지 뷰에 Height Map (Dst Image) 이미지를 디스플레이
-		if((res = view3DDst.PushObject(*laserTriangulation3D.GetDestinationObject())).IsFail())
+		// 3D 뷰 정보 표시 // Display 3D view information
+		if((res = layer3DDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set image object on the image view.\n");
+			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		view3DDst.ZoomFit();
-
-		if((res = layer3D.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
+		// 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 // Activate Zoom Fit for view with newly created image
+		if((res = viewDestinationImage.ZoomFit()).IsFail())
 		{
-			ErrorPrint(res, L"Failed to draw text.\n");
+			ErrorPrint(res, L"Failed to zoom fit image view.\n");
+			break;
+		}
+
+		// 새로 생성한 3D Object를 가지는 뷰 Zoom Fit 실행 // Activate Zoom Fit for view with newly created 3D object
+		if((res = viewDestination3D.ZoomFit()).IsFail())
+		{
+			ErrorPrint(res, L"Failed to zoom fit 3D view.\n");
 			break;
 		}
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
-		viewImageSrc.Invalidate(true);
-		viewImageDst.Invalidate(true);
-		view3DDst.Invalidate(true);
+		viewSourceImage.Invalidate(true);
+		viewDestinationImage.Invalidate(true);
 
-		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
-		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable() && view3DDst.IsAvailable())
+		// 3D 뷰를 갱신 // Update 3D view
+		viewDestination3D.Invalidate(true);
+
+		// 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until a view is closed before exiting
+		while(viewSourceImage.IsAvailable() && viewDestinationImage.IsAvailable() && viewDestination3D.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
