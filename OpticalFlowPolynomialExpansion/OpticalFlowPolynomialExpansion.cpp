@@ -106,12 +106,16 @@ int main()
 		opticalFlowPolynomialExpansion.SetSourceImage(fliSrcImage);
 		// Destination 이미지 설정 // Set the destination image
 		opticalFlowPolynomialExpansion.SetDestinationImage(fliDstImage);
-		// Pyramid Level 설정
+		// Pyramid Level 설정 // Set Pyramid Level
 		opticalFlowPolynomialExpansion.SetPyramidLevel(2);
-		// Iteration 설정
+		// Iteration 설정 // Set Iteration
 		opticalFlowPolynomialExpansion.SetIteration(3);
-		// Window Size 설정
+		// Window Size 설정 // Set Window Size
 		opticalFlowPolynomialExpansion.SetWindowSize(15);
+		// Binning Size 설정 // Set Binning Size
+		opticalFlowPolynomialExpansion.SetBinningSize(8);
+		// Minimum Vector Size 설정 // Set  Minimum Vector Size
+		opticalFlowPolynomialExpansion.SetMinimumVectorSize(5.000000);
 
 		printf("Processing.....\n");
 
@@ -151,11 +155,11 @@ int main()
 		}
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-		if((res = viewImageSrc.SynchronizePointOfView(&viewImageDst)).IsFail())
-		{
-			ErrorPrint(res, L"Failed to synchronize view\n");
-			break;
-		}
+		//if((res = viewImageSrc.SynchronizePointOfView(&viewImageDst)).IsFail())
+		//{
+		//	ErrorPrint(res, L"Failed to synchronize view\n");
+		//	break;
+		//}
 
 		// 두 이미지 뷰의 페이지를 동기화 한다
 		if((res = viewImageSrc.SynchronizePageIndex(&viewImageDst)).IsFail())
@@ -210,18 +214,6 @@ int main()
 		viewImageSrc.Invalidate(true);
 		viewImageDst.Invalidate(true);
 
-		Foundation::CFLPoint<double> m_flpStart, m_flpEnd;
-		Foundation::CFLLine<double> m_fllDisplay;
-
-		// 출력할 Optical Flow Vector 크기 최소값 설정
-		double f64MinVectorSize = 1;
-
-		int32_t i32FlowWidth = (int32_t)fliSrcImage.GetWidth();
-		int32_t i32FlowHeight = (int32_t)fliSrcImage.GetHeight();
-
-		// Optical Flow Vector 간격 설정
-		int32_t i32GridStep = i32FlowWidth > i32FlowHeight ? i32FlowWidth / 50 : i32FlowHeight / 50;
-
 		// 이미지 페이지 변경으로 인한 Auto Clear Mode 비활성화
 		viewImageSrc.SetLayerAutoClearMode(0, ELayerAutoClearMode_PageChanged, false);
 		viewImageDst.SetLayerAutoClearMode(0, ELayerAutoClearMode_PageChanged, false);
@@ -233,6 +225,13 @@ int main()
 
 		viewImageSrc.GetLayer(1).SetLayerDrawingMethod(ELayerDrawingMethod_Manual);
 
+		int32_t i32PageIndex = 0;
+		CFLFigureArray flfaResultArrow;
+		CPerformanceCounter performanceCounter;
+
+		opticalFlowPolynomialExpansion.GetResultMotionVectorsArrowShapeAllScenes(flfaResultArrow);
+		performanceCounter.Start();
+
 		// 이미지 뷰에 Optical Flow 출력
 		while(msgReceiver.IsViewImageAvailable())
 		{
@@ -240,48 +239,27 @@ int main()
 			{
 				viewImageSrc.MoveToPage(0);
 				viewImageDst.MoveToPage(0);
+				i32PageIndex = 0;
 				continue;
 			}
 
-			viewImageSrc.GetLayer(1).Clear();
+			viewImageSrc.MoveToPage(i32PageIndex);
+			viewImageDst.MoveToPage(i32PageIndex);
+			viewImageDst.GetLayer(1).Clear();
+			viewImageDst.GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), BLACK, 3);
+			viewImageDst.GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), YELLOW, 1);
 
-			for(int32_t i32Width = 0; i32Width < i32FlowWidth; i32Width += i32GridStep)
-			{
-				for(int32_t i32Height = 0; i32Height < i32FlowHeight; i32Height += i32GridStep)
-				{
-					// Destination 이미지 Pixel에 접근하기 위해 Pointer 받기
-					float** ppF32FlowPtr = (float**)fliDstImage.GetYOffsetTable();
-
-					// Start -> End Point 만들기
-					m_flpStart.x = i32Width;
-					m_flpStart.y = i32Height;
-
-					m_flpEnd.x = i32Width + ppF32FlowPtr[i32Height][i32Width * 2];
-					m_flpEnd.y = i32Height + ppF32FlowPtr[i32Height][i32Width * 2 + 1];
-
-					// Points to Line
-					m_fllDisplay.flpPoints[0] = m_flpStart;
-					m_fllDisplay.flpPoints[1] = m_flpEnd;
-
-					if(!msgReceiver.IsViewImageAvailable())
-						break;
-
-					// 이미지 뷰에 화살표(Optical Flow Vector) 그리기
-					if(m_fllDisplay.GetLength() > f64MinVectorSize)
-					{
-						viewImageSrc.GetLayer(1).DrawFigureImage(m_fllDisplay.MakeArrowWithRatio(0.4, true, 30), BLACK, 3);
-						viewImageSrc.GetLayer(1).DrawFigureImage(m_fllDisplay.MakeArrowWithRatio(0.4, true, 30), YELLOW, 1);
-					}
-				}
-			}
+			viewImageSrc.GetLayer(1).Update();
+			viewImageSrc.RedrawWindow();
 
 			if(!msgReceiver.IsViewImageAvailable())
 				break;
 
-			viewImageSrc.MoveToNextPage();
-			viewImageDst.MoveToNextPage();
-			viewImageSrc.GetLayer(1).Update();
-			viewImageSrc.RedrawWindow();
+			while(performanceCounter.GetElapsedTimeFromStartInMilliSecond() <= 40.0)
+				CThreadUtilities::Sleep(1);
+
+			performanceCounter.Start();
+			i32PageIndex++;
 		}
 	}
 	while(false);
