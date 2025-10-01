@@ -66,7 +66,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				CGUIPropertyItemFile* pFile = new CGUIPropertyItemFile;
 				pFile->SetName(L"File");
 				pFile->SetPath(L"Example@Image");
-				pFile->SetFileExtention(L"*.bmp;*.jpg;*.jpeg;*.tif;*.png;");
+				pFile->SetFileExtension(L"*.bmp;*.jpg;*.jpeg;*.tif;*.png;");
 				pFile->SetFileFilter(L"All Supporting Files (*.flif;*.bmp;*.jpg;*.jpeg;*.tif;*.png;)|*.flif;*.bmp;*.jpg;*.jpeg;*.tif;*.png; |FLImaging Image Files(*.flif;) | *.flif; |Bitmap Files(*.bmp;) | *.bmp; |JPEG Files(*.jpg; *.jpeg;) | *.jpg; *.jpeg; |TIFF Files(*.tif; *.tiff;) | *.tif; *.tiff; |PNG Files(*.png;) | *.png; |All Files(*.*;) | *.*; ||");
 				AddItem(pFile);
 
