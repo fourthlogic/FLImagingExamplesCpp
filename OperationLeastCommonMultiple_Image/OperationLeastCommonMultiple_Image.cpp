@@ -4,14 +4,6 @@
 #include "../CommonHeader/ErrorPrint.h"
 
 
-enum EType
-{
-	EType_Source = 0,
-	EType_Operand,
-	EType_Destination,
-	ETypeCount,
-};
-
 int main()
 {
 	// You must call the following function once
