@@ -119,10 +119,6 @@ int main()
 		// 1,  0, -1, -1, -1,  0, 1
 		// 1,  1,  0,  0,  0,  1, 1
 
-		flarrKernelElement.Append(1);
-		flarrKernelElement.Append(0);
-		flarrKernelElement.Append(-1);
-
 		flarrKernel.Clear();
 		flarrKernelElement.Clear();
 		flarrKernelElement.Append(1);
