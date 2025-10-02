@@ -116,7 +116,7 @@ BOOL CMenuBarUserDefinedInfoExampleApp::InitInstance()
 			// MainFrame의 Right 위치에 붙이기
 			CGUIPanePlacementDockToMainFrame panePlacementDTMF;
 			panePlacementDTMF.m_eDockPosition = EDockPosition_Right;
-			panePlacementDTMF.m_i32Height = 200;
+			panePlacementDTMF.m_i32Width = 400;
 			pAttrPane->AddDockingPriority(panePlacementDTMF);
 		}
 		
