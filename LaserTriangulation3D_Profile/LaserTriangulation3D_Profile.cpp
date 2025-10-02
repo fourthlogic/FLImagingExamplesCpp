@@ -184,7 +184,7 @@ int main()
 		}
 
 		// 3D 뷰 정보 표시 // Display 3D view information
-		if((res = layer3DDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layer3DDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination 3D Height Map", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

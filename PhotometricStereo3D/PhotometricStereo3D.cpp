@@ -5,129 +5,182 @@
 int main()
 {
 	// You must call the following function once
-	// before using any features of the FLImaging(R) library
+    // before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-	CFLImage fliSrcImage;
-	CFLImage fliDstImage;
-	CFLImage fliCurImage;
-	CFLImage fliTxtImage;
+	// 이미지 객체 선언 // Declare image object
+	CFLImage fliSourceImage;
+	CFLImage fliDestinationImage;
+	CFLImage fliCurvatureImage;
+	CFLImage fliTextureImage;
 
 	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap viewImageSrc;
-	CGUIViewImageWrap viewImageTexture;
-	CGUIViewImageWrap viewImageCurvature;
+	CGUIViewImageWrap viewSourceImage;
+	CGUIViewImageWrap viewTextureImage;
+	CGUIViewImageWrap viewCurvatureImage;
+
+	// 3D 뷰 선언 // Declare 3D view
 	CGUIView3DWrap view3DDst;
 
 	do
 	{
-		// 알고리즘 동작 결과 // Algorithm execution result
+		// 수행 결과 객체 선언 // Declare execution result object
 		CResult res = EResult_UnknownError;
 
-		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/PhotometricStereo3D/Source.flif")).IsFail())
+		// Source 이미지 로드 // Load Source image
+		if((res = fliSourceImage.Load(L"../../ExampleImages/PhotometricStereo3D/Source.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
 		}
 
-		fliSrcImage.SelectPage(0);
-
-		// Source 이미지 뷰 생성 // Create the source image view
-		if((res = viewImageSrc.Create(100, 0, 548, 448)).IsFail())
+		// Source 이미지 뷰 생성 // Create Source image view
+		if((res = viewSourceImage.Create(100, 0, 548, 448)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		if((res = viewImageSrc.SetImagePtr(&fliSrcImage)).IsFail())
+		// Source 이미지 뷰에 이미지를 디스플레이 // Display image in Source image view
+		if((res = viewSourceImage.SetImagePtr(&fliSourceImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Destination texture 이미지 뷰 생성 // Create the destination texture image view
-		if((res = viewImageTexture.Create(100, 448, 548, 896)).IsFail())
+		// Texture 이미지 뷰 생성 // Create Texture image view
+		if((res = viewTextureImage.Create(100, 448, 548, 896)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination texture 이미지 뷰에 이미지를 디스플레이 // Display the texture image in the destination texture image view
-		if((res = viewImageTexture.SetImagePtr(&fliTxtImage)).IsFail())
+		// Texture 이미지 뷰에 이미지를 디스플레이 // Display image in Texture image view
+		if((res = viewTextureImage.SetImagePtr(&fliTextureImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Destination curvature 이미지 뷰 생성 // Create the destination curvature image view
-		if((res = viewImageCurvature.Create(548, 0, 996, 448)).IsFail())
+		// Curvature 이미지 뷰 생성 // Create Curvature image view
+		if((res = viewCurvatureImage.Create(548, 0, 996, 448)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Destination curvature 이미지 뷰에 이미지를 디스플레이 // Display the curvature image in the destination curvature image view
-		if((res = viewImageCurvature.SetImagePtr(&fliCurImage)).IsFail())
+		// Curvature 이미지 뷰에 이미지를 디스플레이 // Display image in Curvature image view
+		if((res = viewCurvatureImage.SetImagePtr(&fliCurvatureImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Destination 3D 이미지 뷰 생성 // Create the destination 3D image view
+		// Destination 3D 뷰 생성 // Create Destination 3D view
 		if((res = view3DDst.Create(548, 448, 996, 896)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to create the image view.\n");
+			ErrorPrint(res, L"Failed to create the 3D view.\n");
 			break;
 		}
 
-		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if((res = viewImageSrc.SynchronizeWindow(&viewImageTexture)).IsFail())
+		// 두 이미지 뷰의 시점을 동기화 // Synchronize viewpoints of two image views
+		if((res = viewSourceImage.SynchronizePointOfView(&viewTextureImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to synchronize window.\n");
+			ErrorPrint(res, L"Failed to synchronize point of view between image views.\n");
 			break;
 		}
 
-		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if((res = viewImageSrc.SynchronizeWindow(&viewImageCurvature)).IsFail())
+		// 두 이미지 뷰의 시점을 동기화 // Synchronize viewpoints of two image views
+		if((res = viewSourceImage.SynchronizePointOfView(&viewCurvatureImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to synchronize window.\n");
+			ErrorPrint(res, L"Failed to synchronize point of view between image views.\n");
 			break;
 		}
 
-		// 두 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two view windows
-		if((res = viewImageSrc.SynchronizeWindow(&view3DDst)).IsFail())
+		// 두 뷰 윈도우의 위치를 동기화 // Synchronize positions of two views
+		if((res = viewSourceImage.SynchronizeWindow(&viewTextureImage)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to synchronize window.\n");
+			ErrorPrint(res, L"Failed to synchronize window between views.\n");
 			break;
 		}
 
-		viewImageSrc.SetFixThumbnailView(true);
+		// 두 뷰 윈도우의 위치를 동기화 // Synchronize positions of two views
+		if((res = viewSourceImage.SynchronizeWindow(&viewCurvatureImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to synchronize window between views.\n");
+			break;
+		}
 
-		// PhotometricStereo 객체 생성 // Create PhotometricStereo object
+		// 두 뷰 윈도우의 위치를 동기화 // Synchronize positions of two views
+		if((res = viewSourceImage.SynchronizeWindow(&view3DDst)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to synchronize window between views.\n");
+			break;
+		}
+
+		// Photometric Stereo 3D 객체 생성 // Create Photometric Stereo 3D object
 		CPhotometricStereo3D photometricStereo3D;
 
+		// 출력에 사용되는 3D Height Map 객채 생성 // Create 3D height map used as output
 		CFL3DObjectHeightMap fl3DOHM;
 
-		// Source 이미지 설정 // Set the source image
-		photometricStereo3D.SetSourceImage(fliSrcImage);
-		// Destination Height Map 이미지 설정 // Set the destination height map image
-		photometricStereo3D.SetDestinationHeightMapImage(fliDstImage);
-		// Destination Texture 이미지 설정 // Set the destination texture image
-		photometricStereo3D.SetDestinationTextureImage(&fliTxtImage);
-		// Destination Curvature 이미지 설정 // Set the destination curvature image
-		photometricStereo3D.SetCurvatureImage(fliCurImage);
-		// Destination 3D Object 설정 // Set the Destination 3D Object 
-		photometricStereo3D.SetDestinationObject(fl3DOHM);
-		// 동작 방식 설정 // Set Operation Mode
-		photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32);
+		// Source 이미지 설정 // Set Source image
+		if((res = photometricStereo3D.SetSourceImage(fliSourceImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Source image.\n");
+			break;
+		}
+
+		// Destination Height Map 이미지 설정 // Set Destination Height Map image
+		if((res = photometricStereo3D.SetDestinationHeightMapImage(fliDestinationImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination Height Map image.\n");
+			break;
+		}
+
+		// Destination Texture 이미지 설정 // Set Destination Texture image
+		if((res = photometricStereo3D.SetDestinationTextureImage(fliTextureImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination Texture image.\n");
+			break;
+		}
+
+		// Destination Curvature 이미지 설정 // Set Destination Curvature image
+		if((res = photometricStereo3D.SetCurvatureImage(fliCurvatureImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination Curvature image.\n");
+			break;
+		}
+
+		// Destination 3D Object 설정 // Set Destination 3D Object 
+		if((res = photometricStereo3D.SetDestinationObject(fl3DOHM)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set Destination 3D Object.\n");
+			break;
+		}
+
+		// 동작 방식 설정 // Set reconstruction mode
+		if((res = photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D::EReconstructionMode_Poisson_FP32)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set reconstruction mode.\n");
+			break;
+		}
+
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
-		photometricStereo3D.SetValidPixelThreshold(0.25);
+		if((res = photometricStereo3D.SetValidPixelThreshold(0.25)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set valid pixel threshold.\n");
+			break;
+		}
+
 		// Curvature 이미지 Normalization 여부 설정 // Set curvature image normalization option
-		photometricStereo3D.EnableCurvatureNormalization(true);
+		if((res = photometricStereo3D.EnableCurvatureNormalization(true)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set curvature normalization flag.\n");
+			break;
+		}
 		
-		// 각 이미지의 광원 Slant 값 입력
+		// 각 이미지의 광원 Slant 값 입력 // Set light's slant angle
 		CMultiVar<double> mvdSlant;
 
 		mvdSlant.PushBack(39.831506);
@@ -151,7 +204,7 @@ int main()
 		mvdSlant.PushBack(26.067657);
 		mvdSlant.PushBack(26.126303);
 
-		// 각 이미지의 광원 Tilt 값 입력
+		// 각 이미지의 광원 Tilt 값 입력 // Set light's tilt angle
 		CMultiVar<double> mvdTilt;
 
 		mvdTilt.PushBack(123.359091);
@@ -175,87 +228,109 @@ int main()
 		mvdTilt.PushBack(13.056294);
 		mvdTilt.PushBack(-5.976723);
 
-		photometricStereo3D.SetLightAngleDegrees(mvdSlant, mvdTilt);
+		// 각 광원의 Slant, Tilt 값 입력 // Insert light's slant, tilt location
+		if((res = photometricStereo3D.SetLightAngleDegrees(mvdSlant, mvdTilt)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set light angle in degrees.\n");
+			break;
+		}
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = photometricStereo3D.Execute()).IsFail())
 		{
-			ErrorPrint(res, L"Failed to execute algorithm.\n");
+			ErrorPrint(res, L"Failed to execute Photometric Stereo 3D.\n");
 			break;
 		}
 
-		// Destination texture 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination texture image, the image magnification displayed through Zoom fit is adjusted to the screen.
-		if((res = viewImageTexture.ZoomFit()).IsFail())
-		{
-			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
-			break;
-		}
+		// 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
+        // 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released
+		CGUIViewImageLayerWrap layerSource = viewSourceImage.GetLayer(0);
+		CGUIViewImageLayerWrap layerTexture = viewTextureImage.GetLayer(0);
+		CGUIViewImageLayerWrap layerCurvature = viewCurvatureImage.GetLayer(0);
 
-		// Destination curvature 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // With the newly created Destination curvature image, the image magnification displayed through Zoom fit is adjusted to the screen.
-		if((res = viewImageCurvature.ZoomFit()).IsFail())
-		{
-			ErrorPrint(res, L"Failed to zoom fit of the image view.\n");
-			break;
-		}
+		// 화면에 출력하기 위해 3D 뷰에서 레이어 0번을 얻어옴 // Obtain layer 0 number from 3D view for display
+		// 이 객체는 3D 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an 3D view and does not need to be released
+		CGUIView3DLayerWrap layer3DDestination = view3DDst.GetLayer(0);
+		
+		// 기존에 Layer에 그려진 도형들을 삭제 // Clear figures drawn on existing layer
+		layerSource.Clear();
+		layerTexture.Clear();
+		layerCurvature.Clear();
+		layer3DDestination.Clear();
 
-		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
-		CGUIViewImageLayerWrap layerTxt = viewImageTexture.GetLayer(0);
-		CGUIViewImageLayerWrap layerCur = viewImageCurvature.GetLayer(0);
-
-		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
-		layerSrc.Clear();
-		layerTxt.Clear();
-		layerCur.Clear();
-
-		// View 정보를 디스플레이 한다. // Display view information
-		// 아래 함수 DrawTextCanvas 는 Screen좌표를 기준으로 하는 String을 Drawing 한다. // The function DrawTextCanvas below draws a String based on the screen coordinates.
-		// 색상 파라미터를 EGUIViewImageLayerTransparencyColor 으로 넣어주게되면 배경색으로 처리함으로 불투명도를 0으로 한것과 같은 효과가 있다. // If the color parameter is added as EGUIViewImageLayerTransparencyColor, it has the same effect as setting the opacity to 0 by processing it as a background color.
-		// 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
-		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
-		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if((res = layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		// 이미지 뷰 정보 표시 // Display image view information
+		if((res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerTxt.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerTexture.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerCur.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Curvature Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerCurvature.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Curvature Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		// Height Map에 Texture Image 설정
-		CFL3DObjectHeightMap* pFl3DOHM = dynamic_cast<CFL3DObjectHeightMap*>(photometricStereo3D.GetDestinationObject());
-		pFl3DOHM->SetTextureImage(fliTxtImage);
-		pFl3DOHM->ActivateVertexColorTexture(false);
-
-		// 3D 이미지 뷰에 Height Map (Destination Image) 이미지를 디스플레이 // Display the Height Map (Destination Image) on the 3D image view
-		if((res = view3DDst.PushObject(*pFl3DOHM)).IsFail())
+		// 3D 뷰 정보 표시 // Display 3D view information
+		if((res = layer3DDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination 3D Height Map", YELLOW, BLACK, 20)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set image object on the image view.\n");
+			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		view3DDst.ZoomFit();
+		// 3D Height Map에 Texture 적용 // Apply texture to 3D height map
+		if((res = fl3DOHM.SetTextureImage(fliTextureImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to apply texture to height map.\n");
+			break;
+		}
+
+		res = fl3DOHM.ActivateVertexColorTexture(true);
+
+		// 결과 3D 객체 출력 // Print resulting 3D Object
+		if((res = view3DDst.PushObject(fl3DOHM)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to display the 3D Object.\n");
+			break;
+		}
+
+		// 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 // Activate Zoom Fit for view with newly created image
+		if((res = viewTextureImage.ZoomFit()).IsFail())
+		{
+			ErrorPrint(res, L"Failed to zoom fit image view.\n");
+			break;
+		}
+
+		// 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 // Activate Zoom Fit for view with newly created image
+		if((res = viewCurvatureImage.ZoomFit()).IsFail())
+		{
+			ErrorPrint(res, L"Failed to zoom fit image view.\n");
+			break;
+		}
+
+		// 새로 생성한 3D Object를 가지는 뷰 Zoom Fit 실행 // Activate Zoom Fit for view with newly created 3D object
+		if((res = view3DDst.ZoomFit()).IsFail())
+		{
+			ErrorPrint(res, L"Failed to zoom fit 3D view.\n");
+			break;
+		}
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
-		viewImageSrc.Invalidate(true);
-		viewImageTexture.Invalidate(true);
-		viewImageCurvature.Invalidate(true);
+		viewSourceImage.Invalidate(true);
+		viewTextureImage.Invalidate(true);
+		viewCurvatureImage.Invalidate(true);
+
+		// 3D 뷰를 갱신 // Update 3D view
 		view3DDst.Invalidate(true);
 
-		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
-		while(viewImageSrc.IsAvailable() && viewImageTexture.IsAvailable() && viewImageCurvature.IsAvailable() && view3DDst.IsAvailable())
+		// 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until a view is closed before exiting
+		while(viewSourceImage.IsAvailable() && viewTextureImage.IsAvailable() && viewCurvatureImage.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
