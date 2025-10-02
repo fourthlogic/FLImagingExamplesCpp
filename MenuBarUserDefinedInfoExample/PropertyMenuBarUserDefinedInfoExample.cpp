@@ -72,7 +72,8 @@ const CResult FLImaging::GUI::CPropertyMenuBarUserDefinedInfoExample::ConfigureM
 			{
 				CGUIPropertyItemText * pPITextIndex = (CGUIPropertyItemText*)FindItemByFullPath(L"Add@Index");
 				pPITextIndex->SetVisible(strValue == L"InsertAt");
-				pPITextIndex->GetParentWndList()->AdjustLayout();
+				if(pPITextIndex->GetParentWndList())
+					pPITextIndex->GetParentWndList()->AdjustLayoutForVisibility();
 			};
 			pPIDD->SetPropertyCallback(pCallback);
 			AddItem(pPIDD);
@@ -107,7 +108,8 @@ const CResult FLImaging::GUI::CPropertyMenuBarUserDefinedInfoExample::ConfigureM
 			{
 				CGUIPropertyItemText * pPITextIndex = (CGUIPropertyItemText*)FindItemByFullPath(L"Remove@Index");
 				pPITextIndex->SetVisible(strValue == L"RemoveAt");
-				pPITextIndex->GetParentWndList()->AdjustLayout();
+				if(pPITextIndex->GetParentWndList())
+					pPITextIndex->GetParentWndList()->AdjustLayoutForVisibility();
 			};
 			pPIDD->SetPropertyCallback(pCallback);
 			AddItem(pPIDD);
