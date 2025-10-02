@@ -42,7 +42,21 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 	CLibraryUtilities::Initialize();
 
 	CWinAppEx::InitInstance();
-	SetRegistryKey(L"Fourth Logic Incorporated");
+
+	if(CWinApp* pApp = AfxGetApp())
+	{
+		if(pApp->m_pszAppName)
+		{
+			free((void*)pApp->m_pszAppName);
+			pApp->m_pszAppName = nullptr;
+		}
+		pApp->m_pszAppName = _wcsdup(L"MenuBar MenuItem App");
+
+		if(pApp->m_pMainWnd && ::IsWindow(pApp->m_pMainWnd->GetSafeHwnd()))
+			pApp->m_pMainWnd->SetWindowText(L"MenuBar MenuItem Example App");
+	}
+
+	SetRegistryKey(L"Fourth Logic Incorporated\\Examples\\Cpp");
 
 	// GUI Manager 초기화 전처리를 수행합니다.
 	// Perform pre-initialization for the GUI Manager.
