@@ -101,7 +101,8 @@ int main()
 		// 처리할 Filter의 Kernel Size 설정 // Set the kernel size of the filter
 		midpointFilter.SetKernel(5);
 
-		// 커널 크기보다 작은 영역의 처리 방식 설정 // Set padding method for regions smaller than the kernel size
+		// Kernel 영역이 Source ROI의 Boundary Rect를 벗어나는 영역에 대한 처리 방법 설정
+		// Set the padding method for areas where the kernel area extends beyond the boundary rect of the source ROI.
 		midpointFilter.SetPaddingMethod(EPaddingMethod_DecreasingKernel);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
