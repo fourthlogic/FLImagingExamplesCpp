@@ -94,10 +94,10 @@ int main()
 		radonTransform.SetStartAngle(0);
 		// 끝 각도 설정 // Set End Angle
 		radonTransform.SetEndAngle(180);
-		// 끝 각도 사용 설정 // Set End Angle Usage
-		radonTransform.EnableEndAngleUsage(true);
-		// 내접원 영역 제한 설정 // Set Circumscribed Only
-		radonTransform.EnableCircumscribedOnly(true);
+		// 끝 각도 포함 설정 // Set Include End Angle
+		radonTransform.EnableIncludeEndAngle(true);
+		// 내접원 영역 제한 설정 // Set Inscribed Circle Only
+		radonTransform.EnableInscribedCircleOnly(true);
 		// 값 범위 보존 설정 // Set Range Preservation
 		radonTransform.EnableRangePreservation(false);
 
