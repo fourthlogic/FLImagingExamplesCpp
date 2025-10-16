@@ -224,10 +224,8 @@ int main()
 			break;
 		}
 
-		CMatrix<double> matEmpty(3, 3);
-
 		// Angle Degrees 동작 방식으로 설정 // Set operation method as angle degrees
-		if((res = photometricStereo3D.SetLightAngleDegrees(matEmpty)).IsFail())
+		if((res = photometricStereo3D.SetCalibrationMode(CPhotometricStereo3D::ECalibrationMode_Angle_Degrees)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set light angle in degrees.\n");
 			break;
@@ -252,7 +250,7 @@ int main()
 		}
 
 		// 위치 데이터 동작 방식으로 설정 // Set operation method as positions
-		if((res = photometricStereo3D.SetLightPositions(matEmpty)).IsFail())
+		if((res = photometricStereo3D.SetCalibrationMode(CPhotometricStereo3D::ECalibrationMode_Positions)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set light positions.\n");
 			break;
