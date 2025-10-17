@@ -620,6 +620,10 @@
        - Example of training a model with XOR results using CComputationalGraph Operation layer.
        - CComputationalGraph 연산 layer들을 사용하여 XOR와 같은 결과 나오는 모델을 학습하는 예제.
 
+    - DenoisingDiffusion
+       - Example of an algorithm that generates images based on a training dataset (Diffusion Model)
+       - 학습 데이터셋에 기반하여 이미지를 생성하는 알고리즘 예제 (확산 모델).
+
     - GenerativeAdversarialNetwork_NoLabel
        - Example of an algorithm that generates images based on a training dataset
        - 학습 데이터셋에 기반하여 이미지를 생성하는 알고리즘 예제.
