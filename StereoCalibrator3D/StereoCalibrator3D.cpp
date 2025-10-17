@@ -548,31 +548,13 @@ int main()
 		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K2);
 		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64P1);
 		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64P2);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K3);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K4);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K5);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K6);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64S1);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64S2);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64S3);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64S4);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64Gx);
-		strDistVal.AppendFormat(L"%.13lf", sDistortCoeef.f64Gy);
+		strDistVal.AppendFormat(L"%.13lf", sDistortCoeef.f64K3);
 
 		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K1);
 		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K2);
 		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64P1);
 		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64P2);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K3);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K4);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K5);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K6);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64S1);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64S2);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64S3);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64S4);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64Gx);
-		strDistVal2.AppendFormat(L"%.13lf", sDistortCoeef2.f64Gy);
+		strDistVal2.AppendFormat(L"%.13lf", sDistortCoeef2.f64K3);
 
 		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R0);
 		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R1);
