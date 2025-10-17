@@ -153,20 +153,20 @@ int main()
 			break;
 		}
 
-		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layerSrc 0 number from image view for display
+		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIViewImageLayerWrap layerSrc = viewSrcImage.GetLayer(0);
 		CGUIViewImageLayerWrap layerOpr1 = viewOpr1Image.GetLayer(0);
 		CGUIViewImageLayerWrap layerOpr2 = viewOpr2Image.GetLayer(0);
 
-		// 기존에 layerSrc에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layerSrc
+		// 기존에 layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSrc.Clear();
 		layerOpr1.Clear();
 		layerOpr2.Clear();
 
 		CFLString<wchar_t> strResult1, strResult2;
-		strResult1.Format(L"Correlation Coefficient with Operand1 : %lf", mvResult1.GetAt(0));
-		strResult2.Format(L"Correlation Coefficient with Operand2 : %lf", mvResult2.GetAt(0));
+		strResult1.Format(L"Operand1\nCorrelation Coefficient : %lf", mvResult1.GetAt(0));
+		strResult2.Format(L"Operand2\nCorrelation Coefficient : %lf", mvResult2.GetAt(0));
 
 		wprintf_s(L"%s\n", strResult1.GetString());
 		wprintf_s(L"%s\n", strResult2.GetString());
