@@ -1046,6 +1046,10 @@
         - The algorithm example for calculating sum and sum of squares value of pixel values in an image.
         - 이미지의 픽셀값들을 합과 제곱합의 계산하는 알고리즘 예제.(Trimming 적용 전, 후)
 
+    - CorrelationCoefficient 
+      - The algorithm example to get the correlation coefficient between images.
+      - 이미지 간 상관계수를 구하는 알고리즘 예제.
+
     - FuzzyEntropy 
       - The algorithm example to get the fuzzy entropy of an image.
       - 이미지의 fuzzy entropy 를 구하는 알고리즘 예제.
