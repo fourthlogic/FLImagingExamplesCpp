@@ -8,6 +8,7 @@ int main()
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
+	// 3D 객체 선언 // Declare 3D object
 	CFL3DObject floSrcObject;
 	CFL3DObject floDstObject;
 
@@ -30,14 +31,14 @@ int main()
 		if((res = view3DSrc.Create(0, 0, 500, 500)).IsFail() ||
 		   (res = view3DDst.Create(500, 0, 1000, 500)).IsFail())
 		{
-			ErrorPrint(res, "Failed to create the image view.\n");
+			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		if((res = view3DSrc.SynchronizePointOfView(&view3DDst)).IsFail())
 		{
-			ErrorPrint(res, "Failed to synchronize view. \n");
+			ErrorPrint(res, L"Failed to synchronize view. \n");
 			break;
 		}
 
@@ -89,13 +90,13 @@ int main()
 			break;
 		}
 
-		// 3D 이미지 뷰에 Height Map (Destination Image) 이미지를 디스플레이 // Display the Height Map (Destination Image) on the 3D image view
+		// 3D 이미지 뷰에 3d object 를 디스플레이 // Display the 3d object on the 3D image view
 		CGUIView3DObject gvoDst;
-		if((res = ((CFL3DObject*)gvoDst.Get3DObject())->Swap(floDstObject)).IsFail()) 
+		if((res = ((CFL3DObject*)gvoDst.Get3DObject())->Swap(floDstObject)).IsFail())
 			break;
-		if((res = gvoDst.SetTopologyType((ETopologyType3D)0x1f)).IsFail()) 
+		if((res = gvoDst.SetTopologyType((ETopologyType3D)0x1f)).IsFail())
 			break;
-		if((res = gvoDst.SetPointSize(2)).IsFail()) 
+		if((res = gvoDst.SetPointSize(2)).IsFail())
 			break;
 		if((res = view3DDst.PushObject(gvoDst)).IsFail())
 		{
