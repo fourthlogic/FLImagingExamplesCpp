@@ -56,6 +56,11 @@
       - ConvexHull3D
         - An example of an algorithm that calucalates the convex hull of a point cloud.
         - 3D 포인트 클라우드의 볼록껍질을 구하는 알고리즘 예제.
+        
+    - [Plane Detector 3D]
+      - PlaneDetector3D
+        - The example of an algorithm for plane detection in normal-equipped point clouds or meshes.
+        - Normal 정보가 있는 포인트 클라우드 또는 mesh 에서 평면을 검출하는 알고리즘 예제.
 
   - [Filter]
     
