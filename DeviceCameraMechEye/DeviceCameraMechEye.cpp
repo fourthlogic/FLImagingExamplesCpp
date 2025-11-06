@@ -37,7 +37,7 @@ public:
 			if(!m_pView3D->IsAvailable())
 				break;
 
-			const CDeviceCameraMechEye* pCamera = dynamic_cast<const CDeviceCameraMechEye*>(pDeviceImage);
+			const CDeviceCameraMechEye_2_5_2* pCamera = dynamic_cast<const CDeviceCameraMechEye_2_5_2*>(pDeviceImage);
 
 			if(!pCamera)
 				break;
@@ -99,7 +99,7 @@ int main()
 	CGUIView3DWrap view3D;
 
 	// MechEye 카메라 선언
-	CDeviceCameraMechEye camMechEye;
+	CDeviceCameraMechEye_2_5_2 camMechEye;
 
 	do
 	{
