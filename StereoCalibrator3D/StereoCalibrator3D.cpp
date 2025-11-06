@@ -5,7 +5,7 @@
 struct SGridDisplay
 {
 	int64_t i64ImageIdx;
-	CStereoCalibrator3D::SGridResult sGridResult;
+	CStereoCalibrator3D::CGridResult gridResult;
 };
 
 CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer)
@@ -14,7 +14,7 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 
 	do
 	{
-		if(!sGridDisplay.sGridResult.arrGridData.GetCount())
+		if(!sGridDisplay.gridResult.flaGridData.GetCount())
 		{
 			res = EResult_NoData;
 			break;
@@ -23,10 +23,10 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 		// 그리기 색상 설정 // Set drawing color
 		uint32_t u32ArrColor[3] = { RED, LIME, CYAN };
 
-		int64_t i64GridRow = sGridDisplay.sGridResult.i64Rows;
-		int64_t i64GridCol = sGridDisplay.sGridResult.i64Columns;
-		double f64AvgDistance = sGridDisplay.sGridResult.f64AvgDistance;
-		CFLQuad<double> flqBoardRegion = sGridDisplay.sGridResult.flqBoardRegion;
+		int64_t i64GridRow = sGridDisplay.gridResult.i64Rows;
+		int64_t i64GridCol = sGridDisplay.gridResult.i64Columns;
+		double f64AvgDistance = sGridDisplay.gridResult.f64AvgDistance;
+		CFLQuad<double> flqBoardRegion = sGridDisplay.gridResult.flqBoardRegion;
 		double f64Angle = flqBoardRegion.flpPoints[0].GetAngle(flqBoardRegion.flpPoints[1]);
 		double f64Width = flqBoardRegion.flpPoints[0].GetDistance(flqBoardRegion.flpPoints[1]);
 
@@ -36,8 +36,8 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 			for(int64_t i64Col = 0; i64Col < i64GridCol - 1; ++i64Col)
 			{
 				int64_t i64GridIdx = i64Row * i64GridCol + i64Col;
-				CFLPoint<double> flpGridPoint1 = (sGridDisplay.sGridResult.arrGridData[i64Row][i64Col]);
-				CFLPoint<double> flpGridPoint2 = (sGridDisplay.sGridResult.arrGridData[i64Row][i64Col + 1]);
+				CFLPoint<double> flpGridPoint1 = (sGridDisplay.gridResult.flaGridData[i64Row][i64Col]);
+				CFLPoint<double> flpGridPoint2 = (sGridDisplay.gridResult.flaGridData[i64Row][i64Col + 1]);
 				CFLLine<double> fllDrawLine(flpGridPoint1, flpGridPoint2);
 				pLayer.DrawFigureImage(fllDrawLine, BLACK, 5);
 				pLayer.DrawFigureImage(fllDrawLine, u32ArrColor[i64GridIdx % 3], 3);
@@ -45,8 +45,8 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 
 			if(i64Row < i64GridRow - 1)
 			{
-				CFLPoint<double> flpGridPoint1 = (sGridDisplay.sGridResult.arrGridData[i64Row][i64GridCol - 1]);
-				CFLPoint<double> flpGridPoint2 = (sGridDisplay.sGridResult.arrGridData[i64Row + 1][0]);
+				CFLPoint<double> flpGridPoint1 = (sGridDisplay.gridResult.flaGridData[i64Row][i64GridCol - 1]);
+				CFLPoint<double> flpGridPoint2 = (sGridDisplay.gridResult.flaGridData[i64Row + 1][0]);
 				CFLLine<double> fllDrawLine(flpGridPoint1, flpGridPoint2);
 				pLayer.DrawFigureImage(fllDrawLine, BLACK, 5);
 				pLayer.DrawFigureImage(fllDrawLine, YELLOW, 3);
@@ -61,8 +61,8 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 		// Grid Point 인덱싱 // Index Grid Point
 		for(int64_t i64Row = 0; i64Row < i64GridRow; ++i64Row)
 		{
-			CFLPoint<double> flpGridPoint1 = (sGridDisplay.sGridResult.arrGridData[i64Row][0]);
-			CFLPoint<double> flpGridPoint2 = (sGridDisplay.sGridResult.arrGridData[i64Row][1]);
+			CFLPoint<double> flpGridPoint1 = (sGridDisplay.gridResult.flaGridData[i64Row][0]);
+			CFLPoint<double> flpGridPoint2 = (sGridDisplay.gridResult.flaGridData[i64Row][1]);
 			double f64TempAngle = flpGridPoint1.GetAngle(flpGridPoint2);
 
 			for(int64_t i64Col = 0; i64Col < i64GridCol; ++i64Col)
@@ -71,8 +71,8 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 
 				if(i64Col < i64GridCol - 1)
 				{
-					flpGridPoint1 = (sGridDisplay.sGridResult.arrGridData[i64Row][i64Col]);
-					flpGridPoint2 = (sGridDisplay.sGridResult.arrGridData[i64Row][i64Col + 1]);
+					flpGridPoint1 = (sGridDisplay.gridResult.flaGridData[i64Row][i64Col]);
+					flpGridPoint2 = (sGridDisplay.gridResult.flaGridData[i64Row][i64Col + 1]);
 
 					f64Dx = flpGridPoint2.x - flpGridPoint1.x;
 					f64Dy = flpGridPoint2.y - flpGridPoint1.y;
@@ -81,8 +81,8 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 
 				if(i64Row)
 				{
-					flpGridPoint1 = (sGridDisplay.sGridResult.arrGridData[i64Row][i64Col]);
-					flpGridPoint2 = (sGridDisplay.sGridResult.arrGridData[i64Row - 1][i64Col]);
+					flpGridPoint1 = (sGridDisplay.gridResult.flaGridData[i64Row][i64Col]);
+					flpGridPoint2 = (sGridDisplay.gridResult.flaGridData[i64Row - 1][i64Col]);
 
 					f64Dx = flpGridPoint2.x - flpGridPoint1.x;
 					f64Dy = flpGridPoint2.y - flpGridPoint1.y;
@@ -90,8 +90,8 @@ CResult DrawGridPoints(SGridDisplay& sGridDisplay, CGUIViewImageLayerWrap pLayer
 				}
 				else
 				{
-					flpGridPoint1 = (sGridDisplay.sGridResult.arrGridData[0][i64Col]);
-					flpGridPoint2 = (sGridDisplay.sGridResult.arrGridData[1][i64Col]);
+					flpGridPoint1 = (sGridDisplay.gridResult.flaGridData[0][i64Col]);
+					flpGridPoint2 = (sGridDisplay.gridResult.flaGridData[1][i64Col]);
 
 					f64Dx = flpGridPoint2.x - flpGridPoint1.x;
 					f64Dy = flpGridPoint2.y - flpGridPoint1.y;
@@ -469,7 +469,7 @@ int main()
 		for(int64_t i64ImgIdx = 0; i64ImgIdx < (int64_t)fliLearnImage.GetPageCount(); ++i64ImgIdx)
 		{
 			SGridDisplay& sGridDisplay = sArrGridDisplay[i64ImgIdx];
-			stereoCalibrator3D.GetResultGridPoints(&sGridDisplay.sGridResult, i64ImgIdx);
+			stereoCalibrator3D.GetResultGridPoints(&sGridDisplay.gridResult, i64ImgIdx);
 			sGridDisplay.i64ImageIdx = i64ImgIdx;
 		}
 
@@ -478,7 +478,7 @@ int main()
 		for(int64_t i64ImgIdx = 0; i64ImgIdx < (int64_t)fliLearn2Image.GetPageCount(); ++i64ImgIdx)
 		{
 			SGridDisplay& sGridDisplay = sArrGridDisplay2[i64ImgIdx];
-			stereoCalibrator3D.GetResultGridPoints2(&sGridDisplay.sGridResult, i64ImgIdx);
+			stereoCalibrator3D.GetResultGridPoints2(&sGridDisplay.gridResult, i64ImgIdx);
 			sGridDisplay.i64ImageIdx = i64ImgIdx;
 		}
 
@@ -501,116 +501,248 @@ int main()
 		DrawGridPoints(sArrGridDisplay2[0], layerLearn2);
 
 		// Calibration data 출력 // Display calibration data
-		CStereoCalibrator3D::SIntrinsicParameters sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters();
-		CStereoCalibrator3D::SDistortionCoefficients sDistortCoeef = stereoCalibrator3D.GetResultDistortionCoefficients();
+		CStereoCalibrator3D::CIntrinsicParameters intrinsicOptimizedParam = stereoCalibrator3D.GetResultCalibratedIntrinsicParameters();
+		CStereoCalibrator3D::CIntrinsicParameters intrinsicOptimizedParam2 = stereoCalibrator3D.GetResultCalibratedIntrinsicParameters2();
 
-		CStereoCalibrator3D::SIntrinsicParameters sIntrinsicParam2 = stereoCalibrator3D.GetResultIntrinsicParameters2();
-		CStereoCalibrator3D::SDistortionCoefficients sDistortCoeef2 = stereoCalibrator3D.GetResultDistortionCoefficients2();
+		CStereoCalibrator3D::CDistortionCoefficients distortOptimizedCoeef = stereoCalibrator3D.GetResultCalibratedDistortionCoefficients();
+		CStereoCalibrator3D::CDistortionCoefficients distortOptimizedCoeef2 = stereoCalibrator3D.GetResultCalibratedDistortionCoefficients2();
 
-		CStereoCalibrator3D::SRotationParameters sRotationParam = stereoCalibrator3D.GetResultRotationParameters();
-		CStereoCalibrator3D::SRotationParameters sRotationParam2 = stereoCalibrator3D.GetResultRotationParameters2();
+		CStereoCalibrator3D::CRotationParameters rotationOptimizedParam = stereoCalibrator3D.GetResultCalibratedRotationParameters();
 
-		CStereoCalibrator3D::STranslationParameters sTranslationParam = stereoCalibrator3D.GetResultTranslationParameters();
-		CStereoCalibrator3D::STranslationParameters sTranslationParam2 = stereoCalibrator3D.GetResultTranslationParameters2();
+		CStereoCalibrator3D::CTranslationParameters translationOptimizedParam = stereoCalibrator3D.GetResultCalibratedTranslationParameters();
+
+
+		CStereoCalibrator3D::CIntrinsicParameters intrinsicRectifiedParam = stereoCalibrator3D.GetResultRectifiedIntrinsicParameters();
+		CStereoCalibrator3D::CIntrinsicParameters intrinsicRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedIntrinsicParameters2();
+
+		CStereoCalibrator3D::CRotationParameters rotationRectifiedParam = stereoCalibrator3D.GetResultRectifiedRotationParameters();
+		CStereoCalibrator3D::CRotationParameters rotationRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedRotationParameters2();
+
+		CStereoCalibrator3D::CTranslationParameters translationRectifiedParam = stereoCalibrator3D.GetResultRectifiedTranslationParameters();
+		CStereoCalibrator3D::CTranslationParameters translationRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedTranslationParameters2();
 
 		double f64ReprojError = stereoCalibrator3D.GetResultReProjectionError();
 
-		CFLString<wchar_t> strMatrix;
-		CFLString<wchar_t> strDistVal;
-		CFLString<wchar_t> strMatrix2;
-		CFLString<wchar_t> strDistVal2;
-		CFLString<wchar_t> strRotatMatrix;
-		CFLString<wchar_t> strTranslVal;
-		CFLString<wchar_t> strRotatMatrix2;
-		CFLString<wchar_t> strTranslVal2;
+		CFLString<wchar_t> strFocalLengthX = "";
+		CFLString<wchar_t> strFocalLengthY = "";
+		CFLString<wchar_t> strPrincipalPointX = "";
+		CFLString<wchar_t> strPrincipalPointY = "";
+		CFLString<wchar_t> strDistortionK1 = "";
+		CFLString<wchar_t> strDistortionK2 = "";
+		CFLString<wchar_t> strDistortionP1 = "";
+		CFLString<wchar_t> strDistortionP2 = "";
+		CFLString<wchar_t> strDistortionK3 = "";
+		CFLString<wchar_t> strRotation0 = "";
+		CFLString<wchar_t> strRotation1 = "";
+		CFLString<wchar_t> strRotation2 = "";
+		CFLString<wchar_t> strTranslationX = "";
+		CFLString<wchar_t> strTranslationY = "";
+		CFLString<wchar_t> strTranslationZ = "";
+		
 
-		strMatrix.AppendFormat(L"%.13lf, ", sIntrinsicParam.f64FocalLengthX);
-		strMatrix.AppendFormat(L"%.13lf, ", sIntrinsicParam.f64Skew);
-		strMatrix.AppendFormat(L"%.13lf, ", sIntrinsicParam.f64PrincipalPointX);
-		strMatrix.AppendFormat(L"%.13lf, ", 0);
-		strMatrix.AppendFormat(L"%.13lf, ", sIntrinsicParam.f64FocalLengthY);
-		strMatrix.AppendFormat(L"%.13lf, ", sIntrinsicParam.f64PrincipalPointY);
-		strMatrix.AppendFormat(L"%.13lf, ", 0);
-		strMatrix.AppendFormat(L"%.13lf, ", 0);
-		strMatrix.AppendFormat(L"%.13lf", 1);
+		wprintf(L"\n\n");
 
-		strMatrix2.AppendFormat(L"%.13lf, ", sIntrinsicParam2.f64FocalLengthX);
-		strMatrix2.AppendFormat(L"%.13lf, ", sIntrinsicParam2.f64Skew);
-		strMatrix2.AppendFormat(L"%.13lf, ", sIntrinsicParam2.f64PrincipalPointX);
-		strMatrix2.AppendFormat(L"%.13lf, ", 0);
-		strMatrix2.AppendFormat(L"%.13lf, ", sIntrinsicParam2.f64FocalLengthY);
-		strMatrix2.AppendFormat(L"%.13lf, ", sIntrinsicParam2.f64PrincipalPointY);
-		strMatrix2.AppendFormat(L"%.13lf, ", 0);
-		strMatrix2.AppendFormat(L"%.13lf, ", 0);
-		strMatrix2.AppendFormat(L"%.13lf", 1);
+		wprintf(L"**************************** Calibration ****************************");
 
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K1);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64K2);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64P1);
-		strDistVal.AppendFormat(L"%.13lf, ", sDistortCoeef.f64P2);
-		strDistVal.AppendFormat(L"%.13lf", sDistortCoeef.f64K3);
+		wprintf(L"\n\n\n");
 
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K1);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64K2);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64P1);
-		strDistVal2.AppendFormat(L"%.13lf, ", sDistortCoeef2.f64P2);
-		strDistVal2.AppendFormat(L"%.13lf", sDistortCoeef2.f64K3);
+		wprintf(L"---------------------------- Camera 0 ----------------------------");
 
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R0);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R1);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R2);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R3);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R4);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R5);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R6);
-		strRotatMatrix.AppendFormat(L"%.13lf, ", sRotationParam.f64R7);
-		strRotatMatrix.AppendFormat(L"%.13lf", sRotationParam.f64R8);
+		wprintf(L"\n\n");
 
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R0);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R1);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R2);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R3);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R4);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R5);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R6);
-		strRotatMatrix2.AppendFormat(L"%.13lf, ", sRotationParam2.f64R7);
-		strRotatMatrix2.AppendFormat(L"%.13lf", sRotationParam2.f64R8);
+		strFocalLengthX.Format(L"%.13lf", intrinsicOptimizedParam.f64FocalLengthX);
+		strFocalLengthY.Format(L"%.13lf", intrinsicOptimizedParam.f64FocalLengthY);
+		strPrincipalPointX.Format(L"%.13lf", intrinsicOptimizedParam.f64PrincipalPointX);
+		strPrincipalPointY.Format(L"%.13lf", intrinsicOptimizedParam.f64PrincipalPointY);
 
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T0);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T1);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T2);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T3);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T4);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T5);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T6);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T7);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T8);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T9);
-		strTranslVal.AppendFormat(L"%.8lf, ", sTranslationParam.f64T10);
-		strTranslVal.AppendFormat(L"%.8lf", sTranslationParam.f64T11);
+		wprintf(L"Calibrated Intrinsic Parameters:\n");
+		wprintf(L"\tFocal Length X: %s\n", strFocalLengthX.GetString());
+		wprintf(L"\tFocal Length Y: %s\n", strFocalLengthY.GetString());
+		wprintf(L"\tPrincipal Point X: %s\n", strPrincipalPointX.GetString());
+		wprintf(L"\tPrincipal Point Y: %s\n", strPrincipalPointY.GetString());
 
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T0);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T1);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T2);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T3);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T4);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T5);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T6);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T7);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T8);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T9);
-		strTranslVal2.AppendFormat(L"%.8lf, ", sTranslationParam2.f64T10);
-		strTranslVal2.AppendFormat(L"%.8lf", sTranslationParam2.f64T11);
+		wprintf(L"\n");
 
-		wprintf(L"Intrinsic parameters : %s\n", strMatrix.GetString());
-		wprintf(L"Distortion Coefficients : %s\n", strDistVal.GetString());
-		wprintf(L"Rotation parameters : %s\n", strRotatMatrix.GetString());
-		wprintf(L"Translation parameters : %s\n\n", strTranslVal.GetString());
-		wprintf(L"Intrinsic parameters 2 : %s\n", strMatrix2.GetString());
-		wprintf(L"Distortion Coefficients 2 : %s\n", strDistVal2.GetString());
-		wprintf(L"Rotation parameters 2 : %s\n", strRotatMatrix2.GetString());
-		wprintf(L"Translation parameters 2 : %s\n\n", strTranslVal2.GetString());
-		wprintf(L"Re-Projection Error : %.8lf", f64ReprojError);
+		strDistortionK1.Format(L"%.13lf", distortOptimizedCoeef.f64K1);
+		strDistortionK2.Format(L"%.13lf", distortOptimizedCoeef.f64K2);
+		strDistortionP1.Format(L"%.13lf", distortOptimizedCoeef.f64P1);
+		strDistortionP2.Format(L"%.13lf", distortOptimizedCoeef.f64P2);
+		strDistortionK3.Format(L"%.13lf", distortOptimizedCoeef.f64K3);
+
+		wprintf(L"Calibrated Distortion Coefficients:\n");
+		wprintf(L"\tK1: %s\n", strDistortionK1.GetString());
+		wprintf(L"\tK2: %s\n", strDistortionK2.GetString());
+		wprintf(L"\tP1: %s\n", strDistortionP1.GetString());
+		wprintf(L"\tP2: %s\n", strDistortionP2.GetString());
+		wprintf(L"\tK3: %s\n", strDistortionK3.GetString());
+
+		wprintf(L"\n");
+
+
+		wprintf(L"---------------------------- Camera 1 ----------------------------");
+
+		wprintf(L"\n\n");
+
+		strFocalLengthX.Format(L"%.13lf", intrinsicOptimizedParam2.f64FocalLengthX);
+		strFocalLengthY.Format(L"%.13lf", intrinsicOptimizedParam2.f64FocalLengthY);
+		strPrincipalPointX.Format(L"%.13lf", intrinsicOptimizedParam2.f64PrincipalPointX);
+		strPrincipalPointY.Format(L"%.13lf", intrinsicOptimizedParam2.f64PrincipalPointY);
+
+		wprintf(L"Calibrated Intrinsic Parameters:\n");
+		wprintf(L"\tFocal Length X: %s\n", strFocalLengthX.GetString());
+		wprintf(L"\tFocal Length Y: %s\n", strFocalLengthY.GetString());
+		wprintf(L"\tPrincipal Point X: %s\n", strPrincipalPointX.GetString());
+		wprintf(L"\tPrincipal Point Y: %s\n", strPrincipalPointY.GetString());
+
+		wprintf(L"\n");
+
+		strDistortionK1.Format(L"%.13lf", distortOptimizedCoeef2.f64K1);
+		strDistortionK2.Format(L"%.13lf", distortOptimizedCoeef2.f64K2);
+		strDistortionP1.Format(L"%.13lf", distortOptimizedCoeef2.f64P1);
+		strDistortionP2.Format(L"%.13lf", distortOptimizedCoeef2.f64P2);
+		strDistortionK3.Format(L"%.13lf", distortOptimizedCoeef2.f64K3);
+
+		wprintf(L"Calibrated Distortion Coefficients:\n");
+		wprintf(L"\tK1: %s\n", strDistortionK1.GetString());
+		wprintf(L"\tK2: %s\n", strDistortionK2.GetString());
+		wprintf(L"\tP1: %s\n", strDistortionP1.GetString());
+		wprintf(L"\tP2: %s\n", strDistortionP2.GetString());
+		wprintf(L"\tK3: %s\n", strDistortionK3.GetString());
+
+		wprintf(L"\n");
+
+
+		wprintf(L"---------------------------- Common ----------------------------");
+
+		wprintf(L"\n\n");
+
+		strRotation0.Format(L"%.13lf, ", rotationOptimizedParam.f64R0);
+		strRotation0.AppendFormat(L"%.13lf, ", rotationOptimizedParam.f64R1);
+		strRotation0.AppendFormat(L"%.13lf", rotationOptimizedParam.f64R2);
+		strRotation1.Format(L"%.13lf, ", rotationOptimizedParam.f64R3);
+		strRotation1.AppendFormat(L"%.13lf, ", rotationOptimizedParam.f64R4);
+		strRotation1.AppendFormat(L"%.13lf", rotationOptimizedParam.f64R5);
+		strRotation2.Format(L"%.13lf, ", rotationOptimizedParam.f64R6);
+		strRotation2.AppendFormat(L"%.13lf, ", rotationOptimizedParam.f64R7);
+		strRotation2.AppendFormat(L"%.13lf", rotationOptimizedParam.f64R8);
+
+		wprintf(L"Relative Rotation Parameters:\n");
+		wprintf(L"\t%s\n", strRotation0.GetString());
+		wprintf(L"\t%s\n", strRotation1.GetString());
+		wprintf(L"\t%s\n", strRotation2.GetString());
+
+		wprintf(L"\n");
+
+		strTranslationX.Format(L"%.13lf", translationOptimizedParam.f64X);
+		strTranslationY.Format(L"%.13lf", translationOptimizedParam.f64Y);
+		strTranslationZ.Format(L"%.13lf", translationOptimizedParam.f64Z);
+
+		wprintf(L"Relative Translation Parameters:\n");
+		wprintf(L"\tX: %s\n", strTranslationX.GetString());
+		wprintf(L"\tY: %s\n", strTranslationY.GetString());
+		wprintf(L"\tZ: %s\n", strTranslationZ.GetString());
+
+		wprintf(L"\n\n");
+
+
+		wprintf(L"**************************** Rectification ****************************");
+
+		wprintf(L"\n\n\n");
+
+		wprintf(L"---------------------------- Camera 0 ----------------------------");
+
+		wprintf(L"\n\n");
+
+		strFocalLengthX.Format(L"%.13lf", intrinsicRectifiedParam.f64FocalLengthX);
+		strFocalLengthY.Format(L"%.13lf", intrinsicRectifiedParam.f64FocalLengthY);
+		strPrincipalPointX.Format(L"%.13lf", intrinsicRectifiedParam.f64PrincipalPointX);
+		strPrincipalPointY.Format(L"%.13lf", intrinsicRectifiedParam.f64PrincipalPointY);
+
+		wprintf(L"Rectified Intrinsic Parameters:\n");
+		wprintf(L"\tFocal Length X: %s\n", strFocalLengthX.GetString());
+		wprintf(L"\tFocal Length Y: %s\n", strFocalLengthY.GetString());
+		wprintf(L"\tPrincipal Point X: %s\n", strPrincipalPointX.GetString());
+		wprintf(L"\tPrincipal Point Y: %s\n", strPrincipalPointY.GetString());
+
+		wprintf(L"\n");
+
+		strRotation0.Format(L"%.13lf, ", rotationRectifiedParam.f64R0);
+		strRotation0.AppendFormat(L"%.13lf, ", rotationRectifiedParam.f64R1);
+		strRotation0.AppendFormat(L"%.13lf", rotationRectifiedParam.f64R2);
+		strRotation1.Format(L"%.13lf, ", rotationRectifiedParam.f64R3);
+		strRotation1.AppendFormat(L"%.13lf, ", rotationRectifiedParam.f64R4);
+		strRotation1.AppendFormat(L"%.13lf", rotationRectifiedParam.f64R5);
+		strRotation2.Format(L"%.13lf, ", rotationRectifiedParam.f64R6);
+		strRotation2.AppendFormat(L"%.13lf, ", rotationRectifiedParam.f64R7);
+		strRotation2.AppendFormat(L"%.13lf", rotationRectifiedParam.f64R8);
+
+		wprintf(L"Rectified Rotation Parameters:\n");
+		wprintf(L"\t%s\n", strRotation0.GetString());
+		wprintf(L"\t%s\n", strRotation1.GetString());
+		wprintf(L"\t%s\n", strRotation2.GetString());
+
+		wprintf(L"\n");
+
+		strTranslationX.Format(L"%.13lf", translationRectifiedParam.f64X);
+		strTranslationY.Format(L"%.13lf", translationRectifiedParam.f64Y);
+		strTranslationZ.Format(L"%.13lf", translationRectifiedParam.f64Z);
+
+		wprintf(L"Rectified Translation Parameters:\n");
+		wprintf(L"\tX: %s\n", strTranslationX.GetString());
+		wprintf(L"\tY: %s\n", strTranslationY.GetString());
+		wprintf(L"\tZ: %s\n", strTranslationZ.GetString());
+
+		wprintf(L"\n");
+
+
+		wprintf(L"---------------------------- Camera 1 ----------------------------");
+
+		wprintf(L"\n\n");
+
+		strFocalLengthX.Format(L"%.13lf", intrinsicRectifiedParam2.f64FocalLengthX);
+		strFocalLengthY.Format(L"%.13lf", intrinsicRectifiedParam2.f64FocalLengthY);
+		strPrincipalPointX.Format(L"%.13lf", intrinsicRectifiedParam2.f64PrincipalPointX);
+		strPrincipalPointY.Format(L"%.13lf", intrinsicRectifiedParam2.f64PrincipalPointY);
+
+		wprintf(L"Rectified Intrinsic Parameters:\n");
+		wprintf(L"\tFocal Length X: %s\n", strFocalLengthX.GetString());
+		wprintf(L"\tFocal Length Y: %s\n", strFocalLengthY.GetString());
+		wprintf(L"\tPrincipal Point X: %s\n", strPrincipalPointX.GetString());
+		wprintf(L"\tPrincipal Point Y: %s\n", strPrincipalPointY.GetString());
+
+		wprintf(L"\n");
+
+		strRotation0.Format(L"%.13lf, ", rotationRectifiedParam2.f64R0);
+		strRotation0.AppendFormat(L"%.13lf, ", rotationRectifiedParam2.f64R1);
+		strRotation0.AppendFormat(L"%.13lf", rotationRectifiedParam2.f64R2);
+		strRotation1.Format(L"%.13lf, ", rotationRectifiedParam2.f64R3);
+		strRotation1.AppendFormat(L"%.13lf, ", rotationRectifiedParam2.f64R4);
+		strRotation1.AppendFormat(L"%.13lf", rotationRectifiedParam2.f64R5);
+		strRotation2.Format(L"%.13lf, ", rotationRectifiedParam2.f64R6);
+		strRotation2.AppendFormat(L"%.13lf, ", rotationRectifiedParam2.f64R7);
+		strRotation2.AppendFormat(L"%.13lf", rotationRectifiedParam2.f64R8);
+
+		wprintf(L"Rectified Rotation Parameters:\n");
+		wprintf(L"\t%s\n", strRotation0.GetString());
+		wprintf(L"\t%s\n", strRotation1.GetString());
+		wprintf(L"\t%s\n", strRotation2.GetString());
+
+		wprintf(L"\n");
+
+		strTranslationX.Format(L"%.13lf", translationRectifiedParam2.f64X);
+		strTranslationY.Format(L"%.13lf", translationRectifiedParam2.f64Y);
+		strTranslationZ.Format(L"%.13lf", translationRectifiedParam2.f64Z);
+
+		wprintf(L"Rectified Translation Parameters:\n");
+		wprintf(L"\tX: %s\n", strTranslationX.GetString());
+		wprintf(L"\tY: %s\n", strTranslationY.GetString());
+		wprintf(L"\tZ: %s\n", strTranslationZ.GetString());
+
+		wprintf(L"\n");
+
+		wprintf(L"Re-Projection Error : %.13lf\n", f64ReprojError);
+
+		wprintf(L"\n");
 
 		// 이미지 뷰 정보 표시 // Display image view information
 		if((res = layerLearn.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Learn Image", YELLOW, BLACK, 15)).IsFail())
