@@ -306,17 +306,23 @@ int main()
 				float f32CurrCost = instanceSegmentationDL.GetLearningResultLastCost();
 				// 마지막 검증 결과 받기 // Get the last validation result
 				float f32MeanAP = instanceSegmentationDL.GetLearningResultLastMeanAP();
+				// 마지막 Recall 결과 받기 // Get the last recall result
+				float f32Recall = instanceSegmentationDL.GetLearningResultLastRecall();
+				// 마지막 검증 결과 받기 // Get the last validation result
+				float f32Precision = instanceSegmentationDL.GetLearningResultLastPrecision();
 
 				// 해당 epoch의 비용과 검증 결과 값 출력 // Print cost and validation value for the relevant epoch
-				printf("Cost : %.6f mAP : %.6f Epoch %d / %d\n", f32CurrCost, f32MeanAP, i32Epoch, i32MaxEpoch);
+				printf("Cost : %.6f mAP : %.6f recall : %.6f precision : %.6f Epoch %d / %d\n", f32CurrCost, f32MeanAP, f32Recall, f32Precision, i32Epoch, i32MaxEpoch);
 
 				// 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
 				// Get the history of cost and validation and print it at graph view
 				CFLArray<float> vctCosts;
 				CFLArray<float> vctMeanAP;
+				CFLArray<float> vctRecall;
+				CFLArray<float> vctPrecision;
 				CFLArray<int32_t> vctValidationEpoch;
 
-				instanceSegmentationDL.GetLearningResultAllHistory(&vctCosts, &vctMeanAP, &vctValidationEpoch);
+				instanceSegmentationDL.GetLearningResultAllHistory(&vctCosts, &vctMeanAP, &vctValidationEpoch, &vctRecall, &vctPrecision);
 
 				// 비용 기록이나 검증 결과 기록이 있다면 출력 // Print results if cost or validation history exists
 				if((vctCosts.GetCount() && i32PrevCostCount != (int32_t)vctCosts.GetCount()) || (vctMeanAP.GetCount() && i32PrevValidationCount != (int32_t)vctMeanAP.GetCount()))
@@ -337,6 +343,9 @@ int main()
 
 					// Graph View 데이터 입력 // Input Graph View Data
 					viewGraph.Plot(flaX, vctMeanAP, EChartType_Line, BLUE, L"mAP");
+					viewGraph.Plot(flaX, vctRecall, EChartType_Line, GREEN, L"recall");
+					viewGraph.Plot(flaX, vctPrecision, EChartType_Line, PURPLE, L"precision");
+
 					viewGraph.UnlockUpdate();
 
 					viewGraph.UpdateWindow();
