@@ -769,6 +769,9 @@
     - DeviceLightControllerLVS_PN_40
       - Example of connecting and operating LVS PN-40.
       - LVS PN-40 연결 및 구동하는 예제
+    - DeviceLightControllerNARATECH_NRT_PH
+      - Example of connecting and operating NARATECH NRT-PH.
+      - NARATECH NRT-PH 연결 및 구동하는 예제
     - DeviceLightControllerNARATECH_NRT_PW
       - Example of connecting and operating NARATECH NRT-PW.
       - NARATECH NRT-PW 연결 및 구동하는 예제
