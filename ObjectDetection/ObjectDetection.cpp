@@ -269,10 +269,14 @@ int main()
 				float f32AvgCost = objectDetectionDL.GetLearningResultLastAverageCost();
 				// 마지막 검증 결과 받기 // Get the last validation result
 				float f32Validation = objectDetectionDL.GetLearningResultLastMeanAP();
+				// 마지막 검증 재현율 받기 // Get the last validation recall
+				float f32Recall = objectDetectionDL.GetLearningResultLastRecall();
+				// 마지막 검증 정확도 받기 // Get the last validation precision
+				float f32Precision = objectDetectionDL.GetLearningResultLastPrecision();
 
 				// 해당 epoch의 비용과 검증 결과 값 출력 // Print cost and validation value for the relevant epoch
 				if(f32AvgCost < objectDetectionDL.GetLearningRequiredCostForValidation())
-					printf("Cost : %.6f Avg Cost : %.6f mAP : %.6f Epoch %d / %d\n", f32CurrCost, f32AvgCost, f32Validation, i32Epoch, i32MaxEpoch);
+					printf("Cost : %.6f Avg Cost : %.6f mAP : %.6f Recall : %.6f Precision : %.6f Epoch %d / %d\n", f32CurrCost, f32AvgCost, f32Validation, f32Recall, f32Precision, i32Epoch, i32MaxEpoch);
 				else
 					printf("Cost : %.6f Avg Cost : %.6f Epoch %d / %d\n", f32CurrCost, f32AvgCost, i32Epoch, i32MaxEpoch);
 
@@ -281,12 +285,14 @@ int main()
 				CFLArray<float> vctCosts;
 				CFLArray<float> vctAvgCosts;
 				CFLArray<float> vctmAP;
+				CFLArray<float> vctRecall;
+				CFLArray<float> vctPrecision;
 				CFLArray<int32_t> vctValidationEpoch;
 
-				objectDetectionDL.GetLearningResultAllHistory(&vctCosts, &vctAvgCosts, &vctmAP, &vctValidationEpoch);
+				objectDetectionDL.GetLearningResultAllHistory(&vctCosts, &vctAvgCosts, &vctmAP, &vctValidationEpoch, &vctRecall, &vctPrecision);
 
 				// 비용 기록이나 검증 결과 기록이 있다면 출력 // Print results if cost or validation history exists
-				if((vctCosts.GetCount() && i32PrevCostCount != (int32_t)vctCosts.GetCount()) || (vctAvgCosts.GetCount() && i32PrevCostCount != (int32_t)vctAvgCosts.GetCount()) || (vctmAP.GetCount() && i32PrevValidationCount != (int32_t)vctValidationEpoch.GetCount()))
+				if((vctCosts.GetCount() && i32PrevCostCount != (int32_t)vctCosts.GetCount()) || (vctAvgCosts.GetCount() && i32PrevCostCount != (int32_t)vctAvgCosts.GetCount()) || (vctmAP.GetCount() && vctRecall.GetCount() && vctPrecision.GetCount() && i32PrevValidationCount != (int32_t)vctValidationEpoch.GetCount()))
 				{
 					int32_t i32Step = objectDetectionDL.GetLearningValidationStep();
 					CFLArray<float> flaX;
@@ -305,6 +311,8 @@ int main()
 					// Graph View 데이터 입력 // Input Graph View Data
 					viewGraph.Plot(vctAvgCosts, EChartType_Line, BLUE, L"Avg Cost");
 					viewGraph.Plot(flaX, vctmAP, EChartType_Line, PINK, L"mAP");
+					viewGraph.Plot(flaX, vctRecall, EChartType_Line, GREEN, L"recall");
+					viewGraph.Plot(flaX, vctPrecision, EChartType_Line, PURPLE, L"precision");
 					viewGraph.UnlockUpdate();
 
 					viewGraph.UpdateWindow();
