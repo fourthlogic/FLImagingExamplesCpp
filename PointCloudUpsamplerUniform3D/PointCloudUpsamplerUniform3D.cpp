@@ -87,15 +87,7 @@ int main()
 		view3DSrc.SynchronizePointOfView(&view3DDst);
 		view3DSrc.SynchronizeWindow(&view3DDst);
 
-		CFL3DCamera cam;
-
-		cam.SetProjectionType(E3DCameraProjectionType_Perspective);
-		cam.SetDirection(CFLPoint3<float>(0.327705, 0.066764, -0.942418));
-		cam.SetDirectionUp(CFLPoint3<float>(0.311277, 0.839746, -0.444896));
-		cam.SetPosition(CFLPoint3<float>(-1.825832, 0.425620, 1.548716));
-		cam.SetAngleOfViewY(45);
-
-		view3DDst.SetCamera(cam);
+		view3DSrc.ZoomFit();
 
 		// 뷰가 종료될 때까지 계속 실행
 		while(view3DSrc.IsAvailable() && view3DDst.IsAvailable())
