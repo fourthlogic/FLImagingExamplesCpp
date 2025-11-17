@@ -78,6 +78,7 @@ int main()
 			break;
 		}
 
+		// 3D 뷰에 객체들을 디스플레이 // Display objects in 3D view
 		view3DSrc.UpdateObject(0);
 		view3DDst.UpdateObject(0);
 
