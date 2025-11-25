@@ -274,7 +274,7 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuGUIDialogExample::Ma
 
 			pSliderFloatingPoint->SetRange(0., 1.);
 			pSliderFloatingPoint->SetUnit(0.01); // SliderFloatingPoint 1틱당 증가량
-			pSliderFloatingPoint->SetDecimalPlace(2); // 소수점 자리 표시
+			pSliderFloatingPoint->SetDecimalPlaces(2); // 소수점 자리 표시
 
 
 			pGrid->AddCtrl(1, 0, L"Val=  ");
