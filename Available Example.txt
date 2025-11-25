@@ -162,6 +162,11 @@
 
   - [Resampler]
 
+    - [Point Cloud Downsampler Farthest]
+      - PointCloudDownsamplerFarthest3D
+        - The example of an algorithm that reduces a point cloud by repeatedly selecting the point farthest from the already selected points.
+        - 이미 뽑힌 점들에서 가장 먼 점을 뽑는 것을 반복하여 포인트 클라우드를 축소하는 알고리즘 예제.
+
     - [Point Cloud Downsampler Stochastic]
       - PointCloudDownsamplerStochastic3D
         - The example of an algorithm that reduces number of points in a point cloud by randomly dropping points.
