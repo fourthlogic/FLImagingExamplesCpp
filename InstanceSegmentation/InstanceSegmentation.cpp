@@ -238,9 +238,6 @@ int main()
 		// 설정한 Optimizer를 intanceSegmentation에 적용 // Apply the Optimizer that we set up to intanceSegmentation
 		instanceSegmentationDL.SetLearningOptimizerSpec(optSpec);
 
-		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		instanceSegmentationDL.EnableOptimalLearningStatePreservation(true);
-
 		// AugmentationSpec 설정 // Set the AugmentationSpec
 		CAugmentationSpec augSpec;
 

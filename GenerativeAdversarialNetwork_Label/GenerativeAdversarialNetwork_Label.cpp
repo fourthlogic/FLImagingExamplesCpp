@@ -186,9 +186,6 @@ int main()
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		generativeAdversarialNetworkDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
-		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		generativeAdversarialNetworkDL.EnableOptimalLearningStatePreservation(true);
-
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-4f);
 		// Optimizer의 Weight Decay 설정 // Set weight decay of Optimizer

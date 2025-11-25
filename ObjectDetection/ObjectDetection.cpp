@@ -192,8 +192,6 @@ int main()
 		objectDetectionDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 	    // 검증을 진행 할 최소 평균 Cost값 설정 // Set the minimum average cost value at which verification will be triggered
 		objectDetectionDL.SetLearningRequiredAvgCostForValidation(5.f);
-		// 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		objectDetectionDL.EnableOptimalLearningStatePreservation(true);
 		// 학습을 종료할 조건식 설정. mAP값이 0.85 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
 		// Set Conditional Expression to End Learning. If the mAP value is 0.85 or higher, end the learning. Same value as metric.
 		objectDetectionDL.SetLearningStopCondition(L"mAP >= 0.85");
