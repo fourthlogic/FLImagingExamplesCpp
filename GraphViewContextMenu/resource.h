@@ -55,9 +55,15 @@
 #define IDC_CHECK_INDICATE_MIN_MAX      1058
 #define IDC_CHECK_SET_RANGE             1059
 #define IDC_CHECK_SET_OPACITY_OF_LEGEND 1060
+#define IDC_CHECK_SHOW_LAYERS           1061
+#define IDC_CHECK_LAYER_PROPERTIES      1062
+#define IDC_CHECK_CLEAR_LAYERS          1063
+#define IDC_CHECK_THEME_LIGHT           1064
+#define IDC_CHECK_THEME_DARK            1065
+#define IDC_CHECK_SYNC_VIEW             1066
+#define IDC_CHECK_SYNC_WINDOW           1067
 
-// Next default values for new objects
-// 
+
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        129

@@ -393,6 +393,41 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SET_OPACITY_OF_LEGEND);
 		flaCheckBoxString.PushBack(L"Set Opacity Of Legend");
 
+		// 레이어 보이기 메뉴 // Show layers menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowLayers);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_LAYERS);
+		flaCheckBoxString.PushBack(L"Show layers");
+
+		// 레이어 속성 창 메뉴 // Show layer properties pane dialog
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_LayerProperties);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_LAYER_PROPERTIES);
+		flaCheckBoxString.PushBack(L"Layer Properties");
+
+		// 레이어 정리 메뉴 // Clear layers menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ClearLayers);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_CLEAR_LAYERS);
+		flaCheckBoxString.PushBack(L"Clear Layers");
+
+		// 라이트 모드 테마 메뉴 // Light mode theme menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ThemeLightMode);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_THEME_LIGHT);
+		flaCheckBoxString.PushBack(L"Theme Light Mode");
+
+		// 다크 모드 테마 메뉴 // Dark mode theme menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ThemeDarkMode);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_THEME_DARK);
+		flaCheckBoxString.PushBack(L"Theme Dark Mode");
+
+		// 뷰 동기화 메뉴 // View synchronization menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SyncView);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SYNC_VIEW);
+		flaCheckBoxString.PushBack(L"Synchronize View");
+
+		// 윈도우 동기화 메뉴 // Window synchronization menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SyncWindow);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SYNC_WINDOW);
+		flaCheckBoxString.PushBack(L"Synchronize Window");
+
 		CWnd* pWndStatic = GetDlgItem(IDC_STATIC_ACM);
 		pWndStatic->SetParent(this);
 		pWndStatic->ModifyStyleEx(0, WS_EX_COMPOSITED);
