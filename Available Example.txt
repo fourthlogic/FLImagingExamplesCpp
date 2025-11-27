@@ -682,7 +682,7 @@
        - Algorithm example that performs Auto Labeling using learned SemanticSegmenation objects
        - 학습된 SemanticSegmenation 객체를 이용하여 Auto Labeling 작업을 해주는 알고리즘 예제
 
-    - LabelRenamer
+    - COCOLabelParser
        - Algorithm example that receives the required label format from COCO Data's json file and converts it into a figure.
        - COCO Data 의 json 파일에서 필요한 라벨 형식을 받아와 Figure 로 변환하는 알고리즘 예제
 
