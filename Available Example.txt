@@ -1317,6 +1317,9 @@
       - MedianWeightedFilter
         - The example of an algorithm that processes a median weighted filter to an image.
         - 이미지에서 가중을 이용한 중앙값 필터를 처리하는 알고리즘 예제.
+      - ModeFilter
+        - The example of an algorithm that processes a mode filter to an image.
+        - 이미지에서 최빈값 필터를 처리하는 알고리즘 예제.
       - NonLocalMeansFilter
         - The example of an algorithm that processes a non local means filter to an image.
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.
