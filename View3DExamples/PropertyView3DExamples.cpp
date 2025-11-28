@@ -1496,7 +1496,7 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::ScaleObject(CGUIView3D* p
 
 			// CFL3DObjectUtilities 를 사용하여 간편하게 스케일
 			// Scales the object using CFL3DObjectUtilities.
-			CFL3DObjectUtilities::Scale(*p3DObject, CFLGeometry3DVector<float>(0, 0, 0), 2.f);
+			CFL3DObjectUtilities::Scale(*p3DObject, 2.f);
 
 			pObj->UpdateVertex();
 			pView3D->UpdateObject(i);
