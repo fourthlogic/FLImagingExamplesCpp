@@ -1248,8 +1248,8 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::PushObjectUnselectableAxi
 			// Rotate the arrow using CFL3DObjectUtilities.
 			// Parameter order: start point vector -> end point vector -> object to rotate
 			// Rotates by the angle between the start and end vectors.
-			CFL3DObjectUtilities::Rotate(CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(1, 0, 0), *(Foundation::CFL3DObject*)mesh1.Get3DObject());
-			CFL3DObjectUtilities::Rotate(CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(1, 0, 0), *(Foundation::CFL3DObject*)mesh2.Get3DObject());
+			CFL3DObjectUtilities::Rotate(*(Foundation::CFL3DObject*)mesh1.Get3DObject(), CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(1, 0, 0));
+			CFL3DObjectUtilities::Rotate(*(Foundation::CFL3DObject*)mesh2.Get3DObject(), CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(1, 0, 0));
 
 			// CGUIView3DObject 객체를 뷰에 디스플레이
 			// Display the CGUIView3DObject in the view
@@ -1274,8 +1274,8 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::PushObjectUnselectableAxi
 			// Rotate the arrow using CFL3DObjectUtilities.
 			// Parameter order: start point vector -> end point vector -> object to rotate
 			// Rotates by the angle between the start and end vectors.
-			CFL3DObjectUtilities::Rotate(CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(0, 1, 0), *(Foundation::CFL3DObject*)mesh1.Get3DObject());
-			CFL3DObjectUtilities::Rotate(CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(0, 1, 0), *(Foundation::CFL3DObject*)mesh2.Get3DObject());
+			CFL3DObjectUtilities::Rotate(*(Foundation::CFL3DObject*)mesh1.Get3DObject(), CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(0, 1, 0));
+			CFL3DObjectUtilities::Rotate(*(Foundation::CFL3DObject*)mesh2.Get3DObject(), CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(0, 1, 0));
 
 			// CGUIView3DObject 객체를 뷰에 디스플레이
 			// Display the CGUIView3DObject in the view
@@ -1348,7 +1348,7 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::RotateObject(CGUIView3D* 
 			// Rotate the object using CFL3DObjectUtilities.
 			// Parameter order: start point vector -> end point vector -> object to rotate
 			// Rotates by the angle between the start and end vectors.
-			CFL3DObjectUtilities::Rotate(CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(1, 0, 0), *p3DObject);
+			CFL3DObjectUtilities::Rotate(*p3DObject, CFLGeometry3DVector<float>(0, 0, 1), CFLGeometry3DVector<float>(1, 0, 0));
 
 			pObj->UpdateVertex();
 			pView3D->UpdateObject(i);
@@ -1396,9 +1396,9 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::RotateObjectWithPivot(CGU
 
 			// 피봇을 중심으로 회전
 			// An example of rotating around a pivot 
-			CFL3DObjectUtilities::Rotate(CFLGeometry3DQuaternion<float>(CFLGeometry3DVector<float>(0.f, 1.f, 0.f), 
+			CFL3DObjectUtilities::Rotate(*p3DObject,
+										 CFLGeometry3DQuaternion<float>(CFLGeometry3DVector<float>(0.f, 1.f, 0.f),
 																		CFLGeometry3DVector<float>(0.f, 0.5f, 0.5f)), 
-										 *p3DObject,
 										 CFLPoint3<float>(0, 0, 30), // Pivot
 										 );
 
@@ -1448,7 +1448,7 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::TranslateObject(CGUIView3
 
 			// CFL3DObjectUtilities 를 사용하여 간편하게 이동
 			// Translate the object using CFL3DObjectUtilities.
-			CFL3DObjectUtilities::Translate(CFLGeometry3DVector<float>(4, 0, 0), *p3DObject);
+			CFL3DObjectUtilities::Translate(*p3DObject, CFLGeometry3DVector<float>(4, 0, 0));
 
 			pObj->UpdateVertex();
 			pView3D->UpdateObject(i);
@@ -1496,7 +1496,7 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::ScaleObject(CGUIView3D* p
 
 			// CFL3DObjectUtilities 를 사용하여 간편하게 스케일
 			// Scales the object using CFL3DObjectUtilities.
-			CFL3DObjectUtilities::Scale(CFLGeometry3DVector<float>(0, 0, 0), 2.f, *p3DObject);
+			CFL3DObjectUtilities::Scale(*p3DObject, CFLGeometry3DVector<float>(0, 0, 0), 2.f);
 
 			pObj->UpdateVertex();
 			pView3D->UpdateObject(i);
