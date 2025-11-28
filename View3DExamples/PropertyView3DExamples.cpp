@@ -1396,10 +1396,11 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::RotateObjectWithPivot(CGU
 
 			// 피봇을 중심으로 회전
 			// An example of rotating around a pivot 
-			CFL3DObjectUtilities::Rotate(CFLPoint3<float>(0, 0, 30), // Pivot
-										 CFLGeometry3DQuaternion<float>(CFLGeometry3DVector<float>(0.f, 1.f, 0.f), 
+			CFL3DObjectUtilities::Rotate(CFLGeometry3DQuaternion<float>(CFLGeometry3DVector<float>(0.f, 1.f, 0.f), 
 																		CFLGeometry3DVector<float>(0.f, 0.5f, 0.5f)), 
-										 *p3DObject);
+										 *p3DObject,
+										 CFLPoint3<float>(0, 0, 30), // Pivot
+										 );
 
 			pObj->UpdateVertex();
 			pView3D->UpdateObject(i);
