@@ -4,6 +4,17 @@
 
 - [3D]
 
+ - [Alignment]
+    - [Registration]
+      - Registration3D
+        - The example of an algorithm that estimate pose matrix for a given point clouds.
+        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
+
+    - [Iterative Closest Point]
+      - IterativeClosestPoint3D
+        - The example of an algorithm that align two given 3D Object.
+        - 주어진 두 3D 객체를 정렬하는 알고리즘 예제.
+
  - [Calibration]
 
     - [Camera Pose 3D]
@@ -108,11 +119,6 @@
       - Vertex Match 3D Multi
         - The example of an algorithm that estimate pose matrix for one or more point cloud models.
         - 하나 이상의 포인트 클라우드 모델에 대해 포즈 행렬을 추정하는 알고리즘 예제.
-
-    - [Registration]
-      - Registration 3D
-        - The example of an algorithm that estimate pose matrix for a given point clouds.
-        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
 
   - [Reconstruction]
 
