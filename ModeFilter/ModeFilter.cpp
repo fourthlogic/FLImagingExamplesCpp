@@ -20,12 +20,12 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if(IsFail(fliSrcImage.Load(L"../../ExampleImages/NoiseImage/Cat_Noise.flif")))
+		if(IsFail(fliSrcImage.Load(L"../../ExampleImages/NoiseImage/NoiseImage1.flif")))
 		{
 			printf("Failed to load the image file.\n");
 			break;
 		}
-		
+
 		// Destination이미지를 Src 이미지와 동일한 이미지로 생성
 		if(IsFail(fliDstImage.Assign(fliSrcImage)))
 		{
@@ -92,14 +92,22 @@ int main()
 		// ModeFilter 객체 생성 // Create ModeFilter object
 		CModeFilter modeFilter;
 
+		CFLRect<int32_t> flrROI(100, 190, 360, 420);
+
 		// Source 이미지 설정 // Set the source image
 		modeFilter.SetSourceImage(fliSrcImage);
+
+		// Source ROI 설정 // Set the source ROI
+		modeFilter.SetSourceROI(flrROI);
 
 		// Destination 이미지 설정 // Set the destination image
 		modeFilter.SetDestinationImage(fliDstImage);
 
-		// 커널 사이즈 입력 // Set kernel size
-		modeFilter.SetKernel(5, 5);
+		// Destination ROI 설정
+		modeFilter.SetDestinationROI(flrROI);
+
+		// 처리할 Filter의 Kernel Size 설정 (KernelSize = 5 일 경우)
+		modeFilter.SetKernel(5);
 
 		// 가장자리 처리 방식 입력 // Set Padding Method
 		modeFilter.SetPaddingMethod(EPaddingMethod_DecreasingKernel);
@@ -122,6 +130,11 @@ int main()
 
 		// ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
 		// FLImaging의 Figure객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능
+		if(IsFail(layerSrc.DrawFigureImage(&flrROI, LIME)))
+			printf("Failed to draw figure\n");
+
+		if(IsFail(layerDst.DrawFigureImage(&flrROI, LIME)))
+			printf("Failed to draw figure\n");
 
 		if(IsFail(layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
 		{
