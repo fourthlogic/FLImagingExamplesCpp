@@ -1399,7 +1399,7 @@ const CResult FLImaging::GUI::CPropertyView3DExamples::RotateObjectWithPivot(CGU
 			CFL3DObjectUtilities::Rotate(*p3DObject,
 										 CFLGeometry3DQuaternion<float>(CFLGeometry3DVector<float>(0.f, 1.f, 0.f),
 																		CFLGeometry3DVector<float>(0.f, 0.5f, 0.5f)), 
-										 CFLPoint3<float>(0, 0, 30), // Pivot
+										 CFLPoint3<float>(0, 0, 30) // Pivot
 										 );
 
 			pObj->UpdateVertex();
