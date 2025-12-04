@@ -70,6 +70,31 @@ int main()
 		// VertexMatch3D 객체 생성 // Create VertexMatch3D object
 		CVertexMatch3D vertexMatch3D;
 
+		// Learn object 설정 // Set the learn object
+		vertexMatch3D.SetLearnObject(fl3DOLearnObject);
+		// Source object 설정 // Set the source object
+		vertexMatch3D.SetSourceObject(fl3DOSourceObject);
+		// Min score 설정 // Set the min score
+		vertexMatch3D.SetMinScore(0.3);
+		// 최대 결과 개수 설정 // Set the max count of match result
+		vertexMatch3D.SetMaxObject(1);
+		// 샘플링 하지 않도록 설정 // Disable Sampling
+		vertexMatch3D.EnableLearnSamplingPointCloud(false);
+		// 장면 샘플링 거리 설정 // Set the scene sampling distance
+		vertexMatch3D.SetSceneSamplingDistance(0.03);
+		// 키포인트 비율 설정 // Set the keypoint ratio.
+		vertexMatch3D.SetKeypointRatio(0.5);
+		// 엣지 학습 여부 설정 // Set the edge train
+		vertexMatch3D.EnableTrainEdge(false);
+		// 배경 제거 여부 설정 // Set the background removal
+		vertexMatch3D.EnableBackgroundRemoval(false);
+		// 클러스터링 범위 설정 // Set the clustering range
+		vertexMatch3D.SetClusterRange(0.02);
+		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
+		vertexMatch3D.SetIteration(150);
+		// 초기 점수 설정 // Set the initial score
+		vertexMatch3D.SetInitialScore(0.1);
+
 		// Learn Object 설정 // Set the learn object
 		vertexMatch3D.SetLearnObject(fl3DOLearnObject);
 
@@ -109,32 +134,6 @@ int main()
 			ErrorPrint(eResult, L"Failed to display the 3D object.\n");
 			break;
 		}
-
-
-		// Learn object 설정 // Set the learn object
-		vertexMatch3D.SetLearnObject(fl3DOLearnObject);
-		// Source object 설정 // Set the source object
-		vertexMatch3D.SetSourceObject(fl3DOSourceObject);
-		// Min score 설정 // Set the min score
-		vertexMatch3D.SetMinScore(0.3);
-		// 최대 결과 개수 설정 // Set the max count of match result
-		vertexMatch3D.SetMaxObject(1);
-		// 학습 샘플링 거리 설정 // Set the learn sampling distance
-		vertexMatch3D.SetLearnSamplingDistance(0.03);
-		// 장면 샘플링 거리 설정 // Set the scene sampling distance
-		vertexMatch3D.SetSceneSamplingDistance(0.03);
-		// 키포인트 비율 설정 // Set the keypoint ratio.
-		vertexMatch3D.SetKeypointRatio(0.5);
-		// 엣지 학습 여부 설정 // Set the edge train
-		vertexMatch3D.EnableTrainEdge(false);
-		// 배경 제거 여부 설정 // Set the background removal
-		vertexMatch3D.EnableBackgroundRemoval(false);
-		// 클러스터링 범위 설정 // Set the clustering range
-		vertexMatch3D.SetClusterRange(0.02);
-		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		vertexMatch3D.SetIteration(15);
-		// 초기 점수 설정 // Set the initial score
-		vertexMatch3D.SetInitialScore(0.2);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((eResult = vertexMatch3D.Execute()).IsFail())
