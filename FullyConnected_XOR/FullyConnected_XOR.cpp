@@ -41,6 +41,9 @@ BOOL CFullyConnectedXORApp::InitInstance()
 	CLibraryUtilities::Initialize();
 
 	CWinAppEx::InitInstance();
+
+	CGUIManager::SetAppTitle(L"Fully-Connected XOR Example App");
+	CGUIManager::SetRegistrySubKeyName(CGUIManager::GetAppTitle());
 	SetRegistryKey(L"Fourth Logic Incorporated");
 
 	// GUI Manager 초기화 전처리를 수행합니다.
@@ -53,7 +56,7 @@ BOOL CFullyConnectedXORApp::InitInstance()
 	CGUIManager::ModifyPaneCreationOnInitialize(EPaneType_None, EPaneType_ViewGraph);
 
 	// 인덱스에 해당하는 뷰의 설정으로 선택합니다.
-	CGUIManager::PreInitializePaneVisibility(true, false, false, false, false, true);
+	CGUIManager::PreInitializePaneVisibility(true, false, false, false, false, true, false);
 
 	// 모델 관리자를 초기화 합니다.
 	CGUIManagerModel::Initialize();
