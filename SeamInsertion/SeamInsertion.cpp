@@ -9,7 +9,6 @@ enum EType
 	EType_Src = 0,
 	EType_Opr,
 	EType_Dst,
-	EType_DstExpand,
 	ETypeCount,
 };
 
@@ -66,7 +65,7 @@ int main()
 				break;
 			}
 
-			if(i != EType_Src && i != EType_DstExpand)
+			if(i != EType_Src)
 			{
 				// 두개의 뷰의 시점을 동기화  // Synchronize the viewpoints of the two image views. 
 				if(IsFail(res = arrViewImage[EType_Src].SynchronizePointOfView(&arrViewImage[i])))
@@ -89,14 +88,14 @@ int main()
 		if(bError)
 			break;
 
-		// ImageConcatenator 객체 생성 // Create ImageConcatenator object
-		CImageConcatenator imageConcatenator;
+		// SeamInsertion 객체 생성 // Create SeamInsertion object
+		CSeamInsertion seamInsertion;
 
 		// Source 이미지 설정 // Set source image 
-		imageConcatenator.SetSourceImage(arrFliImage[EType_Src]);
+		seamInsertion.SetSourceImage(arrFliImage[EType_Src]);
 
 		// Operand 이미지 설정 // Set operand image 
-		imageConcatenator.SetOperandImage(arrFliImage[EType_Opr]);
+		seamInsertion.SetOperandImage(arrFliImage[EType_Opr]);
 
 		// Operand ROI 지정 // Create ROI range
 		CFLRect<int32_t> flrROI(arrFliImage[EType_Opr]);
@@ -104,34 +103,21 @@ int main()
 		flrROI.left = (int32_t)(flrROI.GetWidth() * 0.7);
 
 		// Operand 이미지 설정 // Set operand image 
-		imageConcatenator.SetOperandROI(flrROI);
+		seamInsertion.SetOperandROI(flrROI);
 
 		// 결과 이미지 확장 여부 설정 // Enable or disable output image expansion
-		imageConcatenator.EnableResultImageExpansion(false);
+		seamInsertion.EnableResultImageExpansion(false);
 
 		// 이미지를 이어붙일 방향을 설정 // Set image concatenation direction
-		imageConcatenator.SetConcatenationPosition(CImageConcatenator::EConcatenationPosition_Right);
+		seamInsertion.SetSlidePosition(CSeamInsertion::ESlidePosition_Right);
 
 		// Destination 이미지 설정 // Set destination image 
-		imageConcatenator.SetDestinationImage(arrFliImage[EType_Dst]);
+		seamInsertion.SetDestinationImage(arrFliImage[EType_Dst]);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = imageConcatenator.Execute()).IsFail())
+		if((res = seamInsertion.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute imageConcatenator.");
-			break;
-		}
-
-		// 결과 이미지 확장 여부 설정 // Enable or disable output image expansion
-		imageConcatenator.EnableResultImageExpansion(true);
-
-		// Destination 이미지 설정 // Set destination image 
-		imageConcatenator.SetDestinationImage(arrFliImage[EType_DstExpand]);
-
-		// 알고리즘 수행 // Execute the algorithm
-		if((res = imageConcatenator.Execute()).IsFail())
-		{
-			ErrorPrint(res, "Failed to execute imageConcatenator.");
+			ErrorPrint(res, "Failed to execute seamInsertion.");
 			break;
 		}
 
@@ -166,13 +152,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_DstExpand].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image(Expanded)", YELLOW, BLACK, 20)))
-		{
-			ErrorPrint(res, "Failed to draw text\n");
-			break;
-		}
-
-		// ImageConcatenator 영역 표기 // ImageConcatenator Area draw
+		// SeamInsertion 영역 표기 // SeamInsertion Area draw
 		if(IsFail(res = arrLayer[EType_Opr].DrawFigureImage(&flrROI, LIME)))
 			ErrorPrint(res, "Failed to draw figure\n");
 
