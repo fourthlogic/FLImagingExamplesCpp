@@ -105,9 +105,6 @@ int main()
 		// Operand 이미지 설정 // Set operand image 
 		seamInsertion.SetOperandROI(flrROI);
 
-		// 결과 이미지 확장 여부 설정 // Enable or disable output image expansion
-		seamInsertion.EnableResultImageExpansion(false);
-
 		// 이미지를 이어붙일 방향을 설정 // Set image concatenation direction
 		seamInsertion.SetInsertionPosition(CSeamInsertion::EInsertionPosition_Right);
 
