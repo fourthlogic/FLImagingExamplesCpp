@@ -151,6 +151,8 @@ int main()
 		view3DSource.Invalidate(true);
 		view3DDst.Invalidate(true);
 
+		view3DDst.SetShadingType(EShadingType3D_Shadeless);
+
 		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
 		while(view3DSource.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
