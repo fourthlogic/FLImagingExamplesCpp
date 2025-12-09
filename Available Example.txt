@@ -256,6 +256,11 @@
       - Scanned Point Cloud Generator 3D
         - The example of an algorithm that generate a point cloud from 3D data that contains face information.
         - 표면 정보를 포함하고 있는 3D 데이터에서 포인트 클라우드를 생성하는 알고리즘 예제.
+        
+    - [Statistics]
+      - Statistics 3D
+        - The example of an algorithm that calculates various statistics from a 3D object.
+        - 3D 객체의 다양한 통계 값을 계산하는 알고리즘 예제.
 
     - [Voxel Grid]
       - VoxelGrid3D
