@@ -434,44 +434,44 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		flaCheckBoxString.PushBack(L"Synchronize Window");
 
 		// Horizontal axis visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_Axis_Horz);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxis_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_HORZ);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Axis");
+		flaCheckBoxString.PushBack(L"Show Horizontal Axis");
 
 		// Vertical axis visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_Axis_Vert);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxis_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_VERT);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Axis");
+		flaCheckBoxString.PushBack(L"Show Vertical Axis");
 
 		// Horizontal axis label visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisLabel_Horz);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisLabel_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_LABEL_HORZ);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Axis Label");
+		flaCheckBoxString.PushBack(L"Show Horizontal Axis Label");
 
 		// Vertical axis label visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisLabel_Vert);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisLabel_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_LABEL_VERT);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Axis Label");
+		flaCheckBoxString.PushBack(L"Show Vertical Axis Label");
 
 		// Horizontal tick marks visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTick_Horz);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTick_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_HORZ);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Tick");
+		flaCheckBoxString.PushBack(L"Show Horizontal Axis Tick");
 
 		// Vertical tick marks visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTick_Vert);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTick_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_VERT);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Tick");
+		flaCheckBoxString.PushBack(L"Show Vertical Axis Tick");
 
 		// Horizontal tick labels visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTickLabels_Horz);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTickLabel_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_LABELS_HORZ);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Tick Labels");
+		flaCheckBoxString.PushBack(L"Show Horizontal Axis Tick Labels");
 
 		// Vertical tick labels visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTickLabels_Vert);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTickLabel_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_LABELS_VERT);
-		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Tick Labels");
+		flaCheckBoxString.PushBack(L"Show Vertical Axis Tick Labels");
 
 		CWnd* pWndStatic = GetDlgItem(IDC_STATIC_ACM);
 		pWndStatic->SetParent(this);
