@@ -2097,9 +2097,12 @@
     - SeamInsertion 
       - Example of an algorithm that inserts the ROI of the operand image from the source image into the destination image.
       - 소스 이미지에서 피연산 이미지의 관심 영역을 대상 이미지에 삽입하는 알고리즘 예제.
+    - ImageConcatenator 
+      - Example of an algorithm that connects the Source Image and Operand Image in a specified direction.
+      - 소스 이미지에서 피연산 이미지의 관심 영역을 대상 이미지에 삽입하는 알고리즘 예제.
     - ImageGridSplitter
       - Example of an algorithm that splits a source image into grids of a set size.
-      - 소스 이미지를 설정한 크기의 격자로 분할하는 알고리즘 예제
+      - Source Image와 Operand Image를 지정한 방향으로 이어붙이는 알고리즘 예제
     - RandomPageShuffle
       - Example of an algorithm that randomly shuffle pages in a source image.
       - 소스 이미지의 페이지를 무작위로 섞는 알고리즘 예제.
