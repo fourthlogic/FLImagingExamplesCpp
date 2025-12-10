@@ -244,9 +244,9 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		flaCheckBoxString.PushBack(L"Paste");
 		
 		// 더블 클릭으로 띄운 값 지우기 메뉴 // Clear double-clicked values menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ClearDisplayedValue);
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ClearPointAnnotation);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CLEAR_DISPLAYED_VALUE);
-		flaCheckBoxString.PushBack(L"Clear Displayed Value");
+		flaCheckBoxString.PushBack(L"Clear Point Annotation");
 
 		// 차트 모양 변경 메뉴 // Change chart type menu
 		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ChangeChartType);
@@ -312,6 +312,11 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowLegend);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_LEGEND);
 		flaCheckBoxString.PushBack(L"Show Legend");
+
+		// 더블 클릭으로 팝업한 값 표시 여부 설정 메뉴 // Menu item for toggling the visibility of values displayed by double-click interaction.
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowPointAnnotation);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_POINT_ANNOTATION);
+		flaCheckBoxString.PushBack(L"Show Point Annotation");
 
 		// 십자선 자석 모드 메뉴 // Magnet crosshair menu
 		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_MagnetCrosshair);
@@ -427,6 +432,46 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SyncWindow);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SYNC_WINDOW);
 		flaCheckBoxString.PushBack(L"Synchronize Window");
+
+		// Horizontal axis visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_Axis_Horz);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_HORZ);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Axis");
+
+		// Vertical axis visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_Axis_Vert);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_VERT);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Axis");
+
+		// Horizontal axis label visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisLabel_Horz);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_LABEL_HORZ);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Axis Label");
+
+		// Vertical axis label visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisLabel_Vert);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_LABEL_VERT);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Axis Label");
+
+		// Horizontal tick marks visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTick_Horz);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_HORZ);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Tick");
+
+		// Vertical tick marks visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTick_Vert);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_VERT);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Tick");
+
+		// Horizontal tick labels visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTickLabels_Horz);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_LABELS_HORZ);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Horizontal Tick Labels");
+
+		// Vertical tick labels visibility
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraphComponents_AxisTickLabels_Vert);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_LABELS_VERT);
+		flaCheckBoxString.PushBack(L"Show Graph Components: Vertical Tick Labels");
 
 		CWnd* pWndStatic = GetDlgItem(IDC_STATIC_ACM);
 		pWndStatic->SetParent(this);
