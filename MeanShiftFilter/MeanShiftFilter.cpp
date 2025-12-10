@@ -67,13 +67,13 @@ int main()
 			break;
 		if((res = meanShiftFilter.SetDestinationImage(fliDstImage)).IsFail())
 			break;
-		if((res = meanShiftFilter.SetMaxIteration(2)).IsFail())
+		if((res = meanShiftFilter.SetMaxIteration(1)).IsFail())
 			break;
-		if((res = meanShiftFilter.SetTolerance(0)).IsFail())
+		if((res = meanShiftFilter.SetTolerance(0.0)).IsFail())
 			break;
-		if((res = meanShiftFilter.SetSpatialBandwidth(2)).IsFail())
+		if((res = meanShiftFilter.SetSpatialBandwidth(1)).IsFail())
 			break;
-		if((res = meanShiftFilter.SetRangeBandwidth(128)).IsFail())
+		if((res = meanShiftFilter.SetRangeBandwidth(200.0)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
