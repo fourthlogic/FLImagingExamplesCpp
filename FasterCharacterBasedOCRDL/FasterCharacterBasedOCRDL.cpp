@@ -190,8 +190,7 @@ int main()
 		fasterCharacterBasedOCRDL.SetLearningEpoch(10000);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		fasterCharacterBasedOCRDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
-		// 학습시 이미지당 최대 인스턴스 개수를 256개로 설정 // Set the maximum number of instances per image to 256 during learning
-
+		
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-3f);
 		
