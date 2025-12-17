@@ -80,6 +80,10 @@
         - The example of an algorithm that smooth a given point cloud.
         - 주어진 포인트 클라우드를 스무딩하는 알고리즘 예제.
 
+    - [Denoising 3D]
+        - An example of the point cloud denoising algorithm.
+        - 포인트 클라우드 노이즈 제거 알고리즘 예제.
+
   - [Interpolation]
     
     - DepthImageCubicInterpolation3D
