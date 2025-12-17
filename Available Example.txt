@@ -811,6 +811,9 @@
     - DeviceLightControllerProtecPSLC_CH06
       - Example of connecting and operating Protec PSLC CH06.
       - Protec PSLC CH06 연결 및 구동하는 예제
+	- DeviceLightControllerWordopPBD2
+      - Example of connecting and operating Wordop PBD2.
+      - Wordop PBD2 연결 및 구동하는 예제
     - DeviceLightControllerWordopPD5_6024
       - Example of connecting and operating Wordop PD5 6024.
       - Wordop PD5 6024 연결 및 구동하는 예제
