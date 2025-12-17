@@ -649,6 +649,10 @@
        - An example algorithm that performs an inpainting operation on a specified area using a model learned on training images with figures. (Diffusion Model)
        - Figure가 있는 학습 이미지들에 대해 학습한 모델을 사용하여 지정한 영역에 Inpainting 동작을 수행하는 알고리즘 예제. (확산 모델)
 
+    - FasterCharacterBasedOCR
+       - Examples of optical character recognition algorithms based on deep learning (Semantic Segmentation).
+       - 딥러닝 기반의 광학 문자 인식 알고리즘 예제 (Semantic Segmentation).
+
     - GenerativeAdversarialNetwork_NoLabel
        - Example of an algorithm that generates images based on a training dataset
        - 학습 데이터셋에 기반하여 이미지를 생성하는 알고리즘 예제.
