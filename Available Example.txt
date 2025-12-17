@@ -769,6 +769,9 @@
     - DeviceCameraRealSense 
       - Example of connecting and operating Real Sense Camera.
       - Real Sense Camera 연결 및 구동하는 예제.
+    - DeviceCameraZivid 
+      - Example of connecting and operating Zivid Camera.
+      - Zivid Camera 연결 및 구동하는 예제.
 
   - [DIO]
     
