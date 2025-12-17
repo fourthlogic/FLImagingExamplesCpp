@@ -211,7 +211,7 @@ int main()
 
 		fasterCharacterBasedOCRDL.SetLearningAugmentationSpec(&augSpec);
 
-		// 학습을 종료할 조건식 설정. mIoU.ze값이 0.85 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
+		// 학습을 종료할 조건식 설정. mIoU.ze값이 0.85 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
 		// Set Conditional Expression to End Learning. If the mIoU.ze value is 0.85 or higher, end the learning. Same value as metric.
 		fasterCharacterBasedOCRDL.SetLearningStopCondition(L"mIoU.ze >= 0.85");
 
