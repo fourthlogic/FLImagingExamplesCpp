@@ -65,7 +65,7 @@ int main()
 				break;
 			}
 
-			if(i != EType_Src)
+			if(i == EType_Opr)
 			{
 				// 두개의 뷰의 시점을 동기화  // Synchronize the viewpoints of the two image views. 
 				if(IsFail(res = arrViewImage[EType_Src].SynchronizePointOfView(&arrViewImage[i])))
