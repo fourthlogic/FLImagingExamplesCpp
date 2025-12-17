@@ -185,7 +185,7 @@ int main()
 		// 검증할 이미지 설정 // Set the image to validate
 		fasterCharacterBasedOCRDL.SetLearningValidationImage(fliValidationImage);
 		// 학습할 OCR 모델의 버전 설정 // Set up OCR model version to learn
-		fasterCharacterBasedOCRDL.SetModelVersion(CFasterCharacterBasedOCRDL::EModelVersion_FLSegNet_V1_128_B3);
+		fasterCharacterBasedOCRDL.SetModelVersion(CFasterCharacterBasedOCRDL::EModelVersion_FLSegNet_V1_512_B3);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		fasterCharacterBasedOCRDL.SetLearningEpoch(10000);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
