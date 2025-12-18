@@ -192,9 +192,9 @@ int main()
 		orientedObjectDetectionDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 	    // 검증을 진행 할 최소 평균 Cost값 설정 // Set the minimum average cost value at which verification will be triggered
 		orientedObjectDetectionDL.SetLearningRequiredAvgCostForValidation(5.f);
-		// 학습을 종료할 조건식 설정. mAP값이 0.9 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
-		// Set Conditional Expression to End Learning. If the mAP value is 0.9 or higher, end the learning. Same value as metric.
-		orientedObjectDetectionDL.SetLearningStopCondition(L"mAP >= 0.9");
+		// 학습을 종료할 조건식 설정. mAP값이 1 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
+		// Set Conditional Expression to End Learning. If the mAP value is 1 or higher, end the learning. Same value as metric.
+		orientedObjectDetectionDL.SetLearningStopCondition(L"mAP >= 1");
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-4f);
 		optSpec.SetWeightDecay(0.f);
