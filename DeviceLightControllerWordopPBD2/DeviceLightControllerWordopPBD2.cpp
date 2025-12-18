@@ -41,7 +41,10 @@ int main()
 			int32_t i32Select = flsInput.ToInt32();
 
 			if(i32Select == 0)
+			{
 				bExit = true;
+				break;
+			}
 			else if(i32Select == 1 || i32Select == 2 || i32Select == 3 || i32Select == 4)
 			{
 				i32ConnectionType = i32Select;
@@ -126,7 +129,10 @@ int main()
 			int32_t i32Select = flsInput.ToInt32();
 
 			if(i32Select == 0)
+			{
 				bExit = true;
+				break;
+			}
 			else if(i32Select == 1 || i32Select == 2)
 			{
 				i32Channel = i32Select;
@@ -197,7 +203,10 @@ int main()
 					int32_t i32Select = flsInput.ToInt32();
 
 					if(i32Select == 0)
+					{
 						bExit = true;
+						break;
+					}
 					else if(i32Select == 1 || i32Select == 2 || i32Select == 3 || i32Select == 4 || i32Select == 5 || i32Select == 6 || i32Select == 7)
 					{
 						i32TriggerMethod = i32Select;
