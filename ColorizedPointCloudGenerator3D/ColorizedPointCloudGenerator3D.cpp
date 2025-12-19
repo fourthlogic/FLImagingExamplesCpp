@@ -261,7 +261,7 @@ int main()
 		// Color 카메라의 Intrinsic Parameter 출력 // Print intrinsic parameters of color camera
 		AdvancedFunctions::CCameraCalibrator::CCalibratorIntrinsicParameters calibIntrinsic;
 
-		calibIntrinsic = colorizedPointCloudGenerator3D.GetIntrinsicParameters();
+		calibIntrinsic = colorizedPointCloudGenerator3D.GetResultIntrinsicParameters();
 
 		printf(" < Intrinsic Parameters >\n");
 
@@ -276,7 +276,7 @@ int main()
 		// Color 카메라의 Distortion Coefficient 출력 // Print distortion coefficients of color camera
 		AdvancedFunctions::CCameraCalibrator::CCalibratorDistortionCoefficients calibDistortion;
 
-		calibDistortion = colorizedPointCloudGenerator3D.GetDistortionCoefficients();
+		calibDistortion = colorizedPointCloudGenerator3D.GetResultDistortionCoefficients();
 
 		printf(" < Distortion Coefficients >\n");
 
@@ -291,7 +291,7 @@ int main()
 		// 두 카메라 간의 회전 행렬 출력 // Print relative rotation matrix between both cameras
 		CMatrix<double> matRotation;
 
-		if((res = colorizedPointCloudGenerator3D.GetRelativeRotation(matRotation)).IsFail())
+		if((res = colorizedPointCloudGenerator3D.GetResultRelativeRotation(matRotation)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to get relative rotation.\n");
 			break;
@@ -314,7 +314,7 @@ int main()
 		// 두 카메라 간의 변환 행렬 출력 // Print relative translation matrix between both cameras
 		CMatrix<double> matTranslation;
 
-		if((res = colorizedPointCloudGenerator3D.GetRelativeTranslation(matTranslation)).IsFail())
+		if((res = colorizedPointCloudGenerator3D.GetResultRelativeTranslation(matTranslation)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to get relative translation.\n");
 			break;
