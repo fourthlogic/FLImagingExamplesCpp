@@ -321,7 +321,13 @@ int main()
 		}
 
 		// 면 데이터 불러오기 // Get face data
-		double f64SurfaceArea = statistics3D.GetSurfaceArea();
+		double f64SurfaceArea;
+
+		if((res = statistics3D.GetSurfaceArea(f64SurfaceArea)).IsFail())
+		{
+			ErrorPrint(res, "Failed to get face's surface area");
+			break;
+		}
 
 		// 콘솔에 데이터 출력 // Print data to console
 		printf(" < Point Position Data >\n");
