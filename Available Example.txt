@@ -84,6 +84,10 @@
         - An example of the point cloud denoising algorithm.
         - 포인트 클라우드 노이즈 제거 알고리즘 예제.
 
+    - [Statistical Outlier Removal 3D]
+        - An example of the point cloud statistical outlier removal algorithm.
+        - 포인트 클라우드 통계적 이상치 알고리즘 예제.
+
   - [Interpolation]
     
     - DepthImageCubicInterpolation3D
