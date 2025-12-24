@@ -65,7 +65,10 @@ int main()
 			scannedPointCloudGenerator3D.EnableIncludingNormalVector(false);
 			scannedPointCloudGenerator3D.EnableRelativeSamplingDistance(false);
 			scannedPointCloudGenerator3D.SetSamplingDistance(1);
-			scannedPointCloudGenerator3D.SetTargetVertexColor({ 0, 255, 255 });
+
+			TPoint3<uint8_t> tp3Color(0, 255, 255);
+
+			scannedPointCloudGenerator3D.SetTargetVertexColor(tp3Color);
 
 			if((eResult = scannedPointCloudGenerator3D.Execute()).IsFail())
 			{
