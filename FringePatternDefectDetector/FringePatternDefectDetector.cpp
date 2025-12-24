@@ -92,7 +92,7 @@ int main()
 		fringePatternDefectDetector.SetBrightnessCoefficient(1);
 
 		// Mura 탐지 모드 설정 // Set mura detecting mode
-		fringePatternDefectDetector.EnableMuraDetectingMode(false);
+		fringePatternDefectDetector.EnableMura(false);
 
 		// Mura 반복 횟수 설정 // Set mura iteration
 		fringePatternDefectDetector.SetMuraIteration(3);
