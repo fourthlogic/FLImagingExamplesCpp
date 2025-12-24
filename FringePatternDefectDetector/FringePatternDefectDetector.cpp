@@ -95,7 +95,7 @@ int main()
 		fringePatternDefectDetector.EnableMura(false);
 
 		// Mura 반복 횟수 설정 // Set mura iteration
-		fringePatternDefectDetector.SetMuraIteration(3);
+		fringePatternDefectDetector.SetMuraIteration(2);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = fringePatternDefectDetector.Execute()).IsFail())
