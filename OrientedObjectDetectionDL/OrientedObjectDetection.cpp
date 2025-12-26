@@ -183,9 +183,9 @@ int main()
 		// 검증할 이미지 설정 // Set the image to validate
 		orientedObjectDetectionDL.SetLearningValidationImage(fliValidationImage);
 		// 학습할 orientedObjectDetectionDL 모델 설정 // Set up orientedObjectDetectionDL model to learn
-		orientedObjectDetectionDL.SetModel(COrientedObjectDetectionDL::EModel_Oriented_R_FLNet);
+		orientedObjectDetectionDL.SetModel(COrientedObjectDetectionDL::EModel_OR_FLNet);
 		// 학습할 orientedObjectDetectionDL 모델의 버전 설정 // Set up orientedObjectDetectionDL model version to learn
-		orientedObjectDetectionDL.SetModelVersion(COrientedObjectDetectionDL::EModelVersion_Oriented_R_FLNet_V1_256);
+		orientedObjectDetectionDL.SetModelVersion(COrientedObjectDetectionDL::EModelVersion_OR_FLNet_V1_256);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		orientedObjectDetectionDL.SetLearningEpoch(1024);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
