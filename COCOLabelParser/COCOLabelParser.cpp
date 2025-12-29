@@ -139,7 +139,7 @@ int main()
 		// Annotation 파일 경로 설정 // Set annotation file path
 		cocoLabelParserDL.SetSourceAnnotationPath(L"../../ExampleImages/COCOLabelParser/Annotation.json");
 		// Destination 이미지 폴더 경로 설정 // Set destination image folder image
-		cocoLabelParserDL.SetDestinationImagePath(L"../../ExampleImages/COCOLabelParser/Destination");
+		cocoLabelParserDL.SetDestinationImagePath(L"../../ExampleImages/COCOLabelParser/Destination/Result.flif");
 
 		// 파라미터 값 설정 // Set parameter value
 		cocoLabelParserDL.SetLabelShape(CCOCOLabelParserDL::ELabelShape_Rect);
