@@ -227,7 +227,7 @@ int main()
 		}
 
 		// Calibration에 사용되는 Grid Type 설정 // Set grid type used in calibration
-		if((res = colorizedPointCloudGenerator3D.SetGridType(AdvancedFunctions::CCameraCalibrator::EGridType_ChessBoard)).IsFail())
+		if((res = colorizedPointCloudGenerator3D.SetGridType(CColorizedPointCloudGenerator3D::EGridType_ChessBoard)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set calibration grid type.\n");
 			break;
@@ -259,7 +259,7 @@ int main()
 		printf(" < Calibration Result >\n\n");
 
 		// Color 카메라의 Intrinsic Parameter 출력 // Print intrinsic parameters of color camera
-		AdvancedFunctions::CCameraCalibrator::CCalibratorIntrinsicParameters calibIntrinsic;
+		CColorizedPointCloudGenerator3D::CCalibratorIntrinsicParameters calibIntrinsic;
 
 		calibIntrinsic = colorizedPointCloudGenerator3D.GetResultIntrinsicParameters();
 
@@ -274,7 +274,7 @@ int main()
 		printf("\n");
 
 		// Color 카메라의 Distortion Coefficient 출력 // Print distortion coefficients of color camera
-		AdvancedFunctions::CCameraCalibrator::CCalibratorDistortionCoefficients calibDistortion;
+		CColorizedPointCloudGenerator3D::CCalibratorDistortionCoefficients calibDistortion;
 
 		calibDistortion = colorizedPointCloudGenerator3D.GetResultDistortionCoefficients();
 
@@ -288,43 +288,35 @@ int main()
 
 		printf("\n");
 
-		// 두 카메라 간의 회전 행렬 출력 // Print relative rotation matrix between both cameras
-		CMatrix<double> matRotation;
+		// 두 카메라 간의 회전 출력 // Print relative rotation between both cameras
+		CColorizedPointCloudGenerator3D::CCalibratorRelativeRotation calibRotation;
 
-		if((res = colorizedPointCloudGenerator3D.GetResultRelativeRotation(matRotation)).IsFail())
-		{
-			ErrorPrint(res, L"Failed to get relative rotation.\n");
-			break;
-		}
+		calibRotation = colorizedPointCloudGenerator3D.GetResultRelativeRotation();
 
 		printf(" < Relative Rotation >\n");
 
-		printf("R00 ->\t%0.7lf\n", *matRotation.GetValue(0, 0));
-		printf("R01 ->\t%0.7lf\n", *matRotation.GetValue(0, 1));
-		printf("R02 ->\t%0.7lf\n", *matRotation.GetValue(0, 2));
-		printf("R10 ->\t%0.7lf\n", *matRotation.GetValue(1, 0));
-		printf("R11 ->\t%0.7lf\n", *matRotation.GetValue(1, 1));
-		printf("R12 ->\t%0.7lf\n", *matRotation.GetValue(1, 2));
-		printf("R20 ->\t%0.7lf\n", *matRotation.GetValue(2, 0));
-		printf("R21 ->\t%0.7lf\n", *matRotation.GetValue(2, 1));
-		printf("R22 ->\t%0.7lf\n", *matRotation.GetValue(2, 2));
+		printf("R00 ->\t%0.7lf\n", calibRotation.f64R0);
+		printf("R01 ->\t%0.7lf\n", calibRotation.f64R1);
+		printf("R02 ->\t%0.7lf\n", calibRotation.f64R2);
+		printf("R10 ->\t%0.7lf\n", calibRotation.f64R3);
+		printf("R11 ->\t%0.7lf\n", calibRotation.f64R4);
+		printf("R12 ->\t%0.7lf\n", calibRotation.f64R5);
+		printf("R20 ->\t%0.7lf\n", calibRotation.f64R6);
+		printf("R21 ->\t%0.7lf\n", calibRotation.f64R7);
+		printf("R22 ->\t%0.7lf\n", calibRotation.f64R8);
 
 		printf("\n");
 
-		// 두 카메라 간의 변환 행렬 출력 // Print relative translation matrix between both cameras
-		CMatrix<double> matTranslation;
+		// 두 카메라 간의 변환 출력 // Print relative translation between both cameras
+		CColorizedPointCloudGenerator3D::CCalibratorRelativeTranslation calibTranslation;
 
-		if((res = colorizedPointCloudGenerator3D.GetResultRelativeTranslation(matTranslation)).IsFail())
-		{
-			ErrorPrint(res, L"Failed to get relative translation.\n");
-			break;
-		}
+		calibTranslation = colorizedPointCloudGenerator3D.GetResultRelativeTranslation();
 
 		printf(" < Relative Translation >\n");
 
-		printf("TX ->\t%0.7lf\n", *matTranslation.GetValue(0, 0));
-		printf("TY ->\t%0.7lf\n", *matTranslation.GetValue(1, 0));
-		printf("TZ ->\t%0.7lf\n", *matTranslation.GetValue(2, 0));
+		printf("TX ->\t%0.7lf\n", calibTranslation.f64X);
+		printf("TY ->\t%0.7lf\n", calibTranslation.f64Y);
+		printf("TZ ->\t%0.7lf\n", calibTranslation.f64Z);
 
 		printf("\n");
 
