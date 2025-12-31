@@ -233,10 +233,12 @@ int main()
 			// Get the history of cost and validation and print it at graph view
 			CFLArray<float> flaCosts;
 			CFLArray<float> flaValidations;
-			CFLArray<float> flaF1Score;
+			CFLArray<float> flaF1;
+			CFLArray<float> flaMacroAccuracy;
+			CFLArray<float> flaMetric;
 			CFLArray<int32_t> flaValidationEpoch;
 
-			classifierDL.GetLearningResultAllHistory(flaCosts, flaValidations, flaF1Score, flaValidationEpoch);
+			classifierDL.GetLearningResultAllHistory(flaCosts, flaValidations, flaF1, flaMacroAccuracy, flaMetric, flaValidationEpoch);
 
 			// 미니 배치 반복이 완료되면 cost와 validation 값을 디스플레이 
 			// Display cost and validation value if iterations of the mini batch is completed 
@@ -246,10 +248,15 @@ int main()
 				float f32CurrCost = flaCosts.Back();
 				// 마지막 검증 결과 받기 // Get the last validation result
 				float f32Validation = flaValidations.GetCount() ? flaValidations.Back() : 0;
-				// 마지막 F1점수 결과 받기 // Get the last F1 Score result
-				float f32F1Score = flaF1Score.GetCount() ? flaF1Score.Back() : 0;
+				// 마지막 MacroAccuracy 결과 받기 // Get the last MacroAccuracy  result
+				float f32MacroAccuracy = flaMacroAccuracy.GetCount() ? flaMacroAccuracy.Back() : 0;
+				// 마지막 F1 결과 받기 // Get the last F1  result
+				float f32F1 = flaF1.GetCount() ? flaF1.Back() : 0;
+				// 마지막 Metric 결과 받기 // Get the last Metric  result
+				float f32Metric = flaMetric.GetCount() ? flaMetric.Back() : 0;
+
 				// 해당 epoch의 비용과 검증 결과 값 출력 // Print cost and validation value for the relevant epoch
-				printf("Cost : %.6f Validation : %.6f F1 Score : %.6f Epoch %d / %d\n", f32CurrCost, f32Validation, f32F1Score, i32Epoch, i32MaxEpoch);
+				printf("Cost : %.6f Validation : %.6f Macro Accuracy : %.6f F1 : %.6f Metric : %.6f Epoch %d / %d\n", f32CurrCost, f32Validation, f32MacroAccuracy, f32F1, f32Metric,i32Epoch, i32MaxEpoch);
 
 				// 비용 기록이나 검증 결과 기록이 있다면 출력 // Print results if cost or validation history exists
 				if((flaCosts.GetCount() && i32PrevCostCount != (int32_t)flaCosts.GetCount()) || (flaValidations.GetCount() && i32PrevValidationCount != (int32_t)flaValidations.GetCount()))
@@ -270,6 +277,9 @@ int main()
 					flaX.PushBack((float)(flaCosts.GetCount() - 1));
 					// Graph View 데이터 입력 // Input Graph View Data
 					viewGraph.Plot(flaX, flaValidations, EChartType_Line, BLUE, L"Validation");
+					viewGraph.Plot(flaX, flaF1, EChartType_Line, GREEN, L"F1");
+					viewGraph.Plot(flaX, flaMacroAccuracy, EChartType_Line, PURPLE, L"MacroAccuracy");
+					viewGraph.Plot(flaX, flaMetric, EChartType_Line, PINK, L"Metric");
 
 					viewGraph.UnlockUpdate();
 					viewGraph.Invalidate();
