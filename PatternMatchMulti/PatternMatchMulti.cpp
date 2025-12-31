@@ -107,7 +107,7 @@ int main()
 			CFLString<wchar_t> strStatus;
 			strStatus.Format(L"LEARN CLASS '%s'", arrClassName[i64DataIdx].GetBuffer());
 
-			if(IsFail(res = layerLearn.DrawTextCanvas(&CFLPoint<double>(0, 0), strStatus.GetBuffer(), YELLOW, BLACK, 30)))
+			if(IsFail(res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), strStatus.GetBuffer(), YELLOW, BLACK, 30)))
 			{
 				ErrorPrint(res, "Failed to draw text\n");
 				break;
@@ -164,7 +164,7 @@ int main()
 		CGUIViewImageLayerWrap layerFind = viewImageFind.GetLayer(1);
 		layerFind.Clear();
 
-		if(IsFail(res = layerFind.DrawTextCanvas(&CFLPoint<double>(0, 0), L"FIND", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerFind.DrawTextCanvas(CFLPoint<double>(0, 0), L"FIND", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Fai led to draw text\n");
 			break;

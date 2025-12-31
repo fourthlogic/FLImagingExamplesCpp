@@ -316,25 +316,25 @@ int main()
 		layer3DDestination.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerCalibration.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerCalibration.DrawTextCanvas(CFLPoint<double>(0, 0), L"Calibration Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerTexture.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerTexture.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerCurvature.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Curvature Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerCurvature.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Curvature Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

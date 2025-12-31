@@ -418,49 +418,49 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if(IsFail(res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerFFT.DrawTextCanvas(&CFLPoint<double>(0, 0), L"FFT Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerFFT.DrawTextCanvas(CFLPoint<double>(0, 0), L"FFT Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerIdealFilter.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Ideal, Min = 0.1, Max = 0.6", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerIdealFilter.DrawTextCanvas(CFLPoint<double>(0, 0), L"Ideal, Min = 0.1, Max = 0.6", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerButterworthFilter.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Butterworth, Distance = 256, Degree = 2", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerButterworthFilter.DrawTextCanvas(CFLPoint<double>(0, 0), L"Butterworth, Distance = 256, Degree = 2", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerGaussianFilter.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Gaussian, Sigma1 = Sigma2 = 1, Phi = 0", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerGaussianFilter.DrawTextCanvas(CFLPoint<double>(0, 0), L"Gaussian, Sigma1 = Sigma2 = 1, Phi = 0", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerIdealDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Ideal Filtering Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerIdealDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Ideal Filtering Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerButterworthDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Butterworth Filtering Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerButterworthDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Butterworth Filtering Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerGaussianDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Gaussian Filtering Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerGaussianDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Gaussian Filtering Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

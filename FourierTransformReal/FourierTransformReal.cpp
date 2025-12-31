@@ -163,19 +163,19 @@ int main()
 			ErrorPrint(res, "Failed to draw figure\n");
 
 		// View 정보를 디스플레이 합니다. // Display View information.
-		if(IsFail(res = layer1.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Spatial Domain", YELLOW, BLACK, 30)))
+		if(IsFail(res = layer1.DrawTextCanvas(CFLPoint<double>(0, 0), L"Spatial Domain", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layer2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Frequency Domain", YELLOW, BLACK, 30)))
+		if(IsFail(res = layer2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Frequency Domain", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layer3.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Inverse RFT Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layer3.DrawTextCanvas(CFLPoint<double>(0, 0), L"Inverse RFT Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

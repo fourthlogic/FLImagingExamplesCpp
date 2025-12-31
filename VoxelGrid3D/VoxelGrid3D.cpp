@@ -97,13 +97,13 @@ int main()
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
 
-		if((eResult = layer3DSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Object", YELLOW, BLACK, 20)).IsFail())
+		if((eResult = layer3DSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Object", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((eResult = layer3DDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Object", YELLOW, BLACK, 20)).IsFail())
+		if((eResult = layer3DDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Object", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(eResult, L"Failed to draw text.\n");
 			break;

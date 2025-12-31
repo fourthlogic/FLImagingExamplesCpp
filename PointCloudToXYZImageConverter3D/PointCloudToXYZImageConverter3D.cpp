@@ -161,20 +161,20 @@ int main()
 		layerViewTexture.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerViewXYZV.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination XYZV Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerViewXYZV.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination XYZV Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerViewTexture.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerViewTexture.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Texture Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
 		// 3D 뷰 정보 표시 // Display 3D view information
-		if((res = layerView3D.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Point Cloud", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerView3D.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Point Cloud", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

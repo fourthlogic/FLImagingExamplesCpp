@@ -413,44 +413,44 @@ int main()
 		layer3DDst.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerImageCaliSrcXYZV.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Source XYZV Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerImageCaliSrcXYZV.DrawTextCanvas(CFLPoint<double>(0, 0), L"Calibration Source XYZV Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerImageCaliSrcColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Calibration Source Color Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerImageCaliSrcColor.DrawTextCanvas(CFLPoint<double>(0, 0), L"Calibration Source Color Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerImageExecSrcXYZV.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Source XYZV Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerImageExecSrcXYZV.DrawTextCanvas(CFLPoint<double>(0, 0), L"Execution Source XYZV Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerImageExecSrcColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Execution Source Color Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerImageExecSrcColor.DrawTextCanvas(CFLPoint<double>(0, 0), L"Execution Source Color Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerImageExecDstColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Color Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerImageExecDstColor.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Color Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerImageSampDstColor.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Sampled Color Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerImageSampDstColor.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Sampled Color Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
 		// 3D 뷰 정보 표시 // Display 3D view information
-		if((res = layer3DDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"3D Destination Colored Point Cloud", YELLOW, BLACK, 20)).IsFail())
+		if((res = layer3DDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"3D Destination Colored Point Cloud", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

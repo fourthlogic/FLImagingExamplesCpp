@@ -201,31 +201,31 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if((res = arrLayer[EType_Source].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Source].DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination1].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination1 Image (Sigma 0.5)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination1].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination1 Image (Sigma 0.5)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination2].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination2 Image (Sigma 0.8)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination2].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination2 Image (Sigma 0.8)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination3].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination3 Image (Sigma 1)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination3].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination3 Image (Sigma 1)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination4].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination4 Image (Sigma 2)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination4].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination4 Image (Sigma 2)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;

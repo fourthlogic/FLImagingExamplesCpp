@@ -271,37 +271,37 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if((result = arrLayer0[EType_Source].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer0[EType_Source].DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
 
-		if((result = arrLayer0[EType_Operand].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer0[EType_Operand].DrawTextCanvas(CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
 
-		if((result = arrLayer0[EType_Destination].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer0[EType_Destination].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
 
-		if((result = arrLayer1[EType_Source].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer1[EType_Source].DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
 
-		if((result = arrLayer1[EType_Operand].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer1[EType_Operand].DrawTextCanvas(CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
 
-		if((result = arrLayer1[EType_Destination].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer1[EType_Destination].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;

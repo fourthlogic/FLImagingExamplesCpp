@@ -159,25 +159,25 @@ int main()
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = arrLayer[EType_Source].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Source].DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination1].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination1 Image (Parabolic Mode)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination1].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination1 Image (Parabolic Mode)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination2].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination2 Image (PeronaMalik Mode)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination2].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination2 Image (PeronaMalik Mode)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = arrLayer[EType_Destination3].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination3 Image (Weickert Mode)", YELLOW, BLACK, 20)).IsFail())
+		if((res = arrLayer[EType_Destination3].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination3 Image (Weickert Mode)", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

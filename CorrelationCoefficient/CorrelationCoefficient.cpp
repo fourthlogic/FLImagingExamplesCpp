@@ -172,20 +172,20 @@ int main()
 		wprintf_s(L"%s\n", strResult2.GetString());
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerSrc.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = layerOpr1.DrawTextCanvas(&CFLPoint<double>(0, 0), strResult1.GetString(), YELLOW, BLACK, 20)).IsFail())
+		if((res = layerOpr1.DrawTextCanvas(CFLPoint<double>(0, 0), strResult1.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerOpr2.DrawTextCanvas(&CFLPoint<double>(0, 0), strResult2.GetString(), YELLOW, BLACK, 20)).IsFail())
+		if((res = layerOpr2.DrawTextCanvas(CFLPoint<double>(0, 0), strResult2.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

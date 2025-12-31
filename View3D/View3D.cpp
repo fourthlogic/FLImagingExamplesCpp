@@ -128,19 +128,19 @@ int main()
 		// The function DrawTextCanvas displays a string on the viewer using screen coordinates.
 		// 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
 		// Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
-		if(IsFail(res = arrLayer[EType_Model].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Model Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = arrLayer[EType_Model].DrawTextCanvas(CFLPoint<double>(0, 0), L"Model Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Texture].DrawTextCanvas(&CFLPoint<double>(0, 0), L"Texture Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = arrLayer[EType_Texture].DrawTextCanvas(CFLPoint<double>(0, 0), L"Texture Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = view3D.GetLayer(2).DrawTextCanvas(&CFLPoint<double>(0, 0), L"3D View", YELLOW, BLACK, 30)))
+		if(IsFail(res = view3D.GetLayer(2).DrawTextCanvas(CFLPoint<double>(0, 0), L"3D View", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

@@ -120,7 +120,7 @@ int main()
 		wprintf_s(L"%s\n", strTrimmingSumOfSquaresValue.GetString());
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), strSumValue.GetString(), YELLOW, BLACK, 20)).IsFail())
+		if((res = layer.DrawTextCanvas(CFLPoint<double>(0, 0), strSumValue.GetString(), YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text.");
 			break;

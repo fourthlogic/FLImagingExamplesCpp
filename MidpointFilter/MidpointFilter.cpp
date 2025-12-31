@@ -121,13 +121,13 @@ int main()
 		layerSrc.Clear();
 		layerDst.Clear();
 
-		if(IsFail(layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
+		if(IsFail(layerSrc.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
 		{
 			printf("Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(layerDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
+		if(IsFail(layerDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
 		{
 			printf("Failed to draw text\n");
 			break;

@@ -46,7 +46,7 @@ int main()
 		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layer.Clear();
 
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Learn & Recognize", YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(CFLPoint<double>(0, 0), L"Learn & Recognize", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;

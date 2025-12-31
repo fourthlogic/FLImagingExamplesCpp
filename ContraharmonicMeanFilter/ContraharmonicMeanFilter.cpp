@@ -117,13 +117,13 @@ int main()
 		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
 		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
 
-		if(IsFail(res = layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerSrc.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

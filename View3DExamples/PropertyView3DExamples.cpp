@@ -779,7 +779,7 @@ CPropertyItemButtonClickProcedure* FLImaging::GUI::CPropertyView3DExamples::FL3D
 			pView3DSource->ZoomFit();
 			pView3DTarget->ZoomFit();
 
-			pView3DSource->GetLayer(0)->DrawTextCanvas(&CFLPoint<double>(0, 0), L"Original Object", YELLOW, BLACK, 30);
+			pView3DSource->GetLayer(0)->DrawTextCanvas(CFLPoint<double>(0, 0), L"Original Object", YELLOW, BLACK, 30);
 
 			CFLString<wchar_t> str = pPIDD->GetValue();
 			CResult res;
@@ -787,22 +787,22 @@ CPropertyItemButtonClickProcedure* FLImaging::GUI::CPropertyView3DExamples::FL3D
 			if(str == L"Rotate")
 			{
 				res = RotateObject(pView3DTarget);
-				pView3DTarget->GetLayer(0)->DrawTextCanvas(&CFLPoint<double>(0, 0), L"Rotated Object", YELLOW, BLACK, 30);
+				pView3DTarget->GetLayer(0)->DrawTextCanvas(CFLPoint<double>(0, 0), L"Rotated Object", YELLOW, BLACK, 30);
 			}
 			else if(str == L"Rotate with Pivot")
 			{
 				res = RotateObjectWithPivot(pView3DTarget);
-				pView3DTarget->GetLayer(0)->DrawTextCanvas(&CFLPoint<double>(0, 0), L"Rotated Object", YELLOW, BLACK, 30);
+				pView3DTarget->GetLayer(0)->DrawTextCanvas(CFLPoint<double>(0, 0), L"Rotated Object", YELLOW, BLACK, 30);
 			}
 			else if(str == L"Translate")
 			{
 				res = TranslateObject(pView3DTarget);
-				pView3DTarget->GetLayer(0)->DrawTextCanvas(&CFLPoint<double>(0, 0), L"Translated Object", YELLOW, BLACK, 30);
+				pView3DTarget->GetLayer(0)->DrawTextCanvas(CFLPoint<double>(0, 0), L"Translated Object", YELLOW, BLACK, 30);
 			}
 			else if(str == L"Scale")
 			{
 				res = ScaleObject(pView3DTarget);
-				pView3DTarget->GetLayer(0)->DrawTextCanvas(&CFLPoint<double>(0, 0), L"Scaled Object", YELLOW, BLACK, 30);
+				pView3DTarget->GetLayer(0)->DrawTextCanvas(CFLPoint<double>(0, 0), L"Scaled Object", YELLOW, BLACK, 30);
 			}
 			}
 		while(false);

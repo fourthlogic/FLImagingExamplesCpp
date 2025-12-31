@@ -122,13 +122,13 @@ int main()
 			ErrorPrint(res, "Failed to draw figure\n");
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = layerDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source & Destination Image", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerDestination.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source & Destination Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

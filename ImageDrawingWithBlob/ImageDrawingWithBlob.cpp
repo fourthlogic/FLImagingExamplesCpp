@@ -121,7 +121,7 @@ int main()
 		layer3.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if(IsFail(res = layer3.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layer3.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
@@ -189,7 +189,7 @@ int main()
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if(IsFail(res = layer.DrawTextImage(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)))
+		if(IsFail(res = layer.DrawTextImage(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

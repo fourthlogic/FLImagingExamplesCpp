@@ -134,13 +134,13 @@ int main()
 		if(IsFail(layerDst.DrawFigureImage(&flrROI, LIME)))
 			printf("Failed to draw figure\n");
 
-		if(IsFail(layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
+		if(IsFail(layerSrc.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)))
 		{
 			printf("Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(layerDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
+		if(IsFail(layerDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)))
 		{
 			printf("Failed to draw text\n");
 			break;

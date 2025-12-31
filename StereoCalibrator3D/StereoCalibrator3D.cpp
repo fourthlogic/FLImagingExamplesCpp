@@ -762,26 +762,26 @@ int main()
 		wprintf(L"\n");
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerLearn.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Learn Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), L"Learn Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerLearn2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Learn 2 Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerLearn2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Learn 2 Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerDestination.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerDestination2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination 2 Image", YELLOW, BLACK, 15)).IsFail())
+		if((res = layerDestination2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination 2 Image", YELLOW, BLACK, 15)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

@@ -84,13 +84,13 @@ int main()
 		layer.Clear();
 		layerRecognize.Clear();
 
-		if((res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Learn", YELLOW, BLACK, 30)).IsFail())
+		if((res = layer.DrawTextCanvas(CFLPoint<double>(0, 0), L"Learn", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;
 		}
 
-		if((res = layerRecognize.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Recognition", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerRecognize.DrawTextCanvas(CFLPoint<double>(0, 0), L"Recognition", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;

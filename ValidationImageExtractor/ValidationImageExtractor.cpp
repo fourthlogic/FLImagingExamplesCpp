@@ -120,19 +120,19 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if(IsFail(res = layerLearn.DrawTextCanvas(&CFLPoint<double>(0, 0), L"SOURCE", RED, BLACK, 30)))
+		if(IsFail(res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), L"SOURCE", RED, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerValidation.DrawTextCanvas(&CFLPoint<double>(0, 0), L"TRAIN(EXTRACTED (3/4))", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerValidation.DrawTextCanvas(CFLPoint<double>(0, 0), L"TRAIN(EXTRACTED (3/4))", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerResultLabel.DrawTextCanvas(&CFLPoint<double>(0, 0), L"VALIDATION(EXTRACTED (1/4)", GREEN, BLACK, 30)))
+		if(IsFail(res = layerResultLabel.DrawTextCanvas(CFLPoint<double>(0, 0), L"VALIDATION(EXTRACTED (1/4)", GREEN, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

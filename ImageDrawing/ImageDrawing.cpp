@@ -81,8 +81,8 @@ int main()
 
 
 		// 이미지에 정보 표시 // Display image information
-		layerSrc.DrawTextImage(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30);
-		layerDst.DrawTextImage(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30);
+		layerSrc.DrawTextImage(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30);
+		layerDst.DrawTextImage(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30);
 
 		CFLPoint<double> flpDraw(10., 10.);
 

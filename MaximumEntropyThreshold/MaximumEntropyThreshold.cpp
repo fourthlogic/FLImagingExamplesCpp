@@ -108,7 +108,7 @@ int main()
 		// 레이어는 따로 해제하지 않아도 View가 해제 될 때 같이 해제된다. // The layer is released together when View is released without releasing it separately.
 		CGUIViewImageLayerWrap layer = viewImage[1].GetLayer(0);
 
-		if(IsFail(res = layer.DrawTextCanvas(&CFLPoint<double>(0, 0), flStrThresholdValue.GetBuffer(), YELLOW, BLACK, 30, false, 0, EGUIViewImageTextAlignment_LEFT_TOP, L"", 1.f, 1.f, EGUIViewImageFontWeight_BOLD, false)))
+		if(IsFail(res = layer.DrawTextCanvas(CFLPoint<double>(0, 0), flStrThresholdValue.GetBuffer(), YELLOW, BLACK, 30, false, 0, EGUIViewImageTextAlignment_LEFT_TOP, L"", 1.f, 1.f, EGUIViewImageFontWeight_BOLD, false)))
 		{
 			ErrorPrint(res, "Failed to draw text on the image view.\n");
 			break;

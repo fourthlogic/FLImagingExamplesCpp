@@ -76,13 +76,13 @@ int main()
 		layerRecognize.Clear();
 		layerRecognizeUnicode.Clear();
 
-		if((res = layerRecognize.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Recognition1", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerRecognize.DrawTextCanvas(CFLPoint<double>(0, 0), L"Recognition1", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;
 		}
 
-		if((res = layerRecognizeUnicode.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Recognition2", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerRecognizeUnicode.DrawTextCanvas(CFLPoint<double>(0, 0), L"Recognition2", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;

@@ -215,7 +215,7 @@ int main()
 		CGUIViewImageLayerWrap layerSource = viewImageSource.GetLayer(0);
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if(IsFail(res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Intrinsic Parameters: ", YELLOW, BLACK, 13)))
+		if(IsFail(res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Intrinsic Parameters: ", YELLOW, BLACK, 13)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

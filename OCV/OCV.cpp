@@ -236,7 +236,7 @@ int main()
 			break;
 		}
 
-		if((res = layer1.DrawTextCanvas(&CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
+		if((res = layer1.DrawTextCanvas(CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;
@@ -327,7 +327,7 @@ int main()
 			break;
 		}
 
-		if((res = layer2.DrawTextCanvas(&CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
+		if((res = layer2.DrawTextCanvas(CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;
@@ -415,7 +415,7 @@ int main()
 			break;
 		}
 
-		if((res = layer3.DrawTextCanvas(&CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
+		if((res = layer3.DrawTextCanvas(CFLPoint<double>(0, 0), ocv.GetResultVerificationState() == COCV::EVerificationState_OK ? L"Verify" : L"Fail", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text");
 			break;

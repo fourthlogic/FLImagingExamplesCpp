@@ -383,7 +383,7 @@ int main()
 		layer3DSource.Clear();
 
 		// 3D 뷰 정보 표시 // Display 3D view information
-		if((res = layer3DSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source 3D Object", YELLOW, BLACK, 20)).IsFail())
+		if((res = layer3DSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source 3D Object", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

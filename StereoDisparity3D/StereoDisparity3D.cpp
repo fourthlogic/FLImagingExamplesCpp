@@ -233,26 +233,26 @@ int main()
 		layer3DDestination.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerSrc.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerSrc.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerSrc2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image 2", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerSrc2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image 2", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
-		if((res = layerDst.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerDst.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;
 		}
 
 		// 3D 뷰 정보 표시 // Display 3D view information
-		if((res = layer3DDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination 3D Height Map", YELLOW, BLACK, 20)).IsFail())
+		if((res = layer3DDestination.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination 3D Height Map", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
 			break;

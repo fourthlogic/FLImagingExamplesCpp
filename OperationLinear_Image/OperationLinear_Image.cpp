@@ -196,25 +196,25 @@ int main()
 		layerDestination.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
-		if((res = layerSource.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = layerOperand1.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Operand1 Image", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerOperand1.DrawTextCanvas(CFLPoint<double>(0, 0), L"Operand1 Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = layerOperand2.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Operand2 Image", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerOperand2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Operand2 Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if((res = layerDestination.DrawTextCanvas(&CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
+		if((res = layerDestination.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;

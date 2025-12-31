@@ -186,25 +186,25 @@ int main()
 		//                  Area color -> font size -> actual size -> angle -> Align -> Font Name -> 
 		//                  Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> 
 		//                  Font Thickness -> Font Italic
-		if(IsFail(res = layerLearn.DrawTextCanvas(&CFLPoint<double>(0, 0), L"LEARN", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), L"LEARN", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerValidation.DrawTextCanvas(&CFLPoint<double>(0, 0), L"VALIDATION", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerValidation.DrawTextCanvas(CFLPoint<double>(0, 0), L"VALIDATION", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerResultLabel.DrawTextCanvas(&CFLPoint<double>(0, 0), L"RESULT", GREEN, BLACK, 30)))
+		if(IsFail(res = layerResultLabel.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT", GREEN, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerResultLabelFigure.DrawTextCanvas(&CFLPoint<double>(0, 0), L"RESULT FIGURE", GREEN, BLACK, 30)))
+		if(IsFail(res = layerResultLabelFigure.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT FIGURE", GREEN, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
