@@ -187,7 +187,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = layerDst2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination2 Image (Basic Estimate)", YELLOW, BLACK, 20)))
+		if(IsFail(res = layerDst2.DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination2 Image (Final Estimate)", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
