@@ -1317,6 +1317,9 @@
       - BilateralFilterSubSampled
         - The example of an algorithm that processes a bilateral filter And Applies the sampling method to an image.
         - 샘플링을 적용하여 이미지에서 bilateral 필터를 처리하는 알고리즘 예제
+      - BM3DFilter
+        - The example of an algorithm that processes a block-matching and 3D filtering to an image.
+        - 이미지에서 블록 매칭과 3D 필터링을 처리하는 알고리즘 예제
       - ContraharmonicMeanFilter
         - The example of an algorithm that processes a contraharmonic mean filter to an image.
         - 이미지에서 contraharmonic mean 필터를 처리하는 알고리즘 예제
