@@ -149,7 +149,7 @@ int main()
 		bm3dFilter.SetSigma(0.2);
 
 		// Processing Mode 설정 // Set the processing mode
-		bm3DFilter.SetProcessingMode(CBM3DFilter::EProcessingMode_BasicEstimate);
+		bm3dFilter.SetProcessingMode(CBM3DFilter::EProcessingMode_BasicEstimate);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = bm3dFilter.Execute()))
@@ -162,7 +162,7 @@ int main()
 		bm3dFilter.SetDestinationImage(fliDst2Image);
 
 		// Processing Mode 설정 // Set the processing mode
-		bm3DFilter.SetProcessingMode(CBM3DFilter::EProcessingMode_FinalEstimate);
+		bm3dFilter.SetProcessingMode(CBM3DFilter::EProcessingMode_FinalEstimate);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = bm3dFilter.Execute()))
