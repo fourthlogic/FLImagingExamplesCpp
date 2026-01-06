@@ -78,52 +78,41 @@ int main()
 		if((res = stationaryConeBeamRotationCT.SetDestinationObject(&floDstObject)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamRotationCT.SetOptimizationOption(CStationaryConeBeamRotationCT::EOptimizationOption_Faster)).IsFail())
+		if((res = stationaryConeBeamRotationCT.SetDetectorCellXSize(0.248046875)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetDetectorCellXSizeUnit(0.248046875)).IsFail())
+		if((res = stationaryConeBeamRotationCT.SetDetectorCellYSize(0.248046875)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetDetectorCellYSizeUnit(0.248046875)).IsFail())
+		if((res = stationaryConeBeamRotationCT.SetSourceDetectorDistance(597.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetSourceDetectorDistanceUnit(597.00)).IsFail())
-			break;
-		if((res = stationaryConeBeamRotationCT.SetPrincipalDeltaXPixel(0.00)).IsFail())
-			break;
-		if((res = stationaryConeBeamRotationCT.SetPrincipalDeltaYPixel(0.00)).IsFail())
-			break;
-		if((res = stationaryConeBeamRotationCT.SetObjectRotationAngleDistanceDegree(360.00)).IsFail())
+		if((res = stationaryConeBeamRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamRotationCT.SetMergeXCoefficient(1.00)).IsFail())
+		Base::TPoint3<double> tpObjectLocation;
+		tpObjectLocation.x = 0.00;
+		tpObjectLocation.y = 0.00;
+		tpObjectLocation.z = 28.6333;
+		if((res = stationaryConeBeamRotationCT.SetObjectLocation(tpObjectLocation)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetMergeYCoefficient(1.00)).IsFail())
+		Base::TPoint3<double> tpObjectEulerAngle;
+		tpObjectEulerAngle.x = 35.00;
+		tpObjectEulerAngle.y = 0.00;
+		tpObjectEulerAngle.z = 0.00;
+		if((res = stationaryConeBeamRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail())
 			break;
-
-		Base::TPoint3<double> tpObjectRotationPivotUnit;
-		tpObjectRotationPivotUnit.x = 0.00;
-		tpObjectRotationPivotUnit.y = 0.00;
-		tpObjectRotationPivotUnit.z = 28.6333;
-		if((res = stationaryConeBeamRotationCT.SetObjectRotationPivotUnit(tpObjectRotationPivotUnit)).IsFail())
-			break;
-		Base::TPoint3<double> tpObjectRotationAxis;
-		tpObjectRotationAxis.x = 0.00;
-		tpObjectRotationAxis.y = -0.8191520442889918;
-		tpObjectRotationAxis.z = -0.573576436351046;
-		if((res = stationaryConeBeamRotationCT.SetObjectRotationAxis(tpObjectRotationAxis)).IsFail())
-			break;
-		Base::TPoint3<double> tpObjectVoxelSizeUnit;
-		tpObjectVoxelSizeUnit.x = 0.01;
-		tpObjectVoxelSizeUnit.y = 0.02;
-		tpObjectVoxelSizeUnit.z = 0.01;
-		if((res = stationaryConeBeamRotationCT.SetObjectVoxelSizeUnit(tpObjectVoxelSizeUnit)).IsFail())
+		Base::TPoint3<double> tpObjectVoxelSize;
+		tpObjectVoxelSize.x = 0.01;
+		tpObjectVoxelSize.y = 0.01;
+		tpObjectVoxelSize.z = 0.01;
+		if((res = stationaryConeBeamRotationCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail())
 			break;
 		Base::TPoint3<int32_t> tpObjectVoxelCount;
 		tpObjectVoxelCount.x = 200;
-		tpObjectVoxelCount.y = 30;
+		tpObjectVoxelCount.y = 60;
 		tpObjectVoxelCount.z = 200;
 		if((res = stationaryConeBeamRotationCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamRotationCT.SetNormalizedAirThreshold(0.60)).IsFail())
+		if((res = stationaryConeBeamRotationCT.SetDetectorNormalizer(0.00483)).IsFail())
 			break;
 		if((res = stationaryConeBeamRotationCT.EnableFrequencyRampFilter(true)).IsFail())
 			break;
@@ -134,7 +123,7 @@ int main()
 
 		if((res = stationaryConeBeamRotationCT.EnableCircularMask(true)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetCircularMaskRadiusUnit(1.00)).IsFail())
+		if((res = stationaryConeBeamRotationCT.SetCircularMaskRadius(1.00)).IsFail())
 			break;
 		if((res = stationaryConeBeamRotationCT.SetOutputFormat(CStationaryConeBeamRotationCT::EOutputFormat_U8)).IsFail())
 			break;
