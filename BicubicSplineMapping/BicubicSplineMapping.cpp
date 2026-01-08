@@ -92,14 +92,6 @@ int main()
 		// 좌표 매핑용 클래스 선언 // Class declaration for coordinate mapping
 		CBicubicSplineMapping bicubicSplineMapping;
 
-		// 보간 방식은 데이터 설정 이후에도 아래 함수를 통해 변경 가능합니다.
-		// The interpolation method can be changed through the function below even after setting the data.
-
-		// 소스의 좌표 보간 형태를 Cubic Spline으로 설정 // Set the source coordinate interpolation type to Cubic Spline
-		bicubicSplineMapping.SetSourceInterpolationMethod(ESourceInterpolationMethod_CubicSpline);
-		// 대상의 좌표 보간 형태를 Cubic Spline으로 설정 // Set the coordinate interpolation type of the destination to Cubic Spline
-		bicubicSplineMapping.SetDestinationInterpolationMethod(EDestinationInterpolationMethod_CubicSpline);
-
 		// 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
 		// 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
 		// 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
