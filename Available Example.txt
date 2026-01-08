@@ -2173,8 +2173,11 @@
 - [Mapping]
 
   - BicubicSplineMapping
-    - The example of performing two types of interpolation calculations, bilinear and bicubic, based on the input corresponding points.
-    - 입력된 대응 점들을 바탕으로 양선형과 양입방 두 가지 방식의 보간 계산을 수행하는 예제.
+    - The example of performing the interpolation calculation of the bicubic method based on the input corresponding points.
+    - 입력된 대응 점들을 바탕으로 양입방 방식의 보간 계산을 수행하는 예제.
+  - BilinearSplineMapping
+    - The example of performing the interpolation calculation of the bilinear method based on the input corresponding points.
+    - 입력된 대응 점들을 바탕으로 양선형 방식의 보간 계산을 수행하는 예제.
   - LanczosSplineMapping
     - The example of performing the interpolation calculation of the Lanczos method based on the input corresponding points.
     - 입력된 대응 점들을 바탕으로 Lanczos 방식의 보간 계산을 수행하는 예제.
