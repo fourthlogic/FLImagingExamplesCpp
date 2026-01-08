@@ -197,6 +197,11 @@
         - The example of an algorithm that estimates underlying distribution of a point cloud and resamples the data.
         - 포인트 클라우드의 기저 분포를 추정하여 데이터를 재추출하는 알고리즘 예제.
 
+    - [Point Cloud Resampler Edge Preserving 3D]
+      - PointCloudResamplerEdgePreserving3D
+        - The example of an algorithm that resamples the point cloud while preserving edges.
+        - 에지를 보존하며 포인트 클라우드를 재추출하는 알고리즘 예제.
+
     - [Point Cloud Upsampler Poisson]
       - PointCloudUpsamplerPoisson3D
         - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using poisson disc sampling.
