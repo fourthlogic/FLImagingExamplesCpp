@@ -364,5 +364,6 @@ ASALocalRun/
 
 # Mapping Data Files
 *.flbcs
+*.flbls
 *.fllcz
 *.fltps
