@@ -15,7 +15,7 @@ int main()
 	// 3D 뷰 선언 // Declare 3D view	
 	CGUIView3DWrap view3DSource;
 	CGUIView3DWrap arr3DView[3];
-	constexpr int32_t arrI32Sensitivity[3] = { 1, 3, 5 };
+	const int32_t arrI32Sensitivity[3] = { 1, 3, 5 };
 
 	do
 	{
