@@ -88,6 +88,8 @@ int main()
 		inpaintingNavierStokes.SetDestinationImage(fliDstImage);
 		// Inpainting에 사용될 픽셀 영역 설정 // Setting the pixel area to be used for Inpainting
 		inpaintingNavierStokes.SetEpsilon(5);
+		// Image figure 를 inpainting region으로 설정하지 않음 // Do not set image figure as inpainting region
+		inpaintingNavierStokes.EnableImageFiguresAsInpaintingRegions(false);
 
 		CFLFigureArray flaInpaintingRegion;
 
@@ -99,7 +101,7 @@ int main()
 		}
 
 		// Inpainting을 위한 Painting region 설정 // Set painting region for Inpainting
-		inpaintingNavierStokes.SetPaintingRegion(&flaInpaintingRegion);
+		inpaintingNavierStokes.SetInpaintingRegion(&flaInpaintingRegion);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = inpaintingNavierStokes.Execute()).IsFail())
