@@ -86,6 +86,8 @@ int main()
 		harmonicInterpolation.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 정밀도 설정 // Set precision value
 		harmonicInterpolation.SetPrecision(0.001);
+		// 이미지 Figure 를 보간 영역으로 설정 // Enable image figures as interpolation regions
+		harmonicInterpolation.EnableImageFiguresAsInterpolationRegions(true);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = harmonicInterpolation.Execute()).IsFail())
