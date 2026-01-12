@@ -124,7 +124,7 @@ int main()
 		// 연산 방식 설정 // Set operation source
 		operationScaledSubtract.SetOperationSource(EOperationSource_Scalar);
 		// ScaledSubtract 값 설정 // Set ScaledSubtract value
-		operationScaledSubtract.SetScalarValue(CMultiVar<double>(128, 128, 128));
+		operationScaledSubtract.SetScalarValue(CMultiVar<double>(30, 0, 0));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = operationScaledSubtract.Execute()))
@@ -138,7 +138,7 @@ int main()
 		// 연산 방식 설정 // Set operation source
 		operationScaledSubtract.SetOperationSource(EOperationSource_Scalar);
 		// ScaledSubtract 값 설정 // Set ScaledSubtract value
-		operationScaledSubtract.SetScalarValue(CMultiVar<double>(430, 430, 430));
+		operationScaledSubtract.SetScalarValue(CMultiVar<double>(0, 0, 30));
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = operationScaledSubtract.Execute()))
@@ -172,13 +172,13 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Destination1].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination1 Image(operationScaledSubtract 128)", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Destination1].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination1 Image(operationScaledSubtract 30, 0, 0)", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = arrLayer[EType_Destination2].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination2 Image(operationScaledSubtract 430)", YELLOW, BLACK, 20)))
+		if(IsFail(res = arrLayer[EType_Destination2].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination2 Image(operationScaledSubtract 0, 0, 30)", YELLOW, BLACK, 20)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
