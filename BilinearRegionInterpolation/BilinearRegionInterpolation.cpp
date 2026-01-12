@@ -86,7 +86,8 @@ int main()
 		bilinearRegionInterpolation.SetDestinationImage(arrFliImage[EType_Destination]);
 		// 보정 분할 Depth 설정 // Set calibration division depth
 		bilinearRegionInterpolation.SetDivisionDepth(5);
-
+		// 이미지 Figure 를 보간 영역으로 설정 // Enable image figures as interpolation regions
+		bilinearRegionInterpolation.EnableImageFiguresAsInterpolationRegions(true);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = bilinearRegionInterpolation.Execute()))
