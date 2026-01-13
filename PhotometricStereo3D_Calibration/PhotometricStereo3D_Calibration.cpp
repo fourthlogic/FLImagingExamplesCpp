@@ -290,6 +290,13 @@ int main()
 		for(int i = 0; i < i32CalibPageNum; i++)
 			printf("Image %d ->\tX: %0.7lf\tY: %0.7lf \tZ: %0.7lf\n", i, *matPosition.GetValue(i, 0), *matPosition.GetValue(i, 1), *matPosition.GetValue(i, 2));
 
+		// Pixel Accuracy 설정 // Set pixel accuracy
+		if((res = photometricStereo3D.SetPixelAccuracy(70)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set valid pixel accuracy.\n");
+			break;
+		}
+
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = photometricStereo3D.Execute()).IsFail())
 		{
@@ -345,9 +352,13 @@ int main()
 		float f32CenterY = (float)fliSourceImage.GetHeight() / 2;
 		float f32CenterZ = (float)fliDestinationImage.GetBuffer()[(long)(f32CenterY * fliSourceImage.GetWidth() + f32CenterX)];
 
+		f32CenterX *= 70;
+		f32CenterY *= 70;
+		f32CenterZ *= 70;
+
 		TPoint3<float> tp3dFrom(f32CenterX, f32CenterY, f32CenterZ);
 
-		float f32MulNum = 800.;
+		float f32MulNum = 30000.;
 
 		for(long i = 0; i < i32CalibPageNum; i++)
 		{
