@@ -399,6 +399,16 @@ int main()
 				ErrorPrint(res, L"Failed to display the 3D object.\n");
 				break;
 			}
+
+			SPoseMatrixParametersMulti sResult;
+			TPoint3<float> tp3Min, tp3Max;
+			TPoint3<double> tp3Mid;
+
+			pFloResult->GetBoundingBox(tp3Min, tp3Max);
+			tp3Mid.Set((tp3Min.x + tp3Max.x) * .5, (tp3Min.y + tp3Max.y) * .5, (tp3Min.z + tp3Max.z) * .5);
+			// Pose Matrix 정보를 Layer 에 출력합니다. // Outputs Pose Matrix information to Layer.
+			instanceSegmentation3DDL.GetInferenceResultPoseMatrix(0, i, sResult);
+			layer3DResult.DrawText3D(tp3Mid, CFLString<wchar_t>().Format(L"[%lld]\nName: %s\nR(%.4lf, %.4lf, %.4lf)\nRVec(%.4lf, %.4lf, %.4lf)\nT(%.4lf, %.4lf, %.4lf)\nScore: %lf\nResidual: %lf", i, sResult.strClassName.GetBuffer(), sResult.tp3Angle.x, sResult.tp3Angle.y, sResult.tp3Angle.z, sResult.tp3RotationVector.x, sResult.tp3RotationVector.y, sResult.tp3RotationVector.z, sResult.tp3TranslationVector.x, sResult.tp3TranslationVector.y, sResult.tp3TranslationVector.z, sResult.f64Score, sResult.f64Residual), YELLOW, BLACK);
 		}
 
 		// 결과 이미지를 이미지 뷰에 맞게 조정합니다. // Fit the result image to the image view.
