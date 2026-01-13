@@ -634,6 +634,12 @@
 - [AI]
 
   - [Model]
+
+    - [3D]
+      
+       - InstanceSegmentation3D
+          - An example of an algorithm that classifies verification images using a model learned through Instance Segmentation 3D for training images with Figures and their corresponding Depth Map images, and then performs 3D Match based on the resulting Figures.
+          - Figure가 있는 학습 이미지와 그와 짝이 되는 Depth Map 이미지들에 대해 Instance Segmentation 3D을 통하여 학습한 모델을 사용하여 검증 이미지를 분류하고, 결과 Figure를 기반으로 3D Match 를 수행하는 알고리즘 예제. 
    
     - AnomalyDetection
        - Example of an algorithm for AnomalyDetection validation images using models learned through Check Anomal for training images with figures.
