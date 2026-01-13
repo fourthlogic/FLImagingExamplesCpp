@@ -141,7 +141,7 @@ int main()
 		// Destination 이미지 설정 // Set the destination image
 		kMeansClusterThreshold.SetDestinationImage(arrFliImage[1]);
 
-		// Cluster 갯수 설정 // Set the number of clusters
+		// Cluster 개수 설정 // Set the number of clusters
 		kMeansClusterThreshold.SetNumOfCluster(2);
 
 		// 앞에서 설정된 파라미터 대로 K-means Cluster Threshold 수행 // Execute K-means Cluster Threshold algorithm according to previously set parameters
@@ -155,7 +155,7 @@ int main()
 		// Destination 이미지 설정 // Set the destination image
 		kMeansClusterThreshold.SetDestinationImage(arrFliImage[2]);
 
-		// Cluster 갯수 설정 // Set the number of clusters
+		// Cluster 개수 설정 // Set the number of clusters
 		kMeansClusterThreshold.SetNumOfCluster(4);
 
 		// 앞에서 설정된 파라미터 대로 K-means Cluster Threshold 수행 // Execute K-means Cluster Threshold algorithm according to previously set parameters
@@ -169,7 +169,7 @@ int main()
 		// Destination 이미지 설정 // Set the destination image
 		kMeansClusterThreshold.SetDestinationImage(arrFliImage[3]);
 
-		// Cluster 갯수 설정 // Set the number of clusters
+		// Cluster 개수 설정 // Set the number of clusters
 		kMeansClusterThreshold.SetNumOfCluster(8);
 
 		// 앞에서 설정된 파라미터 대로 K-means Cluster Threshold 수행 // Execute K-means Cluster Threshold algorithm according to previously set parameters
