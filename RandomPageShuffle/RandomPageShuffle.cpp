@@ -23,14 +23,14 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 알고리즘을 수행할 Source 이미지 로드 // Load the source image to execute algorithm
-		if(IsFail(res = fliAfterSrcImage.Load(L"../../ExampleImages/RandomPageShuffle/Landscape.flif")))
+		if(IsFail(res = fliAfterSrcImage.Load(L"../../ExampleImages/PageReorder/Landscape.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// 알고리즘 수행 결과와 비교할 Source 이미지 로드 // Load the source image to compare executing result of algorithm
-		if(IsFail(res = fliBeforeSrcImage.Load(L"../../ExampleImages/RandomPageShuffle/Landscape.flif")))
+		if(IsFail(res = fliBeforeSrcImage.Load(L"../../ExampleImages/PageReorder/Landscape.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
