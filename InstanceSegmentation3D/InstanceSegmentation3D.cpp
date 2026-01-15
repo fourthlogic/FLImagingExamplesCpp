@@ -172,25 +172,25 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if(IsFail(res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), L"LEARN & Validation & Inference", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), L"LEARN & VALIDATION & INFERENCE", YELLOW, BLACK, 25)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerDepthMap.DrawTextCanvas(CFLPoint<double>(0, 0), L"Learn & Inference Depth Map", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerDepthMap.DrawTextCanvas(CFLPoint<double>(0, 0), L"LEARN & INFERENCE DEPTH MAP", YELLOW, BLACK, 25)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerResultLabel.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT BOX CONTOUR", GREEN, BLACK, 30)))
+		if(IsFail(res = layerResultLabel.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT BOX CONTOUR", GREEN, BLACK, 25)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layer3DResult.DrawTextCanvas(CFLPoint<double>(0, 0), L"Match 3D RESULT", GREEN, BLACK, 30)))
+		if(IsFail(res = layer3DResult.DrawTextCanvas(CFLPoint<double>(0, 0), L"MATCH 3D RESULT", GREEN, BLACK, 25)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
