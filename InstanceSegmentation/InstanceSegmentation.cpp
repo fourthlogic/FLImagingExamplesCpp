@@ -377,7 +377,7 @@ int main()
 		instanceSegmentationDL.SetInferenceResultImage(fliResultBoxContourImage);
 		// 추론 결과 옵션 설정 // Set the inference result options
 		// Figure 옵션 설정 // Set the option of figures
-		CInstanceSegmentationDL::EInferenceResultItemSettings eFigureOption = (CInstanceSegmentationDL::EInferenceResultItemSettings)(CInstanceSegmentationDL::EInferenceResultItemSettings_ClassNum | CInstanceSegmentationDL::EInferenceResultItemSettings_ClassName | CInstanceSegmentationDL::EInferenceResultItemSettings_Objectness | CInstanceSegmentationDL::EInferenceResultItemSettings_BoundaryRect | CInstanceSegmentationDL::EInferenceResultItemSettings_Contour);
+		CInstanceSegmentationDL::EInferenceResultItemSettings eFigureOption = (CInstanceSegmentationDL::EInferenceResultItemSettings)(CInstanceSegmentationDL::EInferenceResultItemSettings_ClassNum | CInstanceSegmentationDL::EInferenceResultItemSettings_ClassName | CInstanceSegmentationDL::EInferenceResultItemSettings_Objectness | CInstanceSegmentationDL::EInferenceResultItemSettings_BoundaryRect | CInstanceSegmentationDL::EInferenceResultItemSettings_Region);
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption);
 		// Objectness Threshold 설정 // Set the obectness threshold
 		instanceSegmentationDL.SetInferenceResultObjectnessThreshold(0.5f);
@@ -398,7 +398,7 @@ int main()
 		instanceSegmentationDL.SetInferenceResultImage(fliResultContourImage);
 		// 추론 결과 옵션 설정 // Set the inference result options
 		// Figure 옵션 설정 // Set the option of figures
-		eFigureOption = CInstanceSegmentationDL::EInferenceResultItemSettings_Contour;
+		eFigureOption = CInstanceSegmentationDL::EInferenceResultItemSettings_Region;
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption);
 		// Objectness Threshold 설정 // Set the obectness threshold
 		instanceSegmentationDL.SetInferenceResultObjectnessThreshold(0.5f);

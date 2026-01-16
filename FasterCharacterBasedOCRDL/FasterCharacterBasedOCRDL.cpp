@@ -333,7 +333,9 @@ int main()
 		fasterCharacterBasedOCRDL.SetInferenceResultImage(fliResultLabelImage);
 		// 추론 결과 옵션 설정 // Set the inference result options;
 		// Result item settings enum 설정 // Set the result item settings
-		fasterCharacterBasedOCRDL.SetInferenceResultItemSettings(CFasterCharacterBasedOCRDL::EInferenceResultItemSettings_ClassName_RegionType_Contour);
+		fasterCharacterBasedOCRDL.SetInferenceResultItemSettings(CFasterCharacterBasedOCRDL::EInferenceResultItemSettings_ClassNum_ClassName_ConfidenceScore);
+				// 결과 도형 타입 설정 // Set the result figure type
+		fasterCharacterBasedOCRDL.SetInferenceResultRegionFigureType(CFasterCharacterBasedOCRDL::EInferenceResultRegionFigureType_Region);
 
 
 		// 알고리즘 수행 // Execute the algorithm
