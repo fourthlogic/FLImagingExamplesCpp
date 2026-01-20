@@ -1582,6 +1582,9 @@
     - ContrastEnhancement
       - The example of an algorithm that enhances the contrast of the image using iterative method.
       - 반복 연산을 통해 이미지의 대비를 강조하는 알고리즘 예제.
+    - Retinex
+      - The example of an algorithm that increases the brightness of dark areas due to weak light or shadows in an image.
+      - 이미지에서 빛이 닿지 않아 어두운 영역의 밝기를 증가시키는 알고리즘 예제
 
   - [Image Operation]
   
