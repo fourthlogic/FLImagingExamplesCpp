@@ -96,7 +96,7 @@ int main()
 		CFLRegion flrgResult1;
 		double f64Epsilon1 = 10.;
 
-		if((res = flrgSourceFig.Reduce(f64Epsilon1, true, &flrgResult1)).IsFail())
+		if((res = flrgSourceFig.Reduce(f64Epsilon1, EReduceCriterion_Epsilon, &flrgResult1)).IsFail())
 		{
 			ErrorPrint(res, "Failed to calculate.\n");
 			break;
@@ -106,7 +106,7 @@ int main()
 		CFLRegion flrgResult2;
 		double f64Epsilon2 = 15.;
 
-		if((res = flrgSourceFig.Reduce(f64Epsilon2, true, &flrgResult2)).IsFail())
+		if((res = flrgSourceFig.Reduce(f64Epsilon2, EReduceCriterion_Epsilon, &flrgResult2)).IsFail())
 		{
 			ErrorPrint(res, "Failed to calculate.\n");
 			break;

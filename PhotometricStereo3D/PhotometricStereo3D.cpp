@@ -173,6 +173,13 @@ int main()
 			break;
 		}
 
+		// Pixel Accuracy 설정 // Set pixel accuracy
+		if((res = photometricStereo3D.SetPixelAccuracy(70)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set valid pixel accuracy.\n");
+			break;
+		}
+
 		// Curvature 이미지 Normalization 여부 설정 // Set curvature image normalization option
 		if((res = photometricStereo3D.EnableCurvatureNormalization(true)).IsFail())
 		{

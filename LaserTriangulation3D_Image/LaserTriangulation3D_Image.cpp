@@ -125,14 +125,14 @@ int main()
 		}
 
 		// Pixel Accuracy 설정 // Set pixel accuracy
-		if((res = laserTriangulation3D.SetPixelAccuracy(0.165)).IsFail())
+		if((res = laserTriangulation3D.SetPixelAccuracy(0.45)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set pixel accuracy.\n");
 			break;
 		}
 
 		// Scan Accuracy 설정 // Set scan accuracy
-		if((res = laserTriangulation3D.SetScanAccuracy(0.2)).IsFail())
+		if((res = laserTriangulation3D.SetScanAccuracy(0.5)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set scan accuracy.\n");
 			break;

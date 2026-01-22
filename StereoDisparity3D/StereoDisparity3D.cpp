@@ -153,6 +153,13 @@ int main()
 			break;
 		}
 
+		// 데이터 로드 // Load Data
+		if((res = stereoDisparity3D.Load(L"../../ExampleImages/StereoDisparity3D/StereoCalibratorData.flsc")).IsFail())
+		{
+			ErrorPrint(res, L"Failed to load Calibrator Data.\n");
+			break;
+		}
+
 		// 최소 허용 Disparity 값 설정 // Set minimum allowed disparity value
 		if((res = stereoDisparity3D.SetMinimumDisparity(-20)).IsFail())
 		{
@@ -203,9 +210,16 @@ int main()
 		}
 
 		// Median Morphology 커널 사이즈 설정 // Set median morphology kernel size
-		if((res = stereoDisparity3D.SetFilterSize(5)).IsFail())
+		if((res = stereoDisparity3D.SetFilterSize(9)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set the median kernel size.\n");
+			break;
+		}
+
+		// Pixel Accuracy 설정 // Set pixel accuracy
+		if((res = stereoDisparity3D.SetPixelAccuracy(200)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set pixel accuracy.\n");
 			break;
 		}
 

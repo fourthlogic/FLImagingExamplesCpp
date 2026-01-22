@@ -340,7 +340,7 @@ int main()
 		characterBasedOCRDL.SetInferenceResultImage(fliResultLabelImage);
 		// 추론 결과 옵션 설정 // Set the inference result options;
 		// Result item settings enum 설정 // Set the result item settings
-		characterBasedOCRDL.SetInferenceResultItemSettings(CCharacterBasedOCRDL::EInferenceResultItemSettings_ClassName_Contour);
+		characterBasedOCRDL.SetInferenceResultItemSettings(CCharacterBasedOCRDL::EInferenceResultItemSettings_ClassName_Region);
 		// 추론 시 이미지당 최대 인스턴스 개수를 256개로 설정 // Set the maximum number of instances per image to 256 during inference
 		characterBasedOCRDL.SetInferenceMaximumInstanceCount(256);
 

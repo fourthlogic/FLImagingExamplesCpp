@@ -393,7 +393,9 @@ int main()
 		// Result 결과에 Region Figure를 포함 여부 설정 // Set whether to include region figure in result
 		semanticSegmentationDL.EnableInferenceResultIncludingRegionFigures(true);
 		// Result item settings enum 설정 // Set the result item settings
-		semanticSegmentationDL.SetInferenceResultItemSettings(CSemanticSegmentationDL::EInferenceResultItemSettings_ClassNum_ClassName_ConfidenceScore_RegionType_Contour);
+		semanticSegmentationDL.SetInferenceResultItemSettings(CSemanticSegmentationDL::EInferenceResultItemSettings_ClassNum_ClassName_ConfidenceScore);
+		// 결과 도형 타입 설정 // Set the result figure type
+		semanticSegmentationDL.SetInferenceResultRegionFigureType(CSemanticSegmentationDL::EInferenceResultRegionFigureType_Region);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = semanticSegmentationDL.Execute()))
