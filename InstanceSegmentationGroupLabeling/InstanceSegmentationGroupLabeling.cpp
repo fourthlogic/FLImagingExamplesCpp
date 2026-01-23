@@ -249,6 +249,9 @@ int main()
 		augSpec.EnableVerticalFlip(true);
 		augSpec.EnableScale(true);
 		augSpec.SetScaleParam(0.91, 1.1, 0.91, 1.1, true);
+		CObjectAugmentationSpec objectAugSpec;
+		objectAugSpec.EnableAugmentation(false);
+		augSpec.SetObjectAugmentationSpec(objectAugSpec);
 
 		instanceSegmentationDL.SetLearningAugmentationSpec(&augSpec);
 
