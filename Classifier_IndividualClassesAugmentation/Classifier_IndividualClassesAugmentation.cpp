@@ -225,6 +225,13 @@ int main()
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		classifierDL.SetLearningAutoSaveSpec(autoSaveSpec);
 
+		// 공통 증강 스펙 설정 // Set common Augmentation Spec
+		CAugmentationSpec augCommonSpec;
+		augCommonSpec.EnableAugmentation(false);
+
+		classifierDL.SetLearningAugmentationSpec(augCommonSpec);
+
+		// 클래스 0,1 번에 대한 증강 Preset 설정 // Setting the augmentation preset for classes 0 and 1
 		CAugmentationSpec augSpec1;
 
 		augSpec1.EnableAugmentation(true);
@@ -242,6 +249,8 @@ int main()
 		augmentationPreset1.SetName(L"Class 0");
 		augmentationPreset1.SetAugmentationSpec(augSpec1);
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset1);
+
+		// 클래스 2 번에 대한 증강 Preset 설정 // Setting the augmentation preset for class 2
 		CAugmentationSpec augSpec2;
 
 		augSpec2.EnableAugmentation(true);
@@ -259,6 +268,8 @@ int main()
 		augmentationPreset2.SetName(L"Class 2");
 		augmentationPreset2.SetAugmentationSpec(augSpec2);
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset2);
+
+		// 클래스 3 번에 대한 증강 Preset 설정 // Setting the augmentation preset for class 3
 		CAugmentationSpec augSpec3;
 
 		augSpec3.EnableAugmentation(true);
@@ -276,6 +287,8 @@ int main()
 		augmentationPreset3.SetName(L"Class 3");
 		augmentationPreset3.SetAugmentationSpec(augSpec3);
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset3);
+
+		// 클래스 4,5 번에 대한 증강 Preset 설정 // Setting the augmentation preset for class 4
 		CAugmentationSpec augSpec4;
 
 		augSpec4.EnableAugmentation(true);
