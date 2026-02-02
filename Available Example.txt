@@ -1885,6 +1885,10 @@
         - Example of an algorithm that randomly shuffle pages in a source image.
         - 소스 이미지의 페이지를 무작위로 섞는 알고리즘 예제.
 
+    - Image Transpose
+      - Example of an algorithm for transpose an image by thinking of a page as a 3D z-axis
+      - 페이지를 3차원 z축으로 생각해 이미지를 Transpose하는 알고리즘 예제
+
     - PagePixelPicker
       - The example of an algorithm that extract pixels corresponding to the index map image from multiple images.
       - 복수의 이미지에서 인덱스 맵 이미지에 해당하는 픽셀을 추출하는 알고리즘 예제.	
