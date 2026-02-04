@@ -221,9 +221,9 @@ int main()
 		// 검증 IoU Threshold를 0.3으로 설정 // Set the validation IoU Threshold to 0.3
 		instanceSegmentationDL.SetValidationIoUThreshold(.3f);
 		// 학습할 instanceSegmentationDL 모델 설정 // Set up instanceSegmentationDL model to learn
-		instanceSegmentationDL.SetModel(CInstanceSegmentationDL::EModel_R_FLSegNet);
+		instanceSegmentationDL.SetModel(CInstanceSegmentationDL::EModel_R_FLSegNet_V2);
 		// 학습할 instanceSegmentationDL 모델의 버전 설정 // Set up instanceSegmentationDL model version to learn
-		instanceSegmentationDL.SetModelVersion(CInstanceSegmentationDL::EModelVersion_R_FLSegNet_V1_512);
+		instanceSegmentationDL.SetModelVersion(CInstanceSegmentationDL::EModelVersion_R_FLSegNet_V2_512);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		instanceSegmentationDL.SetLearningEpoch(500);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
