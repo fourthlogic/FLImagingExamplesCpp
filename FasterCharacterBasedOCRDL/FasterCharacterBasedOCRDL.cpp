@@ -126,8 +126,6 @@ int main()
 			break;
 		}
 
-		viewImagesLabel.EnablePixelSegmentationMode(true);
-
 		if(IsFail(res = viewImagesLabel.SetImagePtr(&fliResultLabelImage)))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
