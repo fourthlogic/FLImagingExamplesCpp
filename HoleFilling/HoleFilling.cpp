@@ -124,7 +124,7 @@ int main()
 			break;
 		}
 
-		const CFLFigure* pFlfHoleContours = holeFilling.GetSelectedPageFigureObject();
+		const CFLFigure* pFlfHoleContours = holeFilling.GetHoleFigure();
 		if(IsFail(res = layerSrc.DrawFigureImage(pFlfHoleContours, CYAN)))
 		{
 			ErrorPrint(res, "Failed to draw figure\n");
