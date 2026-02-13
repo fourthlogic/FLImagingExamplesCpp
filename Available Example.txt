@@ -149,21 +149,23 @@
         - The example of an algorithm that reconstructs 3D objects projected by line laser into 3D image using laser triangulation from the source of 'Profile' type.
         - 레이저로 투사된 3차원 물체를 레이저 삼각측량법을 이용하여 3차원 이미지로 재구성하는 알고리즘 예제. (Source Type : Profile)
 
-    - [Moire 3D]
-    
-      - Moire3D
+    - [Fringe Pattern 3D]
+      - FringePattern3D
         - The example of an algorithm that creates a height map of an object by analyzing the Fringe Pattern projected onto the object.
         - 물체에 투영된 프린지 패턴(Fringe Pattern)을 분석하여 물체의 Height Map 을 만드는 알고리즘 예제.
 
     - [Depth Image Reconstruction 3D]
-
       - DepthImageReconstruction3D
         - The example of an algorithm that reconstructs a height map from a focus stack of images.
         - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
 
     - [Depth Image Reconstruction MAP Based 3D]
-
       - DepthImageReconstructionMAPBased3D
+        - The example of an algorithm that reconstructs a height map from a focus stack of images.
+        - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
+        
+    - [FL Depth Image Reconstruction 3D]
+      - FLDepthImageReconstruction3D
         - The example of an algorithm that reconstructs a height map from a focus stack of images.
         - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
 
