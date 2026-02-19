@@ -29,7 +29,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = arrFliImage[EType_Source].Load(L"../../ExampleImages/LowLuminanceCorrectionType2/LowLuminanceCorrectionType2.flif")))
+		if(IsFail(res = arrFliImage[EType_Source].Load(L"../../ExampleImages/FLLowLuminanceCorrectionType2/FLLowLuminanceCorrectionType2.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -84,21 +84,21 @@ int main()
 			break;
 		}
 
-		// LowLuminanceCorrectionType2 객체 생성 // Create LowLuminanceCorrectionType2 object
-		CLowLuminanceCorrectionType2 lowLuminanceCorrectionType2;
+		// FLLowLuminanceCorrectionType2 객체 생성 // Create FLLowLuminanceCorrectionType2 object
+		CFLLowLuminanceCorrectionType2 flLowLuminanceCorrectionType2;
 		// Source 이미지 설정 // Set source image
-		lowLuminanceCorrectionType2.SetSourceImage(arrFliImage[EType_Source]);
+		flLowLuminanceCorrectionType2.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
-		lowLuminanceCorrectionType2.SetDestinationImage(arrFliImage[EType_Destination]);
+		flLowLuminanceCorrectionType2.SetDestinationImage(arrFliImage[EType_Destination]);
 		// Noise Reduction 설정 // Set usage Noise Reduction
-		lowLuminanceCorrectionType2.EnableNoiseReduction(true);
+		flLowLuminanceCorrectionType2.EnableNoiseReduction(true);
 		// Kernel Size 설정 // Set kernel size
-		lowLuminanceCorrectionType2.SetKernel(5);
+		flLowLuminanceCorrectionType2.SetKernel(5);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = lowLuminanceCorrectionType2.Execute()).IsFail())
+		if((res = flLowLuminanceCorrectionType2.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute Low Luminance Correction Type 2.");
+			ErrorPrint(res, "Failed to execute FL Low Luminance Correction Type 2.");
 			break;
 		}
 

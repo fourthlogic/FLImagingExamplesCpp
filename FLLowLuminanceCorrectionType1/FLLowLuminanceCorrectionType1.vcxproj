@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FEB242FA-843B-4DAD-B8C7-75208D9B5BA2}</ProjectGuid>
+    <ProjectGuid>{52A09707-42B2-40CC-B98C-1B4657A01907}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>LowLuminanceCorrectionType2</RootNamespace>
+    <RootNamespace>FLLowLuminanceCorrectionType1</RootNamespace>
+    <ProjectName>FLLowLuminanceCorrectionType1</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LowLuminanceCorrectionType2.cpp" />
+    <ClCompile Include="FLLowLuminanceCorrectionType1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

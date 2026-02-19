@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LowLuminanceCorrectionType2.cpp">
+    <ClCompile Include="FLLowLuminanceCorrectionType2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
