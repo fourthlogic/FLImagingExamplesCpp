@@ -73,7 +73,7 @@ int main()
 		tiltedFocusPlaneScanReparameterization3D.SetDestinationImage(fliDestinationImage);
 
 		// Scroll Direction 설정 // Set scroll direction
-		tiltedFocusPlaneScanReparameterization3D.SetScrollDirection(CTiltedFocusPlaneScanReparameterization3D::EScrollDirection_RightToLeft);
+		tiltedFocusPlaneScanReparameterization3D.SetScrollDirection(CTiltedFocusPlaneScanReparameterization3D::EScrollDirection_TopToBottom);
 
 		// Pixel Accuracy 설정 // Set pixel accuracy
 		tiltedFocusPlaneScanReparameterization3D.SetPixelAccuracy(5.);
