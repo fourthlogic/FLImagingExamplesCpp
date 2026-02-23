@@ -85,17 +85,17 @@ int main()
 			break;
 		if((res = holeFilling.SetMaxIteration(100)).IsFail())
 			break;
-		CMultiVar<uint64_t> mvThresholdCondition1 = CMultiVar<uint64_t>((uint64_t)ELogicalCondition_GreaterEqual, (uint64_t)ELogicalCondition_GreaterEqual, (uint64_t)ELogicalCondition_GreaterEqual);
-		if((res = holeFilling.SetThresholdCondition(EThresholdIndex_First, mvThresholdCondition1)).IsFail())
+		CMultiVar<int64_t> mvThresholdCondition1 = CMultiVar<int64_t>((int64_t)ELogicalCondition_GreaterEqual, (int64_t)ELogicalCondition_GreaterEqual, (int64_t)ELogicalCondition_GreaterEqual);
+		if((res = holeFilling.SetLogicalCondition(mvThresholdCondition1, EThresholdIndex_First)).IsFail())
 			break;
-		CMultiVar<uint64_t> mvThresholdValue1U64 = CMultiVar<uint64_t>(175, 230, 240);
-		if((res = holeFilling.SetThresholdValue(EThresholdIndex_First, mvThresholdValue1U64)).IsFail())
+		CMultiVar<double> mvThresholdValue1 = CMultiVar<double>(175, 230, 240);
+		if((res = holeFilling.SetThreshold(mvThresholdValue1, EThresholdIndex_First)).IsFail())
 			break;
-		CMultiVar<uint64_t> mvThresholdCondition2 = CMultiVar<uint64_t>((uint64_t)ELogicalCondition_Less, (uint64_t)ELogicalCondition_Less, (uint64_t)ELogicalCondition_Less);
-		if((res = holeFilling.SetThresholdCondition(EThresholdIndex_Second, mvThresholdCondition2)).IsFail())
+		CMultiVar<int64_t> mvThresholdCondition2 = CMultiVar<int64_t>((int64_t)ELogicalCondition_Less, (int64_t)ELogicalCondition_Less, (int64_t)ELogicalCondition_Less);
+		if((res = holeFilling.SetLogicalCondition(mvThresholdCondition2, EThresholdIndex_Second)).IsFail())
 			break;
-		CMultiVar<uint64_t> mvThresholdValue2U64 = CMultiVar<uint64_t>(200, 240, 255);
-		if((res = holeFilling.SetThresholdValue(EThresholdIndex_Second, mvThresholdValue2U64)).IsFail())
+		CMultiVar<double> mvThresholdValue2 = CMultiVar<double>(200, 240, 255);
+		if((res = holeFilling.SetThreshold(mvThresholdValue2, EThresholdIndex_Second)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
