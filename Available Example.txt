@@ -241,6 +241,11 @@
         - The example of an algorithm that switches axis order.
         - 축의 순서를 바꾸는 알고리즘 예제
 
+    - [Tilted Focus Plane Scan Reparameterization]
+      - TiltedFocusPlaneScanReparameterization3D
+        - The example of an algorithm that reparameterize tilted focus plane scan images.
+        - 기울어진 초점면 스캔 이미지를 재매개화하는 알고리즘 예제
+
   - [Utilities]
 
     - [Depth Map To Point Cloud Converter 3D]
