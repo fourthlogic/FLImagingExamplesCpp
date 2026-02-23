@@ -272,7 +272,7 @@ int main()
 				{
 					viewGraph.LockUpdate();
 
-					// 이전 그래프의 데이터를 삭제 // Clear previous grpah data
+					// 이전 그래프의 데이터를 삭제 // Clear previous graph data
 					viewGraph.Clear();
 					// Graph View 데이터 입력 // Input Graph View Data
 					viewGraph.Plot(vctCosts, EChartType_Line, RED, L"Cost");
