@@ -1137,6 +1137,10 @@
       - The algorithm example to get the fuzzy entropy of an image.
       - 이미지의 fuzzy entropy 를 구하는 알고리즘 예제.
 
+    - LinearInference
+      - Example of an algorithm that infers a linear transformation relationship between two images.
+      - 두 이미지의 선형 변환 관계를 추론하는 알고리즘 예제.
+
     - GrayLevelCooccurrenceMatrix
       - The example of an algorithm for calculating a Gray-Level Cooccurrence Matrix(GLCM) from an image.(Energy, Correlation, Homogeneity, Contrast)
       - 이미지에서 Gray-Level Cooccurrence Matrix(GLCM)을 계산하는 알고리즘 예제.(Energy, Correlation, Homogeneity, Contrast)
