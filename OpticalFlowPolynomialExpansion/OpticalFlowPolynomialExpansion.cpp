@@ -154,20 +154,6 @@ int main()
 			break;
 		}
 
-		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-		//if((res = viewImageSrc.SynchronizePointOfView(&viewImageDst)).IsFail())
-		//{
-		//	ErrorPrint(res, L"Failed to synchronize view\n");
-		//	break;
-		//}
-
-		// 두 이미지 뷰의 페이지를 동기화 한다
-		if((res = viewImageSrc.SynchronizePageIndex(&viewImageDst)).IsFail())
-		{
-			ErrorPrint(res, L"Failed to synchronize view\n");
-			break;
-		}
-
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
 		if((res = viewImageSrc.SynchronizeWindow(&viewImageDst)).IsFail())
 		{
