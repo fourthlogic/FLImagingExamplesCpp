@@ -186,6 +186,9 @@ int main()
 		measurementDL.SetLearningEpoch(1000);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		measurementDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+
+		// 학습할 영역 경계의 최대 굵기 설정 // Set maximum thickness of edge for learning region
+		measurementDL.SetLearningMaxEdgeRecognitionThickness(5.f);
 		
 		// 설정한 Optimizer를 Measurement에 적용 // Apply the Optimizer that we set up to Measurement
 		measurementDL.SetLearningOptimizerSpec(optSpec);
