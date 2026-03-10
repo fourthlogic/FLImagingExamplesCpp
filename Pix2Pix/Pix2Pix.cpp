@@ -185,7 +185,25 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = viewImageValidationTarget.SynchronizePointOfView(&viewImagesResult)))
+		if(IsFail(res = viewImageValidationInput.SynchronizePageIndex(&viewImagesResult)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
+
+		if(IsFail(res = viewImageLearnInput.SynchronizePointOfView(&viewImageLearnTarget)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
+
+		if(IsFail(res = viewImageValidationInput.SynchronizePointOfView(&viewImageValidationTarget)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
+
+		if(IsFail(res = viewImageValidationInput.SynchronizePointOfView(&viewImagesResult)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
