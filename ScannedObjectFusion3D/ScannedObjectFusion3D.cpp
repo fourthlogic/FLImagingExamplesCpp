@@ -8,10 +8,12 @@ int main()
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-	// 이미지 뷰 선언 // Declare image view	
+	// 3D 뷰 선언 // Declare 3d view	
 	const int32_t i32SourceCount = 6;
 	CGUIView3DWrap view3DDst;
 	CGUIView3DWrap arrSourceView[6];
+
+	// 3D 객체 선언 // Declare 3D object
 	CFL3DObject arrSourceObjects[6];
 	CFL3DObject floDst;
 
@@ -37,6 +39,7 @@ int main()
 			scannedObjectFusion3D.AddSourceObject(arrSourceObjects[i]);
 		}
 
+		// Source Object 3D 뷰 생성 // Create the source object 3D view
 		int32_t i32WindowWidth = 300;
 		int32_t i32WindowHeight = 300;
 
@@ -52,6 +55,7 @@ int main()
 			}
 		}
 
+		// Destination Object 3D 뷰 생성 // Create the destination object 3D view
 		if((res = view3DDst.Create(910, 10, 1510, 610)).IsFail())
 			break;
 
