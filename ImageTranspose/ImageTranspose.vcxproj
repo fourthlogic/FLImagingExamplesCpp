@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FEB242FA-843B-4DAD-B8C7-75208D9B5BA2}</ProjectGuid>
+    <ProjectGuid>{D37D9BC8-40F8-4DA2-A420-AE170DB37C16}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>LowLuminanceCorrectionType2</RootNamespace>
+    <RootNamespace>ImageTranspose</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LowLuminanceCorrectionType2.cpp" />
+    <ClCompile Include="ImageTranspose.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -328,7 +328,7 @@ int main()
 
 					flaX.PushBack((float)(vctCosts.GetCount() - 1));
 
-					// 이전 그래프의 데이터를 삭제 // Clear previous grpah data
+					// 이전 그래프의 데이터를 삭제 // Clear previous graph data
 					viewGraph.LockUpdate();
 					viewGraph.Clear();
 					// Graph View 데이터 입력 // Input Graph View Data
@@ -373,9 +373,11 @@ int main()
 		instanceSegmentation3DDL.SetInferenceResultImage(fliResultBoxContourImage);
 		// 추론 결과 옵션 설정 // Set the inference result options
 		// Figure 옵션 설정 // Set the option of figures
-		CInstanceSegmentation3DDL::EInferenceResultItemSettings eFigureOption = (CInstanceSegmentation3DDL::EInferenceResultItemSettings)(CInstanceSegmentation3DDL::EInferenceResultItemSettings_ClassNum | CInstanceSegmentation3DDL::EInferenceResultItemSettings_ClassName | CInstanceSegmentation3DDL::EInferenceResultItemSettings_Objectness | CInstanceSegmentation3DDL::EInferenceResultItemSettings_BoundaryRect | CInstanceSegmentation3DDL::EInferenceResultItemSettings_Region);
-		instanceSegmentation3DDL.SetInferenceResultItemSettings(eFigureOption);
+		CInstanceSegmentation3DDL::EInferenceResultItemSettings eFigureOption = (CInstanceSegmentation3DDL::EInferenceResultItemSettings)(CInstanceSegmentation3DDL::EInferenceResultItemSettings_ClassNum | CInstanceSegmentation3DDL::EInferenceResultItemSettings_ClassName | CInstanceSegmentation3DDL::EInferenceResultItemSettings_Objectness);
+		CInstanceSegmentation3DDL::EInferenceResultRegionFigureType eFigureType = (CInstanceSegmentation3DDL::EInferenceResultRegionFigureType)(CInstanceSegmentation3DDL::EInferenceResultRegionFigureType_Region | CInstanceSegmentation3DDL::EInferenceResultRegionFigureType_BoundaryRectangle);
 
+		instanceSegmentation3DDL.SetInferenceResultItemSettings(eFigureOption);
+		instanceSegmentation3DDL.SetInferenceResultRegionFigureType(eFigureType);
 		// 추론 시의 Camera Calibrator 설정 // Set the camera calibrator to inference
 		instanceSegmentation3DDL.SetInferenceCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.f, flaDistortionCoefficient, EDirectionType_Decrement);
 

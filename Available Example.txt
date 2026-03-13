@@ -79,6 +79,11 @@
         - The example of an algorithm for plane detection in normal-equipped point clouds or meshes.
         - Normal 정보가 있는 포인트 클라우드 또는 mesh 에서 평면을 검출하는 알고리즘 예제.
 
+    - [Skeleton 3D]
+      - Skeleton3D
+        - The example of an algorithm for extracting skeletons from point clouds.
+        - 포인트 클라우드의 뼈대를 추출하는 알고리즘 예제.
+
   - [Filter]
     
     - [Smoothing 3D]
@@ -144,21 +149,23 @@
         - The example of an algorithm that reconstructs 3D objects projected by line laser into 3D image using laser triangulation from the source of 'Profile' type.
         - 레이저로 투사된 3차원 물체를 레이저 삼각측량법을 이용하여 3차원 이미지로 재구성하는 알고리즘 예제. (Source Type : Profile)
 
-    - [Moire 3D]
-    
-      - Moire3D
+    - [Fringe Pattern 3D]
+      - FringePattern3D
         - The example of an algorithm that creates a height map of an object by analyzing the Fringe Pattern projected onto the object.
         - 물체에 투영된 프린지 패턴(Fringe Pattern)을 분석하여 물체의 Height Map 을 만드는 알고리즘 예제.
 
     - [Depth Image Reconstruction 3D]
-
       - DepthImageReconstruction3D
         - The example of an algorithm that reconstructs a height map from a focus stack of images.
         - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
 
     - [Depth Image Reconstruction MAP Based 3D]
-
       - DepthImageReconstructionMAPBased3D
+        - The example of an algorithm that reconstructs a height map from a focus stack of images.
+        - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
+        
+    - [FL Depth Image Reconstruction 3D]
+      - FLDepthImageReconstruction3D
         - The example of an algorithm that reconstructs a height map from a focus stack of images.
         - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
 
@@ -233,6 +240,11 @@
       - Switch Axes 3D
         - The example of an algorithm that switches axis order.
         - 축의 순서를 바꾸는 알고리즘 예제
+
+    - [Tilted Focus Plane Scan Reparameterization]
+      - TiltedFocusPlaneScanReparameterization3D
+        - The example of an algorithm that reparameterize tilted focus plane scan images.
+        - 기울어진 초점면 스캔 이미지를 재매개화하는 알고리즘 예제
 
   - [Utilities]
 
@@ -1125,6 +1137,10 @@
       - The algorithm example to get the fuzzy entropy of an image.
       - 이미지의 fuzzy entropy 를 구하는 알고리즘 예제.
 
+    - LinearInference
+      - Example of an algorithm that infers a linear transformation relationship between two images.
+      - 두 이미지의 선형 변환 관계를 추론하는 알고리즘 예제.
+
     - GrayLevelCooccurrenceMatrix
       - The example of an algorithm for calculating a Gray-Level Cooccurrence Matrix(GLCM) from an image.(Energy, Correlation, Homogeneity, Contrast)
       - 이미지에서 Gray-Level Cooccurrence Matrix(GLCM)을 계산하는 알고리즘 예제.(Energy, Correlation, Homogeneity, Contrast)
@@ -1570,15 +1586,15 @@
     - FLColorBoostingType1
       - The example of the color contrast boosting.
       - 색상 대비를 강화해 주는 알고리즘 예제.
+    - FLLowLuminanceCorrectionType1
+      - The example of an algorithm that processes a low luminance correction.
+      - 저휘도 이미지를 보정하는 알고리즘 예제.
+    - FLLowLuminanceCorrectionType2
+      - The example of an algorithm that processes a low luminance correction.
+      - 저휘도 이미지를 보정하는 알고리즘 예제.
     - HighDynamicRange
       - The example of an algorithm that converts multiple exposure images with different exposure into a single image of even brightness.
       - 노출 정도가 다른 다중 노출 이미지들을 한장의 밝기가 고른 이미지로 만드는 알고리즘 예제.
-    - LowLuminanceCorrectionType1
-      - The example of an algorithm that processes a low luminance correction.
-      - 저휘도 이미지를 보정하는 알고리즘 예제.
-    - LowLuminanceCorrectionType2
-      - The example of an algorithm that processes a low luminance correction.
-      - 저휘도 이미지를 보정하는 알고리즘 예제.
     - ContrastEnhancement
       - The example of an algorithm that enhances the contrast of the image using iterative method.
       - 반복 연산을 통해 이미지의 대비를 강조하는 알고리즘 예제.
@@ -1880,6 +1896,10 @@
         - Example of an algorithm that randomly shuffle pages in a source image.
         - 소스 이미지의 페이지를 무작위로 섞는 알고리즘 예제.
 
+    - Image Transpose
+      - Example of an algorithm for transpose an image by thinking of a page as a 3D z-axis
+      - 페이지를 3차원 z축으로 생각해 이미지를 Transpose하는 알고리즘 예제
+
     - PagePixelPicker
       - The example of an algorithm that extract pixels corresponding to the index map image from multiple images.
       - 복수의 이미지에서 인덱스 맵 이미지에 해당하는 픽셀을 추출하는 알고리즘 예제.	
@@ -2018,6 +2038,9 @@
     - Perspective
       - The example of an algorithm that performs projection transformation of an image by a Linear Equation.
       - 선형 방정식에 의한 이미지의 투영 변환을 수행하는 알고리즘 예제.
+    - Polar Transform
+      - The example of an algorithm that transforms images into polar transforms.
+      - 이미지를 극좌표 변환하는 알고리즘 예제.
     - Radon Transform
       - The example of an algorithm that transforms images into radon transforms.
       - 이미지를 라돈 변환을 하는 알고리즘 예제.

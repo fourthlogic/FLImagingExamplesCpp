@@ -7,6 +7,7 @@
 enum EType
 {
 	EType_Source = 0,
+	EType_Operand,
 	EType_Destination,
 	ETypeCount,
 };
@@ -29,7 +30,13 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = arrFliImage[EType_Source].Load(L"../../ExampleImages/LowLuminanceCorrectionType1/LowLuminanceCorrectionType1.flif")))
+		if(IsFail(res = arrFliImage[EType_Source].Load(L"../../ExampleImages/LinearInference/LinearInference_Src.flif")))
+		{
+			ErrorPrint(res, "Failed to load the image file.\n");
+			break;
+		}
+
+		if(IsFail(res = arrFliImage[EType_Operand].Load(L"../../ExampleImages/LinearInference/LinearInference_Opr.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -41,6 +48,7 @@ int main()
 			ErrorPrint(res, "Failed to assign the image file.\n");
 			break;
 		}
+
 		// 이미지 뷰 생성 // Create image view
 		if(IsFail(res = arrViewImage[EType_Source].Create(100, 0, 612, 512)))
 		{
@@ -48,7 +56,13 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = arrViewImage[EType_Destination].Create(612, 0, 1124, 512)))
+		if(IsFail(res = arrViewImage[EType_Operand].Create(612, 0, 1124, 512)))
+		{
+			ErrorPrint(res, "Failed to create the image view.\n");
+			break;
+		}
+
+		if(IsFail(res = arrViewImage[EType_Destination].Create(1124, 0, 1636, 512)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
@@ -71,9 +85,23 @@ int main()
 			break;
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views.
+		if(IsFail(res = arrViewImage[EType_Source].SynchronizePointOfView(&arrViewImage[EType_Operand])))
+		{
+			ErrorPrint(res, "Failed to synchronize view\n");
+			break;
+		}
+
+		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views.
 		if(IsFail(res = arrViewImage[EType_Source].SynchronizePointOfView(&arrViewImage[EType_Destination])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
+			break;
+		}
+
+		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+		if(IsFail(res = arrViewImage[EType_Source].SynchronizeWindow(&arrViewImage[EType_Operand])))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
 		}
 
@@ -84,19 +112,26 @@ int main()
 			break;
 		}
 
-		// LowLuminanceCorrectionType1 객체 생성 // Create LowLuminanceCorrectionType1 object
-		CLowLuminanceCorrectionType1 lowLuminanceCorrectionType1;
+		// Linear Inference 객체 생성 // Create Linear Inference object
+		CLinearInference linearInference;
 		// Source 이미지 설정 // Set source image
-		lowLuminanceCorrectionType1.SetSourceImage(arrFliImage[EType_Source]);
+		linearInference.SetSourceImage(arrFliImage[EType_Source]);
+		// Operand 이미지 설정 // Set Operand image
+		linearInference.SetOperandImage(arrFliImage[EType_Operand]);
 		// Destination 이미지 설정 // Set destination image 
-		lowLuminanceCorrectionType1.SetDestinationImage(arrFliImage[EType_Destination]);
-		// Noise Reduction 설정
-		lowLuminanceCorrectionType1.EnableNoiseReduction(true);
+		linearInference.SetDestinationImage(arrFliImage[EType_Destination]);
 
-		// 알고리즘 수행 // Execute the algorithm
-		if((res = lowLuminanceCorrectionType1.Execute()).IsFail())
+		// 측정 // Measure
+		if((res = linearInference.Measure()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute Low Luminance Correction Type 1.");
+			ErrorPrint(res, "Failed to Measure Linear Inference.");
+			break;
+		}
+
+		// 이미지 변환 // Linear Transformation
+		if((res = linearInference.Execute()).IsFail())
+		{
+			ErrorPrint(res, "Failed to Execute.");
 			break;
 		}
 
@@ -124,6 +159,12 @@ int main()
 			break;
 		}
 
+		if(IsFail(res = arrLayer[EType_Operand].DrawTextCanvas(CFLPoint<double>(0, 0), L"Operand Image", YELLOW, BLACK, 30)))
+		{
+			ErrorPrint(res, "Failed to draw text\n");
+			break;
+		}
+
 		if(IsFail(res = arrLayer[EType_Destination].DrawTextCanvas(CFLPoint<double>(0, 0), L"Destination Image", YELLOW, BLACK, 30)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
@@ -132,10 +173,12 @@ int main()
 
 		// 이미지 뷰를 갱신 합니다. // Update the image view.
 		arrViewImage[EType_Source].Invalidate(true);
+		arrViewImage[EType_Operand].Invalidate(true);
 		arrViewImage[EType_Destination].Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
 		while(arrViewImage[EType_Source].IsAvailable()
+			  && arrViewImage[EType_Operand].IsAvailable()
 			  && arrViewImage[EType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}

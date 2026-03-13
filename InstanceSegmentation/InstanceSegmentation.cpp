@@ -219,9 +219,9 @@ int main()
 		// 검증할 이미지 설정 // Set the image to validate
 		instanceSegmentationDL.SetLearningValidationImage(fliValidationImage);
 		// 학습할 instanceSegmentationDL 모델 설정 // Set up instanceSegmentationDL model to learn
-		instanceSegmentationDL.SetModel(CInstanceSegmentationDL::EModel_R_FLSegNet);
+		instanceSegmentationDL.SetModel(CInstanceSegmentationDL::EModel_R_FLSegNet_V2);
 		// 학습할 instanceSegmentationDL 모델의 버전 설정 // Set up instanceSegmentationDL model version to learn
-		instanceSegmentationDL.SetModelVersion(CInstanceSegmentationDL::EModelVersion_R_FLSegNet_V1_256);
+		instanceSegmentationDL.SetModelVersion(CInstanceSegmentationDL::EModelVersion_R_FLSegNet_V2_256);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		instanceSegmentationDL.SetLearningEpoch(500);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
@@ -332,7 +332,7 @@ int main()
 
 					flaX.PushBack((float)(vctCosts.GetCount() - 1));
 
-					// 이전 그래프의 데이터를 삭제 // Clear previous grpah data
+					// 이전 그래프의 데이터를 삭제 // Clear previous graph data
 					viewGraph.LockUpdate();
 					viewGraph.Clear();
 					// Graph View 데이터 입력 // Input Graph View Data
@@ -377,8 +377,11 @@ int main()
 		instanceSegmentationDL.SetInferenceResultImage(fliResultBoxContourImage);
 		// 추론 결과 옵션 설정 // Set the inference result options
 		// Figure 옵션 설정 // Set the option of figures
-		CInstanceSegmentationDL::EInferenceResultItemSettings eFigureOption = (CInstanceSegmentationDL::EInferenceResultItemSettings)(CInstanceSegmentationDL::EInferenceResultItemSettings_ClassNum | CInstanceSegmentationDL::EInferenceResultItemSettings_ClassName | CInstanceSegmentationDL::EInferenceResultItemSettings_Objectness | CInstanceSegmentationDL::EInferenceResultItemSettings_BoundaryRect | CInstanceSegmentationDL::EInferenceResultItemSettings_Region);
+		CInstanceSegmentationDL::EInferenceResultItemSettings eFigureOption = (CInstanceSegmentationDL::EInferenceResultItemSettings)(CInstanceSegmentationDL::EInferenceResultItemSettings_ClassNum | CInstanceSegmentationDL::EInferenceResultItemSettings_ClassName | CInstanceSegmentationDL::EInferenceResultItemSettings_Objectness);
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption);
+		CInstanceSegmentationDL::EInferenceResultRegionFigureType eFigureType = (CInstanceSegmentationDL::EInferenceResultRegionFigureType)(CInstanceSegmentationDL::EInferenceResultRegionFigureType_Region | CInstanceSegmentationDL::EInferenceResultRegionFigureType_BoundaryRectangle);
+		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType);
+
 		// Objectness Threshold 설정 // Set the obectness threshold
 		instanceSegmentationDL.SetInferenceResultObjectnessThreshold(0.5f);
 		// Mask Threshold 설정 // Set The mask threshold
@@ -398,8 +401,10 @@ int main()
 		instanceSegmentationDL.SetInferenceResultImage(fliResultContourImage);
 		// 추론 결과 옵션 설정 // Set the inference result options
 		// Figure 옵션 설정 // Set the option of figures
-		eFigureOption = CInstanceSegmentationDL::EInferenceResultItemSettings_Region;
+		eFigureOption = CInstanceSegmentationDL::EInferenceResultItemSettings_None;
+		eFigureType = CInstanceSegmentationDL::EInferenceResultRegionFigureType_Region;
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption);
+		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType);
 		// Objectness Threshold 설정 // Set the obectness threshold
 		instanceSegmentationDL.SetInferenceResultObjectnessThreshold(0.5f);
 		// Mask Threshold 설정 // Set The mask threshold

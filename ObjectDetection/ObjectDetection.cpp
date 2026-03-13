@@ -183,9 +183,9 @@ int main()
 		// 검증할 이미지 설정 // Set the image to validate
 		objectDetectionDL.SetLearningValidationImage(fliValidationImage);
 		// 학습할 objectDetectionDL 모델 설정 // Set up objectDetectionDL model to learn
-		objectDetectionDL.SetModel(CObjectDetectionDL::EModel_R_FLNet);
+		objectDetectionDL.SetModel(CObjectDetectionDL::EModel_R_FLNet_V2);
 		// 학습할 objectDetectionDL 모델의 버전 설정 // Set up objectDetectionDL model version to learn
-		objectDetectionDL.SetModelVersion(CObjectDetectionDL::EModelVersion_R_FLNet_V1_256);
+		objectDetectionDL.SetModelVersion(CObjectDetectionDL::EModelVersion_R_FLNet_V2_256);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		objectDetectionDL.SetLearningEpoch(1024);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image

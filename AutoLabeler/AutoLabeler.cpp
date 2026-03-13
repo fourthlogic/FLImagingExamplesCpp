@@ -280,7 +280,7 @@ int main()
 
 					flaX.PushBack((float)(vctCosts.GetCount() - 1));
 
-					// 이전 그래프의 데이터를 삭제 // Clear previous grpah data
+					// 이전 그래프의 데이터를 삭제 // Clear previous graph data
 					viewGraph.LockUpdate();
 					viewGraph.Clear();
 					// Graph View 데이터 입력 // Input Graph View Data
@@ -326,7 +326,8 @@ int main()
 		autoLabelerDL.SetSourceImage(&fliResultAutoLabelImage);
 		autoLabelerDL.EnableOverwriting(true);
 		autoLabelerDL.EnableBatchProcessing(true);
-		autoLabelerDL.SetLabelOptions(CAutoLabelerDL::ELabelOptions_RegionType_BoundaryRect);
+		autoLabelerDL.SetLabelOptions(CAutoLabelerDL::ELabelOptions_None);
+		autoLabelerDL.SetRegionFigureType(CAutoLabelerDL::ERegionFigureType_BoundaryRectangle);
 		autoLabelerDL.SetMinimumScore(0.5f);
 		autoLabelerDL.SetMinimumArea(50.0f);
 		autoLabelerDL.SetMaximumArea(50000.0f);

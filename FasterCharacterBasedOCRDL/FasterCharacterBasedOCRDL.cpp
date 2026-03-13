@@ -126,8 +126,6 @@ int main()
 			break;
 		}
 
-		viewImagesLabel.EnablePixelSegmentationMode(true);
-
 		if(IsFail(res = viewImagesLabel.SetImagePtr(&fliResultLabelImage)))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
@@ -290,7 +288,7 @@ int main()
 
 					flaX.PushBack((float)(vctCosts.GetCount() - 1));
 
-					// 이전 그래프의 데이터를 삭제 // Clear previous grpah data
+					// 이전 그래프의 데이터를 삭제 // Clear previous graph data
 					viewGraph.LockUpdate();
 					viewGraph.Clear();
 					// Graph View 데이터 입력 // Input Graph View Data

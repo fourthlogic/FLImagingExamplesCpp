@@ -93,7 +93,7 @@ int main()
 			break;
 
 		// ROI 설정을 위한 FLEllipseD 객체 생성 // Create FLEllipseD object for setting ROI
-		CFLEllipse<double> fle(370., 260., 100., 50., 34.);
+		CFLEllipse<double> fleROI(370., 300., 100., 130.);
 
 		// Move 객체 생성 // Create Move object
 		CMove move;
@@ -101,13 +101,15 @@ int main()
 		// Source 이미지 설정 // Set the source image
 		move.SetSourceImage(arrFliImage[EType_Src]);
 		// Source ROI 설정 // Set the source ROI
-		move.SetSourceROI(fle);
+		move.SetSourceROI(fleROI);
 		// Destination 이미지 설정 // Set the destination image
 		move.SetDestinationImage(arrFliImage[EType_Dst]);
-		// Destination ROI 설정 // Set Destination ROI
-		move.SetDestinationROI(fle);
 		// 이동할 크기 설정 // Set movement parameter
-		move.SetMovement(15.f, 15.f);
+		move.SetMovement(-220.f, 15.f);
+
+		// 결과를 확인하기 위한 Ellipse 객체 생성 및 위치 이동 // Create an Ellipse object and move its position to check the results
+		CFLEllipse<double> fleResult(fleROI);
+		fleResult.Offset(-220.f, 15.f);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = move.Execute()))
@@ -147,7 +149,10 @@ int main()
 		{
 			// ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
 			// FLImaging의 Figure객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능
-			arrLayer[i].DrawFigureImage(&fle, LIME, 3, EGUIViewImageLayerTransparencyColor, EGUIViewImagePenStyle_Solid, 1.f, 1.f);
+			arrLayer[i].DrawFigureImage(&fleROI, LIME, 1);
+
+			if(i == (int32_t)EType_Dst)
+				arrLayer[i].DrawFigureImage(&fleResult, RED, 1);
 
 			// 이미지 뷰를 갱신 합니다. // Update image view
 			arrViewImage[i].Invalidate(true);

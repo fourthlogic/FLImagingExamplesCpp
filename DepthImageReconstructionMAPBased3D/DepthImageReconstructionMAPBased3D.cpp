@@ -72,6 +72,8 @@ int main()
 			break;
 		if((res = depthImageReconstructionMAPBased3D.SetDestinationTextureImage(&fliTxtImage)).IsFail())
 			break;
+		if((res = depthImageReconstructionMAPBased3D.SetDestinationObject(floDstObject)).IsFail())
+			break;
 
 		if((res = depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(0)).IsFail())
 			break;
@@ -98,11 +100,6 @@ int main()
 		if((res = depthImageReconstructionMAPBased3D.SetPixelAccuracy(1.0)).IsFail())
 			break;
 		if((res = depthImageReconstructionMAPBased3D.SetDepthPitch(8.0)).IsFail())
-			break;
-
-		if((res = depthImageReconstructionMAPBased3D.Enable3DObjectGeneration(true)).IsFail())
-			break;
-		if((res = depthImageReconstructionMAPBased3D.SetDestinationObject(floDstObject)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
