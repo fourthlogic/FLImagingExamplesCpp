@@ -783,6 +783,9 @@
     - DeviceCameraCrevis 
       - Example of connecting and operating Crevis Camera.
       - Crevis Camera 연결 및 구동하는 예제.
+    - DeviceCameraGenICam 
+      - Example of connecting and operating GenICam Camera.
+      - GenICam Camera 연결 및 구동하는 예제.
     - DeviceCameraHIK 
       - Example of connecting and operating HIK Camera.
       - HIK Camera 연결 및 구동하는 예제.
