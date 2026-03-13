@@ -93,12 +93,8 @@ int main()
 		registration3D.SetDescriptorType(CRegistration3D::EDescriptorType_SHOT352);
 
 		// 반경 자동 계산 여부 설정 // Set to auto-calculate radius
-		registration3D.EnableNormalEstimationAutoRadius(false);
 		registration3D.EnableSHOTLRFAutoRadius(false);
 		registration3D.EnableSHOTAutoRadius(false);
-
-		// 법선 벡터 추정 반경 설정 // Set to normal vector estimation radius
-		registration3D.SetNormalEstimationRadius(30.000000f);
 
 		// 지역 참조 프레임 추정 반경 설정 // Set to Local Reference Frame estimation radius
 		registration3D.SetSHOTLRFRadius(70.000000f);
