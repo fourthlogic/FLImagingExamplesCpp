@@ -85,7 +85,7 @@ int main()
 		CDeviceGenICamBase::EConnectionMethod eConnectionMethod = CDeviceGenICamBase::EConnectionMethod_SerialNumber;
 		CFLString<wchar_t> flsConnection = L"";
 
-		// 장치의 제조사를 선택합니다.
+		// 장치의 벤더를 선택합니다.
 		while(true)
 		{
 			printf("1. Basler\n");
@@ -95,7 +95,7 @@ int main()
 			printf("5. Hikrobot\n");
 			printf("6. Jai\n");
 			printf("7. Lucid Vision Labs\n");
-			printf("Select Device Type: ");
+			printf("Select Vendor: ");
 			fgetws(arrInput, 4096, stdin);
 
 			CFLString<wchar_t> flsInput(arrInput);
