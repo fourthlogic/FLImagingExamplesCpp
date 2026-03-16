@@ -253,6 +253,11 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CHANGE_CHART_TYPE);
 		flaCheckBoxString.PushBack(L"Change Chart Type");
 
+		// Line Graph Marker 변경 메뉴 // Line Graph Marker menu
+		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_LineGraphMarker);
+		m_flaCheckBoxId.PushBack(IDC_CHECK_LINE_GRAPH_MARKER);
+		flaCheckBoxString.PushBack(L"Line Graph Marker");
+
 		// 툴바 보이기 메뉴 // Show toolbar menu
 		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowToolBar);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_TOOLBAR);
