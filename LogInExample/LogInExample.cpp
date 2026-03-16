@@ -128,6 +128,8 @@ BOOL CLogInExampleApp::InitInstance()
 		pMF->ModifyStyle(WS_MAXIMIZEBOX, 0, 0);
 		pMF->SetWindowPos(NULL, 0, 0, 1280, 1024, NULL);
 	}
+	
+	CResult cc = CAuthorityManager::Initialize(CGUIManager::GetConfigurationPath() + L"\\LogIn.ini", L"root");
 
 	// "Log In Property Example" 이라는 이름의 메뉴 아이템 찾기
 	CPropertyLogInExample* pPropertyMenu = dynamic_cast<CPropertyLogInExample*>(CGUIManager::GetMenuItem(L"Log In Property Example", L"Menu"));
