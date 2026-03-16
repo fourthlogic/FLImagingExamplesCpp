@@ -78,11 +78,75 @@ int main()
 	{
 		wchar_t arrInput[4096] = { 0, };
 
+		CDeviceCameraGenICam::EVendor eVendor = CDeviceCameraGenICam::EVendor_Undefined;
 		CDeviceGenICamTypeBase::EDeviceType eDeviceType = CDeviceGenICamTypeBase::EDeviceType_GigE;
 		bool bAutoDetect = false;
 		int32_t i32SelectDevice = -1;
 		CDeviceGenICamBase::EConnectionMethod eConnectionMethod = CDeviceGenICamBase::EConnectionMethod_SerialNumber;
 		CFLString<wchar_t> flsConnection = L"";
+
+		// 장치의 제조사를 선택합니다.
+		while(true)
+		{
+			printf("1. Basler\n");
+			printf("2. Crevis\n");
+			printf("3. FLIR Systems\n");
+			printf("4. Huaray Technology\n");
+			printf("5. Hikrobot\n");
+			printf("6. Jai\n");
+			printf("7. Lucid Vision Labs\n");
+			printf("Select Device Type: ");
+			fgetws(arrInput, 4096, stdin);
+
+			CFLString<wchar_t> flsInput(arrInput);
+			int32_t i32Select = flsInput.ToInt32();
+			bool bSelected = true;
+
+			switch(i32Select)
+			{
+			case 1:
+				eVendor = CDeviceCameraGenICam::EVendor_Basler;
+				break;
+
+			case 2:
+				eVendor = CDeviceCameraGenICam::EVendor_Crevis;
+				break;
+
+			case 3:
+				eVendor = CDeviceCameraGenICam::EVendor_FLIRSystems;
+				break;
+
+			case 4:
+				eVendor = CDeviceCameraGenICam::EVendor_HuarayTechnology;
+				break;
+
+			case 5:
+				eVendor = CDeviceCameraGenICam::EVendor_Hikrobot;
+				break;
+
+			case 6:
+				eVendor = CDeviceCameraGenICam::EVendor_Jai;
+				break;
+
+			case 7:
+				eVendor = CDeviceCameraGenICam::EVendor_LucidVisionLabs;
+				break;
+
+			default:
+				bSelected = false;
+				break;
+			}
+
+			if(bSelected)
+				break;
+
+			printf("Incorrect input. Please select again.\n\n");
+		}
+
+		printf("\n");
+
+		// 카메라에 벤더 설정
+		camGenICam.SetVendor(eVendor);
 
 		// 장치 타입을 선택합니다.
 		while(true)
