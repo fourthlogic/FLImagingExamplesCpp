@@ -251,7 +251,7 @@ int main()
 		// The original image is divided and processed by the model size by maintaining the square ratio.
 		semanticSegmentationDL.SetImageTilingMode(ETilingMode_BothAxesTiling_NoFit);
 		// 학습 이미지 분할 모드의 겹치는 비율을 설정 // Set the overlap ratio of the learning image in tiling mode
-		semanticSegmentationDL.SetImageTilingOverlapRatio(0.25);
+		semanticSegmentationDL.SetLearningImageTilingOverlapRatio(0.25);
 
 		// 학습을 종료할 조건식 설정. mIoU.ze값이 0.85 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
 		// Set Conditional Expression to End Learning. If the mIoU.ze value is 0.85 or higher, end the learning. Same value as metric.ze.
@@ -373,6 +373,8 @@ int main()
 		semanticSegmentationDL.SetInferenceImage(fliValidationImage);
 		// 추론 결과 이미지 설정 // Set the inference result Image
 		semanticSegmentationDL.SetInferenceResultImage(fliResultLabelImage);
+		// 추론 이미지 분할 모드의 겹치는 비율을 설정 // Set the overlap ratio of the inference image in tiling mode
+		semanticSegmentationDL.SetInferenceImageTilingOverlapRatio(0.25);
 		// 추론 결과 옵션 설정 // Set the inference result options;
 		// Result 결과를 Label Image로 받을지 여부 설정 // Set whether to receive the result as a Label Image
 		semanticSegmentationDL.EnableInferenceResultLabelImage(true);
