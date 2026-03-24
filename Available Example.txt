@@ -41,6 +41,11 @@
       - PointCloudBasedHandEyeCalibrator3D
         - The example that estimating the matrix between the camera and the end effector.
         - 카메라와 엔드 이펙터의 관계 행렬을 추정하는 알고리즘 예제.
+
+    - [Scanned Object Fusion 3D]
+      - ScannedObjectFusion3D
+        - Algorithm examples that combine data from multiple viewpoints or cameras into a single representation.
+        - 여러 시점 혹은 카메라에서 촬영된 데이터를 하나로 합치는 알고리즘 예제
   
   - [CT]
   
@@ -282,6 +287,11 @@
       - PointCloudToXYZImageConverter3D
         - An example of an algorithm that generate XYZ images using a given point cloud.
         - 포인트 클라우드를 입력 받아 XYZ 이미지를 생성하는 알고리즘 예제.
+
+    - [Plane Estimator From Feature Points 3D]
+      - PlaneEstimatorFromFeaturePoints3D
+        - An example of an algorithm that estimate planes in a point cloud.
+        - 포인트 클라우드의 평면을 추정하는 알고리즘 예제
 
     - [Scanned Point Cloud Generator]
       - Scanned Point Cloud Generator 3D
