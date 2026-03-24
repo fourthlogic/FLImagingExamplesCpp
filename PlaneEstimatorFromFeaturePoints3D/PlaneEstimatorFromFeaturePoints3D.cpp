@@ -63,7 +63,7 @@ int main()
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((eResult = planeEstimatorFromFeaturePoints3D.Execute()).IsFail())
 		{
-			ErrorPrint(eResult, L"Failed to execute PlaneEstimatorFromFeaturePoints 3D.");
+			ErrorPrint(eResult, L"Failed to execute Plane Estimator From Feature Points 3D.");
 			break;
 		}
 
