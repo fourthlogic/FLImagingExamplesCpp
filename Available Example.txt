@@ -258,6 +258,11 @@
         - An example of an algorithm that create a point cloud with a depth map image and an camera intrinsic parameter.
         - 깊이맵 이미지와 카메라 내부 행렬로 포인트 클라우드를 생성하는 알고리즘 예제.
 
+    - [Flatness Measurement 3D]
+      - Flatness Measurement 3D]
+        - An example of an algorithm that measure the flatness of surface.
+        - 표면 평탄도를 측정하는 알고리즘 예제.
+
     - [Height Measurement 3D]
       - HeightMeasurement3D
         - An example of an algorithm that measure the angle and intersection between two planes.
