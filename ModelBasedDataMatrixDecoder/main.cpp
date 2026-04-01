@@ -106,7 +106,10 @@ int main()
 
 		// 학습 동작 // Learn
 		if((res = modelBasedDataMatrixDecoder.Learn()).IsFail())
+		{
+			ErrorPrint(res, "Failed to learn data matrix decoder.");
 			break;
+		}
 
 		// 동작 이미지 설정 // Set source image
 		modelBasedDataMatrixDecoder.SetSourceImage(arrFliImage[EViewList_ModelBaseFind]);
@@ -119,7 +122,10 @@ int main()
 
 		// 동작 // Execute
 		if((res = modelBasedDataMatrixDecoder.Execute()).IsFail())
+		{
+			ErrorPrint(res, "Failed to execute data matrix decoder.");
 			break;
+		}
 
 
 		// Learn 동작 결과를 얻어온다 // Gets the result of the learn result.
@@ -197,7 +203,10 @@ int main()
 
 		// 동작 // Execute
 		if((res = datamatrixDecoder.Execute()).IsFail())
+		{
+			ErrorPrint(res, "Failed to execute data matrix decoder.");
 			break;
+		}
 
 		// Data Matrix Decoder 결과 개수를 얻는다. // Gets the number of results from the Data Matrix decoder.
 		i64Results = datamatrixDecoder.GetResultCount();
