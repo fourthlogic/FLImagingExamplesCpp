@@ -128,15 +128,14 @@ int main()
 
 			++i32ArrivalIdx;
 
-			if(res == EResult_FullOfCapacity)
-			{
-				// 빈이 꽉 참 — 정상 종료 // Bin is full — normal termination
-				wprintf(L"Arrival %d: bin is full. Stopping.\n", i32ArrivalIdx);
-				break;
-			}
-
 			if(res.IsFail())
 			{
+				if(res == EResult_FullOfCapacity)
+				{
+					// 빈이 꽉 참 — 정상 종료 // Bin is full — normal termination
+					wprintf(L"Arrival %d: bin is full. Stopping.\n", i32ArrivalIdx);
+					break;
+				}
 				// 예상치 못한 오류 // Unexpected error
 				ErrorPrint(res, "Failed to push and place.\n");
 				break;
@@ -194,11 +193,7 @@ int main()
 			const float f32VolumeUsage = f32TotalVolume > 0.f ? 100.f * f32UsedVolume / f32TotalVolume : 0.f;
 
 			CFLString<wchar_t> flsStatus;
-			flsStatus.Format(
-				L"Arrival %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)",
-				i32ArrivalIdx,
-				i32PlacedCount,
-				f32VolumeUsage, f32UsedVolume, f32TotalVolume);
+			flsStatus.Format(L"Arrival %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)", i32ArrivalIdx, i32PlacedCount, f32VolumeUsage, f32UsedVolume, f32TotalVolume);
 
 			layer3DStatus.DrawTextCanvas(CFLPoint<double>(0, 25), flsStatus, YELLOW, BLACK, 16);
 
@@ -227,10 +222,7 @@ int main()
 			layer3DStatus.Clear();
 
 			CFLString<wchar_t> flsFinalInfo;
-			flsFinalInfo.Format(
-				L"Done  |  Arrivals: %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)",
-				i32ArrivalIdx, i32PlacedCount,
-				f32VolumeUsage, f32UsedVolume, f32TotalVolume);
+			flsFinalInfo.Format(L"Done  |  Arrivals: %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)",i32ArrivalIdx, i32PlacedCount,f32VolumeUsage, f32UsedVolume, f32TotalVolume);
 
 			layer3DStatus.DrawTextCanvas(CFLPoint<double>(0, 25), flsFinalInfo, YELLOW, BLACK, 16);
 
