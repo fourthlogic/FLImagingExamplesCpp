@@ -384,7 +384,10 @@
         - 입력한 문자열을 데이터 매트릭스로 인코딩하는 알고리즘 예제.
       - DataMatrixVerifier
         - The example of an algorithm to evaluate print quality after detecting and decoding Data Matrix within an image.
-        - 이미지 내의 데이터 매트릭스를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
+        - 이미지 내의 데이터 매트릭스를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.        
+      - ModelBasedDataMatrixDecoder
+        - The example algorithm that learns a matrix of data in a specified format and decodes codes with similar patterns.
+        - 지정한 형태의 데이터 매트릭스를 학습하여, 유사한 형태의 코드를 디코딩하는 알고리즘 예제
 
     - [QR Code]
     
