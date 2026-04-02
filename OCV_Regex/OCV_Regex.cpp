@@ -138,7 +138,7 @@ int main()
 		}
 
 		// 인식할 문자의 유니코드 여부를 설정
-		if(IsFail(res = ocr.EnableRecognizingUnicodeByteCharacter(true)))
+		if(IsFail(res = ocr.EnableRecognizingUnicodeCharacter(true)))
 		{
 			ErrorPrint(res, L"Failed to Enable unicode byte character.");
 			break;
