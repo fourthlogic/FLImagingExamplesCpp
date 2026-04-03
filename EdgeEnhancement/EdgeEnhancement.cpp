@@ -71,7 +71,7 @@ int main()
 		}
 
 		// EdgeEnhancement 객체 생성 // Create EdgeEnhancement object
-		CEdgeEnhancement edgeEnhancement;
+		CFLEdgeEnhancement edgeEnhancement;
 
 		// Source 이미지 설정 // Set the source image
 		edgeEnhancement.SetSourceImage(fliSrcImage);
