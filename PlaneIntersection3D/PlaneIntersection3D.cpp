@@ -51,9 +51,9 @@ int main()
 		// PlaneIntersection3D 객체 생성 // Create PlaneIntersection3D object
 		CPlaneIntersection3D planeIntersection3D;
 
-		// Reference plane 설정 // Set the source plane
+		// Reference plane 설정 // Set the reference plane
 		planeIntersection3D.SetReferencePlane(floReferenceObject);
-		// Measurement plane 설정 // Set the Measurement plane
+		// Measurement plane 설정 // Set the measurement plane
 		planeIntersection3D.SetMeasurementPlane(floMeasurementObject);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
