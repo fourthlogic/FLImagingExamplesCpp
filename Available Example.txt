@@ -295,6 +295,11 @@
         - An example of an algorithm that projects a 3D object into an image.
         - 3D 객체를 이미지로 투영하는 알고리즘 예제.
     
+    - [Plane Intersection 3D]
+      - PlaneIntersection3D
+        - An example of an algorithm that measure the intersection between two planes.
+        - 두 평면 간의 교선을 측정하는 알고리즘 예제.
+
     - [Residual Evaluator]
       - Residual Evaluator3D
         - The example of an algorithm that measures the residuals of two given objects.
