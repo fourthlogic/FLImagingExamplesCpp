@@ -277,8 +277,8 @@
 
     - [Height Measurement 3D]
       - HeightMeasurement3D
-        - An example of an algorithm that measure the angle and intersection between two planes.
-        - 두 평면 간의 각도 및 교선을 측정하는 알고리즘 예제.
+        - An example of an algorithm that measure the angle and distance between two planes.
+        - 두 평면 간의 각도 및 거리를 측정하는 알고리즘 예제.
 
     - [Occlusion Culling 3D]
       - OcclusionCulling3D
