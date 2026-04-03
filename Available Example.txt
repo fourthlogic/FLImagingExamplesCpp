@@ -1499,7 +1499,7 @@
       - Coherence Enhancing Diffusion NonNeg
         - The example of an algorithm that performs diffusion in a consistent direction of an image.
         - 이미지의 일관된 방향으로 확산을 수행하는 알고리즘 예제.
-      - EdgeEnhancement
+      - FL Edge Enhancement
         - The example of an algorithm that minimizes noise and enhances the edge of an image.
         - 노이즈를 최소화하면서 이미지의 경계를 강조시켜주는 알고리즘 예제.
       - EmphasizeFilter	   
