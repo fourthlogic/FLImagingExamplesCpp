@@ -84,6 +84,11 @@
         - The example of an algorithm for plane detection in normal-equipped point clouds or meshes.
         - Normal 정보가 있는 포인트 클라우드 또는 mesh 에서 평면을 검출하는 알고리즘 예제.
 
+    - [Point Cloud Clustering 3D]
+      - PointCloudClustering3D
+        - The example of a point cloud clustering algorithm
+        - 포인트 클라우드 클러스터링 알고리즘 예제.
+
     - [Skeleton 3D]
       - Skeleton3D
         - The example of an algorithm for extracting skeletons from point clouds.
