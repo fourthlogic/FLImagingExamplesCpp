@@ -152,9 +152,6 @@ BOOL CFLImagingGUIExampleApp::InitInstance()
 	CGUIManagerView::AddFixedViewPlacementSet(fvpSet3);
 	CGUIManagerView::AddFixedViewPlacementSet(fvpSet4);
 
-	// 인덱스에 해당하는 뷰의 설정으로 선택합니다.
-	CGUIManagerView::SelectFixedViewPlacementSet(0);
-
 	CGUIManager::PreInitializePaneVisibility(true, false, false, false, false);
 
 	// 모델 관리자를 초기화 합니다.
@@ -162,6 +159,9 @@ BOOL CFLImagingGUIExampleApp::InitInstance()
 
 	// GUI 관리자를 초기화 합니다.
 	CGUIManager::Initialize();
+
+	// 인덱스에 해당하는 뷰의 설정으로 선택합니다.
+	CGUIManagerView::SelectFixedViewPlacementSet(0);
 
 	// Main Frame 위치를 설정합니다.
 	CGUIMainFrame* pMF = nullptr;
@@ -179,8 +179,8 @@ BOOL CFLImagingGUIExampleApp::InitInstance()
 				pPaneMenu->SetAutoHideMode(TRUE, CBRS_ALIGN_LEFT);
 		}
 
-		pMF->ShowWindow(SW_SHOWMAXIMIZED);
-		pMF->ModifyStyle(WS_MAXIMIZEBOX, 0, 0);
+		pMF->ModifyStyle(WS_MAXIMIZEBOX | WS_THICKFRAME, 0, 0);
+		pMF->EnableMenuBarButtons(false, false, true);
 		pMF->SetWindowPos(NULL, 0, 0, 1280, 1024, NULL);
 	}
 
