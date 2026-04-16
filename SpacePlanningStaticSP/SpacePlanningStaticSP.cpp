@@ -2,6 +2,50 @@
 #include <FLImaging.h>
 #include "../CommonHeader/ErrorPrint.h"
 
+namespace
+{
+	CResult InitializeCoordinateConverter(const CSpacePlanningBaseSP& alg, CSpacePlanningCoordinateConverterSP& converter)
+	{
+		CResult res = EResult_UnknownError;
+
+		do
+		{
+			if((res = alg.GetCoordinateConverter(converter)).IsFail())
+				break;
+
+			const int32_t i32BinCount = alg.GetBinSpecCount();
+			for(int32_t i = 0; i < i32BinCount; ++i)
+			{
+				const Base::TPoint3<float> tpWorldPivot(16.f * i, 0.f, 0.f);
+				const Base::TPoint3<float> tpBinPivot(0.f, 0.f, 0.f);
+				const Base::TPoint3<float> tpDirectionZ(0.03f, 0.f, 1.f);
+				const Base::TPoint3<float> tpUpY(0.0f, 1.f, 0.3f);
+
+				if((res = converter.SetBinTransform(i, tpWorldPivot, tpBinPivot, tpDirectionZ, tpUpY)).IsFail())
+					break;
+			}
+
+			if(res.IsFail())
+				break;
+
+			const int32_t i32ItemCount = alg.GetItemSpecCount();
+			for(int32_t i = 0; i < i32ItemCount; ++i)
+			{
+				if((res = converter.SetItemPivotNormalized(i, Base::TPoint3<float>(0.5f, 0.5f, 0.5f))).IsFail())
+					break;
+			}
+
+			if(res.IsFail())
+				break;
+
+			res = converter.Learn();
+		}
+		while(false);
+
+		return res;
+	}
+}
+
 int main()
 {
 	// You must call the following function once
@@ -61,19 +105,49 @@ int main()
 			break;
 		}
 
-		// 배치 결과 3D 오브젝트 그룹 취득 // Get the placement result 3D object group
-		// 구조: [0, ItemCount) = 배치된 아이템, [ItemCount, end) = 빈(bin) * 2개씩 (속 채움, 외곽선)
-		// Structure: [0, ItemCount) = placed items, [ItemCount, end) = bins * 2 each (filled, wireframe)
-		CFL3DObjectGroup flog;
-
-		if((res = alg.Get3DObject(flog)).IsFail())
+		CSpacePlanningCoordinateConverterSP converter;
+		if((res = InitializeCoordinateConverter(alg, converter)).IsFail())
 		{
-			ErrorPrint(res, "Failed to get 3D object.\n");
+			ErrorPrint(res, "Failed to initialize the coordinate converter.\n");
 			break;
 		}
 
-		const int32_t i32BinCount  = alg.GetBinSpecCount();
-		const int32_t i32ItemCount = alg.GetItemSpecCount();
+		CSpacePlanningBaseSP::SLearnedPlacementResults placementResults;
+		if((res = alg.GetLearnedPlacements(placementResults)).IsFail())
+		{
+			ErrorPrint(res, "Failed to get learned placements.\n");
+			break;
+		}
+
+		CFL3DObjectGroup flogBins, flogItems;
+		if((res = converter.MakeBinObjectGroup(flogBins)).IsFail() ||
+		   (res = converter.MakeItemObjectGroup(placementResults.placements, flogItems)).IsFail())
+		{
+			ErrorPrint(res, "Failed to build world-space 3D objects.\n");
+			break;
+		}
+
+		for(int64_t i = 0; i < placementResults.placements.GetCount(); ++i)
+		{
+			Base::TPoint3<float> tpWorldPosition;
+			if((res = converter.Convert(placementResults.placements[i], tpWorldPosition)).IsFail())
+			{
+				ErrorPrint(res, "Failed to convert placement coordinates.\n");
+				break;
+			}
+
+			wprintf(L"Placement %d: bin %d, item %d -> world center [%.1f, %.1f, %.1f]\n",
+				(int32_t)i,
+				placementResults.placements[i].i32BinIndex,
+				placementResults.placements[i].i32ItemIndex,
+				tpWorldPosition.x, tpWorldPosition.y, tpWorldPosition.z);
+		}
+
+		if(res.IsFail())
+			break;
+
+		const int32_t i32BinCount = alg.GetBinSpecCount();
+		const int32_t i32PlacedCount = static_cast<int32_t>(placementResults.placements.GetCount());
 
 		if((res = view3DResult.Create(600, 0, 1100, 500)).IsFail())
 		{
@@ -84,23 +158,20 @@ int main()
 		view3DResult.SetRenderingTransparencyMode(ERenderingTransparencyMode_DepthPeelingOIT);
 		view3DResult.SetRenderingResolutionScale(2);
 
-		// 결과 뷰에 아이템 및 Bin 오브젝트 추가 // Push item and bin objects to the result view
-		for(int32_t i = 0; i < i32ItemCount; ++i)
+		// 결과 뷰에 world-space 아이템 및 bin 오브젝트 추가
+		// Push world-space item and bin objects to the result view
+		for(int32_t i = 0; i < i32PlacedCount; ++i)
 		{
 			int32_t i32ObjIndex = 0;
-			view3DResult.PushObject(*flog.GetObjectByIndex(i), &i32ObjIndex);
+			view3DResult.PushObject(*flogItems.GetObjectByIndex(i), &i32ObjIndex);
 			((CGUIView3DObject*)view3DResult.GetView3DObject(i32ObjIndex))->SetOpacity(0.6f);
 		}
 
 		for(int32_t i = 0; i < i32BinCount; ++i)
 		{
 			int32_t i32ObjIndex = 0;
-
-			view3DResult.PushObject(*flog.GetObjectByIndex(i32ItemCount + 2 * i), &i32ObjIndex);
+			view3DResult.PushObject(*flogBins.GetObjectByIndex(i), &i32ObjIndex);
 			((CGUIView3DObject*)view3DResult.GetView3DObject(i32ObjIndex))->SetOpacity(0.2f);
-
-			view3DResult.PushObject(*flog.GetObjectByIndex(i32ItemCount + 2 * i + 1), &i32ObjIndex);
-			((CGUIView3DObject*)view3DResult.GetView3DObject(i32ObjIndex))->SetOpacity(0.6f);
 		}
 
 		// 화면에 출력하기 위해 3D 뷰에서 레이어 0번을 얻어옴 // Obtain layer 0 from the 3D view for display
@@ -118,7 +189,8 @@ int main()
 		CFLString<wchar_t> flsResultInfo;
 		flsResultInfo.Format(
 			L"Optimal strategy index: %d\n"
-			L"Volume Usage: %.1f%%(%.1f/%.1f)",
+			L"Volume Usage: %.1f%%(%.1f/%.1f)\n"
+			L"Coordinate converter: world-space center pivot",
 			alg.GetOptimalStrategyIndex(),
 			f32VolumeUsage,
 			f32UsedVolume,

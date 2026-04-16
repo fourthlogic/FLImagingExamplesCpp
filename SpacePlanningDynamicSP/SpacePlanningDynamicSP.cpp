@@ -2,6 +2,50 @@
 #include <FLImaging.h>
 #include "../CommonHeader/ErrorPrint.h"
 
+namespace
+{
+	CResult InitializeCoordinateConverter(const CSpacePlanningBaseSP& alg, CSpacePlanningCoordinateConverterSP& converter)
+	{
+		CResult res = EResult_UnknownError;
+
+		do
+		{
+			if((res = alg.GetCoordinateConverter(converter)).IsFail())
+				break;
+
+			const int32_t i32BinCount = alg.GetBinSpecCount();
+			for(int32_t i = 0; i < i32BinCount; ++i)
+			{
+				const Base::TPoint3<float> tpWorldPivot(16.f * i, 0.f, 0.f);
+				const Base::TPoint3<float> tpBinPivot(0.f, 0.f, 0.f);
+				const Base::TPoint3<float> tpDirectionZ(0.03f, 0.f, 1.f);
+				const Base::TPoint3<float> tpUpY(0.0f, 1.f, 0.3f);
+
+				if((res = converter.SetBinTransform(i, tpWorldPivot, tpBinPivot, tpDirectionZ, tpUpY)).IsFail())
+					break;
+			}
+
+			if(res.IsFail())
+				break;
+
+			const int32_t i32ItemCount = alg.GetItemSpecCount();
+			for(int32_t i = 0; i < i32ItemCount; ++i)
+			{
+				if((res = converter.SetItemPivotNormalized(i, Base::TPoint3<float>(0.5f, 0.5f, 0.5f))).IsFail())
+					break;
+			}
+
+			if(res.IsFail())
+				break;
+
+			res = converter.Learn();
+		}
+		while(false);
+
+		return res;
+	}
+}
+
 int main()
 {
 	// You must call the following function once
@@ -73,6 +117,20 @@ int main()
 			break;
 		}
 
+		CSpacePlanningCoordinateConverterSP converter;
+		if((res = InitializeCoordinateConverter(alg, converter)).IsFail())
+		{
+			ErrorPrint(res, "Failed to initialize the coordinate converter.\n");
+			break;
+		}
+
+		CFL3DObjectGroup flogBins;
+		if((res = converter.MakeBinObjectGroup(flogBins)).IsFail())
+		{
+			ErrorPrint(res, "Failed to build world-space bin objects.\n");
+			break;
+		}
+
 		wprintf(L"Optimal strategy index: %d\n", i32OptimalStrategyIndex);
 
 		// 3D 뷰 생성 // Create 3D view
@@ -102,6 +160,8 @@ int main()
 		CXorshiroRandomGenerator rng;
 		rng.Seed();
 
+		CSpacePlanningBaseSP::CFLPlacementInfoArray placements;
+
 		// 아이템 도착 시뮬레이션 (컨베이어 벨트 상황) // Simulate item arrival (conveyor belt scenario)
 		// 아이템 타입을 무작위로 생성하여 빈이 꽉 찰 때까지 계속 배치
 		// Randomly generate item types and keep placing until the bin is full (EResult_FullOfCapacity)
@@ -117,14 +177,9 @@ int main()
 
 			// 아이템을 대기열에 추가하고 권장 위치에 자동 배치
 			// Push item to queue and automatically place it at the recommended position
-			// 대기 중인 다른 아이템이 있을 경우 i32ActualItemIndex가 i32ItemType과 다를 수 있음
-			// i32ActualItemIndex may differ from i32ItemType if other items are already pending
-			int32_t i32BinIndex = 0;
-			int32_t i32ActualItemIndex = 0;
-			CSpacePlanningBaseSP::EAxisRotation eAxisRotation;
-			Base::TPoint3<float> tpPosition;
+			CSpacePlanningBaseSP::SPlacementInfo placement;
 
-			res = alg.PushAndPlace(i32ItemType, true, &i32BinIndex, &i32ActualItemIndex, &eAxisRotation, &tpPosition);
+			res = alg.PushAndPlace(i32ItemType, true, placement);
 
 			++i32ArrivalIdx;
 
@@ -142,45 +197,45 @@ int main()
 			}
 
 			++i32PlacedCount;
+			placements.PushBack(placement);
 
-			wprintf(L"Arrival %d: placed item type %d at bin %d (rotation=%d, pos=[%.1f, %.1f, %.1f])\n",
-				i32ArrivalIdx, i32ActualItemIndex, i32BinIndex,
-				static_cast<int32_t>(eAxisRotation),
-				tpPosition.x, tpPosition.y, tpPosition.z);
-
-			// 현재 배치 상태 전체를 3D 오브젝트 그룹으로 취득
-			// Get the current placement state as a 3D object group
-			// 구조: [0, i32ItemCount) = 아이템 타입별 그룹, [i32ItemCount, end) = 빈 * 2개씩 (속 채움, 외곽선)
-			// Structure: [0, i32ItemCount) = grouped by item type, [i32ItemCount, end) = bins * 2 each (filled, wireframe)
-			CFL3DObjectGroup flog;
-
-			if((res = alg.Get3DObject(flog)).IsFail())
+			Base::TPoint3<float> tpWorldPosition;
+			if((res = converter.Convert(placement, tpWorldPosition)).IsFail())
 			{
-				ErrorPrint(res, "Failed to get 3D object.\n");
+				ErrorPrint(res, "Failed to convert placement coordinates.\n");
+				break;
+			}
+
+			wprintf(L"Arrival %d: placed item type %d at bin %d (rotation=%d, bin pos=[%.1f, %.1f, %.1f], world center=[%.1f, %.1f, %.1f])\n",
+				i32ArrivalIdx, placement.i32ItemIndex, placement.i32BinIndex,
+				static_cast<int32_t>(placement.eRotation),
+				placement.tpPosition.x, placement.tpPosition.y, placement.tpPosition.z,
+				tpWorldPosition.x, tpWorldPosition.y, tpWorldPosition.z);
+
+			CFL3DObjectGroup flogItems;
+			if((res = converter.MakeItemObjectGroup(placements, flogItems)).IsFail())
+			{
+				ErrorPrint(res, "Failed to build world-space item objects.\n");
 				break;
 			}
 
 			view3DResult.Lock();
-			// 매 스텝마다 뷰를 초기화하고 현재 상태로 재등록
-			// Clear and re-register all objects with the current state on each step
+			// 매 스텝마다 world-space 오브젝트로 뷰를 재구성
+			// Rebuild the view with world-space objects on each step
 			view3DResult.ClearObjects();
 
-			for(int32_t i = 0; i < i32ItemCount; ++i)
+			for(int32_t i = 0; i < i32PlacedCount; ++i)
 			{
 				int32_t i32ObjIndex = 0;
-				view3DResult.PushObject(*flog.GetObjectByIndex(i), &i32ObjIndex);
+				view3DResult.PushObject(*flogItems.GetObjectByIndex(i), &i32ObjIndex);
 				((CGUIView3DObject*)view3DResult.GetView3DObject(i32ObjIndex))->SetOpacity(0.6f);
 			}
 
 			for(int32_t i = 0; i < i32BinCount; ++i)
 			{
 				int32_t i32ObjIndex = 0;
-
-				view3DResult.PushObject(*flog.GetObjectByIndex(i32ItemCount + 2 * i), &i32ObjIndex);
+				view3DResult.PushObject(*flogBins.GetObjectByIndex(i), &i32ObjIndex);
 				((CGUIView3DObject*)view3DResult.GetView3DObject(i32ObjIndex))->SetOpacity(0.2f);
-
-				view3DResult.PushObject(*flog.GetObjectByIndex(i32ItemCount + 2 * i + 1), &i32ObjIndex);
-				((CGUIView3DObject*)view3DResult.GetView3DObject(i32ObjIndex))->SetOpacity(0.6f);
 			}
 
 			// 상태 텍스트는 layer 1에 매 스텝 Clear 후 재작성 // Clear layer 1 each step and redraw status text
@@ -193,7 +248,7 @@ int main()
 			const float f32VolumeUsage = f32TotalVolume > 0.f ? 100.f * f32UsedVolume / f32TotalVolume : 0.f;
 
 			CFLString<wchar_t> flsStatus;
-			flsStatus.Format(L"Arrival %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)", i32ArrivalIdx, i32PlacedCount, f32VolumeUsage, f32UsedVolume, f32TotalVolume);
+			flsStatus.Format(L"Arrival %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)\nWorld-space rendering enabled", i32ArrivalIdx, i32PlacedCount, f32VolumeUsage, f32UsedVolume, f32TotalVolume);
 
 			layer3DStatus.DrawTextCanvas(CFLPoint<double>(0, 25), flsStatus, YELLOW, BLACK, 16);
 
@@ -222,7 +277,7 @@ int main()
 			layer3DStatus.Clear();
 
 			CFLString<wchar_t> flsFinalInfo;
-			flsFinalInfo.Format(L"Done  |  Arrivals: %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)",i32ArrivalIdx, i32PlacedCount,f32VolumeUsage, f32UsedVolume, f32TotalVolume);
+			flsFinalInfo.Format(L"Done  |  Arrivals: %d  |  Placed: %d  |  Volume Usage: %.1f%% (%.1f / %.1f)\nWorld-space rendering enabled",i32ArrivalIdx, i32PlacedCount,f32VolumeUsage, f32UsedVolume, f32TotalVolume);
 
 			layer3DStatus.DrawTextCanvas(CFLPoint<double>(0, 25), flsFinalInfo, YELLOW, BLACK, 16);
 
