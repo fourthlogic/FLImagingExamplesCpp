@@ -87,7 +87,7 @@ int main()
 		perspective.SetDestinationImage(fliDestinationImage);
 
 		// Destination 이미지의 출력 대상 영역 범위 설정 // Set the output destination area range of Destination image
-		CFLCircle<int32_t> flcDestinationROI(243, 261, 188, 0, 0, 360, EArcClosingMethod_EachOther);
+		CFLCircle<int32_t> flcDestinationROI(243, 261, 188, 0, 0, 360, ERadialShapeType_Segment);
 
 		// Destination 이미지의 출력 대상 영역 지정 // Destination Specify the output target area of the image
 		perspective.SetDestinationROI(flcDestinationROI);

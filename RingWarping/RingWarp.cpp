@@ -49,7 +49,7 @@ int main()
 		ringWarping.SetSourceImage(fliSourceImage);
 
 		// Source 이미지 관심 영역 파라미터 설정
-		CFLDoughnut<double> fldSourceROI(257.071130, 257.071130, 216.368201, 118.521494, 0.000000, -17.159659, 213.494067, EArcClosingMethod_Center);
+		CFLDoughnut<double> fldSourceROI(257.071130, 257.071130, 216.368201, 118.521494, 0.000000, -17.159659, 213.494067, ERadialShapeType_Sector);
 		// Source 이미지 관심 영역 설정
 		ringWarping.SetSourceROI(fldSourceROI);
 

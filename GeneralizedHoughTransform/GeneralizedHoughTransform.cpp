@@ -48,7 +48,7 @@ int main()
 		// Source 이미지 설정 // Set the source image
 		generalizedHoughTransform.SetSourceImage(fliSourceImage);
 
-		CFLCircle<int64_t> flfPatternROI(575, 755, 71, 0, 0, 360, EArcClosingMethod_EachOther);
+		CFLCircle<int64_t> flfPatternROI(575, 755, 71, 0, 0, 360, ERadialShapeType_Segment);
 		generalizedHoughTransform.SetPatternROI(&flfPatternROI);
 
 		// Threshold 값 설정 // Set Threshold value

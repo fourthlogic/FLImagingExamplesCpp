@@ -86,7 +86,7 @@ int main()
 		difference.SetSourceImage(fliSourceImage);
 
 		// Source 이미지의 ROI 범위 설정
-		CFLCircle<int32_t> flcSourceROI(284, 278, 206, 0, 0, 360, EArcClosingMethod_EachOther);
+		CFLCircle<int32_t> flcSourceROI(284, 278, 206, 0, 0, 360, ERadialShapeType_Segment);
 
 		// Source 이미지의 ROI 지정
 		difference.SetSourceROI(flcSourceROI);
@@ -101,7 +101,7 @@ int main()
 		difference.SetDestinationImage(fliDestinationImage);
 
 		// Destination 이미지의 ROI 범위 설정
-		CFLCircle<int32_t> flrDestinationROI(284, 278, 206, 0, 0, 360, EArcClosingMethod_EachOther);
+		CFLCircle<int32_t> flrDestinationROI(284, 278, 206, 0, 0, 360, ERadialShapeType_Segment);
 
 		// Destination 이미지의 ROI 지정
 		difference.SetDestinationROI(flrDestinationROI);

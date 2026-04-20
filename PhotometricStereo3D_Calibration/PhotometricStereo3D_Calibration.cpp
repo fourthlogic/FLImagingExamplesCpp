@@ -197,7 +197,7 @@ int main()
 		}
 
 		// Calibration Circle ROI 설정 // Set calibration circle ROI settings
-		if((res = photometricStereo3D.SetCalibrationCircleROI(CFLCircle<double>(117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, EArcClosingMethod_EachOther))).IsFail())
+		if((res = photometricStereo3D.SetCalibrationCircleROI(CFLCircle<double>(117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, ERadialShapeType_Segment))).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set Calibration Circle ROI.\n");
 			break;

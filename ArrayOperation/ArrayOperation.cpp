@@ -68,8 +68,8 @@ int main()
 		// Figure 생성 // Create Figure
 		CFLRect<double> flr(50, 50, 100, 100, 15);
 		CFLQuad<double> flq(200, 50, 360, 50, 400, 160, 150, 110);
-		CFLCircle<double> flc(100., 150., 30., 0, 30, 90, EArcClosingMethod_Center);
-		CFLEllipse<double> fle(300, 250, 100, 50, 0, 30, 200, EArcClosingMethod_Center);
+		CFLCircle<double> flc(100., 150., 30., 0, 30, 90, ERadialShapeType_Sector);
+		CFLEllipse<double> fle(300, 250, 100, 50, 0, 30, 200, ERadialShapeType_Sector);
 
 		CFLFigureArray flfa;
 

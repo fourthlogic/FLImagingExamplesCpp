@@ -45,7 +45,7 @@ int main()
 		CFuzzyEntropy fuzzyEntropy;
 
 		// ROI 범위 설정 // Set the ROI value		
-		CFLCircle<double> flrROI(310.466830, 81.769042, 81.769042, 0.000000, 0.000000, 360.000000, EArcClosingMethod_EachOther);
+		CFLCircle<double> flrROI(310.466830, 81.769042, 81.769042, 0.000000, 0.000000, 360.000000, ERadialShapeType_Segment);
 		// Source 이미지 설정 // Set the Source Image
 		fuzzyEntropy.SetSourceImage(fliImage);
 		// Source ROI 설정 // Set the Source ROI

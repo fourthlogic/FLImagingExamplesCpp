@@ -89,9 +89,9 @@ int main()
 
 		CFLRect<double> flr(50, 50, 100, 100);
 
-		CFLCircle<double> flc(150., 100., 30., 0., 0., 80., EArcClosingMethod_Center);
+		CFLCircle<double> flc(150., 100., 30., 0., 0., 80., ERadialShapeType_Sector);
 
-		CFLEllipse<double> fle(300, 150, 100, 50, 0, 180, 60, EArcClosingMethod_EachOther);
+		CFLEllipse<double> fle(300, 150, 100, 50, 0, 180, 60, ERadialShapeType_Segment);
 
 		CFLComplexRegion flcr;
 		flcr.PushBack(CFLPoint<double>(270, 100));
