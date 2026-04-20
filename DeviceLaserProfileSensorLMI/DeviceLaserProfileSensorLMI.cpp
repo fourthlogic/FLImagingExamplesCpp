@@ -130,14 +130,14 @@ public:
 
 						flsProfile.Append(L"[");
 
-						for(int j = 0; j < flaProfile[i].GetCount(); ++j)
+						for(int64_t j = 0; j < flaProfile[i].GetCount(); ++j)
 						{
 							if(j != 0)
 								flsProfile.Append(L"\n");
 
 							flsProfile.Append(L"{");
 
-							for(int k = 0; k < flaProfile[i][j].GetCount(); ++k)
+							for(int64_t k = 0; k < flaProfile[i][j].GetCount(); ++k)
 							{
 								if(k != 0)
 									flsProfile.Append(L", ");
@@ -166,6 +166,10 @@ public:
 
 					// 취득한 3D 데이터를 얻어온다. // Retrieve the acquired 3D data.
 					pDeviceLMI->GetAcquired3DData(flogData);
+
+					// 3D 뷰의 유효성을 확인합니다. // Validate the 3D view.
+					if(!m_pView3D->IsAvailable())
+						break;
 
 					// 3D 데이터를 3D 뷰에 표시합니다. // Display the 3D data in the 3D view.
 					m_pView3D->LockUpdate();
