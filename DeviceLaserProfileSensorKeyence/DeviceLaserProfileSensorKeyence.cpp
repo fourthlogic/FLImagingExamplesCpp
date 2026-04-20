@@ -69,12 +69,17 @@ public:
 	// 센서에서 프로파일 이미지 취득 시 호출 되는 함수 // Function called when acquiring a profile image from the sensor
 	virtual void OnAcquisition(const CDeviceProfileBase* pDeviceProfile)
 	{
+		const CDeviceLaserProfileSensorKeyence* pDeviceKeyence = dynamic_cast<const CDeviceLaserProfileSensorKeyence*>(pDeviceProfile);
+
+		if(!pDeviceKeyence)
+			return;
+
 		// 이미지 뷰의 유효성을 확인한다. // Check the validity of the image view.
 		if(m_pViewHeightImage && m_pViewHeightImage->IsAvailable())
 		{
-			// 센서에서 취득 한 프로파일 이미지를 얻어온다. // Retrieves the profile image acquired from the sensor.
+			 // 센서에서 취득 한 프로파일 이미지를 얻어온다. // Retrieves the profile image acquired from the sensor.
 			m_pHeightImage->Lock();
-			pDeviceProfile->GetAcquiredHeightProfile(m_pHeightImage);
+			pDeviceKeyence->GetAcquiredHeightProfile(m_pHeightImage);
 			m_pHeightImage->Unlock();
 
 			// 이미지 뷰를 재갱신 한다. // Invalidate the image view.
@@ -86,7 +91,7 @@ public:
 		{
 			// 센서에서 취득 한 프로파일 이미지를 얻어온다. // Retrieves the profile image acquired from the sensor.
 			m_pLuminanceImage->Lock();
-			pDeviceProfile->GetAcquiredLuminanceProfile(m_pLuminanceImage);
+			pDeviceKeyence->GetAcquiredLuminanceProfile(m_pLuminanceImage);
 			m_pLuminanceImage->Unlock();
 
 			// 이미지 뷰를 재갱신 한다. // Invalidate the image view.
