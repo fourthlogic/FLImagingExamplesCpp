@@ -927,6 +927,9 @@
     - DeviceLaserProfileSensorKeyence
       - Example of connecting and operating Keyence Laser Profile Sensor.
       - Keyence 레이저 프로파일 센서 연결 및 구동하는 예제.
+    - DeviceLaserProfileSensorLMI
+      - Example of connecting and operating LMI Laser Profile Sensor.
+      - LMI 레이저 프로파일 센서 연결 및 구동하는 예제.
 
   - [Socket]
 
