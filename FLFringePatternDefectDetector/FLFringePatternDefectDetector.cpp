@@ -24,7 +24,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliSourceImage.Load(L"../../ExampleImages/FringePatternDefectDetector/Source.flif")))
+		if(IsFail(res = fliSourceImage.Load(L"../../ExampleImages/FLFringePatternDefectDetector/Source.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
@@ -70,37 +70,37 @@ int main()
 			break;
 		}
 
-		// Fringe Pattern Defect Detector 객체 생성 // Create Fringe Pattern Defect Detector object
-		CFringePatternDefectDetector fringePatternDefectDetector;
+		// FL Fringe Pattern Defect Detector 객체 생성 // Create FL Fringe Pattern Defect Detector object
+		CFLFringePatternDefectDetector flFringePatternDefectDetector;
 
 		// Source 이미지 설정 // Set source image 
-		fringePatternDefectDetector.SetSourceImage(fliSourceImage);
+		flFringePatternDefectDetector.SetSourceImage(fliSourceImage);
 
 		// Destination 이미지 설정 // Set destination image
-		fringePatternDefectDetector.SetDestinationImage(fliDestinationImage);
+		flFringePatternDefectDetector.SetDestinationImage(fliDestinationImage);
 
 		// 대비 계수 설정 // Set contrast coefficient
-		fringePatternDefectDetector.SetContrastCoefficient(5);
+		flFringePatternDefectDetector.SetContrastCoefficient(5);
 
 		// 디노이징 진폭 설정 // Set denoising amplitude
-		fringePatternDefectDetector.SetDenoisingAmplitude(30);
+		flFringePatternDefectDetector.SetDenoisingAmplitude(30);
 
 		// 선명도 설정 // Set clearity
-		fringePatternDefectDetector.SetClearity(3);
+		flFringePatternDefectDetector.SetClearity(3);
 
 		// 밝기 계수 설정 // Set brightness coefficient
-		fringePatternDefectDetector.SetBrightnessCoefficient(1);
+		flFringePatternDefectDetector.SetBrightnessCoefficient(1);
 
 		// Mura 탐지 모드 설정 // Set mura detecting mode
-		fringePatternDefectDetector.EnableMura(false);
+		flFringePatternDefectDetector.EnableMura(false);
 
 		// Mura 반복 횟수 설정 // Set mura iteration
-		fringePatternDefectDetector.SetMuraIteration(2);
+		flFringePatternDefectDetector.SetMuraIteration(2);
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = fringePatternDefectDetector.Execute()).IsFail())
+		if((res = flFringePatternDefectDetector.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute Fringe Pattern Defect Detector.\n");
+			ErrorPrint(res, "Failed to execute FL Fringe Pattern Defect Detector.\n");
 
 			break;
 		}

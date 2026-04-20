@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0D61BA04-1757-404E-B28B-222FA98E4F4C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>FringePatternDefectDetector</RootNamespace>
-    <ProjectName>FringePatternDefectDetector</ProjectName>
+    <RootNamespace>FLFringePatternDefectDetector</RootNamespace>
+    <ProjectName>FLFringePatternDefectDetector</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FringePatternDefectDetector.cpp" />
+    <ClCompile Include="FLFringePatternDefectDetector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
