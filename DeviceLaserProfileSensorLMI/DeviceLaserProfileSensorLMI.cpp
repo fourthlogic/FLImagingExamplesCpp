@@ -135,17 +135,7 @@ public:
 							if(j != 0)
 								flsProfile.Append(L"\n");
 
-							flsProfile.Append(L"{");
-
-							for(int64_t k = 0; k < flaProfile[i][j].GetCount(); ++k)
-							{
-								if(k != 0)
-									flsProfile.Append(L", ");
-
-								flsProfile.AppendFormat(L"(%0.3lf,%0.3lf,%0.3lf)", flaProfile[i][j][CDeviceLaserProfileSensorLMI::EProfileDataElement_PositionX], flaProfile[i][j][CDeviceLaserProfileSensorLMI::EProfileDataElement_PositionZ], flaProfile[i][j][CDeviceLaserProfileSensorLMI::EProfileDataElement_Intensity]);
-							}
-
-							flsProfile.Append(L"}");
+							flsProfile.AppendFormat(L"(%0.3lf, %0.3lf, %0.3lf)", flaProfile[i][j][CDeviceLaserProfileSensorLMI::EProfileDataElement_PositionX], flaProfile[i][j][CDeviceLaserProfileSensorLMI::EProfileDataElement_PositionZ], flaProfile[i][j][CDeviceLaserProfileSensorLMI::EProfileDataElement_Intensity]);
 						}
 
 						flsProfile.Append(L"]");
