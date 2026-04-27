@@ -10,11 +10,13 @@ int main()
 
 	CFLImage fliSrcImage;
 	CFLImage fliDstImage;
+	CFLImage fliDstSinoImage;
 	CFL3DObject floDstObject;
 
 	// 이미지 뷰 선언 // Declare image view
 	CGUIViewImageWrap viewImageSrc;
 	CGUIViewImageWrap viewImageDst;
+	CGUIViewImageWrap viewImageDstSino;
 	CGUIView3DWrap view3DDst;
 
 	do
@@ -23,7 +25,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/StationaryConeBeamGeneralizedCT/p360 240x145.flif")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/ComputedTomographyTranslationCT/")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -59,6 +61,20 @@ int main()
 			break;
 		}
 
+		// Destination 이미지 뷰 생성 // Create the destination image view
+		if((res = viewImageDstSino.Create(100, 448, 548, 896)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to create the image view.\n");
+			break;
+		}
+
+		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
+		if((res = viewImageDstSino.SetImagePtr(&fliDstSinoImage)).IsFail())
+		{
+			ErrorPrint(res, L"Failed to set image object on the image view.\n");
+			break;
+		}
+
 		// Destination 3D 이미지 뷰 생성 // Create the destination 3D image view
 		if((res = view3DDst.Create(548, 448, 996, 896)).IsFail())
 		{
@@ -69,65 +85,65 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CStationaryConeBeamGeneralizedCT stationaryConeBeamGeneralizedCT;
+		CComputedTomographyTranslationCT computedTomographyTranslationCT;
 
-		if((res = stationaryConeBeamGeneralizedCT.LoadCSV(L"../../ExampleImages/StationaryConeBeamGeneralizedCT/geometry.csv")).IsFail())
+		if((res = computedTomographyTranslationCT.SetSourceImage(&fliSrcImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetSourceImage(&fliSrcImage)).IsFail())
+		if((res = computedTomographyTranslationCT.SetDestinationImage(&fliDstImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetDestinationImage(&fliDstImage)).IsFail())
+		if((res = computedTomographyTranslationCT.SetDestinationSinogramImage(&fliDstSinoImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetDestinationObject(&floDstObject)).IsFail())
-			break;
-
-		if((res = stationaryConeBeamGeneralizedCT.SetAngleUnit(ImageProcessing::EAngleUnit_Degree)).IsFail())
+		if((res = computedTomographyTranslationCT.SetDestinationObject(&floDstObject)).IsFail())
 			break;
 
-		Base::TPoint3<double> tpObjectVoxelSize;
-		tpObjectVoxelSize.x = 0.02;
-		tpObjectVoxelSize.y = 0.02;
-		tpObjectVoxelSize.z = 0.02;
-		if((res = stationaryConeBeamGeneralizedCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail())
-			break;
-		Base::TPoint3<int32_t> tpObjectVoxelCount;
-		tpObjectVoxelCount.x = 150;
-		tpObjectVoxelCount.y = 150;
-		tpObjectVoxelCount.z = 150;
-		if((res = stationaryConeBeamGeneralizedCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail())
-			break;
-		Base::TPoint3<int32_t> tpObjectVoxelSubdivisionCount;
-		tpObjectVoxelSubdivisionCount.x = 1;
-		tpObjectVoxelSubdivisionCount.y = 1;
-		tpObjectVoxelSubdivisionCount.z = 1;
-		if((res = stationaryConeBeamGeneralizedCT.SetObjectVoxelSubdivisionCount(tpObjectVoxelSubdivisionCount)).IsFail())
-			break;
-		Base::TPoint3<int32_t> tpObjectVoxelOffset;
-		tpObjectVoxelOffset.x = 0;
-		tpObjectVoxelOffset.y = 0;
-		tpObjectVoxelOffset.z = 0;
-		if((res = stationaryConeBeamGeneralizedCT.SetObjectVoxelOffset(tpObjectVoxelOffset)).IsFail())
+		if((res = computedTomographyTranslationCT.SetDestinationSinogramIndex(15)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamGeneralizedCT.EnableFrequencyRampFilter(true)).IsFail())
+		if((res = computedTomographyTranslationCT.SetDetectorCellSizeUnit(0.16708)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetFrequencyWindow(CStationaryConeBeamGeneralizedCT::EFrequencyWindow_Gaussian)).IsFail())
+		if((res = computedTomographyTranslationCT.SetObjectTranslateDirection(CComputedTomographyTranslationCT::EObjectTranslateDirection_RightToLeft)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetSigma(0.50)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSourceObjectDistanceUnit(13.60)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetSourceDetectorDistanceUnit(60.00)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetObjectTranslationDistanceUnit(24.00)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetPrincipalDeltaXPixel(0.00)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamGeneralizedCT.SetOutputFormat(CStationaryConeBeamGeneralizedCT::EOutputFormat_U8)).IsFail())
+		if((res = computedTomographyTranslationCT.SetNormalizedAirThreshold(0.60)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetSigmoidB(1000.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSinogramKeepRatio(0.30)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetSigmoidM(0.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetInterpolationCoefficient(6)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetIntensityThreshold(200)).IsFail())
+		if((res = computedTomographyTranslationCT.SetMergeCoefficient(21)).IsFail())
 			break;
-		if((res = stationaryConeBeamGeneralizedCT.SetSlicingPlane(CStationaryConeBeamGeneralizedCT::ESlicingPlane_Coronal)).IsFail())
+		if((res = computedTomographyTranslationCT.EnableFrequencyRampFilter(true)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetFrequencyWindow(CComputedTomographyTranslationCT::EFrequencyWindow_Gaussian)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetSigma(0.30)).IsFail())
+			break;
+
+		if((res = computedTomographyTranslationCT.SetReconstructionPlaneCount(140)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.EnableNegativeClip(true)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.EnableCircularMask(true)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.EnableSigmoid(true)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetSigmoidB(1.00)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetSigmoidM(0.00)).IsFail())
+			break;
+		if((res = computedTomographyTranslationCT.SetIntensityThreshold(190)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = stationaryConeBeamGeneralizedCT.Execute()).IsFail())
+		if((res = computedTomographyTranslationCT.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;
@@ -145,17 +161,20 @@ int main()
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
 		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
+		CGUIViewImageLayerWrap layerDstSino = viewImageDstSino.GetLayer(0);
 		CGUIView3DLayerWrap layer3D = view3DDst.GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSrc.Clear();
 		layerDst.Clear();
+		layerDstSino.Clear();
 		layer3D.Clear();
 
 		// 이미지 뷰 정보 표시 // Display image view information
 		CFLPoint<double> flp = new CFLPoint<double>();
 		if((res = layerSrc.DrawTextCanvas(flp, L"Source Image", YELLOW, BLACK, 20)).IsFail() ||
 		   (res = layerDst.DrawTextCanvas(flp, L"Destination Image", YELLOW, BLACK, 20)).IsFail() ||
+		   (res = layerDstSino.DrawTextCanvas(flp, L"Destination Sinogram Image", YELLOW, BLACK, 20)).IsFail() ||
 		   (res = layer3D.DrawTextCanvas(flp, L"Destination Object", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text.\n");
@@ -168,15 +187,24 @@ int main()
 		// Zoom Fit
 		viewImageSrc.ZoomFit();
 		viewImageDst.ZoomFit();
+		viewImageDstSino.ZoomFit();
 		view3DDst.ZoomFit();
 		
+		// 3D 뷰 카메라 수정 // Modify 3D view camera
+		CGUIView3DCamera cameraNew(*view3DDst.GetCamera());
+		CFLPoint3<float> flpPositionOld = cameraNew.GetPosition();
+		flpPositionOld.y = flpPositionOld.z;
+		cameraNew.SetPosition(flpPositionOld, false);
+		view3DDst.SetCamera(cameraNew);
+
 		// 이미지 뷰를 갱신 합니다. // Update image view
 		viewImageSrc.Invalidate(true);
 		viewImageDst.Invalidate(true);
+		viewImageDstSino.Invalidate(true);
 		view3DDst.Invalidate(true);
 
 		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
-		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable() && view3DDst.IsAvailable())
+		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable() && viewImageDstSino.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);

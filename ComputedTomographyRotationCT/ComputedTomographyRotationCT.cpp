@@ -23,7 +23,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// Source 이미지 로드 // Load the source image
-		if((res = fliSrcImage.Load(L"../../ExampleImages/StationaryConeBeamRotationCT/")).IsFail())
+		if((res = fliSrcImage.Load(L"../../ExampleImages/ComputedTomographyRotationCT/")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -69,75 +69,75 @@ int main()
 		viewImageSrc.SetFixThumbnailView(true);
 
 		// 알고리즘 객체 생성 // Create algorithm object
-		CStationaryConeBeamRotationCT stationaryConeBeamRotationCT;
+		CComputedTomographyRotationCT computedTomographyRotationCT;
 
-		if((res = stationaryConeBeamRotationCT.SetSourceImage(&fliSrcImage)).IsFail())
+		if((res = computedTomographyRotationCT.SetSourceImage(&fliSrcImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetDestinationImage(&fliDstImage)).IsFail())
+		if((res = computedTomographyRotationCT.SetDestinationImage(&fliDstImage)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetDestinationObject(&floDstObject)).IsFail())
+		if((res = computedTomographyRotationCT.SetDestinationObject(&floDstObject)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamRotationCT.SetDetectorCellXSize(0.248046875)).IsFail())
+		if((res = computedTomographyRotationCT.SetDetectorCellXSize(0.248046875)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetDetectorCellYSize(0.248046875)).IsFail())
+		if((res = computedTomographyRotationCT.SetDetectorCellYSize(0.248046875)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetSourceDetectorDistance(597.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetSourceDetectorDistance(597.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail())
 			break;
 
 		Base::TPoint3<double> tpObjectLocation;
 		tpObjectLocation.x = 0.00;
 		tpObjectLocation.y = 0.00;
 		tpObjectLocation.z = 28.6333;
-		if((res = stationaryConeBeamRotationCT.SetObjectLocation(tpObjectLocation)).IsFail())
+		if((res = computedTomographyRotationCT.SetObjectLocation(tpObjectLocation)).IsFail())
 			break;
 		Base::TPoint3<double> tpObjectEulerAngle;
 		tpObjectEulerAngle.x = 35.00;
 		tpObjectEulerAngle.y = 0.00;
 		tpObjectEulerAngle.z = 0.00;
-		if((res = stationaryConeBeamRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail())
+		if((res = computedTomographyRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail())
 			break;
 		Base::TPoint3<double> tpObjectVoxelSize;
 		tpObjectVoxelSize.x = 0.01;
 		tpObjectVoxelSize.y = 0.01;
 		tpObjectVoxelSize.z = 0.01;
-		if((res = stationaryConeBeamRotationCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail())
+		if((res = computedTomographyRotationCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail())
 			break;
 		Base::TPoint3<int32_t> tpObjectVoxelCount;
 		tpObjectVoxelCount.x = 200;
 		tpObjectVoxelCount.y = 60;
 		tpObjectVoxelCount.z = 200;
-		if((res = stationaryConeBeamRotationCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail())
+		if((res = computedTomographyRotationCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamRotationCT.SetDetectorNormalizer(0.00483)).IsFail())
+		if((res = computedTomographyRotationCT.SetDetectorNormalizer(0.00483)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.EnableFrequencyRampFilter(true)).IsFail())
+		if((res = computedTomographyRotationCT.EnableFrequencyRampFilter(true)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetFrequencyWindow(CStationaryConeBeamRotationCT::EFrequencyWindow_Gaussian)).IsFail())
+		if((res = computedTomographyRotationCT.SetFrequencyWindow(CComputedTomographyRotationCT::EFrequencyWindow_Gaussian)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetSigma(0.50)).IsFail())
+		if((res = computedTomographyRotationCT.SetSigma(0.50)).IsFail())
 			break;
 
-		if((res = stationaryConeBeamRotationCT.EnableCircularMask(true)).IsFail())
+		if((res = computedTomographyRotationCT.EnableCircularMask(true)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetCircularMaskRadius(1.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetCircularMaskRadius(1.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetOutputFormat(CStationaryConeBeamRotationCT::EOutputFormat_U8)).IsFail())
+		if((res = computedTomographyRotationCT.SetOutputFormat(CComputedTomographyRotationCT::EOutputFormat_U8)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetSigmoidB(4000.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetSigmoidB(4000.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetSigmoidM(0.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetSigmoidM(0.00)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetIntensityThreshold(210)).IsFail())
+		if((res = computedTomographyRotationCT.SetIntensityThreshold(210)).IsFail())
 			break;
-		if((res = stationaryConeBeamRotationCT.SetSlicingPlane(CStationaryConeBeamRotationCT::ESlicingPlane_Transverse)).IsFail())
+		if((res = computedTomographyRotationCT.SetSlicingPlane(CComputedTomographyRotationCT::ESlicingPlane_Transverse)).IsFail())
 			break;
 
 		// 알고리즘 수행 // Execute the algorithm
-		if((res = stationaryConeBeamRotationCT.Execute()).IsFail())
+		if((res = computedTomographyRotationCT.Execute()).IsFail())
 		{
 			ErrorPrint(res, L"Failed to execute algorithm.");
 			break;

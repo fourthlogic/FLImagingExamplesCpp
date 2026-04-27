@@ -47,23 +47,23 @@
         - Algorithm examples that combine data from multiple viewpoints or cameras into a single representation.
         - 여러 시점 혹은 카메라에서 촬영된 데이터를 하나로 합치는 알고리즘 예제
   
-  - [CT]
+  - [Computed Tomography]
   
-    - [Stationary Cone Beam Generalized CT]
+    - [Computed Tomography Generalized CT]
 
-      - StationaryConeBeamGeneralizedCT
+      - ComputedTomographyGeneralizedCT
         - The example of an Algorithm for slice reconstruction in fixed cone-beam CT with arbitrary object motion per projection.
         - 고정된 콘빔 CT 시스템에서 프로젝션마다 임의의 물체 움직임을 허용하는 단면 재구성 알고리즘 예제.
   
-    - [Stationary Cone Beam Rotation CT]
+    - [Computed Tomography Rotation CT]
 
-      - StationaryConeBeamRotationCT
+      - ComputedTomographyRotationCT
         - The example of an algorithm that reconstructs cross-sectional images in a fixed cone-beam CT with rotating object motion.
         - 고정된 콘빔 CT 시스템에서 회전하는 물체의 움직임을 고려하여 단면 영상을 복원하는 알고리즘 예제.
   
-    - [Stationary Cone Beam Translation CT]
+    - [Computed Tomography Translation CT]
 
-      - StationaryConeBeamTranslationCT
+      - ComputedTomographyTranslationCT
         - The example of an algorithm that reconstructs cross-sectional images in a fixed cone-beam CT with translating object motion.
         - 고정된 콘빔 CT 시스템에서 평행 이동하는 물체의 움직임을 고려하여 단면 영상을 복원하는 알고리즘 예제.
   

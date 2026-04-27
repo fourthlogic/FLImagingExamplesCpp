@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StationaryConeBeamRotationCT.cpp">
+    <ClCompile Include="ComputedTomographyTranslationCT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

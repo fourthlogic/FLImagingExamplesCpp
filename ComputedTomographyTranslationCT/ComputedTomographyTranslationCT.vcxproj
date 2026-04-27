@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D5BB0311-2762-4D5F-A14C-371719D192C5}</ProjectGuid>
+    <ProjectGuid>{65681F8C-0DBB-4DC6-AE97-3251EB2F66CE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>StationaryConeBeamGeneralizedCT</RootNamespace>
+    <RootNamespace>ComputedTomographyTranslationCT</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="StationaryConeBeamGeneralizedCT.cpp" />
+    <ClCompile Include="ComputedTomographyTranslationCT.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
