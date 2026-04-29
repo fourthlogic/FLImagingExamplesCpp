@@ -79,9 +79,9 @@ int main()
 			break;
 		if((res = flDepthImageReconstruction3D.SetDifferentialMethod(CFLDepthImageReconstruction3D::EDifferentialMethod_DoGY)).IsFail())
 			break;
-		if((res = flDepthImageReconstruction3D.SetSigma1(0.40)).IsFail())
+		if((res = flDepthImageReconstruction3D.SetSigma1(0.50)).IsFail())
 			break;
-		if((res = flDepthImageReconstruction3D.SetSigma2(0.60)).IsFail())
+		if((res = flDepthImageReconstruction3D.SetSigma2(1.00)).IsFail())
 			break;
 		if((res = flDepthImageReconstruction3D.SetKernelBias(0.001)).IsFail())
 			break;
