@@ -175,7 +175,7 @@ int main()
 		COptimizerSpecAdamGradientDescent optSpec;
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
-		optSpec.SetLearningRate(1e-3f);
+		optSpec.SetLearningRate(1e-4f);
 
 		// 설정한 Optimizer를 StringBasedOCR에 적용 // Apply the Optimizer that we set up to StringBasedOCR
 		stringBasedOCRDL.SetLearningOptimizerSpec(optSpec);
@@ -184,11 +184,11 @@ int main()
 		CAugmentationSpec augSpec;
 
 		augSpec.EnableAugmentation(true);
-		augSpec.SetCommonActivationRate(0.8);
+		augSpec.SetCommonActivationRate(1.0);
 		augSpec.SetCommonIoUThreshold(0.8);
 		augSpec.SetCommonInterpolationMethod(FLImaging::ImageProcessing::EInterpolationMethod_Bilinear);
 		augSpec.EnableRotation(true);
-		augSpec.SetRotationParam(-10., 10., false, false);
+		augSpec.SetRotationParam(-15., 15., false, false);
 
 		augSpec.EnableScale(true);
 		augSpec.SetScaleParam(.8, 1.2, .8, 1.2, false);
