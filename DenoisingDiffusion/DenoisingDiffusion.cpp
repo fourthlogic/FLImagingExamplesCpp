@@ -205,7 +205,7 @@ int main()
 		// 학습할 Denoising Diffuion 모델 설정 // Set up Denoising Diffuion model to learn
 		denoisingDiffuionDL.SetModelVersion(CDenoisingDiffusionDL::EModelVersion_FLGenNet_Diffusion_Label_V1_32);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
-		denoisingDiffuionDL.SetLearningEpoch(500);
+		denoisingDiffuionDL.SetLearningEpoch(1500);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		denoisingDiffuionDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
@@ -219,6 +219,13 @@ int main()
 		denoisingDiffuionDL.SetLearningGradientClippingThreshold(1.f);
 		// 설정한 Optimizer를 GAN에 적용 // Apply the Optimizer that we set up to GAN
 		denoisingDiffuionDL.SetLearningOptimizerSpec(optSpec);
+
+		// AugmentationSpec 설정 // Set the AugmentationSpec
+		CAugmentationSpec augSpec;
+
+		augSpec.EnableAugmentation(false);
+
+		denoisingDiffuionDL.SetLearningAugmentationSpec(&augSpec);
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		CAutoSaveSpec autoSaveSpec;

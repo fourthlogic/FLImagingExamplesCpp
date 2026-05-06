@@ -178,6 +178,13 @@ int main()
 		// 설정한 Optimizer를 GAN에 적용 // Apply the Optimizer that we set up to GAN
 		generativeAdversarialNetworkDL.SetLearningOptimizerSpec(optSpec);
 
+		// AugmentationSpec 설정 // Set the AugmentationSpec
+		CAugmentationSpec augSpec;
+
+		augSpec.EnableAugmentation(false);
+
+		generativeAdversarialNetworkDL.SetLearningAugmentationSpec(&augSpec);
+
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
 		CAutoSaveSpec autoSaveSpec;
 
