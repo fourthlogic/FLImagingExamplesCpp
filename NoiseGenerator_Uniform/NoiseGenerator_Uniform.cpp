@@ -89,9 +89,11 @@ int main()
 
 		// 생성할 노이즈 설정 // Set the noise to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator::ENoiseType_UniformNoise);
-		// 균등 분포 잡음의 크기 비율 설정 // Set the magnitude ratio of uniformly distributed noise
-		// 범위 0 ~ 1사이에서 1에 가까울 수록 이미지 포맷에서의 각 픽셀 잡음의 변동성이 커지며, 0에 가까울 수록 잡음의 변동성이 작아짐 // From 0 to 1, the closer to 1, the greater the variability of each pixel noise in the image format, and the closer to 0, the less the variability of the noise.
-		noiseGenerator.SetUniformDistNoise(0.05);
+
+		// 균등 분포 잡음의 범위 설정 // Set the range of uniformly distributed noise
+		// 범위 사이의 값에서 균등 분포로 잡음을 추출해 더해진다 // The noise is extracted and added in an uniform distribution from the values between the ranges
+		noiseGenerator.SetMinimumRange(-10);
+		noiseGenerator.SetMaximumRange(10);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = noiseGenerator.Execute()))

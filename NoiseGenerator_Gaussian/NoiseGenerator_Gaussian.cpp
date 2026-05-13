@@ -90,7 +90,8 @@ int main()
 		// 생성할 노이즈 설정 // Set the noise to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator::ENoiseType_GaussianNoise);
 		// 가우시안 분포의 평균과 표준편차 설정 // Set the mean and standard deviation of the Gaussian distribution
-		noiseGenerator.SetGaussianDistNoise(0., 0.05);
+		noiseGenerator.SetGaussianMean(0.01);
+		noiseGenerator.SetGaussianStd(0.05);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = noiseGenerator.Execute()))

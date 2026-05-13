@@ -89,8 +89,12 @@ int main()
 
 		// 생성할 노이즈 설정 // Set the noise to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator::ENoiseType_SaltAndPepper);
-		// 소금&후추 잡음 비율 설정 // Set salt & pepper noise ratio
-		noiseGenerator.SetSaltAndPepperNoise(0.1);
+		// 소금&후추 잡음을 적용할 면적 비율 설정 // Set salt & pepper noise Area ratio
+		noiseGenerator.SetAreaRatio(0.1);
+
+		// 소금&후추 잡음 값 설정.// Set salt & pepper noise Value
+		noiseGenerator.SetMinimumRange(0.0);
+		noiseGenerator.SetMaximumRange(255.0);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = noiseGenerator.Execute()))

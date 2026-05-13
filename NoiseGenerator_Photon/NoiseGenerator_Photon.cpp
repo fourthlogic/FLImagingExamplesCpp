@@ -90,7 +90,7 @@ int main()
 		// 생성할 노이즈 설정 // Set the noise to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator::ENoiseType_PhotonNoise);
 		// 광자양 잡음의 광자 평균양 설정 // Set the average photon amount of photon noise
-		noiseGenerator.SetPhotonNoise(100000000);
+		noiseGenerator.SetPhotonCount(100000000);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = noiseGenerator.Execute()))
