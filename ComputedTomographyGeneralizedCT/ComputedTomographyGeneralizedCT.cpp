@@ -83,10 +83,10 @@ int main()
 		if((res = computedTomographyGeneralizedCT.SetAngleUnit(ImageProcessing::EAngleUnit_Degree)).IsFail())
 			break;
 
-		Base::TPoint3<double> tpObjectVoxelSize;
-		tpObjectVoxelSize.x = 0.02;
-		tpObjectVoxelSize.y = 0.02;
-		tpObjectVoxelSize.z = 0.02;
+		Base::TPoint3<float> tpObjectVoxelSize;
+		tpObjectVoxelSize.x = 0.02f;
+		tpObjectVoxelSize.y = 0.02f;
+		tpObjectVoxelSize.z = 0.02f;
 		if((res = computedTomographyGeneralizedCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail())
 			break;
 		Base::TPoint3<int32_t> tpObjectVoxelCount;

@@ -87,22 +87,22 @@ int main()
 		if((res = computedTomographyRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail())
 			break;
 
-		Base::TPoint3<double> tpObjectLocation;
-		tpObjectLocation.x = 0.00;
-		tpObjectLocation.y = 0.00;
-		tpObjectLocation.z = 28.6333;
+		Base::TPoint3<float> tpObjectLocation;
+		tpObjectLocation.x = 0.00f;
+		tpObjectLocation.y = 0.00f;
+		tpObjectLocation.z = 28.6333f;
 		if((res = computedTomographyRotationCT.SetObjectLocation(tpObjectLocation)).IsFail())
 			break;
-		Base::TPoint3<double> tpObjectEulerAngle;
-		tpObjectEulerAngle.x = 35.00;
-		tpObjectEulerAngle.y = 0.00;
-		tpObjectEulerAngle.z = 0.00;
+		Base::TPoint3<float> tpObjectEulerAngle;
+		tpObjectEulerAngle.x = 35.00f;
+		tpObjectEulerAngle.y = 0.00f;
+		tpObjectEulerAngle.z = 0.00f;
 		if((res = computedTomographyRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail())
 			break;
-		Base::TPoint3<double> tpObjectVoxelSize;
-		tpObjectVoxelSize.x = 0.01;
-		tpObjectVoxelSize.y = 0.01;
-		tpObjectVoxelSize.z = 0.01;
+		Base::TPoint3<float> tpObjectVoxelSize;
+		tpObjectVoxelSize.x = 0.01f;
+		tpObjectVoxelSize.y = 0.01f;
+		tpObjectVoxelSize.z = 0.01f;
 		if((res = computedTomographyRotationCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail())
 			break;
 		Base::TPoint3<int32_t> tpObjectVoxelCount;
