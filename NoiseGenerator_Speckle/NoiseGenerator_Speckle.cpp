@@ -89,7 +89,7 @@ int main()
 
 		// 생성할 노이즈 설정 // Set the noise to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator::ENoiseType_SpeckleNoise);
-		// 간섭 잡음의 분포 감마값 설정 // Set the distribution gamma value of speckle noise
+		// 간섭 잡음의 강도 설정 // Set the intensity of speckle noise
 		noiseGenerator.SetSpeckleIntensity(0.05);
 
 		// 알고리즘 수행 // Execute the algorithm
