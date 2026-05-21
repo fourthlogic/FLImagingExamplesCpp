@@ -147,11 +147,11 @@ void CGraphViewContextMenuDlg::OnRangeRadioGroupHide(UINT uID)
 		{
 		case IDC_RADIO_SHOW:
 			// 이용 불가능한 메뉴를 디스플레이 // Display unavailable menu
-			m_viewGraph.ShowUnavailableContextMenu(true); 
+			m_viewGraph.ShowUnavailableContextMenu(true);
 			break;
 		case IDC_RADIO_HIDE:
 			// 이용 불가능한 메뉴를 숨김 // Hide unavailable menu
-			m_viewGraph.ShowUnavailableContextMenu(false); 
+			m_viewGraph.ShowUnavailableContextMenu(false);
 			break;
 		}
 	}
@@ -162,7 +162,7 @@ void CGraphViewContextMenuDlg::OnBnClickedButtonApply()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	// 사용 가능한 그래프 뷰 메뉴 // Available Graph View Context Menu 
-	EAvailableViewGraphContextMenu eMenu = EAvailableViewGraphContextMenu_None;
+	std::vector<EViewGraphMenuItem> vctAddMenu;
 
 	if(CWnd* pWndStatic = GetDlgItem(IDC_STATIC_ACM))
 	{
@@ -173,10 +173,10 @@ void CGraphViewContextMenuDlg::OnBnClickedButtonApply()
 		{
 			BOOL bCheck = ((CButton*)pChild)->GetCheck();
 
-			// 체크 선택된 메뉴 아이템을 eMenu 에 OR 연산하여 추가
-			// Add the checked menu item to eMenu using OR operation
+			// 체크 선택된 메뉴 아이템을 추가
+			// Add the checked menu item
 			if(bCheck == TRUE)
-				eMenu |= (EAvailableViewGraphContextMenu)m_flaAvailableContextMenu.GetAt(i);
+				vctAddMenu.push_back((EViewGraphMenuItem)m_flaAvailableContextMenu.GetAt(i));
 
 			pChild = pChild->GetNextWindow();
 			++i;
@@ -185,12 +185,33 @@ void CGraphViewContextMenuDlg::OnBnClickedButtonApply()
 
 	// 선택된 메뉴 아이템들을 그래프 뷰의 이용 가능한 메뉴에 적용
 	// Apply the selected menu items to the available menu in the graph view
-	m_viewGraph.SetAvailableViewGraphContextMenu(eMenu);
+	m_viewGraph.SetAvailableViewGraphContextMenu(vctAddMenu.data(), vctAddMenu.size());
+
+	//////////////////////////////////////////
+	// Whether to execute the "Tip" code below
+	// 아래 "팁" 코드를 수행할지 여부
+	bool bTipCodeExecute = false;
+
+	if(!bTipCodeExecute)
+		return;
 
 	// 팁: 아래와 같이 기존 메뉴에서 한두 개의 메뉴만 제외 가능
-	// Tip: It is possible to exclude only one or two menus from the existing menu as shown below
-	eMenu = m_viewGraph.GetAvailableViewGraphContextMenu();
-	eMenu &= ~(EAvailableViewGraphContextMenu_IndicateMinMax | EAvailableViewGraphContextMenu_SetOpacityOfLegend);
+	// Tip: It is possible to exclude only few menus from the existing menu as shown below
+	std::vector<EViewGraphMenuItem> vctAvailableMenuToRemove
+	{
+		EViewGraphMenuItem_IndicateMinMax,
+		EViewGraphMenuItem_SetOpacityOfLegend
+	};
+	m_viewGraph.RemoveAvailableViewGraphContextMenu(vctAvailableMenuToRemove.data(), (int64_t)vctAvailableMenuToRemove.size());
+
+	// 팁: 아래와 같이 기존 메뉴에서 한두 개의 메뉴만 추가 가능
+	// Tip: It is possible to add only few menus from the existing menu as shown below
+	std::vector<EViewGraphMenuItem> vctAvailableMenuToAdd
+	{
+		EViewGraphMenuItem_IndicateMinMax,
+		EViewGraphMenuItem_SetOpacityOfLegend
+	};
+	m_viewGraph.AddAvailableViewGraphContextMenu(vctAvailableMenuToAdd.data(), (int64_t)vctAvailableMenuToAdd.size());
 }
 
 
@@ -204,277 +225,277 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		CFLArray<CFLString<wchar_t>> flaCheckBoxString;
 
 		// 파일 불러오기 메뉴 // File load menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Load);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Load);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_LOAD);
 		flaCheckBoxString.PushBack(L"Load");
 
 		// 불러온 파일 추가 메뉴 // File append menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Append);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Append);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_APPEND);
 		flaCheckBoxString.PushBack(L"Append");
 
 		// 파일 저장 메뉴 // File save menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Save);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Save);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SAVE);
 		flaCheckBoxString.PushBack(L"Save");
 
 		// 파일 닫기 메뉴 // File close menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Close);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Close);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CLOSE);
 		flaCheckBoxString.PushBack(L"Close");
 
 		// 그래프 클리어 메뉴 // Clear graph menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Clear);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Clear);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CLEAR);
 		flaCheckBoxString.PushBack(L"Clear");
 
 		// 그래프를 클립보드에 복사 메뉴 // Copy graph to clipboard menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Copy);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Copy);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_COPY);
 		flaCheckBoxString.PushBack(L"Copy");
 
 		// 클립보드 데이터를 붙여넣기 메뉴 // Paste clipboard data menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ClearThenPaste);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ClearThenPaste);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CLEAR_THEN_PASTE);
 		flaCheckBoxString.PushBack(L"Clear Then Paste");
 
 		// 그래프 데이터 추가로 붙여넣기 메뉴 // Append clipboard data menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Paste);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Paste);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_PASTE);
 		flaCheckBoxString.PushBack(L"Paste");
-		
+
 		// 더블 클릭으로 띄운 값 지우기 메뉴 // Clear double-clicked values menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ClearPointAnnotation);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ClearPointAnnotation);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CLEAR_DISPLAYED_VALUE);
 		flaCheckBoxString.PushBack(L"Clear Point Annotation");
 
 		// 차트 모양 변경 메뉴 // Change chart type menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ChangeChartType);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MenuGroup_ChangeChartType);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CHANGE_CHART_TYPE);
 		flaCheckBoxString.PushBack(L"Change Chart Type");
 
 		// Line Graph Marker 변경 메뉴 // Line Graph Marker menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_LineGraphMarker);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MenuGroup_LineGraphMarkerType);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_LINE_GRAPH_MARKER);
 		flaCheckBoxString.PushBack(L"Line Graph Marker");
 
 		// 툴바 보이기 메뉴 // Show toolbar menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowToolBar);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowToolBar);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_TOOLBAR);
 		flaCheckBoxString.PushBack(L"Show Toolbar");
 
 		// 확대/축소 메뉴 // Zoom menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Zoom);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MenuGroup_Zoom);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ZOOM);
 		flaCheckBoxString.PushBack(L"Zoom");
 
 		// 축 배율 기본 모드 메뉴 // Default zoom axis menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ZoomAxisNone);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ZoomAxisNone);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ZOOM_AXIS_NONE);
 		flaCheckBoxString.PushBack(L"Zoom Axis None");
 
 		// x축 배율 모드 메뉴 // Horizontal zoom axis menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ZoomAxisHorz);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ZoomAxisHorz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ZOOM_AXIS_HORZ);
 		flaCheckBoxString.PushBack(L"Zoom Axis Horizontal");
 
 		// y축 배율 모드 메뉴 // Vertical zoom axis menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ZoomAxisVert);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ZoomAxisVert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ZOOM_AXIS_VERT);
 		flaCheckBoxString.PushBack(L"Zoom Axis Vertical");
 
 		// 패닝 메뉴 // Panning menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Panning);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Panning);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_PANNING);
 		flaCheckBoxString.PushBack(L"Panning");
 
 		// 그래프 뷰 설정 메뉴 // View settings menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ViewSettings);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ViewSettings);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_VIEW_SETTINGS);
 		flaCheckBoxString.PushBack(L"View Settings");
 
 		// 도움말 메뉴 // Help menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_Help);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_Help);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_HELP);
 		flaCheckBoxString.PushBack(L"Help");
 
 		// 색상 변경 메뉴 // Change color menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ChangeColor);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ChangeColor);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CHANGE_COLOR);
 		flaCheckBoxString.PushBack(L"Change Color");
 
 		// 그래프 이름 변경 메뉴 // Edit chart name menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_EditChartName);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_EditChartName);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_EDIT_CHART_NAME);
 		flaCheckBoxString.PushBack(L"Edit Chart Name");
 
 		// 십자선 표시 메뉴 // Show crosshair menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowCrosshair);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowCrosshair);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_CROSSHAIR);
 		flaCheckBoxString.PushBack(L"Show Crosshair");
 
 		// 범례 표시 메뉴 // Show legend menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowLegend);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowLegend);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_LEGEND);
 		flaCheckBoxString.PushBack(L"Show Legend");
 
 		// 더블 클릭으로 팝업한 값 표시 여부 설정 메뉴 // Menu item for toggling the visibility of values displayed by double-click interaction.
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowPointAnnotation);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowPointAnnotation);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_POINT_ANNOTATION);
 		flaCheckBoxString.PushBack(L"Show Point Annotation");
 
 		// 십자선 자석 모드 메뉴 // Magnet crosshair menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_MagnetCrosshair);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MagnetCrosshair);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_MAGNET_CROSSHAIR);
 		flaCheckBoxString.PushBack(L"Magnet Crosshair");
 
 		// 그래프 순서 변경 메뉴 // Change graph order menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ChangeGraphOrder);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ChangeGraphOrder);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CHANGE_GRAPH_ORDER);
 		flaCheckBoxString.PushBack(L"Change Graph Order");
 
 		// 추세선 그리기 메뉴 // Draw trend line menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_GetTrendline);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_GetTrendline);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_GET_TREND_LINE);
 		flaCheckBoxString.PushBack(L"Get Trendline");
-		
+
 		// 축 이름 변경 메뉴 // Edit axis label menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_EditAxisLabel);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_EditAxisLabel);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_EDIT_AXIS_LABEL);
 		flaCheckBoxString.PushBack(L"Edit Axis Label");
 
 		// x축 y축 교체 메뉴 // Switch axis menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SwitchAxis);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_SwitchAxis);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SWITCH_AXIS);
 		flaCheckBoxString.PushBack(L"Switch Axis");
 
 		// 수식 수정 메뉴 // Edit expression menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_EditExpression);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_EditExpression);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_EDIT_EXPRESSION);
 		flaCheckBoxString.PushBack(L"Edit Expression");
 
 		// 수식 추가 메뉴 // Add expression menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_AddExpression);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_AddExpression);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ADD_EXPRESSION);
 		flaCheckBoxString.PushBack(L"Add Expression");
 
 		// 데이터 추가 메뉴 // Add data menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_AddData);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_AddData);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ADD_DATA);
 		flaCheckBoxString.PushBack(L"Add Data");
 
 		// 클릭으로 데이터 추가 메뉴 // Add data by click menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_AddDataByClick);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_AddDataByClick);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_ADD_DATA_BY_CLICK);
 		flaCheckBoxString.PushBack(L"Add Data By Click");
 
 		// 그래프 보이기/숨기기 메뉴 // Show/hide graph menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowGraph);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowGraph);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_GRAPH);
 		flaCheckBoxString.PushBack(L"Show Graph");
 
 		// 그래프 삭제 메뉴 // Remove graph menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_RemoveGraph);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_RemoveGraph);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_REMOVE_GRAPH);
 		flaCheckBoxString.PushBack(L"Remove Graph");
 
 		// 데이터 삭제 메뉴 // Remove data menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_RemoveData);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_RemoveData);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_REMOVE_DATA);
 		flaCheckBoxString.PushBack(L"Remove Data");
 
 		// 데이터 값 수정 메뉴 // Edit data menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_EditData);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_EditData);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_EDIT_DATA);
 		flaCheckBoxString.PushBack(L"Edit Data");
 
 		// 최대/최솟값 표시 메뉴 // Indicate min/max menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_IndicateMinMax);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_IndicateMinMax);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_INDICATE_MIN_MAX);
 		flaCheckBoxString.PushBack(L"Indicate Min/Max");
 
 		// 표시 범위 설정 메뉴 // Set range menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SetRange);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_SetAxisRange);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SET_RANGE);
 		flaCheckBoxString.PushBack(L"Set Range");
 
 		// 범례 투명도 설정 메뉴 // Set legend opacity menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SetOpacityOfLegend);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_SetOpacityOfLegend);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SET_OPACITY_OF_LEGEND);
 		flaCheckBoxString.PushBack(L"Set Opacity Of Legend");
 
 		// 레이어 보이기 메뉴 // Show layers menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowLayers);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MenuGroup_ShowLayers);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_LAYERS);
 		flaCheckBoxString.PushBack(L"Show layers");
 
 		// 레이어 속성 창 메뉴 // Show layer properties pane dialog
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_LayerProperties);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_LayerProperties);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_LAYER_PROPERTIES);
 		flaCheckBoxString.PushBack(L"Layer Properties");
 
 		// 레이어 정리 메뉴 // Clear layers menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ClearLayers);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MenuGroup_ClearLayers);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_CLEAR_LAYERS);
 		flaCheckBoxString.PushBack(L"Clear Layers");
 
 		// 라이트 모드 테마 메뉴 // Light mode theme menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ThemeLightMode);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ThemeLightMode);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_THEME_LIGHT);
 		flaCheckBoxString.PushBack(L"Theme Light Mode");
 
 		// 다크 모드 테마 메뉴 // Dark mode theme menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ThemeDarkMode);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ThemeDarkMode);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_THEME_DARK);
 		flaCheckBoxString.PushBack(L"Theme Dark Mode");
 
 		// 뷰 동기화 메뉴 // View synchronization menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SyncView);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_MenuGroup_Synchronization);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SYNC_VIEW);
 		flaCheckBoxString.PushBack(L"Synchronize View");
 
 		// 윈도우 동기화 메뉴 // Window synchronization menu
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_SyncWindow);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_SyncWindow);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SYNC_WINDOW);
 		flaCheckBoxString.PushBack(L"Synchronize Window");
 
 		// Horizontal axis visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxis_Horz);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxis_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_HORZ);
 		flaCheckBoxString.PushBack(L"Show Horizontal Axis");
 
 		// Vertical axis visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxis_Vert);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxis_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_VERT);
 		flaCheckBoxString.PushBack(L"Show Vertical Axis");
 
 		// Horizontal axis label visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisLabel_Horz);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxisLabel_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_LABEL_HORZ);
 		flaCheckBoxString.PushBack(L"Show Horizontal Axis Label");
 
 		// Vertical axis label visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisLabel_Vert);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxisLabel_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_LABEL_VERT);
 		flaCheckBoxString.PushBack(L"Show Vertical Axis Label");
 
 		// Horizontal tick marks visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTick_Horz);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxisTick_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_HORZ);
 		flaCheckBoxString.PushBack(L"Show Horizontal Axis Tick");
 
 		// Vertical tick marks visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTick_Vert);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxisTick_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_VERT);
 		flaCheckBoxString.PushBack(L"Show Vertical Axis Tick");
 
 		// Horizontal tick labels visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTickLabel_Horz);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxisTickLabel_Horz);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_LABELS_HORZ);
 		flaCheckBoxString.PushBack(L"Show Horizontal Axis Tick Labels");
 
 		// Vertical tick labels visibility
-		m_flaAvailableContextMenu.PushBack(EAvailableViewGraphContextMenu_ShowAxisTickLabel_Vert);
+		m_flaAvailableContextMenu.PushBack(EViewGraphMenuItem_ShowAxisTickLabel_Vert);
 		m_flaCheckBoxId.PushBack(IDC_CHECK_SHOW_AXIS_TICK_LABELS_VERT);
 		flaCheckBoxString.PushBack(L"Show Vertical Axis Tick Labels");
 
@@ -486,19 +507,20 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		pWndStatic->GetWindowRect(rtWndStatic);
 		m_VScrollBar.SetParent(this);
 
-		EAvailableViewGraphContextMenu eAvailbaleContextMenu = m_viewGraph.GetAvailableViewGraphContextMenu();
+		CFLArray<int32_t> arrAvailbaleContextMenu;
+		m_viewGraph.GetAvailableViewGraphContextMenu(arrAvailbaleContextMenu);
 
 		CRect rt;
 		CButton* pWndRadio = (CButton*)GetDlgItem(IDC_RADIO_NONE);
 		CFont* pFont = pWndRadio->GetFont();
 
 		pWndRadio->SetParent(this);
-		pWndRadio->SetCheck(eAvailbaleContextMenu == EAvailableViewGraphContextMenu_None ? BST_CHECKED : BST_UNCHECKED);
+		pWndRadio->SetCheck(arrAvailbaleContextMenu.GetCount() == 0 ? BST_CHECKED : BST_UNCHECKED);
 
 		pWndRadio = (CButton*)GetDlgItem(IDC_RADIO_ALL);
 		pWndRadio->GetWindowRect(rt);
 		pWndRadio->SetParent(this);
-		pWndRadio->SetCheck(eAvailbaleContextMenu == EAvailableViewGraphContextMenu_All ? BST_CHECKED : BST_UNCHECKED);
+		pWndRadio->SetCheck(arrAvailbaleContextMenu.GetCount() == (int64_t)EViewGraphMenuItem_Count ? BST_CHECKED : BST_UNCHECKED);
 
 		int32_t i32Height = rt.Height() + 2;
 		pWndStatic->ScreenToClient(rt);
@@ -515,8 +537,6 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 
 			pCB->ModifyStyleEx(0, WS_EX_COMPOSITED);
 			pCB->SetFont(pFont);
-			BOOL bCheck = (eAvailbaleContextMenu & (EAvailableViewGraphContextMenu)m_flaAvailableContextMenu.GetAt(i)) != EAvailableViewGraphContextMenu_None ? TRUE : FALSE;
-			pCB->SetCheck(bCheck);
 			rt.OffsetRect(0, i32Height);
 		}
 
@@ -652,9 +672,9 @@ void CGraphViewContextMenuDlg::OnRangeRadioGroupSelectAll(UINT uID)
 	{
 	case IDC_RADIO_NONE:
 		{
-			if(CButton* pBtnNone = (CButton*)GetDlgItem(IDC_RADIO_NONE))			
+			if(CButton* pBtnNone = (CButton*)GetDlgItem(IDC_RADIO_NONE))
 				pBtnNone->SetCheck(BST_CHECKED);
-			if(CButton* pBtnAll = (CButton*)GetDlgItem(IDC_RADIO_ALL))			
+			if(CButton* pBtnAll = (CButton*)GetDlgItem(IDC_RADIO_ALL))
 				pBtnAll->SetCheck(BST_UNCHECKED);
 
 			i32CheckStatus = BST_UNCHECKED;
@@ -706,7 +726,7 @@ void CGraphViewContextMenuDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pS
 			i32CurPos = max(i32CurPos - 66, 0);
 			break;
 
-		case SB_PAGEDOWN: 
+		case SB_PAGEDOWN:
 			i32CurPos = min(i32CurPos + 66, m_i32VScrollMax);
 			break;
 
