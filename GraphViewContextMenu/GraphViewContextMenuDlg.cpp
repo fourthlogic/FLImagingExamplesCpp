@@ -197,21 +197,19 @@ void CGraphViewContextMenuDlg::OnBnClickedButtonApply()
 
 	// 팁: 아래와 같이 기존 메뉴에서 한두 개의 메뉴만 제외 가능
 	// Tip: It is possible to exclude only few menus from the existing menu as shown below
-	std::vector<EViewGraphMenuItem> vctAvailableMenuToRemove
-	{
+	const EViewGraphMenuItem arrMenuToRemove[] = {
 		EViewGraphMenuItem_IndicateMinMax,
 		EViewGraphMenuItem_SetOpacityOfLegend
 	};
-	m_viewGraph.RemoveAvailableViewGraphContextMenu(vctAvailableMenuToRemove.data(), (int64_t)vctAvailableMenuToRemove.size());
+	m_viewGraph.RemoveAvailableViewGraphContextMenu(arrMenuToRemove, (int64_t)(sizeof(arrMenuToRemove) / sizeof(arrMenuToRemove[0])));
 
 	// 팁: 아래와 같이 기존 메뉴에서 한두 개의 메뉴만 추가 가능
 	// Tip: It is possible to add only few menus from the existing menu as shown below
-	std::vector<EViewGraphMenuItem> vctAvailableMenuToAdd
-	{
+	const EViewGraphMenuItem arrMenuToAdd[] = {
 		EViewGraphMenuItem_IndicateMinMax,
 		EViewGraphMenuItem_SetOpacityOfLegend
 	};
-	m_viewGraph.AddAvailableViewGraphContextMenu(vctAvailableMenuToAdd.data(), (int64_t)vctAvailableMenuToAdd.size());
+	m_viewGraph.AddAvailableViewGraphContextMenu(arrMenuToAdd, (int64_t)(sizeof(arrMenuToAdd) / sizeof(arrMenuToAdd[0])));
 }
 
 
