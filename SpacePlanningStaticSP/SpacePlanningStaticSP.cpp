@@ -2,6 +2,8 @@
 #include <FLImaging.h>
 #include "../CommonHeader/ErrorPrint.h"
 
+namespace SpacePlanning = FLImaging::ThreeDim::SpacePlanning;
+
 namespace
 {
 	CResult InitializeCoordinateConverter(const CSpacePlanningBaseSP& alg, CSpacePlanningCoordinateConverterSP& converter)
@@ -64,7 +66,7 @@ int main()
 		CSpacePlanningStaticSP alg;
 
 		// Bin spec 설정 // Set the bin spec
-		CSpacePlanningBaseSP::SBinSpec<float> binSpec = { 12,9,10 };
+		SpacePlanning::SBinSpec<float> binSpec = { 12, 9, 10 };
 
 		if((res = alg.AddBinSpec(binSpec)).IsFail())
 		{
@@ -73,9 +75,9 @@ int main()
 		}
 
 		// Item spec 설정 (회전 없음) // Set the item specs (no rotation)
-		CSpacePlanningBaseSP::SItemSpec<float> itemSpec1 = { 3, 3, 4, 1, CSpacePlanningBaseSP::ERotationType_NoRotation };
-		CSpacePlanningBaseSP::SItemSpec<float> itemSpec2 = { 4, 3, 3, 1, CSpacePlanningBaseSP::ERotationType_NoRotation };
-		CSpacePlanningBaseSP::SItemSpec<float> itemSpec3 = { 5, 3, 2, 1, CSpacePlanningBaseSP::ERotationType_NoRotation };
+		SpacePlanning::SItemSpec<float> itemSpec1 = { 3, 3, 4, 1, SpacePlanning::ERotationAllowance_NoRotation };
+		SpacePlanning::SItemSpec<float> itemSpec2 = { 4, 3, 3, 1, SpacePlanning::ERotationAllowance_NoRotation };
+		SpacePlanning::SItemSpec<float> itemSpec3 = { 5, 3, 2, 1, SpacePlanning::ERotationAllowance_NoRotation };
 
 		if((res = alg.AddItemSpec(itemSpec1)).IsFail() ||
 		   (res = alg.AddItemSpec(itemSpec2)).IsFail() ||
