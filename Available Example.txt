@@ -1567,6 +1567,11 @@
         - The example of an algorithm that processes a uniform differential filter to an image.
         - 이미지에서 uniform 미분 필터를 처리하는 알고리즘 예제.
 
+  - [Focus Measurement]
+    - Tenengrad
+      - Algorithm that measure image's focus score based on Sobel Gradient
+      - Sobel Gradient 기반으로 이미지의 초점 점수를 측정하는 알고리즘
+
   - [Frequency Domain]
 
     - [Convolution]
