@@ -88,7 +88,7 @@ int main()
 		}
 
 		// Static list 파라미터 설정 // Set the static list parameters
-		CSpacePlanningBaseSP::SStaticListParameters params;
+		SpacePlanning::SStaticListParameters params;
 		params.itemCounts.Resize(3);
 		params.itemCounts[0] = 4;
 		params.itemCounts[1] = 3;
@@ -114,7 +114,7 @@ int main()
 			break;
 		}
 
-		CSpacePlanningBaseSP::SLearnedPlacementResults placementResults;
+		SpacePlanning::SLearnedPlacementResults placementResults;
 		if((res = alg.GetLearnedPlacements(placementResults)).IsFail())
 		{
 			ErrorPrint(res, "Failed to get learned placements.\n");

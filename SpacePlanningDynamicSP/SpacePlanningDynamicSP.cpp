@@ -95,7 +95,7 @@ int main()
 		itemChances[2] = 2;
 
 		// Lookahead: 다음 배치 결정 시 고려할 선택지 수 // Number of candidates to consider for next placement
-		CSpacePlanningBaseSP::SRandomSequenceParameters params(itemChances, 1);
+		SpacePlanning::SRandomSequenceParameters params(itemChances, 1);
 
 		if((res = alg.SetRandomSequenceParameters(params)).IsFail())
 		{
@@ -162,7 +162,7 @@ int main()
 		CXorshiroRandomGenerator rng;
 		rng.Seed();
 
-		CSpacePlanningBaseSP::CFLPlacementInfoArray placements;
+		SpacePlanning::CFLPlacementInfoArray placements;
 
 		// 아이템 도착 시뮬레이션 (컨베이어 벨트 상황) // Simulate item arrival (conveyor belt scenario)
 		// 아이템 타입을 무작위로 생성하여 빈이 꽉 찰 때까지 계속 배치
@@ -179,7 +179,7 @@ int main()
 
 			// 아이템을 대기열에 추가하고 권장 위치에 자동 배치
 			// Push item to queue and automatically place it at the recommended position
-			CSpacePlanningBaseSP::SPlacementInfo placement;
+			SpacePlanning::SPlacementInfo placement;
 
 			res = alg.PushAndPlace(i32ItemType, true, placement);
 
