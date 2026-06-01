@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A4BB3957-7F55-44B4-8970-CF874405CBC8}</ProjectGuid>
+    <ProjectGuid>{7C2EDF39-241F-4794-8859-DED0D6022AE3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ServerClient</RootNamespace>
-    <ProjectName>ServerClient</ProjectName>
+    <RootNamespace>DeviceSocketServerClient_ASCII</RootNamespace>
+    <ProjectName>DeviceSocketServerClient_ASCII</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -154,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ServerClient.cpp" />
+    <ClCompile Include="DeviceSocketServerClient_ASCII.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

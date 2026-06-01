@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ServerClient_ASCII.cpp">
+    <ClCompile Include="DeviceRS232C.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
