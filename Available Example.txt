@@ -1373,6 +1373,9 @@
     - FLFringePatternDefectDetector
       - The example of an algorithms that detecting defects in fringe pattern images.
       - 프린지 패턴 이미지에서 결함을 검출하는 알고리즘 예제
+    - FLLocalExtremaDetection
+      - Example of an algorithm to find the location of local extrema value.
+      - 지역적 극값의 위치를 찾는 알고리즘 예제
    
   - [Filter]
 
