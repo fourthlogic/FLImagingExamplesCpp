@@ -92,116 +92,128 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 	// Initialize the model manager.
 	CGUIManagerModel::Initialize();
 
-	// GUI 관리자를 초기화 합니다.
-	// Initialize the GUI manager.
-	CGUIManager::Initialize();
+	// 메뉴바에 메뉴 버튼 추가하기
+	{
+		// 상단 메뉴바에 "Additional Menu" 메뉴 추가
+		CGUIPopupMenuItemUserDefined* pUdmiNew = CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
+			L"Additional Menu", // 메뉴 아이템 이름
+			L"", // 경로
+			nullptr); // 콜백 함수 포인터
 
-	CGUIManager::LoadThemeSetting();
-	CGUIManager::LoadFontSetting();
-	CGUIManager::LoadWorkingPane();
-	CGUIManager::LoadMenuItemExpandSetting();
-	CGUIManagerModel::LoadLastUsedModel();
+		{
+			// 클릭하면 메시지박스를 띄우는 콜백 함수 만들기
+			CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
+			*pCallback = MakePopupMenuItemUserDefinedCallback
+			{
+				CGUIMessageBox::DoModal(L"Help menu item");
+			};
 
-	// 상단 메뉴 바의 "Window" 위치에 Separator 추가하기
-	// Add a separator to the "Window" section in the top menu bar.
+			{
+				// "Additional Menu" 버튼을 누르면 나오는 팝업 메뉴에 "Additional Help 1" 메뉴 삽입
+				CGUIPopupMenuItemUserDefined* pUdmiNew = CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
+					L"Additional Help 1", // 메뉴 아이템 이름
+					L"Additional Menu", // 경로
+					pCallback); // 콜백 함수 포인터
+			}
+
+			{
+				// "Additional Menu" 버튼을 누르면 나오는 팝업 메뉴에 "Additional Help 2" 메뉴 삽입
+				CGUIPopupMenuItemUserDefined* pUdmiNew = CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
+					L"Additional Help 2", // 메뉴 아이템 이름
+					L"Additional Menu", // 경로
+					pCallback, false); // 콜백 함수 포인터
+			}
+		}
+	}
+
+
+	// 상단 메뉴 바의 "Window" 하위에 Separator 추가하기
 	CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItemSeparator(L"Window");
 
-	// 상단 메뉴 바의 "Window" 위치에 메뉴 추가
-	// Add a menu item to the "Window" section in the top menu bar.
+	// 상단 메뉴 바의 "Window" 하위 메뉴로 메뉴 추가
 	{
-		// "MenuBarMenuItem Example" 이라는 이름의 메뉴 아이템 찾기
-		// Find the menu item named "MenuBarMenuItem Example".
-		CGUIMenuItemBase* pMI = CGUIManager::GetMenuItem(L"MenuBarMenuItem Example", L"Menu");
+		// "Algorithm Manager@Imaging@Server" 라는 이름의 메뉴 아이템 찾기
+		CGUIMenuItemBase* pMI = CGUIManager::GetMenuItem(L"Algorithm Manager@Imaging@Server");
 
-		// 클릭하면 "MenuBarMenuItem Example" 메뉴를 더블클릭한 것과 동일하게 동작하는 콜백 함수 만들기
-		// Create a callback function that behaves the same as double-clicking the "MenuBarMenuItem Example" menu item when clicked.
-		CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
-		*pCallback = MakePopupMenuItemUserDefinedCallback
+		// 상단 메뉴 바의 "Window" 하위 메뉴로 메뉴 추가하기
+		if(pMI)
 		{
-			CGUIMenuItemBase * pMI = CGUIManager::GetMenuItem(L"MenuBarMenuItem Example", L"Menu");
+			// 클릭하면 "Algorithm Manager@Imaging@Server" 메뉴를 더블클릭한 것과 동일하게 동작하는 콜백 함수 만들기
+			CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
+			*pCallback = MakePopupMenuItemUserDefinedCallback
+			{
+				CGUIMenuItemBase * pMI = CGUIManager::GetMenuItem(L"Algorithm Manager@Imaging@Server");
 
-			if(pMI)
-				pMI->OnLButtonDoubleClick();
-		};
+				if(pMI)
+					pMI->OnLButtonDoubleClick();
+			};
 
-		// 상단 메뉴 바의 "Window" 위치에 메뉴 추가하기
-		// Add the menu item to the "Window" section in the top menu bar.
-		CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
-			pMI->GetName(),  // 메뉴 아이템 이름 // Menu item name
-			L"Window",  // 경로 // Path
-			pCallback   // 콜백 함수 포인터 // Pointer to the callback function
-		);
+			CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
+				pMI->GetName(),  // 메뉴 아이템 이름 // Menu item name
+				L"Window",  // 경로 // Path
+				pCallback   // 콜백 함수 포인터 // Pointer to the callback function
+			);
+		}
 	}
 
 	CGUIMenuBar* pMB = CGUIManagerMainFrameMenuBar::GetMenuBar();
-	pMB->OnLButtonDown(0, CPoint(0, 0));
 
-	// 상단 메뉴 바의 "Window" 위치에 메뉴 추가
-	// Add a menu item to the "Window" section in the top menu bar.
+	// 상단 메뉴 바의 "Window" 하위 메뉴로 메뉴 추가
 	{
-		// "IDD_DIALOG_TEST" 이라는 이름의 메뉴 아이템 찾기
-		// Find the menu item named "IDD_DIALOG_TEST".
-		CGUIMenuItemBase* pMI = CGUIManager::GetMenuItem(L"IDD_DIALOG_TEST", L"Menu");
+		// "Algorithm Manager@Imaging@Client" 라는 이름의 메뉴 아이템 찾기
+		CGUIMenuItemBase* pMI = CGUIManager::GetMenuItem(L"Algorithm Manager@Imaging@Client");
 
-		// 클릭하면 "IDD_DIALOG_TEST" 메뉴를 더블클릭한 것과 동일하게 동작하는 콜백 함수 만들기
-		// Create a callback function that behaves the same as double-clicking the "IDD_DIALOG_TEST" menu item when clicked.
-		CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
-		*pCallback = MakePopupMenuItemUserDefinedCallback
+		// 상단 메뉴 바의 "Window" 하위 메뉴로 메뉴 추가하고, 추가한 메뉴 객체의 포인터 얻어 오기
+		if(pMI)
 		{
-			CGUIMenuItemBase * pMI = CGUIManager::GetMenuItem(L"IDD_DIALOG_TEST", L"Menu");
-
-			if(pMI)
-				pMI->OnLButtonDoubleClick();
-		};
-
-		// 상단 메뉴 바의 "Window" 위치에 메뉴 추가하고, 추가한 메뉴 객체의 포인터 얻어 오기
-		// Add the menu item to the "Window" section in the top menu bar and retrieve the pointer to the added menu object.
-		CGUIPopupMenuItemUserDefined* pUdmiNew = CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
-			pMI->GetName(),  // 메뉴 아이템 이름 // Menu item name
-			L"Window",  // 경로 // Path
-			pCallback,  // 콜백 함수 포인터 // Pointer to the callback function
-			true, // 콜백 함수 객체 자동 삭제 여부(default 값은 true) // Whether to automatically delete the callback function object (default: true)
-			true, // Enable 상태로 메뉴 아이템 표시할지 여부 // Whether to display the menu item in enabled state
-			false // Checked 상태로 메뉴 아이템 표시할지 여부 // Whether to display the menu item in checked state
-		);
-
-		// 성공적으로 메뉴가 추가되었다면
-		// If the menu was successfully added
-		if(pUdmiNew)
-		{
-			// 해당 메뉴의 체크 여부를 결정하는 콜백 함수 만들기
-			// Create a callback function to determine the check state of the menu.
-
-			// IDD_DIALOG_TEST 다이얼로그가 열려 있을 때는 체크,
-			// 닫혀져 있는 경우엔 체크 해제함
-			// Check the menu when the IDD_DIALOG_TEST dialog is open,
-			// uncheck it when it is closed.
-			CPopupMenuItemUserDefinedCheckCallback* pCheckCallback = new CPopupMenuItemUserDefinedCheckCallback;
-			*pCheckCallback = MakePopupMenuItemUserDefinedCheckCallback
+			// 클릭하면 "Algorithm Manager@Imaging@Client" 메뉴를 더블클릭한 것과 동일하게 동작하는 콜백 함수 만들기
+			CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
+			*pCallback = MakePopupMenuItemUserDefinedCallback
 			{
-				bool bReturn = false;
+				CGUIMenuItemBase * pMI = CGUIManager::GetMenuItem(L"Algorithm Manager@Imaging@Client");
 
-				CGUIMenuItemPaneDialogCustomEmbedded* pMI = (CGUIMenuItemPaneDialogCustomEmbedded*)CGUIManager::GetMenuItem(L"Menu@IDD_DIALOG_TEST");
-
-				// IDD_DIALOG_TEST 다이얼로그가 화면 상에 있는지 여부를 확인
-				// Check if the IDD_DIALOG_TEST dialog is currently displayed.
-				if(pMI && pMI->GetPane() && CGUIManagerPane::IsPaneActive(pMI->GetPane()))
-					bReturn = true;
-
-				return bReturn;
+				if(pMI)
+					pMI->OnLButtonDoubleClick();
 			};
 
-			// 체크 여부를 결정하는 콜백 함수를 설정
-			// Set the callback function to determine the check state.
-			pUdmiNew->SetCheckCallback(pCheckCallback);
+			CGUIPopupMenuItemUserDefined* pUdmiNew = CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
+				pMI->GetName(),  // 메뉴 아이템 이름 // Menu item name
+				L"Window",  // 경로 // Path
+				pCallback,  // 콜백 함수 포인터 // Pointer to the callback function
+				true, // 콜백 함수 객체 자동 삭제 여부(default 값은 true) // Whether to automatically delete the callback function object (default: true)
+				true, // Enable 상태로 메뉴 아이템 표시할지 여부 // Whether to display the menu item in enabled state
+				false // Checked 상태로 메뉴 아이템 표시할지 여부 // Whether to display the menu item in checked state
+			);
+
+			// 성공적으로 메뉴가 추가되었다면
+			if(pUdmiNew)
+			{
+				// 해당 메뉴의 체크 여부를 결정하는 콜백 함수 만들기
+				// "Algorithm Manager@Imaging@Client" 다이얼로그가 열려 있을 때는 체크,
+				// 닫혀져 있는 경우엔 체크 해제하는 함수
+				CPopupMenuItemUserDefinedCheckCallback* pCheckCallback = new CPopupMenuItemUserDefinedCheckCallback;
+				*pCheckCallback = MakePopupMenuItemUserDefinedCheckCallback
+				{
+					bool bReturn = false;
+
+					CGUIMenuItemPaneDialogCustomEmbedded* pMI = (CGUIMenuItemPaneDialogCustomEmbedded*)CGUIManager::GetMenuItem(L"Algorithm Manager@Imaging@Client");
+
+					// "Algorithm Manager@Imaging@Client" 다이얼로그가 열려 있는지 여부를 확인
+					if(pMI && pMI->GetPane() && CGUIManagerPane::IsPaneActive(pMI->GetPane()))
+						bReturn = true;
+
+					return bReturn;
+				};
+
+				// 체크 여부를 결정하는 콜백 함수를 설정
+				pUdmiNew->SetCheckCallback(pCheckCallback);
+			}
 		}
 	}
 
 	// 기존 메뉴 사이에 메뉴 삽입하기
-	// Insert a menu item between existing menu items.
 	{
 		// 클릭하면 메시지박스를 띄우는 콜백 함수 만들기
-		// Create a callback function that displays a message box when clicked.
 		CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
 		*pCallback = MakePopupMenuItemUserDefinedCallback
 		{
@@ -209,7 +221,6 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 		};
 
 		// 상단 메뉴 바의 "Information" 버튼을 누르면 나오는 팝업 메뉴의 인덱스 1번째에 "Help1" 메뉴 삽입
-		// Insert the "Help1" menu item at index 1 in the popup menu that appears when the "Information" button is clicked in the top menu bar.
 		CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
 			L"Help1",  // 메뉴 아이템 이름 // Menu item name
 			L"Information", // 경로 // Path
@@ -222,10 +233,8 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 
 
 	// 메뉴 삽입하기
-	// Insert a menu item.
 	{
 		// 클릭하면 메시지박스를 띄우는 콜백 함수 만들기
-		// Create a callback function that displays a message box when clicked.
 		CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
 		*pCallback = MakePopupMenuItemUserDefinedCallback
 		{
@@ -233,7 +242,6 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 		};
 
 		// "Information" 버튼을 누르면 나오는 팝업 메뉴의 인덱스 2번째에 "Help2" 메뉴 삽입
-		// Insert the "Help2" menu item at index 2 in the popup menu that appears when the "Information" button is clicked.
 		CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
 			L"Help2",   // 메뉴 아이템 이름 // Menu item name
 			L"Information",  // 경로 // Path
@@ -246,10 +254,8 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 
 
 	// 메뉴 삽입하기
-	// Insert a menu item.
 	{
 		// 클릭하면 메시지박스를 띄우는 콜백 함수 만들기
-		// Create a callback function that displays a message box when clicked.
 		CPopupMenuItemUserDefinedCallback* pCallback = new CPopupMenuItemUserDefinedCallback;
 		*pCallback = MakePopupMenuItemUserDefinedCallback
 		{
@@ -257,7 +263,6 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 		};
 
 		// "Information" 버튼을 누르면 나오는 팝업 메뉴의 인덱스 4번째에 "Help4" 메뉴 삽입
-		// Insert the "Help4" menu item at index 4 in the popup menu that appears when the "Information" button is clicked.
 		CGUIPopupMenuItemUserDefined* pUdmiNew = CGUIManagerMainFrameMenuBar::AddUserDefinedMenuItem(
 			L"Help4", // 메뉴 아이템 이름 // Menu item name
 			L"Information", // 경로 // Path
@@ -267,6 +272,23 @@ BOOL CMenuBarMenuItemApp::InitInstance()
 			pUdmiNew->m_i32InsertPos = 4; // 삽입 위치 인덱스 설정 // Set insertion index
 	}
 
+
+	// GUI 관리자를 초기화 합니다.
+	// Initialize the GUI manager.
+	CGUIManager::Initialize();
+
+	// 메뉴 삭제하기 (CGUIManager::Initialize(); 호출 이후)
+	// Delete menu (after calling CGUIManager::Initialize();)
+	{
+		CGUIManagerMainFrameMenuBar::RemoveMenuItem(L"File");
+		CGUIManagerMainFrameMenuBar::RemoveMenuItem(L"Settings@Theme");
+	}
+
+	CGUIManager::LoadThemeSetting();
+	CGUIManager::LoadFontSetting();
+	CGUIManager::LoadWorkingPane();
+	CGUIManager::LoadMenuItemExpandSetting();
+	CGUIManagerModel::LoadLastUsedModel();
 
 	return TRUE;
 }
