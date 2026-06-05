@@ -114,7 +114,7 @@ BOOL CFigureOperationDlg::OnInitDialog()
  	if(res.IsFail())
  		ErrorMessageBox(res);
 
-	// 콤보 박스에 선택 항목을 설정한다.
+	// 콤보 박스에 선택 항목을 설정한다. // Sets the selected item of the combo box.
 	CComboBox* pComboBoxDeclType = (CComboBox*)GetDlgItem(IDC_COMBO_FIGURE_OBJECT_DECL_TYPE);
 	pComboBoxDeclType->ResetContent();
 
@@ -218,7 +218,7 @@ void CFigureOperationDlg::UpdateControls()
 	CWnd* pWndOperation = GetDlgItem(IDC_COMBO_FIGURE_OBJECT_OPERATION);
 	CWnd* pWndExecute = GetDlgItem(IDC_BUTTON_FIGURE_OBJECT_EXECUTE);
 
-	// 이미지 뷰 유효성 체크
+	// 이미지 뷰 유효성 체크 // Available the image view.
 	if(!m_viewImage.IsAvailable())
 	{
 		pWndDeclType->EnableWindow(false);
@@ -236,7 +236,7 @@ void CFigureOperationDlg::UpdateControls()
 		pWndTempType->EnableWindow(true);
 		pWndCreate->EnableWindow(true);
 
-		// 이미지 뷰의 Figure object 개수를 얻어온다.
+		// 이미지 뷰의 Figure object 개수를 얻어온다. // Gets the number of figure objects in the image view.
 		pWndClear->EnableWindow(m_viewImage.GetFigureObjectCount() ? true : false);
 
 		pWndSelect1->EnableWindow(true);
@@ -253,13 +253,13 @@ void CFigureOperationDlg::UpdateControls()
 		if(!pCombo1 || !pCombo2)
 			break;
 
-		// 이미지 뷰의 Figure object 개수를 얻어온다.
+		// 이미지 뷰의 Figure object 개수를 얻어온다. // Gets the number of figure objects in the image view.
 		size_t stCount = m_viewImage.GetFigureObjectCount();
 
 		if(pCombo1->GetCount() == stCount && pCombo2->GetCount() == stCount)
 			break;
 
-		// 콤보 박스에 Figure Object 항목을 설정한다.
+		// 콤보 박스에 Figure Object 항목을 설정한다. // Update the figure object items in the combo box.
 		UpdateFigureObjectList();
 	}
 	while (false);
@@ -267,7 +267,7 @@ void CFigureOperationDlg::UpdateControls()
 
 EFigureDeclType CFigureOperationDlg::SelectedDeclType()
 {
-	// 현재 선택된 Decl Type 을 얻어온다.
+	// 현재 선택된 Decl Type 을 얻어온다. // Gets the currently selected Decl Type.
 	EFigureDeclType eReturn = EFigureDeclType_Unknown;
 
 	do 
@@ -345,28 +345,28 @@ void CFigureOperationDlg::UpdateFigureObjectList()
 		pCombo1->ResetContent();
 		pCombo2->ResetContent();
 
-		// 이미지 뷰의 Figure object 개수를 얻어온다.
+		// 이미지 뷰의 Figure object 개수를 얻어온다. // Retrieve the number of figure objects in the image view.
 		size_t stCount = m_viewImage.GetFigureObjectCount();
 		if(!stCount)
 			break;
 
 		for(size_t i = 0; i < stCount; ++i)
 		{
-			// 해당 인덱스의 Figure Object 를 얻어온다.
+			// 해당 인덱스의 Figure Object 를 얻어온다. // Retrieves the figure object at the specified index.
 			CFLFigure* pFigure = m_viewImage.GetFigureObject((int32_t)i);
 			if(!pFigure)
 				continue;
 
-			// Figure Object 의 이름을 설정한다.
+			// Figure Object 의 이름을 설정한다. // Sets the name of the figure object.
 			CFLString<wchar_t> strFigureName = MakeFigureObjectName(i, pFigure);
 			if(strFigureName.IsEmpty())
 				break;
 
-			// 콤보 박스에 항목을 추가한다.
+			// 콤보 박스에 항목을 추가한다. // Adds an item to the combo box.
 			pCombo1->AddString(strFigureName);
 			pCombo2->AddString(strFigureName);
 
-			// 얻어온 Figure Object 해제
+			// 얻어온 Figure Object 해제 // Releases the retrieved figure object.
 			delete pFigure;
 			pFigure = nullptr;
 		}
@@ -389,7 +389,7 @@ CFLString<wchar_t> CFigureOperationDlg::MakeFigureObjectName(size_t stIndex, CFL
 
 		strReturn.Format(L"[%d] ", stIndex);
 
-		// Figure 의 Decl Type 에 따른 이름 설정
+		// Figure 의 Decl Type 에 따른 이름 설정 // Set the name according to the figure's Decl Type.
 		switch(pFigure->GetDeclType())
 		{
 		case EFigureDeclType_Point:
@@ -444,7 +444,7 @@ CFLString<wchar_t> CFigureOperationDlg::MakeFigureObjectName(size_t stIndex, CFL
 		if(bError)
 			break;
 
-		// Figure 의 Template Type 에 따른 이름 설정
+		// Figure 의 Template Type 에 따른 이름 설정 // Set the name based on the figure's Template Type.
 		switch(pFigure->GetTemplateType())
 		{
 		case EFigureTemplateType_Int32:
@@ -478,13 +478,13 @@ CFLString<wchar_t> CFigureOperationDlg::MakeFigureObjectName(size_t stIndex, CFL
 
 void CFigureOperationDlg::DrawSelectedFigure()
 {
-	// 선택된 Figure Object 를 얻어온다.
+	// 선택된 Figure Object 를 얻어온다. // Retrieve the selected figure object.
 	CFLFigure* pFigure1 = GetSelectedFigure1();
 	CFLFigure* pFigure2 = GetSelectedFigure2();
 
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
@@ -518,21 +518,21 @@ void CFigureOperationDlg::DrawSelectedFigure()
 	}
 	while (false);
 
-	// 얻어온 Figure Object 해제
+	// 얻어온 Figure Object 해제 // Release the retrieved figure object.
 	if(pFigure1)
 	{
 		delete pFigure1;
 		pFigure1 = nullptr;
 	}
 
-	// 얻어온 Figure Object 해제
+	// 얻어온 Figure Object 해제 // Release the retrieved figure object.
 	if(pFigure2)
 	{
 		delete pFigure2;
 		pFigure2 = nullptr;
 	}
 
-	// 이미지 뷰를 갱신한다.
+	// 이미지 뷰를 갱신한다. // Update the image view.
 	m_viewImage.Invalidate(true);
 }
 
@@ -542,7 +542,7 @@ CFLFigure* CFigureOperationDlg::GetSelectedFigure1()
 
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
@@ -554,7 +554,7 @@ CFLFigure* CFigureOperationDlg::GetSelectedFigure1()
 		if(i32Selected < 0)
 			break;
 
-		// 해당 인덱스의 Figure Object 를 얻어온다.
+		// 해당 인덱스의 Figure Object 를 얻어온다. // Retrieve the figure object at the specified index.
 		pReturn = m_viewImage.GetFigureObject(i32Selected);
 	}
 	while (false);
@@ -568,7 +568,7 @@ CFLFigure* CFigureOperationDlg::GetSelectedFigure2()
 
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
@@ -580,7 +580,7 @@ CFLFigure* CFigureOperationDlg::GetSelectedFigure2()
 		if(i32Selected < 0)
 			break;
 
-		// 해당 인덱스의 Figure Object 를 얻어온다.
+		// 해당 인덱스의 Figure Object 를 얻어온다. // Get the figure object at the specified index.
 		pReturn = m_viewImage.GetFigureObject(i32Selected);
 	}
 	while (false);
@@ -638,7 +638,7 @@ BOOL CFigureOperationDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 이미지 뷰를 종료한다.
+	// 이미지 뷰를 종료한다. // Destroy the image view.
 	m_viewImage.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -651,7 +651,7 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectCreate()
 
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
@@ -662,13 +662,13 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectCreate()
 
 		int32_t i32TemplateType = pComboBoxTemplateType->GetCurSel() + 1;
 
-		// 이미지 뷰의 캔버스 영역을 얻어온다.
+		// 이미지 뷰의 캔버스 영역을 얻어온다. // Get the canvas region of the image view.
 		CFLRect<int32_t> flrlCanvas = m_viewImage.GetClientRectCanvasRegion();
 
-		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다.
+		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다. // Convert canvas coordinates to image coordinates.
 		CFLRect<double> flrdImage =  m_viewImage.ConvertCanvasCoordToImageCoord(flrlCanvas);
 
-		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다.
+		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다. // Set the size and shape of the figure to be created as a rectangle based on the image area.
 		double f64Width = flrdImage.GetWidth() / 10.;
 		double f64Height = flrdImage.GetHeight() / 10.;
 		double f64Size = __min(f64Width, f64Height);
@@ -678,8 +678,8 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectCreate()
 
 		CFLRect<double> flrdFigureShape(flpdCenter.x - f64Size, flpdCenter.y - f64Size, flpdCenter.x + f64Size, flpdCenter.y + f64Size);
 
-		// 선택한 Decl Type, Template Type 으로 Figure 를 생성한다.
-		// CubicSpline, ComplexRegion 같은 경우에는 Template Type 이 double 형으로 고정이다.
+		// 선택한 Decl Type, Template Type 으로 Figure 를 생성한다. // Create a figure using the selected Decl Type and Template Type.
+		// CubicSpline, ComplexRegion 같은 경우에는 Template Type 이 double 형으로 고정이다. // For figures such as CubicSpline and ComplexRegion, the Template Type is fixed to double.
 		switch(SelectedDeclType())
 		{
 		case EFigureDeclType_Point:
@@ -888,28 +888,31 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectCreate()
 		if(!pFlFigure)
 			break;
 
-		// 생성된 Figure 에 사각형을 설정함으로써 각 형상에 맞게 구성한다.
+		// 생성된 Figure 에 사각형을 설정함으로써 각 형상에 맞게 구성한다. // Configure the created figure by assigning a rectangle to it.
 		pFlFigure->Set(flrdFigureShape);
 
-		// 이미지 뷰에 Figure object 를 생성한다.
-		// 가장 마지막 파라미터는 활성화 되는 메뉴의 구성이며, EAvailableFigureContextMenu_All 가 기본 메뉴를 활성화 한다.
-		// 활성화 하고자 하는 메뉴를 추가 혹은 제거 하기 위해서는 enum 값을 비트 연산으로 넣어주면 된다.
+		// 이미지 뷰에 Figure object 를 생성한다. // Create a figure object in the image view.
+		// 가장 마지막 파라미터는 활성화 되는 메뉴의 구성이며, EAvailableFigureContextMenu_All 가 기본 메뉴를 활성화 한다. // The last parameter specifies the set of context menu items to be enabled. EAvailableFigureContextMenu_All enables the default context menu.
+		// 활성화 하고자 하는 메뉴를 추가 혹은 제거 하기 위해서는 enum 값을 비트 연산으로 넣어주면 된다. // To add or remove specific menu items, combine enum values using bitwise operations.
 		// ex) EAvailableFigureContextMenu_None -> 활성화 되는 메뉴 없음
 		//     EAvailableFigureContextMenu_All -> 전체 메뉴 활성화
 		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Decl Type, Template Type 변환 메뉴 활성화
+		// ex) EAvailableFigureContextMenu_None -> No menu items are enabled.
+		//     EAvailableFigureContextMenu_All -> All menu items are enabled.
+		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Enables the Decl Type and Template Type conversion menu items.
 
 		m_viewImage.PushBackFigureObject(pFlFigure, EAvailableFigureContextMenu_All);
 
-		// 이미지 뷰를 갱신한다.
+		// 이미지 뷰를 갱신한다. // Update the image view.
 		m_viewImage.Invalidate(true);
 
-		// 콤보 박스에 Figure Object 항목을 설정한다.
+		// 콤보 박스에 Figure Object 항목을 설정한다. // Update the figure object items in the combo box.
 		UpdateFigureObjectList();
 	}
 	while (false);
 
-	// 생성한 Figure 객체 해제
-	// PushBackFigureObject() 함수 내부에서 Figure 복사가 되기 때문에 생성했던 객체를 해제해 줘야한다.
+	// 생성한 Figure 객체 해제 // Release the created figure object.
+	// PushBackFigureObject() 함수 내부에서 Figure 복사가 되기 때문에 생성했던 객체를 해제해 줘야한다. // The figure object must be released because PushBackFigureObject() creates an internal copy of the figure.
 	if(pFlFigure)
 	{
 		delete pFlFigure;
@@ -925,13 +928,13 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectClear()
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 현재 이미지 뷰에 있는 Figure Objects 를 제거한다.
+		// 현재 이미지 뷰에 있는 Figure Objects 를 제거한다. // Remove all figure objects from the current image view.
 		m_viewImage.ClearFigureObject();
 
-		// 이미지 뷰를 갱신한다.
+		// 이미지 뷰를 갱신한다. // Update the image view.
 		m_viewImage.Invalidate(true);
 
-		// 콤보 박스에 Figure Object 항목을 설정한다.
+		// 콤보 박스에 Figure Object 항목을 설정한다. // Update the figure object items in the combo box.
 		UpdateFigureObjectList();
 	}
 	while (false);
@@ -951,7 +954,7 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectExecute()
 		if(!pComboOperation)
 			break;
 
-		// 선택된 Figure Object 를 얻어온다.
+		// 선택된 Figure Object 를 얻어온다. // Get the selected figure object.
 		pFigure1 = GetSelectedFigure1();
 		pFigure2 = GetSelectedFigure2();
 
@@ -961,75 +964,75 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectExecute()
 			break;
 		}
 
-		// Operation 결과를 얻기 위해 FLFigureArray 를 생성한다.
+		// Operation 결과를 얻기 위해 FLFigureArray 를 생성한다. // Create an FLFigureArray to retrieve the operation result.
 		CFLFigureArray flfa;
 
 		switch(pComboOperation->GetCurSel())
 		{
 		case 0:
-			// Intersection Operation 수행
+			// Intersection Operation 수행 // Execute the Intersection operation.
 			res = pFigure1->GetRegionOfIntersection(pFigure2, &flfa);
 			break;
 
 		case 1:
-			// Union Operation 수행
+			// Union Operation 수행 // Execute the Union operation.
 			res = pFigure1->GetRegionOfUnion(pFigure2, &flfa);
 			break;
 
 		case 2:
-			// Subtraction Operation 수행
+			// Subtraction Operation 수행 // Execute the Subtraction operation.
 			res = pFigure1->GetRegionOfSubtraction(pFigure2, &flfa);
 			break;
 
 		case 3:
-			// Exclusive Or Operation 수행
+			// Exclusive Or Operation 수행 // Execute the Exclusive Or operation.
 			res = pFigure1->GetRegionOfExclusiveOr(pFigure2, &flfa);
 			break;
 		}
 
-		// 수행 결과를 확인한다.
+		// 수행 결과를 확인한다. // Check the operation result.
 		if(IsFail(res))
 			break;
 
 		if(!flfa.GetCount())
 			break;
 
-		// 이미지 뷰에 Figure object 를 생성한다.
+		// 이미지 뷰에 Figure object 를 생성한다. // Create a figure object in the image view.
 		if(flfa.GetCount() == 1)
 			m_viewImage.PushBackFigureObject(flfa.GetAt(0), EAvailableFigureContextMenu_All);
 		else
 			m_viewImage.PushBackFigureObject(&flfa, EAvailableFigureContextMenu_All);
 
-		// 이미지 뷰를 갱신한다.
+		// 이미지 뷰를 갱신한다. // Update the image view.
 		m_viewImage.Invalidate(true);
 
-		// 콤보 박스에 Figure Object 항목을 설정한다.
+		// 콤보 박스에 Figure Object 항목을 설정한다. // Update the figure object items in the combo box.
 		UpdateFigureObjectList();
 	}
 	while (false);
 
-	// 얻어온 Figure Object 해제
+	// 얻어온 Figure Object 해제 // Release the retrieved figure object.
 	if(pFigure1)
 	{
 		delete pFigure1;
 		pFigure1 = nullptr;
 	}
 
-	// 얻어온 Figure Object 해제
+	// 얻어온 Figure Object 해제 // Release the retrieved figure object.
 	if(pFigure2)
 	{
 		delete pFigure2;
 		pFigure2 = nullptr;
 	}
 
-	// 수행 결과 메세지를 표시한다.
+	// 수행 결과 메세지를 표시한다. // Display the operation result message.
 	DisplayMessage(res.GetString());
 }
 
 void CFigureOperationDlg::OnCbnSelchangeComboFigureObjectSelect1()
 {
 	// TODO: Add your control notification handler code here
-	// 선택된 Figure 를 그린다.
+	// 선택된 Figure 를 그린다. // Draw the selected figure.
 	DrawSelectedFigure();
 }
 
@@ -1037,6 +1040,6 @@ void CFigureOperationDlg::OnCbnSelchangeComboFigureObjectSelect1()
 void CFigureOperationDlg::OnCbnSelchangeComboFigureObjectSelect2()
 {
 	// TODO: Add your control notification handler code here
-	// 선택된 Figure 를 그린다.
+	// 선택된 Figure 를 그린다. // Draw the selected figure.
 	DrawSelectedFigure();
 }
