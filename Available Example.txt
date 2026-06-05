@@ -369,6 +369,12 @@
       - OrthogonalCalibrator_GridOfDots 
         - The example of extracting camera distortion information and converting it to the front direction as a grid of dots image.
         - 점 격자판 이미지로 카메라의 왜곡 정보 추출하는 예제.
+        
+    - [Line Scan Camera Calibrator]
+
+      - LineScanCameraCalibrator
+        - Example of the camera calibration algorithm for line scan images.
+        - Line Scan 이미지에 대한 Camera calibration 알고리즘 동작 예제.
 
   - [Data Code]
 
