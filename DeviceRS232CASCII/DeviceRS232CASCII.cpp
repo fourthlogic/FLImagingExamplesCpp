@@ -157,10 +157,7 @@ int main()
 
 	// RS232C ASCII 연결을 종료합니다. // Terminate the connection to the RS232C ASCII.
 	if(IsFail(res = rs232CASCII.Terminate()))
-	{
-		// [오류 수정] 기존 "Failed to terminate the motion." 주석 및 문자열을 통신 종료에 맞게 변경
 		ErrorPrint(res, "Failed to terminate the communication.\n");
-	}
 
 	return 0;
 }
