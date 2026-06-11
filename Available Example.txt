@@ -285,6 +285,11 @@
         - An example of an algorithm that measure the angle and distance between two planes.
         - 두 평면 간의 각도 및 거리를 측정하는 알고리즘 예제.
 
+    - [Cross Section Measurement 3D]
+      - CrossSectionMeasurement3D
+        - An example of an algorithm that measures the cross section of a 3D object cut by a plane.
+        - 평면으로 3D 객체를 잘라 단면을 측정하는 알고리즘 예제.
+
     - [Occlusion Culling 3D]
       - OcclusionCulling3D
         - An example of an algorithm that remove invisible points from the set viewpoints.
