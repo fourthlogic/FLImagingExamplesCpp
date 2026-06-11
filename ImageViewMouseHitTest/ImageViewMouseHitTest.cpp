@@ -8,58 +8,58 @@ class CMessageReceiver : public CFLBase
 {
 public:
 
-	// CMessageReceiver 생성자
+	// CMessageReceiver 생성자 // CMessageReceiver constructor.
 	CMessageReceiver(CGUIViewImageWrap* pViewImage) : m_pViewImage(pViewImage)
 	{
-		// 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록
+		// 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 // Subscribe to CBroadcastManager to receive messages.
 		CBroadcastManager::Subscribe(this);
 	}
 
-	// CMessageReceiver 소멸자
+	// CMessageReceiver 소멸자 // CMessageReceiver destructor.
 	virtual ~CMessageReceiver()
 	{
-		// 객체가 소멸할때 메세지 수신을 중단하기 위해 구독을 해제한다.
+		// 객체가 소멸할때 메세지 수신을 중단하기 위해 구독을 해제한다. // Unsubscribe to stop receiving messages when the object is destroyed.
 		CBroadcastManager::Unsubscribe(this);
 	}
 
 	DeclareGetClassType();
 
-	// 메세지가 들어오면 호출되는 함수 OnReceiveBroadcast 오버라이드 하여 구현
+	// 메세지가 들어오면 호출되는 함수 OnReceiveBroadcast 오버라이드 하여 구현 // Override OnReceiveBroadcast, which is called when a message is received.
 	void OnReceiveBroadcast(const CBroadcastMessage* pMessage) override
 	{
 		do
 		{
-			// pMessage 가 nullptr 인지 확인
+			// pMessage 가 nullptr 인지 확인 // Check whether pMessage is nullptr.
 			if(pMessage == nullptr)
 				break;
 
-			// GetCaller() 가 등록한 이미지뷰인지 확인
+			// GetCaller() 가 등록한 이미지뷰인지 확인 // Check whether GetCaller() is a registered image view.
  			if(pMessage->GetCaller() != (const CFLBase*)m_pViewImage->GetMessageCallerPtr())
  				break;
 
-			// 메세지의 채널을 확인
+			// 메세지의 채널을 확인 // Check the message channel.
 			switch(pMessage->GetChannel())
 			{
 			case EGUIBroadcast_ViewImage_PostMouseMove:
 				{
-					// pMessage 객체를 CBroadcastMessage_GUI_ViewImage_MouseEvent 로 캐스팅
+					// pMessage 객체를 CBroadcastMessage_GUI_ViewImage_MouseEvent 로 캐스팅 // Cast pMessage to CBroadcastMessage_GUI_ViewImage_MouseEvent.
 					CBroadcastMessage_GUI_ViewImage_MouseEvent* pMsgMouseEvent = dynamic_cast<CBroadcastMessage_GUI_ViewImage_MouseEvent*>((CBroadcastMessage*)pMessage);
 
-					// pMsgMouseEvent 가 nullptr 인지 확인
+					// pMsgMouseEvent 가 nullptr 인지 확인 // Check whether pMsgMouseEvent is nullptr.
 					if(pMsgMouseEvent == nullptr)
 						break;
 
-					// 이미지뷰의 0번 레이어 가져오기
+					// 이미지뷰의 0번 레이어 가져오기 // Get layer 0 of the image view.
 					CGUIViewImageLayerWrap layer = m_pViewImage->GetLayer(0);
 
-					// 기존에 Layer 에 그려진 도형들을 삭제
+					// 기존에 Layer 에 그려진 도형들을 삭제 // Clear all figures from the layer.
 					layer.Clear();
 
-					// 현재 마우스가 위치한 영역을 표시할 문자열 생성
+					// 현재 마우스가 위치한 영역을 표시할 문자열 생성 // Create a string to display the area under the mouse cursor.
 					CFLString<wchar_t> strHitArea = L"";
 					CFLString<wchar_t> str = L"";
 					
-					// 현재 마우스가 위치한 영역을 얻어 옵니다.
+					// 현재 마우스가 위치한 영역을 얻어 옵니다. // Get the area under the mouse cursor.
 					EGUIViewImageHitArea eHitArea = m_pViewImage->GetHitArea();
 
 					if(eHitArea == EGUIViewImageHitArea_None)
@@ -151,7 +151,7 @@ public:
 					// Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
 					layer.DrawTextCanvas(CFLPoint<double>(80, 10), strHitArea, LIME, BLACK);
 
-					// 이미지뷰를 갱신
+					// 이미지뷰를 갱신 // Invalidate the image view.
 					m_pViewImage->Invalidate();
 				}
 				break;
@@ -203,20 +203,20 @@ int main()
 			break;
 		}
 
-		// Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다.
+		// Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. // Adjust the displayed image to fit the view using Zoom Fit.
 		if(IsFail(res =viewImage.ZoomFit()))
 		{
 			ErrorPrint(res,"Failed to zoom fit of the image view.\n");
 			break;
 		}
 
-		// 이미지 뷰의 캔버스 영역을 얻어온다.
+		// 이미지 뷰의 캔버스 영역을 얻어온다. // Get the canvas region of the image view.
 		CFLRect<int32_t> flrlCanvas = viewImage.GetClientRectCanvasRegion();
 
-		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다.
+		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다. // Convert the canvas region coordinates to image region coordinates.
 		CFLRect<double> flrdImage = viewImage.ConvertCanvasCoordToImageCoord(flrlCanvas);
 
-		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다.
+		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다. // Set the size and shape of the figure to be created as a rectangle based on the image region.
 		double f64Width = flrdImage.GetWidth() / 10.;
 		double f64Height = flrdImage.GetHeight() / 10.;
 		double f64Size = __min(f64Width, f64Height);
@@ -232,12 +232,23 @@ int main()
 		// ex) EAvailableFigureContextMenu_None -> 활성화 되는 메뉴 없음
 		//     EAvailableFigureContextMenu_All -> 전체 메뉴 활성화
 		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Decl Type, Template Type 변환 메뉴 활성화
+		// Create a figure object in the image view.
+		// The last parameter specifies the configuration of the enabled context menus.
+		// EAvailableFigureContextMenu_All enables the default context menus.
+		// To add or remove specific menus, combine enum values using bitwise operations.
+		// Examples:
+		// EAvailableFigureContextMenu_None
+		//     -> No context menus are enabled.
+		// EAvailableFigureContextMenu_All
+		//     -> All context menus are enabled.
+		// EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType
+		//     -> Enables the Decl Type and Template Type conversion menus.
 		viewImage.PushBackFigureObject(&flrdFigureShape, EAvailableFigureContextMenu_All);
 
 		// 이미지 뷰를 갱신 // Update image view
 		viewImage.Invalidate(true);
 
-		// 다중 페이지 이미지의 썸네일 미리보기 뷰를 고정
+		// 다중 페이지 이미지의 썸네일 미리보기 뷰를 고정 // Keep the thumbnail preview view fixed for a multi-page image.
 		viewImage.SetFixThumbnailView(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close

@@ -204,7 +204,7 @@ void CImageViewDlg::UpdateControls()
 		GetDlgItem(IDC_BUTTON_FIGURE_OBJECT_CREATE)->EnableWindow(false);
 		GetDlgItem(IDC_BUTTON_FIGURE_OBJECT_POP_FRONT)->EnableWindow(false);
 	}
-	// 이미지 뷰 유효성 체크
+	// 이미지 뷰 유효성 체크 // Available the image view.
 	else if(!m_viewImage.IsAvailable())
 	{
 		GetDlgItem(IDC_BUTTON_OPEN_IMAGE_VIEW)->EnableWindow(true);
@@ -229,7 +229,7 @@ void CImageViewDlg::UpdateControls()
 		GetDlgItem(IDC_BUTTON_FIGURE_OBJECT_CREATE)->EnableWindow(true);
 		GetDlgItem(IDC_BUTTON_FIGURE_OBJECT_POP_FRONT)->EnableWindow(true);
 
-		// 이미지 뷰의 이미지 버퍼가 존재하는지 체크
+		// 이미지 뷰의 이미지 버퍼가 존재하는지 체크 // Check whether the image buffer exists in the image view.
 		if(!m_viewImage.DoesFLImageBufferExist())
 		{
 			GetDlgItem(IDC_BUTTON_SAVE_IMAGE)->EnableWindow(false);
@@ -244,7 +244,7 @@ void CImageViewDlg::UpdateControls()
 			pComboBoxTemplateType->EnableWindow(false);
 		}
 
-		// 이미지 뷰의 Figure object 개수를 얻어온다.
+		// 이미지 뷰의 Figure object 개수를 얻어온다. // Get the number of figure objects in the image view.
 		if(!m_viewImage.GetFigureObjectCount())
 		{
 			GetDlgItem(IDC_BUTTON_FIGURE_OBJECT_POP_FRONT)->EnableWindow(false);
@@ -326,7 +326,7 @@ void CImageViewDlg::OnBnClickedButtonOpenImageView()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(m_viewImage.IsAvailable())
 			break;
 
@@ -345,11 +345,11 @@ void CImageViewDlg::OnBnClickedButtonTerminateImageView()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 이미지 뷰를 종료한다.
+		// 이미지 뷰를 종료한다. // Destroy the image view.
 		CResult res = m_viewImage.Destroy();
 
 		if(res.IsFail())
@@ -383,7 +383,7 @@ BOOL CImageViewDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 이미지 뷰를 종료한다.
+	// 이미지 뷰를 종료한다. // Destroy the image view.
 	m_viewImage.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -396,7 +396,7 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectCreate()
 
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
@@ -426,13 +426,13 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectCreate()
 			break;
 		}
 
-		// 이미지 뷰의 캔버스 영역을 얻어온다.
+		// 이미지 뷰의 캔버스 영역을 얻어온다. // Get the canvas region of the image view.
 		CFLRect<int32_t> flrlCanvas = m_viewImage.GetClientRectCanvasRegion();
 
-		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다.
+		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다. // Convert the canvas region coordinates to image region coordinates.
 		CFLRect<double> flrdImage = m_viewImage.ConvertCanvasCoordToImageCoord(flrlCanvas);
 
-		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다.
+		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다. // Set the size and shape of the figure to be created as a rectangle based on the image region.
 		double f64Width = flrdImage.GetWidth() / 10.;
 		double f64Height = flrdImage.GetHeight() / 10.;
 		double f64Size = __min(f64Width, f64Height);
@@ -444,6 +444,8 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectCreate()
 
 		// 선택한 Decl Type, Template Type 으로 Figure 를 생성한다.
 		// CubicSpline, ComplexRegion 같은 경우에는 Template Type 이 double 형으로 고정이다.
+		// Create a figure using the selected Decl Type and Template Type.
+		// For CubicSpline and ComplexRegion, the Template Type is fixed to double.
 		switch(SelectedDeclType())
 		{
 		case EFigureDeclType_Point:
@@ -653,6 +655,7 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectCreate()
 			break;
 
 		// 생성된 Figure 에 사각형을 설정함으로써 각 형상에 맞게 구성한다.
+		// Configure the created figure by setting a rectangle, allowing it to be shaped according to its figure type.
 		pFlFigure->Set(flrdFigureShape);
 
 		// 이미지 뷰에 Figure object 를 생성한다.
@@ -661,12 +664,26 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectCreate()
 		// ex) EAvailableFigureContextMenu_None -> 활성화 되는 메뉴 없음
 		//     EAvailableFigureContextMenu_All -> 전체 메뉴 활성화
 		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Decl Type, Template Type 변환 메뉴 활성화
+		// Create a figure object in the image view.
+		// The last parameter specifies the configuration of the enabled context menus.
+		// EAvailableFigureContextMenu_All enables the default context menus.
+		// To add or remove specific menus, combine enum values using bitwise operations.
+		// Examples:
+		// EAvailableFigureContextMenu_None
+		//     -> No context menus are enabled.
+		// EAvailableFigureContextMenu_All
+		//     -> All context menus are enabled.
+		// EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType
+		//     -> Enables the Decl Type and Template Type conversion menus.
 		m_viewImage.PushBackFigureObject(pFlFigure, EAvailableFigureContextMenu_All);
 	}
 	while (false);
 
 	// 생성한 Figure 객체 해제
 	// C_GUI_CGUIViewImage_PushBackFigureObject() 함수 내부에서 Figure 복사가 되기 때문에 생성했던 객체를 해제해 줘야한다.
+	// Delete the created figure object.
+	// Since the figure is copied internally in C_GUI_CGUIViewImage_PushBackFigureObject(),
+	// the original object created here must be deleted.
 	if(pFlFigure)
 	{
 		delete pFlFigure;
@@ -683,16 +700,16 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectPopFront()
 
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 이미지 뷰의 맨 앞의 Figure 를 제거하면서 얻어온다.
+		// 이미지 뷰의 맨 앞의 Figure 를 제거하면서 얻어온다. // Get and remove the first figure object from the image view.
 		pFlFigure = m_viewImage.PopFrontFigureObject();
 		if(!pFlFigure)
 			break;
 
-		// Figure 를 문자열로 얻어온다.
+		// Figure 를 문자열로 변환합니다. // Convert the figure to a string.
 		CFLString<wchar_t> flStrFigure = CFigureUtilities::ConvertFigureObjectToString(pFlFigure);
 
 		strFigureInfo = flStrFigure;
@@ -701,7 +718,7 @@ void CImageViewDlg::OnBnClickedButtonFigureObjectPopFront()
 
 	GetDlgItem(IDC_EDIT_FIGURE_OBEJCT_INFO)->SetWindowText(strFigureInfo);
 
-	// 얻어온 Figure 객체 해제
+	// 얻어온 Figure 객체 해제 // Delete the retrieved figure object.
 	if(pFlFigure)
 	{
 		delete pFlFigure;
@@ -715,7 +732,7 @@ void CImageViewDlg::OnBnClickedButtonLoadImage()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
@@ -726,6 +743,15 @@ void CImageViewDlg::OnBnClickedButtonLoadImage()
 		// ex) EViewImageLoadOption_Load -> 이미지 파일/폴더 로드
 		//     EViewImageLoadOption_OpenDialog | EViewImageLoadOption_DialogTypeFile 이미지 파일 로드 다이얼로그 활성화
 		//     EViewImageLoadOption_OpenDialog | EViewImageLoadOption_DialogTypeFolder 폴더 로드 다이얼로그 활성화(폴더 내부의 이미지 파일들을 로드)
+		// Open the image load dialog.
+		// Specify the load option using the last parameter.
+		// Examples:
+		// EViewImageLoadOption_Load
+		//     -> Loads image files or a folder.
+		// EViewImageLoadOption_OpenDialog | EViewImageLoadOption_DialogTypeFile
+		//     -> Opens the image file load dialog.
+		// EViewImageLoadOption_OpenDialog | EViewImageLoadOption_DialogTypeFolder
+		//     -> Opens the folder load dialog and loads image files from the selected folder.
 		m_viewImage.Load(L"", EViewImageLoadOption_Load);
 
 		LockControls(false);
@@ -739,17 +765,17 @@ void CImageViewDlg::OnBnClickedButtonSaveImage()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 이미지 뷰의 이미지 버퍼가 존재하는지 체크
+		// 이미지 뷰의 이미지 버퍼가 존재하는지 체크 // Check whether the image buffer exists in the image view.
 		if(!m_viewImage.DoesFLImageBufferExist())
 			break;
 
 		LockControls(true);
 
-		// 이미지 저장 다이얼로그를 활성화 시킨다.
+		// 이미지 저장 다이얼로그를 활성화 시킨다. // Open the image save dialog.
 		m_viewImage.Save(L"", false);
 
 		LockControls(false);

@@ -175,11 +175,11 @@ void CImageViewIntoDialogDlg::UpdateControls()
 
 	do
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 이미지 뷰의 Figure object 개수를 얻어온다.
+		// 이미지 뷰의 Figure object 개수를 얻어온다. // Get the number of figure objects in the image view.
 		if(!m_viewImage.GetFigureObjectCount())
 			break;
 
@@ -214,7 +214,7 @@ BOOL CImageViewIntoDialogDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 이미지 뷰를 종료한다.
+	// 이미지 뷰를 종료한다. // Destroy the image view.
 	m_viewImage.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -226,17 +226,17 @@ void CImageViewIntoDialogDlg::OnBnClickedButtonFigureObjectCreate()
 
 	do
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 이미지 뷰의 캔버스 영역을 얻어온다.
+		// 이미지 뷰의 캔버스 영역을 얻어온다. // Get the canvas region of the image view.
 		CFLRect<int32_t> flrlCanvas = m_viewImage.GetClientRectCanvasRegion();
 
-		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다.
+		// 캔버스 영역의 좌표계를 이미지 영역의 좌표계로 변환한다. // Convert the canvas region coordinates to image region coordinates.
 		CFLRect<double> flrdImage = m_viewImage.ConvertCanvasCoordToImageCoord(flrlCanvas);
 
-		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다.
+		// 이미지 영역을 기준으로 생성될 Figure 의 크기와 모양을 사각형으로 설정한다. // Set the size and shape of the figure to be created as a rectangle based on the image region.
 		double f64Width = flrdImage.GetWidth() / 10.;
 		double f64Height = flrdImage.GetHeight() / 10.;
 		double f64Size = __min(f64Width, f64Height);
@@ -252,6 +252,17 @@ void CImageViewIntoDialogDlg::OnBnClickedButtonFigureObjectCreate()
 		// ex) EAvailableFigureContextMenu_None -> 활성화 되는 메뉴 없음
 		//     EAvailableFigureContextMenu_All -> 전체 메뉴 활성화
 		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Decl Type, Template Type 변환 메뉴 활성화
+		// Create a figure object in the image view.
+		// The last parameter specifies the configuration of the enabled context menus.
+		// EAvailableFigureContextMenu_All enables the default context menus.
+		// To add or remove specific menus, combine enum values using bitwise operations.
+		// Examples:
+		// EAvailableFigureContextMenu_None
+		//     -> No context menus are enabled.
+		// EAvailableFigureContextMenu_All
+		//     -> All context menus are enabled.
+		// EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType
+		//     -> Enables the Decl Type and Template Type conversion menus.
 		m_viewImage.PushBackFigureObject(&flrdFigure, EAvailableFigureContextMenu_All);
 	}
 	while(false);
@@ -266,16 +277,16 @@ void CImageViewIntoDialogDlg::OnBnClickedButtonFigureObjectPopFront()
 
 	do
 	{
-		// 이미지 뷰 유효성 체크
+		// 이미지 뷰 유효성 체크 // Available the image view.
 		if(!m_viewImage.IsAvailable())
 			break;
 
-		// 이미지 뷰의 맨 앞의 Figure 를 제거하면서 얻어온다.
+		// 이미지 뷰의 맨 앞의 Figure 를 제거하면서 얻어온다. // Get and remove the first figure object from the image view.
 		pFlFigure = m_viewImage.PopFrontFigureObject();
 		if(!pFlFigure)
 			break;
 
-		// Figure 를 문자열로 얻어온다.
+		// Figure 를 문자열로 변환합니다. // Convert the figure to a string.
 		CFLString<wchar_t> flStrFigure = CFigureUtilities::ConvertFigureObjectToString(pFlFigure);
 
 		strFigureInfo = flStrFigure;
@@ -284,7 +295,7 @@ void CImageViewIntoDialogDlg::OnBnClickedButtonFigureObjectPopFront()
 
 	GetDlgItem(IDC_EDIT_FIGURE_OBEJCT_INFO)->SetWindowText(strFigureInfo);
 
-	// 얻어온 Figure 객체 해제
+	// 얻어온 Figure 객체 해제 // Delete the retrieved figure object.
 	if(pFlFigure)
 	{
 		delete pFlFigure;
