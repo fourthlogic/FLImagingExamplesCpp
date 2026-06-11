@@ -189,7 +189,7 @@ void CGraphViewDlg::UpdateControls()
 		GetDlgItem(IDC_BUTTON_CHART_ADD)->EnableWindow(false);
 		GetDlgItem(IDC_BUTTON_CHART_CLEAR)->EnableWindow(false);
 	}
-	// 그래프 뷰 유효성 체크
+	// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 	else if(!m_viewGraph.IsAvailable())
 	{
 		GetDlgItem(IDC_BUTTON_OPEN_GRAPH_VIEW)->EnableWindow(true);
@@ -210,7 +210,7 @@ void CGraphViewDlg::UpdateControls()
 
 		GetDlgItem(IDC_BUTTON_LOAD_GRAPH)->EnableWindow(true);
 
-		// 그래프 차트 데이터/수식 데이터의 존재 유무를 얻어 온다.
+		// 그래프 차트 데이터/수식 데이터의 존재 유무를 얻어 온다. // Get whether graph chart data or polynomial data exists.
 		if(m_viewGraph.DoesGraphExist())
 		{
 			GetDlgItem(IDC_BUTTON_SAVE_GRAPH)->EnableWindow(true);
@@ -258,7 +258,7 @@ BOOL CGraphViewDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 그래프 뷰를 종료한다.
+	// 그래프 뷰를 종료한다. // Destroy the graph view.
 	m_viewGraph.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -269,11 +269,11 @@ void CGraphViewDlg::OnBnClickedButtonOpenGraphView()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(m_viewGraph.IsAvailable())
 			break;
 
-		// 그래프 뷰 생성
+		// 그래프 뷰 생성 // Create a graph view.
 		CResult res = m_viewGraph.Create(0, 0, 500, 500);
 
 		if(res.IsFail())
@@ -288,11 +288,11 @@ void CGraphViewDlg::OnBnClickedButtonTerminateGraphView()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
-		// 그래프 뷰를 종료한다.
+		// 그래프 뷰를 종료한다. // Destroy the graph view.
 		CResult res = m_viewGraph.Destroy();
 
 		if(res.IsFail())
@@ -309,7 +309,7 @@ void CGraphViewDlg::OnBnClickedButtonChartAdd()
 
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
@@ -317,7 +317,7 @@ void CGraphViewDlg::OnBnClickedButtonChartAdd()
 		if(!pEditChartName)
 			break;
 
-		// 입력한 차트이름을 얻어온다.
+		// 입력한 차트이름을 얻어온다. // Get the entered chart name.
 		CString strChartName = _T("");
 		pEditChartName->GetWindowText(strChartName);
 
@@ -329,10 +329,10 @@ void CGraphViewDlg::OnBnClickedButtonChartAdd()
 		if(!pComboBoxChartType)
 			break;
 
-		// 선택한 차트타입을 얻어온다.
+		// 선택한 차트타입을 얻어온다. // Get the selected chart type.
 		EChartType eChartType = (EChartType)(pComboBoxChartType->GetCurSel() + 1);
 
-		// 랜덤으로 10개의 데이터를 생성한다.
+		// 랜덤으로 10개의 데이터를 생성한다. // Generate 10 random data points.
 		const size_t stDataCount = 10;
 		double arrF64DataX1[stDataCount] = { 0., };
 		double arrF64DataY1[stDataCount] = { 0., };
@@ -343,10 +343,10 @@ void CGraphViewDlg::OnBnClickedButtonChartAdd()
 			arrF64DataY1[i] = (double)(rand() % 100);
 		}
 
-		// 그래프에 생성한 데이터를 추가한다.
+		// 그래프에 생성한 데이터를 추가한다. // Add the generated data points to the graph.
 		m_viewGraph.Plot(arrF64DataX1, arrF64DataY1, stDataCount, eChartType, COLOR(rand()%255, rand()%255, rand()%255), flstrChartName, nullptr);
 
-		// 그래프 뷰를 갱신 한다.
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 	}
 	while (false);
@@ -358,14 +358,14 @@ void CGraphViewDlg::OnBnClickedButtonChartClear()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
-		// 그래프의 데이터를 클리어한다.
+		// 그래프 뷰의 데이터를 초기화한다 // Clear the graph view data.
 		m_viewGraph.Clear();
 
-		// 그래프 뷰를 갱신 한다.
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 	}
 	while (false);
@@ -377,7 +377,7 @@ void CGraphViewDlg::OnBnClickedButtonLoadGraph()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
@@ -387,9 +387,16 @@ void CGraphViewDlg::OnBnClickedButtonLoadGraph()
 		// 가장 마지막 파라미터로 로드 옵션을 지정한다.
 		// ex) EViewGraphLoadOption_Load -> 그래프 파일
 		//     EViewGraphLoadOption_Load | EViewGraphLoadOption_OpenDialog 그래프 파일 로드 다이얼로그 활성화
+		// Open the graph file load dialog.
+		// Specify the load option using the last parameter.
+		// Examples:
+		// EViewGraphLoadOption_Load
+		//     -> Load a graph file.
+		// EViewGraphLoadOption_Load | EViewGraphLoadOption_OpenDialog
+		//     -> Open the graph file load dialog.
 		m_viewGraph.Load(nullptr, EViewGraphLoadOption_Load | EViewGraphLoadOption_OpenDialog);
 
-		// 그래프 뷰를 갱신 한다.
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 
 		LockControls(false);
@@ -403,13 +410,13 @@ void CGraphViewDlg::OnBnClickedButtonSaveGraph()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
 		LockControls(true);
 
-		// 그래프 저장 다이얼로그를 활성화 시킨다.
+		// 그래프 저장 다이얼로그를 활성화 시킨다. // Open the graph save dialog.
 		m_viewGraph.Save();
 
 		LockControls(false);

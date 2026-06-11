@@ -105,7 +105,7 @@ BOOL CGraphLeastSquaresDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
-	// 그래프 뷰 생성
+	// 그래프 뷰 생성 // Create a graph view.
 	CResult res = m_viewGraph.CreateAndFitParent((size_t)GetDlgItem(IDC_STATIC_GRAPH_VIEW)->GetSafeHwnd());
 
 	if(res.IsFail())
@@ -191,10 +191,10 @@ HCURSOR CGraphLeastSquaresDlg::OnQueryDragIcon()
 
 void CGraphLeastSquaresDlg::UpdateControls()
 {
-	// 그래프 뷰 유효성 체크
+	// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 	GetDlgItem(IDC_BUTTON_GRAPH_ADD)->EnableWindow(m_viewGraph.IsAvailable());
 
-	// 그래프 뷰 유효성 체크, 그래프 뷰 데이터 존재 여부 체크
+	// 그래프 뷰 유효성 체크, 그래프 뷰 데이터 존재 여부 체크 // Check the validity of the graph view and the existence of graph data.
 	GetDlgItem(IDC_BUTTON_GRAPH_CLEAR)->EnableWindow(m_viewGraph.IsAvailable() && m_viewGraph.DoesGraphExist());
 }
 
@@ -222,7 +222,7 @@ BOOL CGraphLeastSquaresDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 그래프 뷰를 종료한다.
+	// 그래프 뷰를 종료한다. // Destroy the graph view.
 	m_viewGraph.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -238,7 +238,7 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
@@ -259,7 +259,7 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 		CFLString<wchar_t> flstrName(strName);
 		int32_t i32Degree = _wtoi(strDegree);
 
-		// 랜덤으로 100개의 데이터를 생성한다.
+		// 랜덤으로 100개의 데이터를 생성한다. // Generate 100 random data points.
 		const size_t stDataCount = 100;
 		double arrF64DataX[stDataCount] = { 0., };
 		double arrF64DataY[stDataCount] = { 0., };
@@ -279,7 +279,7 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 			f64PrevY = arrF64DataY[i];
 		}
 
-		// 그래프에 생성한 데이터를 추가한다.
+		// 그래프에 생성한 데이터를 추가한다. // Add the generated data points to the graph.
 		m_viewGraph.Plot(arrF64DataX, arrF64DataY, stDataCount, EChartType_Scatter, ui32Color, flstrName, nullptr);
 
 		if(i32Degree == 0)
@@ -290,15 +290,15 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 
 		// LeastSquaresD 객체 생성 // Create LeastSquaresD object
 		CLeastSquaresD ls;
-		// 데이터를 할당
+		// 데이터를 할당 // Assign the data.
 		ls.Assign(arrF64DataX, arrF64DataY, stDataCount);
 
-		// 계수 값을 받기 위해 FLArray 생성
+		// 계수 값을 받기 위해 FLArray 생성 // Create an FLArray for the coefficient values.
 		CFLArray<double> vctOutput;
-		// R square 값을 받기 위해double 생성
+		// R square 값을 받기 위해double 생성 // Create a double variable to receive the R-squared value.
 		double f64TRSqr = 0.;
 
-		// 다항식 계수를 얻는다.
+		// 다항식 계수를 얻는다. // Get the polynomial coefficients.
 		ls.GetPoly(i32Degree, &vctOutput, &f64TRSqr);
 
 		CFLString<wchar_t> flstrEquation = L"";
@@ -312,9 +312,12 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 
 		// 차수가 높아질수록 계수의 정도를 높인다.
 		// 예를 들어 4차식인 경우, 4 + 12 = 16, 즉 소수점 16째 자리까지 계수를 표현한다.
+		// Increase the coefficient precision as the polynomial degree increases.
+		// For example, for a 4th-degree polynomial, the precision is set to 16 (4 + 12),
+		// allowing the coefficients to be represented up to 16 decimal places.
 		int32_t i32Precision = 12 + i32Degree;
 
-		// 얻어온 계수로 다항식을 만든다.
+		// 얻어온 계수로 다항식을 만든다. // Create a polynomial using the obtained coefficients.
 		for(int32_t i = 0; i < i64Count; ++i)
 		{
 			double f64Coef = vctOutput.GetAt(i);
@@ -348,13 +351,13 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 
 		// 수식 객체 생성 // Create 수식 object
 		CExpression exp;
-		// 수식 문자열을 설정한다
+		// 수식 문자열을 설정한다 // Set the polynomial expression string.
 		exp.SetExpression(flstrEquation);
 
-		// 그래프 뷰에 수식 데이터를 추가한다
+		// 그래프 뷰에 수식 데이터를 추가한다 // Add the polynomial data to the graph view.
 		m_viewGraph.Plot(&exp, ui32Color);
 
-		// 그래프 뷰를 갱신한다
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 	}
 	while(false);
@@ -368,14 +371,14 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphClear()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
-		// 그래프 뷰의 데이터를 초기화한다
+		// 그래프 뷰의 데이터를 초기화한다 // Clear the graph view data.
 		m_viewGraph.Clear();
 
-		// 그래프 뷰를 갱신한다
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 	}
 	while(false);

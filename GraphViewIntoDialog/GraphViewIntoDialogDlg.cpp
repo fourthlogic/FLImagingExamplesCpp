@@ -105,7 +105,7 @@ BOOL CGraphViewIntoDialogDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
-	// 그래프 뷰 생성
+	// 그래프 뷰 생성 // Create a graph view.
 	CResult res = m_viewGraph.CreateAndFitParent((size_t)GetDlgItem(IDC_STATIC_GRAPH_VIEW)->GetSafeHwnd());
 
 	if(res.IsFail())
@@ -194,10 +194,10 @@ HCURSOR CGraphViewIntoDialogDlg::OnQueryDragIcon()
 
 void CGraphViewIntoDialogDlg::UpdateControls()
 {
-	// 그래프 뷰 유효성 체크
+	// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 	GetDlgItem(IDC_BUTTON_GRAPH_ADD)->EnableWindow(m_viewGraph.IsAvailable());
 
-	// 그래프 뷰 유효성 체크, 그래프 뷰 데이터 존재 여부 체크
+	// 그래프 뷰 유효성 체크, 그래프 뷰 데이터 존재 여부 체크 // Check the validity of the graph view and the existence of graph data.
 	GetDlgItem(IDC_BUTTON_GRAPH_CLEAR)->EnableWindow(m_viewGraph.IsAvailable() && m_viewGraph.DoesGraphExist());
 }
 
@@ -225,7 +225,7 @@ BOOL CGraphViewIntoDialogDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 그래프 뷰를 종료한다.
+	// 그래프 뷰를 종료한다. // Destroy the graph view.
 	m_viewGraph.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -241,7 +241,7 @@ void CGraphViewIntoDialogDlg::OnBnClickedButtonGraphAdd()
 
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
@@ -302,10 +302,10 @@ void CGraphViewIntoDialogDlg::OnBnClickedButtonGraphAdd()
 		if(flstrEquation.IsEmpty())
 			break;
 
-		// 방정식의 해를 얻어올 객체 생성 // Create 방정식의 해를 얻어올 object
+		// 방정식의 해를 얻어올 객체 생성 // Create an object to receive the roots of the equation.
 		CFLArray<std::complex<double>> flaEquationResult;
 
-		// 4차 방정식의 해를 얻어온다.
+		// 4차 방정식의 해를 얻어온다. // Get the roots of the quartic equation.
 		if(IsOK(CEquation::Quartic(arrF64Coef[0], arrF64Coef[1], arrF64Coef[2], arrF64Coef[3], arrF64Coef[4], &flaEquationResult)))
 		{
 			for(int64_t i = 0; i < flaEquationResult.GetCount(); ++i)
@@ -323,15 +323,15 @@ void CGraphViewIntoDialogDlg::OnBnClickedButtonGraphAdd()
 			}
 		}
 
-		// 수식 객체 생성 // Create 수식 object
+		// 수식 객체 생성 // Create an expression object.
 		CExpression exp;
-		// 수식 문자열을 설정한다
+		// 수식 문자열을 설정한다 // Set the expression string.
 		exp.SetExpression(flstrEquation);
 
-		// 그래프 뷰에 수식 데이터를 추가한다
+		// 그래프 뷰에 수식 데이터를 추가한다 // Add the expression data to the graph view.
 		m_viewGraph.Plot(&exp, COLOR(rand()%256, rand()%256, rand()%256));
 
-		// 그래프 뷰를 갱신한다
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 	}
 	while(false);
@@ -345,14 +345,14 @@ void CGraphViewIntoDialogDlg::OnBnClickedButtonGraphClear()
 	// TODO: Add your control notification handler code here
 	do 
 	{
-		// 그래프 뷰 유효성 체크
+		// 그래프 뷰 유효성 체크 // Check the validity of the graph view.
 		if(!m_viewGraph.IsAvailable())
 			break;
 
-		// 그래프 뷰의 데이터를 초기화한다
+		// 그래프 뷰의 데이터를 초기화한다 // Clear the graph view data.
 		m_viewGraph.Clear();
 
-		// 그래프 뷰를 갱신한다
+		// 그래프 뷰를 갱신한다 // Invalidate the graph view.
 		m_viewGraph.Invalidate();
 	}
 	while(false);
