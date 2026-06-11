@@ -256,7 +256,7 @@ int main()
 		// Trigger mode setting (0: continuous trigger, 1: external trigger, 2: encoder trigger)
 		{
 			int64_t i64DataSize = 4;
-			std::vector<uint8_t> vctData(i64DataSize, 0);
+			std::vector<uint8_t> vctData((size_t)i64DataSize, 0);
 
 			vctData[0] = 0;
 
@@ -267,7 +267,7 @@ int main()
 		// Batch measurement settings (0: batch OFF, 1: batch ON)
 		{
 			int64_t i64DataSize = 4;
-			std::vector<uint8_t> vctData(i64DataSize, 0);
+			std::vector<uint8_t> vctData((size_t)i64DataSize, 0);
 
 			vctData[0] = 0;
 
@@ -278,7 +278,7 @@ int main()
 		// Luminance output settings (0: height data only, 1: height + luminance data)
 		{
 			int64_t i64DataSize = 4;
-			std::vector<uint8_t> vctData(i64DataSize, 0);
+			std::vector<uint8_t> vctData((size_t)i64DataSize, 0);
 
 			vctData[0] = 1;
 

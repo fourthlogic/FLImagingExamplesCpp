@@ -8,37 +8,32 @@
 class CDeviceEventImageEx : public CDeviceEventImageBase
 {
 public:
-	// CDeviceEventImageEx 생성자
-	// Constructor for CDeviceEventImageEx
+	// CDeviceEventImageEx 생성자 // Constructor of CDeviceEventImageEx
 	CDeviceEventImageEx()
 	{
 		m_pView3D = nullptr;
 	}
 
-	// CDeviceEventImageEx 소멸자
-	// Destructor for CDeviceEventImageEx
+	// CDeviceEventImageEx 소멸자 // Destructor of CDeviceEventImageEx
 	virtual ~CDeviceEventImageEx()
 	{
 	}
 
-	// 취득한 데이터를 표시할 3D 뷰를 설정하는 함수
-	// Function to set the 3D view for displaying the acquired data
+	// 취득한 데이터를 표시할 3D 뷰를 설정하는 함수 // Sets the 3D view used to display the acquired data.
 	void SetView3D(CGUIView3DWrap* pView3D)
 	{
 		if(pView3D)
 			m_pView3D = pView3D;
 	}
 
-	// 카메라에서 데이터 취득 시 호출 되는 함수
-	// Function called when data is acquired from the camera
+	// 카메라에서 데이터 취득 시 호출 되는 함수 // Callback function called when a data is acquired from the camera.
 	virtual void OnAcquisition(const CDeviceImageBase* pDeviceImage)
 	{
 		do
 		{
 			if(!m_pView3D)
 				break;
-			// 3D 뷰의 유효성을 확인한다.
-			// Check whether the 3D view is valid
+			// 3D 뷰의 유효성을 확인한다. // Check the validity of the 3D view.
 			if(!m_pView3D->IsAvailable())
 				break;
 
@@ -47,51 +42,40 @@ public:
 			if(!pCamera)
 				break;
 
-			// 데이터 객체 선언
-			// Declare a data object
+			// 데이터 객체 선언 // Declare a 3D data object.
 			CFL3DObject floData;
 
-			// 카메라에서 취득 한 데이터를 얻어온다.
-			// Retrieve the acquired 3D data from the camera
+			// 카메라에서 취득 한 데이터를 얻어온다. // Get the 3D data acquired from the camera.
 			pCamera->GetAcquired3DData(floData);
 
-			// 3D 뷰의 업데이트를 막습니다.
-			// Lock the 3D view to prevent updates
+			// 3D 뷰의 업데이트를 막습니다. // Lock updates to the 3D view.
 			m_pView3D->LockUpdate();
 
-			// 3D 뷰의 유효성을 확인한다.
-			// Check whether the 3D view is valid
+			// 3D 뷰의 유효성을 확인한다. // Check the validity of the 3D view.
 			if(!m_pView3D->IsAvailable())
 				break;
 
-			// 3D 뷰의 객체 개수를 얻어옵니다.
-			// Get the number of objects currently in the 3D view
+			// 3D 뷰의 객체 개수를 얻어옵니다. // Get the number of objects in the 3D view.
 			int32_t i32ObjectCount = m_pView3D->GetObjectCount();
 
-			// 3D 뷰의 객체들을 모두 클리어합니다.
-			// Clear all objects in the 3D view
+			// 3D 뷰의 객체들을 모두 클리어합니다. // Clear all objects in the 3D view.
 			m_pView3D->ClearObjects();
 
-			// 3D 뷰의 유효성을 확인한다.
-			// Check whether the 3D view is valid
+			// 3D 뷰의 유효성을 확인한다. // Check the validity of the 3D view.
 			if(!m_pView3D->IsAvailable())
 				break;
 
-			// 3D 뷰에 객체를 추가합니다.
-			// Add the acquired 3D object to the view
+			// 3D 뷰에 객체를 추가합니다. // Push objects to the 3D view.
 			m_pView3D->PushObject(floData);
 
-			// 3D 뷰의 유효성을 확인한다.
-			// Check whether the 3D view is valid
+			// 3D 뷰의 유효성을 확인한다. // Check the validity of the 3D view.
 			if(!m_pView3D->IsAvailable())
 				break;
 
-			// 3D 뷰의 업데이트 막은 것을 해제합니다.
-			// Unlock the 3D view to allow updates again
+			// 3D 뷰의 업데이트 막은 것을 해제합니다. // Unlock 3D view updates.
 			m_pView3D->UnlockUpdate();
 
-			// 3D 뷰의 스케일을 조정합니다.
-			// Adjust the 3D view scale if this is the first object
+			// 3D 뷰의 스케일을 조정합니다. // Adjust the scale of the 3D view.
 			if(!i32ObjectCount)
 				m_pView3D->ZoomFit();
 		}
@@ -110,7 +94,7 @@ int main()
 
 	CResult drReturn = EResult_UnknownError;
 
-	// 3D 뷰 선언 // Declare the 3D view
+	// 3D 뷰 선언 // Declare the 3D view.
 	CGUIView3DWrap view3D;
 
 	// Zivid 카메라 선언 // Declare the Zivid camera
@@ -135,7 +119,7 @@ int main()
 		if((drReturn = camZivid.SetCamFilePath(flsCamfilePath)).IsFail())
 			break;
 
-		// 장치 찾기 방법을 선택합니다. // Select Detection Method
+		// 장치 찾기 방법을 선택합니다. // Select the detection method
 		while(true)
 		{
 			printf("1. Auto Detect\n");
@@ -174,7 +158,7 @@ int main()
 		{
 			CFLArray<CFLString<wchar_t>> flarrSerialNumbers;
 
-			// 연결되어 있는 카메라의 시리얼 번호를 얻는다. // Get serial numbers of connected cameras
+			// 연결되어 있는 카메라의 시리얼 번호를 얻는다. // Get the serial number of the connected camera.
 			drReturn = camZivid.GetAutoDetectCameraSerialNumbers(flarrSerialNumbers);
 
 			if(drReturn.IsFail() || !flarrSerialNumbers.GetCount())
@@ -184,7 +168,7 @@ int main()
 				break;
 			}
 
-			// 연결 할 카메라를 선택합니다. // Select camera to be connected.
+			// 연결 할 카메라를 선택합니다. // Select the camera to connect to.
 			while(true)
 			{
 				for(int64_t i = 0; i < flarrSerialNumbers.GetCount(); ++i)
@@ -217,7 +201,7 @@ int main()
 		}
 		else
 		{
-			// 시리얼 번호를 입력 받는다. // Enter the serial number.
+			// 시리얼 번호를 입력 받습니다. // Enter the serial number.
 			printf("Input Serial Number: ");
 			fgetws(arrInput, 4096, stdin);
 
@@ -225,20 +209,20 @@ int main()
 			flsConnection.Replace(L"\n", L"");
 		}
 
-		// 이벤트를 받을 객체 선언 // Declare the object that receives events
+		// 이벤트를 받을 객체 선언 // Declare an event object.
 		CDeviceEventImageEx eventImage;
 
-		// 카메라에 이벤트 객체 설정 // Set event object on Camera 
+		// 카메라에 이벤트 객체 설정 // Set the event object for the camera.
 		camZivid.RegisterDeviceEvent(&eventImage);
 
 		if(bAutoDetect)
-			// 인덱스에 해당하는 카메라로 연결을 설정합니다. // Set the camera corresponding to the index to be connected.
+			// 인덱스에 해당하는 카메라로 연결을 설정합니다. // Set the camera specified by the index for connection.
 			drReturn = camZivid.AutoDetectCamera(i32SelectDevice);
 		else
-			// 시리얼 번호를 설정합니다. // Set the serial number to camera
+			// 시리얼 번호를 설정합니다. // Set the serial number.
 			camZivid.SetSerialNumber(flsConnection);
 
-		// 카메라를 초기화 합니다. // Initialize the camera
+		// 카메라를 초기화 합니다. // Initialize the camera.
 		drReturn = camZivid.Initialize();
 
 		if(drReturn.IsFail())
@@ -247,7 +231,7 @@ int main()
 			break;
 		}
 
-		// 3D 뷰 생성 // Create 3D view
+		// 3D 뷰 생성 // Create a 3D view.
 		if(view3D.Create(0, 0, 1000, 1000).IsFail())
 		{
 			drReturn = EResult_FailedToCreateObject;
@@ -258,7 +242,7 @@ int main()
 
 		eventImage.SetView3D(&view3D);
 
-		// 카메라를 Live 합니다. // Live the camera
+		// 카메라를 Live 합니다. // Start live acquisition.
 		drReturn = camZivid.Live();
 
 		if(drReturn.IsFail())
@@ -273,7 +257,7 @@ int main()
 	}
 	while(false);
 
-	// 카메라의 초기화를 해제합니다.
+	// 카메라의 초기화를 해제합니다. // Terminate the camera.
 	camZivid.Terminate();
 	camZivid.ClearDeviceEvents();
 

@@ -177,7 +177,7 @@ int main()
 		// 테스트용 데이터 생성 // Create test data
 		CFLString<char> flsData("Socket echo test. [Enter any key if you want to exit]");
 		CDeviceSocketPacket socketPacket;
-		socketPacket.Assign((uint8_t*)flsData.GetBuffer(), flsData.GetLength());
+		socketPacket.Assign((uint8_t*)flsData.GetBuffer(), (size_t)flsData.GetLength());
 
 		// 클라이언트에서 서버로 데이터 송신 // Send data from client to server
 		if((res = deviceSocketClient.Send(socketPacket)).IsFail())

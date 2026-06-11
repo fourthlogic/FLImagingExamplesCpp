@@ -4,21 +4,22 @@
 
 
 // 카메라에서 이미지 취득 이벤트를 받기 위해 CDeviceEventImageBase 를 상속 받아서 구현
+// Inherit from CDeviceEventImageBase to receive image acquisition events from the camera.
 class CDeviceEventImageEx : public CDeviceEventImageBase
 {
 public:
-	// CDeviceEventImageEx 생성자
+	// CDeviceEventImageEx 생성자 // Constructor of CDeviceEventImageEx
 	CDeviceEventImageEx()
 	{
 		m_pViewImage = nullptr;
-		// 이미지를 받을 객체 생성 // Create 이미지를 받을 object
+		// 이미지를 받을 객체 생성 // Create an object to receive images.
 		m_pImage = new CFLImage;
 	}
 
-	// CDeviceEventImageEx 소멸자
+	// CDeviceEventImageEx 소멸자 // Destructor of CDeviceEventImageEx
 	virtual ~CDeviceEventImageEx()
 	{
-		// 생성한 이미지 객체 해제
+		// 생성한 이미지 객체 해제 // Delete the created image object.
 		if(m_pImage)
 		{
 			delete m_pImage;
@@ -26,30 +27,30 @@ public:
 		}
 	}
 
-	// 취득한 이미지를 표시할 이미지 뷰를 설정하는 함수
+	// 취득한 이미지를 표시할 이미지 뷰를 설정하는 함수 // Sets the image view to display acquired images.
 	void SetViewImage(CGUIViewImageWrap* pViewImage)
 	{
 		if(pViewImage)
 		{
 			m_pViewImage = pViewImage;
 
-			// 이미지 뷰에 이미지 포인터 설정
+			// 이미지 뷰에 이미지 포인터 설정 // Set the image pointer for the image view.
 			m_pViewImage->SetImagePtr(m_pImage);
 		}
 	}
 
-	// 카메라에서 이미지 취득 시 호출 되는 함수
+	// 카메라에서 이미지 취득 시 호출 되는 함수 // Callback function called when an image is acquired from the camera.
 	virtual void OnAcquisition(const CDeviceImageBase* pDeviceImage)
 	{
-		// 이미지 뷰의 유효성을 확인한다.
+		// 이미지 뷰의 유효성을 확인한다. // Check the validity of the image view.
 		if(m_pViewImage && m_pViewImage->IsAvailable())
 		{
-			// 카메라에서 취득 한 이미지를 얻어온다.
+			// 카메라에서 취득 한 이미지를 얻어온다. // Get the image acquired from the camera.
 			m_pImage->Lock();
 			pDeviceImage->GetAcquiredImage(m_pImage);
 			m_pImage->Unlock();
 
-			// 이미지 뷰를 재갱신 한다.
+			// 이미지 뷰를 재갱신 한다. // Invalidate the image view.
 			m_pViewImage->Invalidate();
 		}
 	}
@@ -71,7 +72,7 @@ int main()
 	// 이미지 뷰 선언 // Declare image view
 	CGUIViewImageWrap viewImage;
 
-	// Jai 카메라 선언
+	// Jai 카메라 선언 // Declare Jai camera
 	CDeviceCameraJai camJai;
 
 	do
@@ -84,7 +85,7 @@ int main()
 		CDeviceGenICamBase::EConnectionMethod eConnectionMethod = CDeviceGenICamBase::EConnectionMethod_SerialNumber;
 		CFLString<wchar_t> flsConnection = L"";
 
-		// 장치 타입을 선택합니다.
+		// 장치 타입을 선택합니다. // Select the device type.
 		while(true)
 		{
 			printf("1. GigE\n");
@@ -119,7 +120,7 @@ int main()
 
 		printf("\n");
 
-		// 장치 찾기 방법을 선택합니다.
+		// 장치 찾기 방법을 선택합니다. // Select the detection method
 		while(true)
 		{
 			printf("1. Auto Detect\n");
@@ -158,7 +159,7 @@ int main()
 		{
 			CFLArray<CFLString<wchar_t>> flarrSerialNumbers;
 
-			// 연결되어 있는 카메라의 시리얼 번호를 얻는다.
+			// 연결되어 있는 카메라의 시리얼 번호를 얻는다. // Get the serial number of the connected camera.
 			switch(eDeviceType)
 			{
 			case CDeviceGenICamTypeBase::EDeviceType_GigE:
@@ -180,7 +181,7 @@ int main()
 				break;
 			}
 
-			// 연결 할 카메라를 선택합니다.
+			// 연결 할 카메라를 선택합니다. // Select the camera to connect to.
 			while(true)
 			{
 				for(int64_t i = 0; i < flarrSerialNumbers.GetCount(); ++i)
@@ -215,7 +216,7 @@ int main()
 		{
 			if(eDeviceType == CDeviceGenICamTypeBase::EDeviceType_GigE)
 			{
-				// 연결 방법을 선택합니다.
+				// 연결 방법을 선택합니다. // Select the connection method.
 				while(true)
 				{
 					printf("1. Serial Number\n");
@@ -253,7 +254,7 @@ int main()
 			else
 				eConnectionMethod = CDeviceGenICamBase::EConnectionMethod_SerialNumber;
 
-			// 시리얼 번호 혹은 IP 주소를 입력 받는다.
+			// 시리얼 번호 혹은 IP 주소를 입력 받는다. // Enter the serial number or IP address.
 			if(eConnectionMethod == CDeviceGenICamBase::EConnectionMethod_SerialNumber)
 				printf("Input Serial Number: ");
 			else
@@ -265,16 +266,16 @@ int main()
 			flsConnection.Replace(L"\n", L"");
 		}
 
-		// 이벤트를 받을 객체 선언
+		// 이벤트를 받을 객체 선언 // Declare an event object.
 		CDeviceEventImageEx eventImage;
 
-		// 카메라에 이벤트 객체 설정
+		// 카메라에 이벤트 객체 설정 // Set the event object for the camera.
 		camJai.RegisterDeviceEvent(&eventImage);
 
-		// 카메라에 장치 타입 설정
+		// 카메라에 장치 타입 설정 // Set the device type for the camera.
 		camJai.SetDeviceType(eDeviceType);
 
-		// 인덱스에 해당하는 카메라로 연결을 설정한다.
+		// 인덱스에 해당하는 카메라로 연결을 설정합니다. // Set the camera specified by the index for connection.
 		if(bAutoDetect)
 		{
 			switch(eDeviceType)
@@ -293,18 +294,18 @@ int main()
 		}
 		else
 		{
-			// 장치 연결 방법을 설정합니다.
+			// 장치 연결 방법을 설정합니다. // Set the device connection method.
 			camJai.SetConnectionMethod(eConnectionMethod);
 
 			if(eConnectionMethod == CDeviceGenICamBase::EConnectionMethod_SerialNumber)
-				// 시리얼 번호를 설정합니다.
+				// 시리얼 번호를 설정합니다. // Set the serial number.
 				camJai.SetSerialNumber(flsConnection);
 			else
-				// IP 주소를 설정합니다.
+				// IP 주소를 설정합니다. // Set the IP address.
 				camJai.SetIPAddress(flsConnection);
 		}
 
-		// 카메라를 초기화 합니다.
+		// 카메라를 초기화 합니다. // Initialize the camera.
 		drReturn = camJai.Initialize();
 		if(drReturn.IsFail())
 		{
@@ -323,7 +324,7 @@ int main()
 
 		eventImage.SetViewImage(&viewImage);
 
-		// 카메라를 Live 합니다.
+		// 카메라를 Live 합니다. // Start live acquisition.
 		drReturn = camJai.Live();
 		if(drReturn.IsFail())
 		{
@@ -337,7 +338,7 @@ int main()
 	}
 	while(false);
 
-	// 카메라의 초기화를 해제합니다.
+	// 카메라의 초기화를 해제합니다. // Terminate the camera.
 	camJai.Terminate();
 	camJai.ClearDeviceEvents();
 
