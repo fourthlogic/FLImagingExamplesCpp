@@ -171,7 +171,7 @@ BOOL CSNAPViewIntoDialogDlg::DestroyWindow()
 {
 	// TODO: Add your specialized code here and/or call the base class
 
-	// 스냅 뷰를 종료한다.
+	// 스냅 뷰를 종료한다. // Close the SNAP view.
 	m_viewSNAP.Destroy();
 
 	return CDialogEx::DestroyWindow();
