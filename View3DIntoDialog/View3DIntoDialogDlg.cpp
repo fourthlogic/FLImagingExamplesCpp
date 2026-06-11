@@ -104,7 +104,7 @@ BOOL CView3DIntoDialogDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
-	// 3D 뷰 생성
+	// 3D 뷰 생성 // Create 3D View
 	CResult res = m_view3D.CreateAndFitParent((size_t)GetDlgItem(IDC_STATIC_VIEW3D)->GetSafeHwnd());
 
 	if(res.IsFail())
@@ -190,7 +190,7 @@ void CView3DIntoDialogDlg::UpdateControls()
 
 	do
 	{
-		// 3D 뷰 유효성 체크
+		// 3D 뷰의 유효성을 확인한다. // Check the validity of the 3D view.
 		if(!m_view3D.IsAvailable())
 			break;
 
@@ -223,7 +223,7 @@ BOOL CView3DIntoDialogDlg::DestroyWindow()
 	// TODO: Add your specialized code here and/or call the base class
 	KillTimer(1024);
 
-	// 3D 뷰를 종료한다.
+	// 3D 뷰를 종료한다. // Destroy the 3D view.
 	m_view3D.Destroy();
 
 	return CDialogEx::DestroyWindow();
@@ -233,14 +233,14 @@ void CView3DIntoDialogDlg::OnBnClickedButtonGetHeightProfile()
 {
 	do
 	{
-		// 3D 뷰 유효성 체크
+		// 3D 뷰의 유효성을 확인한다. // Check the validity of the 3D view.
 		if(!m_view3D.IsAvailable())
 			break;
 
 		long i64StartX, i64StartY, i64EndX, i64EndY;
 		CString strHeightValue;
 
-		// Edit Box에 있는 숫자값을 long으로 변환하여 시작좌표와 끝좌표 얻어 오기
+		// Edit Box에 있는 숫자값을 long으로 변환하여 시작좌표와 끝좌표 얻어 오기 // Get the start and end coordinates from the numeric values in the edit boxes.
 		GetDlgItem(IDC_EDIT_HP_SX)->GetWindowText(strHeightValue);
 		i64StartX = _wtoi(strHeightValue);
 		GetDlgItem(IDC_EDIT_HP_SY)->GetWindowText(strHeightValue);
@@ -250,15 +250,15 @@ void CView3DIntoDialogDlg::OnBnClickedButtonGetHeightProfile()
 		GetDlgItem(IDC_EDIT_HP_EY)->GetWindowText(strHeightValue);
 		i64EndY = _wtoi(strHeightValue);
 
-		// 시작좌표와 끝좌표 설정
+		// 시작좌표와 끝좌표 설정 // Set the start and end coordinates.
 		CFLPoint<int64_t> flp1(i64StartX, i64StartY);
 		CFLPoint<int64_t> flp2(i64EndX, i64EndY);
 		CFLArrayD flaD;
 		
-		// 시작좌표와 끝좌표를 잇는 선분에 대한 Height Profile 얻기
+		// 시작좌표와 끝좌표를 잇는 선분에 대한 Height Profile 얻기 // Get the height profile along the line segment connecting the start and end coordinates.
 		m_view3D.GetHeightProfile(&flp1, &flp2, &flaD);
 
-		// 얻은 Height Profile 을 화면에 디스플레이
+		// 얻은 Height Profile 을 화면에 디스플레이 // Display the acquired height profile.
 		CFLString<wchar_t> flstr, flstrIndex, flstrVal;
 
 		for(int64_t i = 0; i < flaD.GetCount(); ++i)

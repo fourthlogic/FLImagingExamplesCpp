@@ -23,42 +23,42 @@ int main()
 	// 이미지 뷰 선언 // Declare image view
 	CGUIViewImageWrap arrViewImage[ETypeCount];
 	
-	// 3D 뷰 선언
+	// 3D 뷰 선언 // Declare 3D view
 	CGUIView3DWrap view3D;
 
 	CResult res = EResult_UnknownError;
 
 	do
 	{
-		// Model 이미지 로드
+		// Model 이미지 로드 // Load the model image.
 		if(IsFail(res = arrFliImage[EType_Model].Load(L"../../ExampleImages/View3D/mountain.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
-		// Texture 이미지 로드
+		// Texture 이미지 로드 // Load the texture image.
 		if(IsFail(res = arrFliImage[EType_Texture].Load(L"../../ExampleImages/View3D/mountain_texture.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
-		// Model 이미지 뷰 생성
+		// Model 이미지 뷰 생성 // Create the model image view.
 		if(IsFail(res = arrViewImage[EType_Model].Create(100, 0, 612, 512)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		// Texture 이미지 뷰 생성
+		// Texture 이미지 뷰 생성 // Create the texture image view.
 		if(IsFail(res = arrViewImage[EType_Texture].Create(612, 0, 1124, 512)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		// 3D 뷰 생성
+		// 3D 뷰 생성 // Create the 3D view.
 		if(IsFail(res = view3D.Create(1124, 0, 1636, 512)))
 		{
 			ErrorPrint(res, "Failed to create the 3D view.\n");
@@ -81,7 +81,7 @@ int main()
 		if(bError)
 			break;
 
-		// 3D 뷰에 모델과 텍스처를 로드하여 디스플레이
+		// 3D 뷰에 모델과 텍스처를 로드하여 디스플레이 // Load the model and texture into the 3D view and display them.
 		if((res = view3D.PushObject(CFL3DObjectHeightMap(&arrFliImage[EType_Model], &arrFliImage[EType_Texture]))).IsFail())
 		{
 			ErrorPrint(res, "Failed to set image object on the 3D view.\n");
@@ -104,7 +104,7 @@ int main()
 			break;
 		}
 
-		// 이미지 뷰와 3D 뷰 윈도우의 위치를 맞춤
+		// 이미지 뷰와 3D 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the image view and 3D view windows.
 		if(IsFail(res = arrViewImage[EType_Model].SynchronizeWindow(&view3D)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
