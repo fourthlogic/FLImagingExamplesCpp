@@ -177,14 +177,14 @@ int main()
 
 			if(eMotionType == EMotion_SearchOriginPosition)
 			{
-				// 원점 복귀 운전을 진행합니다. // 
+				// 원점 복귀 운전을 진행합니다. // Execute a homing operation.
 				if(IsFail(res = pDMAxis->SearchOriginPosition()))
 				{
 					ErrorPrint(res, "Failed to search origin position.\n");
 					break;
 				}
 
-				// 모션이 정지 될때까지 대기 // Wait until motion stops/
+				// 모션이 정지 될때까지 대기 // Wait until motion stops.
 				do
 				{
 					Sleep(100);
@@ -225,7 +225,7 @@ int main()
 						break;
 					}
 
-					// 모션이 정지 될때까지 대기 // Wait until motion stops/
+					// 모션이 정지 될때까지 대기 // Wait until motion stops.
 					do
 					{
 						Sleep(100);
@@ -245,7 +245,7 @@ int main()
 						break;
 					}
 
-					// 모션이 정지 될때까지 대기 // Wait until motion stops/
+					// 모션이 정지 될때까지 대기 // Wait until motion stops.
 					do
 					{
 						Sleep(100);
