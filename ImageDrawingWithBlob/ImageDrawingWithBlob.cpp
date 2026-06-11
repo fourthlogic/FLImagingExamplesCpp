@@ -31,7 +31,7 @@ int main()
 			break;
 		}
 
-		// Drawing 이미지를 Src 이미지와 동일한 이미지로 생성
+		// Drawing 이미지를 Src 이미지와 동일한 이미지로 생성 // Create the drawing image from the source image.
 		if(IsFail(res = fliImageDrawing.Assign(fliImage)))
 		{
 			ErrorPrint(res, "Failed to assign the image file.\n");
@@ -76,11 +76,12 @@ int main()
 		// Blob 객체 생성 // Create Blob object
 		CBlob blob;
 
-		// 처리할 이미지 설정
+		// 처리할 이미지 설정 // Set the image to be processed.
 		blob.SetSourceImage(fliImage);
-		// 논리 조건 설정
+		// 논리 조건 설정 // Set the logical condition.
 		blob.SetLogicalCondition(ELogicalCondition_Less);
-		// 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 127보다 작은 객체를 검출
+		// Set the threshold value.
+		// Combined with the logical condition above, objects with values less than 127 are detected.
 		blob.SetThreshold(127);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
@@ -90,19 +91,19 @@ int main()
 			break;
 		}
 
-		// 결과 객체들 중 해당되는 조건을 가진 객체를 제거
+		// 결과 객체들 중 해당되는 조건을 가진 객체를 제거 // Remove objects that match the specified condition from the result objects.
 
-		// 면적이 500보다 작은 객체들을 제거
+		// 면적이 500 이하의 작은 객체들을 제거 // Remove objects with an area less than or equal to 500.
 		if(IsFail(res = blob.Filter(CBlob::EFilterItem_Area, 500, ELogicalCondition_LessEqual)))
 		{
 			ErrorPrint(res, "Blob filtering algorithm error occurred.");
 			break;
 		}
 
-		// Blob 결과를 얻어오기 위해 FigureArray 선언
+		// Blob 결과를 얻어오기 위해 FigureArray 선언 // Create a FigureArray for the blob results.
 		CFLFigureArray flfaBoundaryRects;
 
-		// Blob 결과들 중 Boundary Rectangle 을 얻어옴
+		// Blob 결과들 중 Boundary Rectangle 을 얻어옴 // Get the bounding rectangles from the blob results.
 		if(IsFail(res = blob.GetResultBoundaryRects(flfaBoundaryRects)))
 		{
 			ErrorPrint(res, "Failed to get boundary rects from the Blob object.");
@@ -127,7 +128,7 @@ int main()
 			break;
 		}
 
-		// flfaBoundaryRects 는 Figure들의 배열이기 때문에 Layer에 넣기만 해도 모두 드로윙이 가능하다.
+		// flfaBoundaryRects 는 Figure들의 배열이기 때문에 Layer에 넣기만 해도 모두 드로윙이 가능하다. // Since flfaBoundaryRects is an array of figures, all figures can be drawn by simply adding it to the layer.
 		// 아래 함수 DrawFigureImage는 Image좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
 		// 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
 		// 여기서 0.25이므로 옅은 반투명 상태라고 볼 수 있다.
@@ -138,7 +139,7 @@ int main()
 			break;
 		}
 
-		// Rect 정보값을 각각 확인하는 코드
+		// Rect 정보값을 각각 확인하는 코드 // Code for examining each rectangle information value.
 		for(int64_t i = 0; i < flfaBoundaryRects.GetCount(); ++i)
 		{
 			CFLRect<int32_t>* pFlrRect = (CFLRect<int32_t>*)flfaBoundaryRects.GetAt(i);
@@ -162,6 +163,9 @@ int main()
 
 				// 아래 함수 DrawTextImage는 Image좌표를 기준으로 하는 Text를 Drawing 한다는 것을 의미한다.
 				// 파라미터 순서 : 레이어 -> 문자열 좌표 -> 문자열 지정 -> 문자열 색 -> 면 색 -> 폰트 크기 -> 실제 크기로 그릴지의 여부 -> 각도 -> 문자열의 위치 기준
+				// The DrawTextImage function draws text based on image coordinates.
+				// Parameter order:
+				// Layer -> text position -> text string -> text color -> fill color -> font size -> whether to render in real-world size -> angle -> text alignment
 				layer2.DrawTextImage(&CFLPoint<double>(pFlrRect->GetCenter()), strNumber, CYAN, BLACK, 12, false, 0., FLImaging::GUI::EGUIViewImageTextAlignment_CENTER_CENTER);
 				layer2.DrawTextImage(&CFLPoint<double>(pFlrRect->left, pFlrRect->top), strLeftTop, YELLOW, BLACK, 12, false, 0., FLImaging::GUI::EGUIViewImageTextAlignment_RIGHT_BOTTOM);
 				layer2.DrawTextImage(&CFLPoint<double>(pFlrRect->right, pFlrRect->bottom), strRightBottom, YELLOW, BLACK);
