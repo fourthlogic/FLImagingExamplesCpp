@@ -1597,6 +1597,9 @@
     - Laplacian Variance
       - Algorithm that measure image's focus score based on Laplacian 2nd derivative value
       - Laplacian 2차 미분 값을 기반으로 이미지의 초점 점수를 측정하는 알고리즘
+    - Sum Modified Laplacian
+      - Algorithm that measure image's focus score based on Modified Laplacian 2nd derivative value
+      - Modified Laplacian 2차 미분 값을 기반으로 이미지의 초점 점수를 측정하는 알고리즘
 
   - [Frequency Domain]
 
