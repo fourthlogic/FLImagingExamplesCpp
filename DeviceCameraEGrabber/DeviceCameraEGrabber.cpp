@@ -86,13 +86,13 @@ int main()
 
 		CFLString<wchar_t> flsInput = L"";
 
-		// 보드의 인덱스를 입력합니다.
+		// 보드의 인덱스를 입력합니다. // Enter the board index.
 		printf("Enter board index: ");
 		fgetws(arrInput, 4096, stdin);
 		flsInput = arrInput;
 		i32BoardIndex = flsInput.ToInt32();
 
-		// 모듈의 인덱스를 입력합니다.
+		// 모듈의 인덱스를 입력합니다. // Enter the module index.
 		printf("Enter module index: ");
 		fgetws(arrInput, 4096, stdin);
 		flsInput = arrInput;
@@ -106,7 +106,7 @@ int main()
 		// 카메라에 이벤트 객체 설정 // Set the event object for the camera.
 		camEGrabber.RegisterDeviceEvent(&eventImage);
 
-		// 카메라에 장치 설정
+		// 카메라에 장치 설정 // Configure the camera device.
 		camEGrabber.SetBoardIndex(i32BoardIndex);
 		camEGrabber.SetModuleIndex(i32ModuleIndex);
 

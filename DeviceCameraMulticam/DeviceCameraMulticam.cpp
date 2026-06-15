@@ -145,7 +145,7 @@ int main()
 		// 카메라에 이벤트 객체 설정 // Set the event object for the camera.
 		camMulticam.RegisterDeviceEvent(&eventImage);
 
-		// 카메라에 장치 설정
+		// 카메라에 장치 설정 // Configure the camera device.
 		camMulticam.SetCamFilePath(flsCamfilePath);
 		camMulticam.SetBoardIndex(i32BoardIndex);
 		camMulticam.SetBoardTopology(eBoardTopology);
