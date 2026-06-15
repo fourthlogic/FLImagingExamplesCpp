@@ -46,13 +46,13 @@ BOOL CLogInExampleApp::InitInstance()
 	CGUIManager::SetRegistrySubKeyName(CGUIManager::GetAppTitle());
 	SetRegistryKey(L"Fourth Logic Incorporated\\Examples\\Cpp");
 
-	// GUI Manager 초기화 전처리를 수행합니다.
+	// GUI Manager 초기화 전처리를 수행합니다. // Perform pre-initialization for the GUI Manager.
 	CGUIManager::PreInitialize();
 
-	// 로그인 메뉴를 추가합니다.
+	// 로그인 메뉴를 추가합니다. // Add a login menu.
 	CGUIManager::AddMenuItem(new CGUIMenuItemLogIn);
 
-	// 추가한 로그인 메뉴의 상위 폴더의 이름을 얻어 옵니다.
+	// 추가한 로그인 메뉴의 상위 폴더의 이름을 얻어 옵니다. // Gets the name of the parent folder of the added login menu.
 	Base::CFLString<wchar_t> strMenuItemParentFullPath;
 	int64_t i64MenuItemCount = GUI::CGUIManager::GetMenuItemCount();
 
@@ -69,7 +69,7 @@ BOOL CLogInExampleApp::InitInstance()
 		}
 	}
 
-	// 로그인 메뉴를 트리에서 펼칩니다.
+	// 로그인 메뉴를 트리에서 펼칩니다. // Expand the login menu in the tree.
 	if(!strMenuItemParentFullPath.IsEmpty())
 	{
 		bool bExpand = true;
@@ -82,16 +82,16 @@ BOOL CLogInExampleApp::InitInstance()
 	CGUIManager::AddPredefinedMenuItemExpandSetting(L"FLImaging@View Manager", false, true, false);
 	CGUIManager::AddPredefinedMenuItemExpandSetting(L"FLImaging@Model Manager", false, true, false);
 
-	// 예제 프로퍼티 메뉴를 등록합니다.
+	// 예제 프로퍼티 메뉴를 등록합니다. // 예제 프로퍼티 메뉴를 등록합니다. // Register the example property menu.
 	CGUIManager::RegisterMenu(CPropertyLogInExample(), L"Log In Property Example", L"Menu", false);
 
-	// GUI 상에서 사용될 뷰를 생성합니다.
+	// GUI 상에서 사용될 뷰를 생성합니다. // GUI 상에서 사용될 뷰를 생성합니다. // Create the view to be used in the GUI.
 	CGUIFixedViewDeclaration* pDeclarationCam = new CGUIFixedViewDeclaration;
 	pDeclarationCam->SetMultiDocTemplateName("CGUIDocImageCGUIChildFrameImageCGUIViewImage");
 	pDeclarationCam->SetViewName(L"Image View");
 	CGUIManagerView::AddFixedViewDeclaration(pDeclarationCam);
 
-	// GUI 상에서 뷰의 배열을 설정합니다.
+	// GUI 상에서 뷰의 배열을 설정합니다. // GUI 상에서 뷰의 배열을 설정합니다. // Configure the view layout in the GUI.
 	CGUIFixedViewPlacement fvp;
 	fvp.SetFixedViewDeclaration(pDeclarationCam);
 	fvp.SetPlacement(CFLRect<double>(0., 0., 1., 1.));
@@ -102,21 +102,21 @@ BOOL CLogInExampleApp::InitInstance()
 
 	CGUIManagerView::AddFixedViewPlacementSet(fvpSet1);
 
-	// 인덱스에 해당하는 뷰의 설정으로 선택합니다.
+	// 인덱스에 해당하는 뷰의 설정으로 선택합니다. // Select the view placement set to the specified index.
 	CGUIManagerView::SelectFixedViewPlacementSet(0);
 
 	CGUIManager::PreInitializePaneVisibility(true, false, false, false, false);
 
-	// 모델 관리자를 초기화 합니다.
+	// 모델 관리자를 초기화 합니다. // Initialize the model manager.
 	CGUIManagerModel::Initialize();
 
-	// GUI 관리자를 초기화 합니다.
+	// GUI 관리자를 초기화 합니다. // Initialize the GUI manager.
 	CGUIManager::Initialize();
 
-	// Menu tree 의 expand 세팅을 불러 옵니다.
+	// Menu tree 의 expand 세팅을 불러 옵니다. // Load the expand state of the menu tree.
 	CGUIManager::LoadMenuItemExpandSetting();
 
-	// Main Frame 위치를 설정합니다.
+	// Main Frame 위치를 설정합니다. // Set the position of the main frame.
 	CGUIMainFrame* pMF = nullptr;
 
 	if(AfxGetApp() && AfxGetApp()->m_pMainWnd)
@@ -131,10 +131,10 @@ BOOL CLogInExampleApp::InitInstance()
 	
 	CResult cc = CAuthorityManager::Initialize(CGUIManager::GetConfigurationPath() + L"\\LogIn.ini", L"root");
 
-	// "Log In Property Example" 이라는 이름의 메뉴 아이템 찾기
+	// "Log In Property Example" 이라는 이름의 메뉴 아이템 찾기 // Find the menu item named "Log In Property Example".
 	CPropertyLogInExample* pPropertyMenu = dynamic_cast<CPropertyLogInExample*>(CGUIManager::GetMenuItem(L"Log In Property Example", L"Menu"));
 
-	// "Log In Property Example" 이라는 이름의 메뉴 아이템이 있을 경우, 프로퍼티 창 열기
+	// "Log In Property Example" 이라는 이름의 메뉴 아이템이 있을 경우, 프로퍼티 창 열기 // If the menu item named "Log In Property Example" exists, open the property window.
 	if(pPropertyMenu)
 	{
 		if(!pPropertyMenu->OnLButtonDoubleClick())

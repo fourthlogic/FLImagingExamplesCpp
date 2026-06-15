@@ -204,7 +204,7 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuGUIDialogExample::Ma
 			CGUIGridLayout* pGridLayoutGeometric = new CGUIGridLayout(1, 2, true);
 			{
 				pGridLayoutGeometric->AddCtrl(0, 0, EControl_StaticText, L"Mode");
-				pGridLayoutGeometric->AddCtrl(0, 1, EControl_ComboBox, L"Auto"); // L"Auto" 는 해당 ComboBox 의 default value
+				pGridLayoutGeometric->AddCtrl(0, 1, EControl_ComboBox, L"Auto"); // L"Auto" 는 해당 ComboBox 의 default value // L"Auto" is the default value of the combo box.
 				pGridLayoutGeometric->AddComboBoxItem(0, 1, L"Auto");
 				pGridLayoutGeometric->AddComboBoxItem(0, 1, L"Absolute");
 				pGridLayoutGeometric->AddComboBoxItem(0, 1, L"Relative (%)");
@@ -217,12 +217,12 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuGUIDialogExample::Ma
 			CGUIGridLayout* m_pGridLayout1 = new CGUIGridLayout(2, 2, true, L"Preview Mode");
 			{
 				m_pGridLayout1->AddCtrl(0, 0, L"Above or on threshold");
-				m_pGridLayout1->AddCtrl(0, 1, EControl_ComboBox, L"White"); // L"White" 는 해당 ComboBox 의 default value
+				m_pGridLayout1->AddCtrl(0, 1, EControl_ComboBox, L"White"); // L"White" 는 해당 ComboBox 의 default value // L"White" is the default value for this combo box.
 				m_pGridLayout1->AddComboBoxItem(0, 1, L"White");
 				m_pGridLayout1->AddComboBoxItem(0, 1, L"Reddish");
 				m_pGridLayout1->AddComboBoxItem(0, 1, L"Gray");
 				m_pGridLayout1->AddCtrl(1, 0, L"Below threshold");
-				m_pGridLayout1->AddCtrl(1, 1, EControl_ComboBox, L"Black"); // L"Black" 은 해당 ComboBox 의 default value
+				m_pGridLayout1->AddCtrl(1, 1, EControl_ComboBox, L"Black"); // L"Black" 은 해당 ComboBox 의 default value // L"Black" is the default value for this combo box.
 				m_pGridLayout1->AddComboBoxItem(1, 1, L"Black");
 				m_pGridLayout1->AddComboBoxItem(1, 1, L"Blush");
 				m_pGridLayout1->AddComboBoxItem(1, 1, L"Gray");
@@ -264,7 +264,7 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuGUIDialogExample::Ma
 
 			m_pModelessDlg->SetTitle(L"Slider Test");
 
-			// 실수형 슬라이더
+			// 실수형 슬라이더 // Floating-point slider
 			GUI::CGUIGridLayout* pGrid = new CGUIGridLayout(2, 3, true, L"test");
 
 			pGrid->AddCtrl(0, 0, L"test");
@@ -273,8 +273,8 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuGUIDialogExample::Ma
 			CGUISliderFloatingPoint* pSliderFloatingPoint = new CGUISliderFloatingPoint;
 
 			pSliderFloatingPoint->SetRange(0., 1.);
-			pSliderFloatingPoint->SetUnit(0.01); // SliderFloatingPoint 1틱당 증가량
-			pSliderFloatingPoint->SetDecimalPlaces(2); // 소수점 자리 표시
+			pSliderFloatingPoint->SetUnit(0.01); // SliderFloatingPoint 1틱당 증가량 // Increment value per tick of the floating-point slider.
+			pSliderFloatingPoint->SetDecimalPlaces(2); // 소수점 자리 표시 // Decimal places to display.
 
 
 			pGrid->AddCtrl(1, 0, L"Val=  ");

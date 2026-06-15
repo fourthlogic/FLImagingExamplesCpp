@@ -93,9 +93,11 @@ BOOL CMenuBarUserDefinedInfoExampleApp::InitInstance()
 	CGUIManagerModel::LoadLastUsedModel();
 
 	// "MenuBar User Defined Info Example" 이라는 이름의 메뉴 아이템 찾기
+	// Find the menu item named "MenuBar User Defined Info Example".
 	CPropertyMenuBarUserDefinedInfoExample* pPropertyMenu = dynamic_cast<CPropertyMenuBarUserDefinedInfoExample*>(CGUIManager::GetMenuItem(L"MenuBar User Defined Info Example", L"Menu"));
 
 	// "MenuBar User Defined Info Example" 이라는 이름의 메뉴 아이템이 있을 경우, 프로퍼티 창 열기
+	// If the menu item named "MenuBar User Defined Info Example" exists, open the property window.
 	if(pPropertyMenu)
 	{
 		CGUIMenuItemAttributePane* pAttrPane = pPropertyMenu->GetAttributePane();
@@ -103,6 +105,7 @@ BOOL CMenuBarUserDefinedInfoExampleApp::InitInstance()
 		if(pAttrPane)
 		{
 			// MainFrame의 Right 위치에 붙이기
+			// Dock to the right side of the MainFrame.
 			CGUIPanePlacementDockToMainFrame panePlacementDTMF;
 			panePlacementDTMF.m_eDockPosition = EDockPosition_Right;
 			panePlacementDTMF.m_i32Width = 400;

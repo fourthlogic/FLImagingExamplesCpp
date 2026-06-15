@@ -46,13 +46,13 @@ BOOL CView3DExamplesApp::InitInstance()
 	CGUIManager::SetRegistrySubKeyName(CGUIManager::GetAppTitle());
 	SetRegistryKey(L"Fourth Logic Incorporated\\Examples\\Cpp");
 
-	// GUI Manager 초기화 전처리를 수행합니다.
+	// GUI Manager 초기화 전처리를 수행합니다. // Perform pre-initialization for the GUI Manager.
 	CGUIManager::PreInitialize();
 
-	// 예제 프로퍼티 메뉴를 등록합니다.
+	// 예제 프로퍼티 메뉴를 등록합니다. // Register the example property menu.
 	CGUIManager::RegisterMenu(CPropertyView3DExamples(), L"View3D Example", L"Menu", false);
 
-	// GUI 상에서 사용될 뷰를 생성합니다.
+	// GUI 상에서 사용될 뷰를 생성합니다. // Create the view to be used in the GUI.
 	std::vector<CGUIFixedViewDeclaration*> vctFixedViewDecl;
 
 	for(int32_t i = 0; i < 4; ++i)
@@ -64,7 +64,7 @@ BOOL CView3DExamplesApp::InitInstance()
 		vctFixedViewDecl.push_back(pDeclarationCam);
 	}
 
-	// GUI 상에서 뷰의 배열을 설정합니다.
+	// GUI 상에서 뷰의 배열을 설정합니다. // Configure the view layout in the GUI.
 	CGUIFixedViewPlacement fvp;
 
 	CGUIFixedViewPlacementSet fvpSet1(false);
@@ -138,18 +138,18 @@ BOOL CView3DExamplesApp::InitInstance()
 	CGUIManagerView::AddFixedViewPlacementSet(fvpSet3);
 	CGUIManagerView::AddFixedViewPlacementSet(fvpSet4);
 
-	// 인덱스에 해당하는 뷰의 설정으로 선택합니다.
+	// 인덱스에 해당하는 뷰의 설정으로 선택합니다. // Select the view placement set to the specified index.
 	CGUIManagerView::SelectFixedViewPlacementSet(3);
 
 	CGUIManager::PreInitializePaneVisibility(true, true, false, false, false);
 
-	// 모델 관리자를 초기화 합니다.
+	// 모델 관리자를 초기화 합니다. // Initialize the model manager.
 	CGUIManagerModel::Initialize();
 
-	// GUI 관리자를 초기화 합니다.
+	// GUI 관리자를 초기화 합니다. // Initialize the GUI manager.
 	CGUIManager::Initialize();
 
-	// Main Frame 위치를 설정합니다.
+	// Main Frame 위치를 설정합니다. // Set the position of the main frame.
 	CGUIMainFrame* pMF = nullptr;
 
 	if(AfxGetApp() && AfxGetApp()->m_pMainWnd)
@@ -171,9 +171,11 @@ BOOL CView3DExamplesApp::InitInstance()
 	}
 
 	// "View3D Example" 이라는 이름의 메뉴 아이템 찾기
+	// Find the menu item named "View3D Example".
 	CPropertyView3DExamples* pPropertyMenu = dynamic_cast<CPropertyView3DExamples*>(CGUIManager::GetMenuItem(L"View3D Example", L"Menu"));
 
 	// "View3D Example" 이라는 이름의 메뉴 아이템이 있을 경우, 프로퍼티 창 열기
+	// If the menu item named "View3D Example" exists, open the property window.
 	if(pPropertyMenu)
 		pPropertyMenu->OnLButtonDoubleClick();
 

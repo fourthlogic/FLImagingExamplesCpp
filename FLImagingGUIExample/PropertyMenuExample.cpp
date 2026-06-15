@@ -15,21 +15,21 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 
 	do
 	{
-		// 이미지 로드 버튼을 추가합니다.
+		// 이미지 로드 버튼을 추가합니다. // Add an image load button
 		CGUIPropertyButton* pBtn = new CGUIPropertyButton;
 		pBtn->SetName(L"Load Image");
 		pBtn->SetPropertyButtonClickProcedure(CPropertyMenuExample::LoadImage());
 		pBtn->SetButtonWidthRatio(.6);
 		AddButton(pBtn);
 
-		// 클리어 뷰 버튼을 추가합니다.
+		// 클리어 뷰 버튼을 추가합니다. // Add the clear view button
 		pBtn = new CGUIPropertyButton;
 		pBtn->SetName(L"Clear View");
 		pBtn->SetPropertyButtonClickProcedure(CPropertyMenuExample::ClearView());
 		pBtn->SetButtonWidthRatio(.4);
 		AddButton(pBtn);
 
-		// Draw Figure 버튼을 추가합니다.
+		// Draw Figure 버튼을 추가합니다. // Add the Draw Figure button
 		pBtn = new CGUIPropertyButton;
 		pBtn->SetName(L"Draw Figure");
 		pBtn->SetPropertyButtonClickProcedure(CPropertyMenuExample::DrawFigure());
@@ -37,7 +37,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 		SetShortcut(EKeyType_F5, pBtn);
 		AddButton(pBtn);
 
-		// Clear Layer 버튼을 추가합니다.
+		// Clear Layer 버튼을 추가합니다. // Add the Clear Layer button
 		pBtn = new CGUIPropertyButton;
 		pBtn->SetName(L"Clear Layer");
 		pBtn->SetPropertyButtonClickProcedure(CPropertyMenuExample::ClearLayer());
@@ -45,24 +45,24 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 		SetShortcut(EKeyType_F6, pBtn);
 		AddButton(pBtn);
 
-		// 카테고리 아이템을 추가합니다.
+		// 카테고리 아이템을 추가합니다. // Add a category item
 		CGUIPropertyItemCategory* pCatImageView = new CGUIPropertyItemCategory;
 		pCatImageView->SetName(L"Example");
 		AddItem(pCatImageView);
 		{
-			// Example 카테고리에 하위 카테고리인 Image 카테고리를 추가합니다.
+			// Example 카테고리에 하위 카테고리인 Image 카테고리를 추가합니다. // Add the Image category as a subcategory of the Example category
 			pCatImageView = new CGUIPropertyItemCategory;
 			pCatImageView->SetName(L"Image");
 			pCatImageView->SetPath(L"Example");
 			AddItem(pCatImageView);
 			{
-				// 뷰 이미지 리스트 아이템을 추가합니다.
+				// 뷰 이미지 리스트 아이템을 추가합니다. // Add a view image list item
 				CGUIPropertyItemViewImageList* pViewImageList = new CGUIPropertyItemViewImageList;
 				pViewImageList->SetName(L"Image View");
 				pViewImageList->SetPath(L"Example@Image");
 				AddItem(pViewImageList);
 
-				// 파일 선택 아이템을 추가합니다.
+				// 파일 선택 아이템을 추가합니다. // Add a file selection item
 				CGUIPropertyItemFile* pFile = new CGUIPropertyItemFile;
 				pFile->SetName(L"File");
 				pFile->SetPath(L"Example@Image");
@@ -70,7 +70,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pFile->SetFileFilter(L"All Supporting Files (*.flif;*.bmp;*.jpg;*.jpeg;*.tif;*.png;)|*.flif;*.bmp;*.jpg;*.jpeg;*.tif;*.png; |FLImaging Image Files(*.flif;) | *.flif; |Bitmap Files(*.bmp;) | *.bmp; |JPEG Files(*.jpg; *.jpeg;) | *.jpg; *.jpeg; |TIFF Files(*.tif; *.tiff;) | *.tif; *.tiff; |PNG Files(*.png;) | *.png; |All Files(*.*;) | *.*; ||");
 				AddItem(pFile);
 
-				// 뷰 이미지 ROI 아이템을 추가합니다.
+				// 뷰 이미지 ROI 아이템을 추가합니다. // Add a view image ROI item
 				CGUIPropertyItemViewImageFigure* pViewImageROI = new CGUIPropertyItemViewImageFigure;
 				pViewImageROI->SetName(L"ROI");
 				pViewImageROI->SetPath(L"Example@Image");
@@ -78,13 +78,13 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				AddItem(pViewImageROI);
 			}
 
-			// Example 카테고리에 하위 카테고리인 Parameters 카테고리를 추가합니다.
+			// Example 카테고리에 하위 카테고리인 Parameters 카테고리를 추가합니다. // Add the Parameters category as a subcategory of the Example category
 			pCatImageView = new CGUIPropertyItemCategory;
 			pCatImageView->SetName(L"Parameters");
 			pCatImageView->SetPath(L"Example");
 			AddItem(pCatImageView);
 			{
-				// 텍스트 아이템을 추가합니다.
+				// 텍스트 아이템을 추가합니다. // Add a text item
 				CGUIPropertyItemText* pText = new CGUIPropertyItemText;
 				pText->SetName(L"Text");
 				pText->SetPath(L"Example@Parameters");
@@ -92,7 +92,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pText->SetDescription(L"Custom Description");
 				AddItem(pText);
 
-				// InputType를 지정한 텍스트 아이템을 추가합니다.
+				// InputType를 지정한 텍스트 아이템을 추가합니다. // Add a text item with the specified input type
 				pText = new CGUIPropertyItemText;
 				pText->SetName(L"Only Number");
 				pText->SetPath(L"Example@Parameters");
@@ -100,7 +100,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pText->SetDefaultValue(L"123");
 				AddItem(pText);
 
-				// 콤보박스 아이템을 추가합니다.
+				// 콤보박스 아이템을 추가합니다. // Add a combo box item
 				CGUIPropertyItemDropdownList* pDropdownList = new CGUIPropertyItemDropdownList;
 				pDropdownList->SetName(L"Dropdown List");
 				pDropdownList->SetPath(L"Example@Parameters");
@@ -110,11 +110,11 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pDropdownList->SetDefaultValue(L"OK");
 				AddItem(pDropdownList);
 
-				// 체크박스 아이템을 추가합니다.
+				// 체크박스 아이템을 추가합니다. // Adds a checkbox item.
 				CGUIPropertyItemCheckBox* pCheckBox = new CGUIPropertyItemCheckBox;
 				pCheckBox->SetName(L"Hide Image Category");
 				pCheckBox->SetPath(L"Example@Parameters");
-				// CallBack 처리 함수를 추가합니다.
+				// CallBack 처리 함수를 추가합니다. // Adds a callback handler function.
 				CPropertyCallback* pPropertyCallBack = new CPropertyCallback;
 				*pPropertyCallBack = MakePropertyCallback
 				{
@@ -124,7 +124,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pCheckBox->SetDefaultValue(L"Unchecked");
 				AddItem(pCheckBox);
 
-				// 슬라이더 아이템을 추가합니다.
+				// 슬라이더 아이템을 추가합니다. // Add a slider item.
 				CGUIPropertyItemSlider* pSlider = new CGUIPropertyItemSlider(CGUIPropertyItemSlider::ETemplateType_Int32);
 				pSlider->SetName(L"Slider");
 				pSlider->SetPath(L"Example@Parameters");
@@ -133,7 +133,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pSlider->SetDefaultValue(L"0");
 				AddItem(pSlider);
 
-				// Spin 아이템을 추가합니다.
+				// Spin 아이템을 추가합니다. // Add a spin item.
 				CGUIPropertyItemSpin* pSpin = new CGUIPropertyItemSpin;
 				pSpin->SetName(L"Spin");
 				pSpin->SetPath(L"Example@Parameters");
@@ -141,7 +141,7 @@ const CResult FLImaging::GUI::CPropertyMenuExample::ConfigureMenu()
 				pSpin->SetDefaultValue(L"0");
 				AddItem(pSpin);
 
-				// IP Address 아이템을 추가합니다.
+				// IP Address 아이템을 추가합니다. // Add an IP address item.
 				CGUIPropertyItemIPAddress* pIPAddress = new CGUIPropertyItemIPAddress;
 				pIPAddress->SetName(L"IPAddress");
 				pIPAddress->SetPath(L"Example@Parameters");
@@ -237,7 +237,7 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuExample::DrawFigure(
 			if(!pLayer)
 				break;
 
-			// ROI를 받아옵니다.
+			// ROI를 받아옵니다. // Get the ROI.
 			CFLFigureArray flfaROI;
 			CFigureUtilities::ConvertFigureStringToObject(&mu.GetValue(L"Example@Image", L"ROI"), &flfaROI);
 

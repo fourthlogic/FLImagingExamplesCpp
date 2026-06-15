@@ -791,7 +791,7 @@ void FLImaging::GUI::CPropertyMenuBarUserDefinedInfoExample::OnReceiveBroadcast(
 				CLog::Write(L"From Broadcast : [" + pHitUDI->GetText() + L"]   PreLButtonDblClk");
 
 			if(pMsg && !pHitUDI->GetLButtonDblClkCallback())
-				pMsg->SetAcceptance(false); // LButtonDblClk 에 대한 기본 처리(MainFrame 창 최대화, Restore 등)를  하지 않고 break 하는 기능
+				pMsg->SetAcceptance(false); // LButtonDblClk 에 대한 기본 처리(MainFrame 창 최대화, Restore 등)를  하지 않고 break 하는 기능 // Prevent the default handling of LButtonDblClk (maximize, restore, etc.) and break.
 		}
 		break;
 	case EGUIBroadcast_MenuBar_PostLButtonDblClk:
