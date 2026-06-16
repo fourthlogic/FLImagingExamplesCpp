@@ -31,7 +31,7 @@ int main()
 			break;
 		}
 
-		// 뷰의 시점을 동기화 한다.
+		// 뷰의 시점을 동기화 한다. // Synchronizes the view point.
 		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[1])))
 		{
 			ErrorPrint(res,"Failed to synchronize view\n");
@@ -48,15 +48,18 @@ int main()
 		// 이미지 뷰에서 이용 가능한 컨텍스트 메뉴를 설정합니다. 
 		// EAvailableViewImageContextMenu_All 이 기본값이며, 이 값으로 설정하면 모든 메뉴를 사용 가능한 상태가 됩니다.
 		// 아래와 같이 EAvailableViewImageContextMenu_None 으로 설정할 경우 모든 메뉴가 비활성화됩니다.
+		// Sets the context menus available in the image view.
+		// EAvailableViewImageContextMenu_All is the default value, and setting this value enables all context menu items.
+		// As shown below, setting EAvailableViewImageContextMenu_None disables all context menu items.
 		viewImage[0].SetAvailableViewImageContextMenu(EAvailableViewImageContextMenu_None);
 
-		// 이미지뷰의 0번 레이어 가져오기
+		// 이미지뷰의 0번 레이어 가져오기 // Retrieves layer 0 from the image view.
 		CGUIViewImageLayerWrap layer = viewImage[0].GetLayer(0);
 
-		// 기존에 Layer 에 그려진 도형들을 삭제
+		// 기존에 Layer 에 그려진 도형들을 삭제 // Clear all figures previously drawn on the layer.
 		layer.Clear();
 
-		// 안내 문자열 생성
+		// 안내 문자열 생성 // Creates a guidance message.
 		CFLString<wchar_t> flsInformation = L"RIGHT BUTTON CLICK ON MOUSE AND SEE THE CONTEXT MENU";
 		CFLString<wchar_t> flsInformation2 = L"Option : EAvailableViewImageContextMenu_None";
 
@@ -73,16 +76,22 @@ int main()
 		// 아래와 같이 여러 조합을 이용하여 설정할 수 있으며, 
 		// EAvailableViewImageContextMenu_All & ~(EAvailableViewImageContextMenu_Load | EAvailableViewImageContextMenu_ClearFile | EAvailableViewImageContextMenu_Save | EAvailableViewImageContextMenu_CreateImage) 으로 설정할 경우 
 		// 파일 열기, 닫기, 저장, 이미지 생성 메뉴가 비활성화됩니다.
+		// Sets the context menus available in the image view.
+		// EAvailableViewImageContextMenu_All is the default value, and setting this value enables all context menu items.
+		// As shown below, multiple menu combinations can be configured using bitwise operations.
+		// For example, setting
+		// EAvailableViewImageContextMenu_All & ~(EAvailableViewImageContextMenu_Load | EAvailableViewImageContextMenu_ClearFile | EAvailableViewImageContextMenu_Save | EAvailableViewImageContextMenu_CreateImage)
+		// disables the Open File, Close File, Save, and Create Image menu items.
 		viewImage[1].SetAvailableViewImageContextMenu(EAvailableViewImageContextMenu_All & ~(EAvailableViewImageContextMenu_Load | EAvailableViewImageContextMenu_ClearFile | EAvailableViewImageContextMenu_Save | EAvailableViewImageContextMenu_CreateImage));
 
 
-		// 이미지뷰의 0번 레이어 가져오기
+		// 이미지뷰의 0번 레이어 가져오기 // Retrieves layer 0 from the image view.
 		layer = viewImage[1].GetLayer(0);
 
-		// 기존에 Layer 에 그려진 도형들을 삭제
+		// 기존에 Layer 에 그려진 도형들을 삭제 // Clear all figures previously drawn on the layer.
 		layer.Clear();
 
-		// 안내 문자열 지정
+		// 안내 문자열 지정 // Sets the guidance message.
 		flsInformation = L"RIGHT BUTTON CLICK ON MOUSE AND SEE THE CONTEXT MENU";
 		flsInformation2 = L"Option : EAvailableViewImageContextMenu_All & \n           ~(EAvailableViewImageContextMenu_Load | \n              EAvailableViewImageContextMenu_ClearFile | \n              EAvailableViewImageContextMenu_Save | \n              EAvailableViewImageContextMenu_CreateImage)";
 
