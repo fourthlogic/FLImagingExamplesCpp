@@ -17,6 +17,9 @@ namespace FLImaging
 		protected:
 			// 가상의 작업 스레드
 			static void AlgorithmThreadForComplexDialog(CPropertyMenuDialogProgressExample* pInstance, std::future<void>** pContext);
+			
+			// 가상의 작업 스레드
+			static void AlgorithmThreadForComplexDialogModal(CPropertyMenuDialogProgressExample* pInstance, std::future<void>** pContext);
 
 			// 가상의 작업 스레드
 			static void AlgorithmThreadForSimpleDialog(CPropertyMenuDialogProgressExample* pInstance, std::future<void>** pContext);
@@ -32,6 +35,9 @@ namespace FLImaging
 
 			// 복잡한 진행률 표시 창 다이얼로그 생성 함수
 			const CResult CreateComplexProgressDialog();
+
+			// Modal Dialog 생성 함수
+			const CResult CreateComplexProgressDialogModal();
 
 			// 간단한 진행률 표시 창 업데이트 함수
 			const CResult UpdateSimpleDialog();
@@ -60,6 +66,7 @@ namespace FLImaging
 			CPropertyButtonClickProcedure* ButtonCreateComplexDialogWithSheetBoxLayout();
 			CPropertyButtonClickProcedure* ButtonCreateComplexDialogWithSheetGridLayout();
 			CPropertyButtonClickProcedure* ButtonCreateSimpleDialogWithSettings();
+			CPropertyButtonClickProcedure* ButtonCreateComplexDialogModal();
 
 		protected:
 			// 스레드 완료 플래그

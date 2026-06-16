@@ -166,6 +166,12 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::ConfigureMenu(
 		pBtn->SetButtonWidthRatio(1.);
 		AddButton(pBtn);
 
+		pBtn = new CGUIPropertyButton;
+		pBtn->SetName(L"Modal Dialog");
+		pBtn->SetPropertyButtonClickProcedure(ButtonCreateComplexDialogModal());
+		pBtn->SetButtonWidthRatio(1.);
+		AddButton(pBtn);
+
 		CGUIPropertyItemDropdownList* pDrop = new CGUIPropertyItemDropdownList;
 		pDrop->SetName(L"Text Alignment");
 		pDrop->AddListItem(L"LEFT_TOP");
@@ -262,6 +268,17 @@ CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuDialogProgressExampl
 	*pProcedure = MakePropertyButtonClickProcedure
 	{
 		CreateSimpleDialogWithSettings();
+	};
+
+	return pProcedure;
+}
+
+CPropertyButtonClickProcedure* FLImaging::GUI::CPropertyMenuDialogProgressExample::ButtonCreateComplexDialogModal()
+{
+	CPropertyButtonClickProcedure* pProcedure = new CPropertyButtonClickProcedure;
+	*pProcedure = MakePropertyButtonClickProcedure
+	{
+		CreateComplexProgressDialogModal();
 	};
 
 	return pProcedure;
@@ -1095,6 +1112,204 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::CreateComplexP
 	return cr;
 }
 
+const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::CreateComplexProgressDialogModal()
+{
+	CResult cr;
+
+	do
+	{
+		CloseProgressDialog();
+
+		CGUIPropertyItemDropdownList* pDropTextAlignment = dynamic_cast<CGUIPropertyItemDropdownList*>(FindItemByName(L"Text Alignment"));
+		CGUIPropertyItemDropdownList* pDropResizePivot = dynamic_cast<CGUIPropertyItemDropdownList*>(FindItemByName(L"Resize Pivot"));
+		CGUIPropertyItemCheckBox* pCheckKeepMaxWidth = dynamic_cast<CGUIPropertyItemCheckBox*>(FindItemByName(L"Keep Maximum Width"));
+		CGUIPropertyItemCheckBox* pCheckKeepMaxHeight = dynamic_cast<CGUIPropertyItemCheckBox*>(FindItemByName(L"Keep Maximum Height"));
+
+		EGUIAlignment eTextAlignment = GetAlignment(pDropTextAlignment->GetValue());
+		EGUIAlignment eResizePivot = GetAlignment(pDropResizePivot->GetValue());
+		bool bKeepMaxWidth = pCheckKeepMaxWidth->GetValue() == L"Checked";
+		bool bKeepMaxHeight = pCheckKeepMaxHeight->GetValue() == L"Checked";
+
+		// 다이얼로그 생성
+		if(!m_pDlgProgress)
+		{
+			m_pDlgProgress = new CGUIDialogProgress(AfxGetApp()->m_pMainWnd);
+			m_pDlgProgress->SetTitle(L"Modal Dialog");
+			m_pDlgProgress->ShowCaption(true);
+			m_pDlgProgress->ShowMinimizeButtonOnCaption(true);
+			m_pDlgProgress->SetMinimizeWidth(300);
+			CWndCtrlProcedure* pCb = new CWndCtrlProcedure;
+			*pCb = MakeWndCtrlProcedure
+			{
+				return true; // Do nothing
+			};
+			m_pDlgProgress->SetCloseButtonOnCaptionCallback(pCb);
+		}
+
+		CFLString<wchar_t> strMessage;
+		CFLString<wchar_t> strMessageFormat =
+			CFLString<wchar_t>(L"[Step 3/3] Learning...\n\n") +
+			CFLString<wchar_t>(L"<Cost>\n") +
+			CFLString<wchar_t>(L"0.012132\n\n") +
+			CFLString<wchar_t>(L"<Iteration>\n") +
+			CFLString<wchar_t>(L"(%d/%d)\n\n") + // m_i32CurrentProgress/m_i32TotalProgress
+			CFLString<wchar_t>(L"<Epoch>\n") +
+			CFLString<wchar_t>(L"1/100\n\n") +
+			CFLString<wchar_t>(L"<Validation>\n") +
+			CFLString<wchar_t>(L"96.12%%at 1 epoch\n\n\n");
+
+		// 메시지, 프로그레스 바, 시간 등이 표시되는 메인 그리드 레이아웃 생성
+		m_pGridMain = new CGUIGridLayout((int32_t)ERowMainComplex::Count, (int32_t)EColMainComplex::Count, true, L"m_pGridMain");
+		{
+			strMessage.Format
+			(
+				strMessageFormat,
+				m_i32CurrentProgress, m_i32TotalProgress
+			);
+
+			// 메시지를 그리드 레이아웃에 추가
+			m_pGridMain->AddCtrl((int32_t)ERowMainComplex::Message, (int32_t)EColMainComplex::Message, 3, 4, strMessage);
+			// 메시지의 텍스트 정렬 옵션을 "Text Alignment" 에서 얻어 온 값으로 설정
+			m_pGridMain->SetCtrlAlignment((int32_t)ERowMainComplex::Message, (int32_t)EColMainComplex::Message, eTextAlignment);
+			// 프로그레스 바를 그리드 레이아웃에 추가
+			m_pGridMain->AddCtrl((int32_t)ERowMainComplex::ProgressCtrl, (int32_t)EColMainComplex::ProgressCtrl, 1, 4, EControl_ProgressBarFloatingPoint);
+			// 소요 시간을 그리드 레이아웃에 추가
+			m_pGridMain->AddCtrl((int32_t)ERowMainComplex::ElapsedTime, (int32_t)EColMainComplex::ElapsedTime, 1, 4, L"Elapsed Time      00 : 00 : 00");
+			// 소요 시간의 텍스트 정렬 옵션을 수평, 수직 모두 중간 정렬로 설정
+			m_pGridMain->SetCtrlAlignment((int32_t)ERowMainComplex::ElapsedTime, (int32_t)EColMainComplex::ElapsedTime, EGUIAlignment_CENTER_CENTER);
+			// 소요 시간이 m_pGridMain 레이아웃의 (int32_t)ERowMainComplex::ElapsedTime, (int32_t)EColMainComplex::ElapsedTime 위치에 있다는 것을 m_pDlgProgress 에 알려줌
+			m_pDlgProgress->SetElapsedTimePosition(m_pGridMain, (int32_t)ERowMainComplex::ElapsedTime, (int32_t)EColMainComplex::ElapsedTime);
+			// 진행률 업데이트를 위해 프로그레스 바 객체 포인터를 얻어 오기
+			m_pProgressCtrlFP = (CGUIProgressCtrlFloatingPoint*)m_pGridMain->GetCtrl((int32_t)ERowMainComplex::ProgressCtrl, (int32_t)EColMainComplex::ProgressCtrl);
+		}
+
+		// 버튼이 표시되는 버튼 그리드 레이아웃 생성
+		m_pGridButtons = new CGUIGridLayout((int32_t)ERowButtonComplex::Count, (int32_t)EColButton::Count, true, L"m_pGridButtons");
+		{
+			// 상세 보기 버튼을 그리드 레이아웃에 추가
+			m_pGridButtons->AddCtrl((int32_t)ERowButtonComplex::Details, (int32_t)EColButton::Button, EControl_Button, L"See Details");
+			// "See Details" 버튼 클릭 이벤트 처리기 생성
+			CWndCtrlProcedure* pVCP = new CWndCtrlProcedure;
+			// "See Details" 버튼 클릭 시 수행되는 내용 정의
+			*pVCP = MakeWndCtrlProcedure
+			{
+				// "See Details" 버튼을 홀수 번 누른 경우
+				if(((CGUIButton*)m_pGridButtons->GetCtrl((int32_t)ERowButtonComplex::Details, (int32_t)EColButton::Button))->GetClickCount() % 2 == 1)
+				{
+					// 디테일 그리드 레이아웃을 show
+					m_pGridDetails->SetVisible(true);
+					// "See Details" 버튼의 텍스트를 "Close Details" 로 변경
+					m_pGridButtons->SetCtrlValue((int32_t)ERowButtonComplex::Details, (int32_t)EColButton::Button, L"Close Details");
+				}
+				// "See Details" 버튼을 짝수 번 누른 경우
+				else
+				{
+					// 디테일 그리드 레이아웃을 hide
+					m_pGridDetails->SetVisible(false);
+
+					// "Close Details" 버튼의 텍스트를 "See Details" 로 변경
+					m_pGridButtons->SetCtrlValue((int32_t)ERowButtonComplex::Details, (int32_t)EColButton::Button, L"See Details");
+				}
+
+				// 다이얼로그의 레이아웃을 업데이트
+				m_pDlgProgress->AdjustLayout();
+
+				return true;
+			};
+			// "See Details" 버튼에 클릭 이벤트 처리기 추가
+			m_pGridButtons->SetWndCtrlProcedure((int32_t)ERowButtonComplex::Details, (int32_t)EColButton::Button, pVCP);
+
+			// 중지 버튼을 그리드 레이아웃에 추가
+			m_pGridButtons->AddCtrl((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, EControl_Button, L"Stop");
+			// 중지 버튼 객체 포인터를 얻어 오기
+			m_pStopButton = (CGUIButton*)m_pGridButtons->GetCtrl((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button);
+		}
+
+		// 상세 정보가 표시되는 그리드 레이아웃 생성
+		m_pGridDetails = new CGUIGridLayout(7, 2, true, L"m_pGridDetails");
+		{
+			// 내부 컨트롤들 추가
+			m_pGridDetails->AddCtrl(0, 0, 1, 2, L"In a general sense, continuity \ndescribes how two items \ncome together. In ACIS, \nthese items may be two curves \nthat meet in some way, \ntwo portions of the same curve, etc. (In the latter case, \none is usually describing \nthe smoothness of a curve, \nwhich is a global property, \nin terms of a local property.)");
+			m_pGridDetails->SetCtrlAlignment(0, 0, EGUIAlignment_RIGHT_TOP);
+			m_pGridDetails->AddCtrl(1, 0, 1, 2, EControl_Slider);
+			m_pGridDetails->AddCtrl(2, 0, EControl_CheckBox, L"ACIS");
+			m_pGridDetails->AddCtrl(2, 1, EControl_ComboBox);
+			m_pGridDetails->AddComboBoxItem(3, 1, L"C0");
+			m_pGridDetails->AddComboBoxItem(3, 1, L"C1");
+			m_pGridDetails->AddComboBoxItem(3, 1, L"C2");
+			m_pGridDetails->AddComboBoxItem(3, 1, L"G1");
+			m_pGridDetails->AddComboBoxItem(3, 1, L"G2");
+			m_pGridDetails->AddCtrl(4, 0, L"Expression");
+			m_pGridDetails->AddCtrl(4, 1, EControl_EditCtrl);
+			m_pGridDetails->AddCtrl(5, 0, L"Slider2");
+			m_pGridDetails->AddCtrl(5, 1, EControl_SliderFloatingPoint);
+
+			CGUIBoxLayout* pBoxInner = new CGUIBoxLayout(EOrientation_Vertical, true, L"Box");
+			CGUIGridLayout* pGridInner = new CGUIGridLayout(3, 2, true, L"Grid");
+			pBoxInner->AddCtrl(EControl_EditCtrl);
+			pBoxInner->AddCtrl(EControl_EditCtrl);
+			pBoxInner->AddCtrl(EControl_EditCtrl);
+			pGridInner->AddCtrl(0, 0, L"Edit1");
+			pGridInner->AddCtrl(1, 0, L"Edit2");
+			pGridInner->AddCtrl(2, 0, L"Edit2");
+			pGridInner->AddCtrl(0, 1, EControl_EditCtrl);
+			pGridInner->AddCtrl(1, 1, EControl_EditCtrl);
+			pGridInner->AddCtrl(2, 1, EControl_EditCtrl);
+			m_pGridDetails->Add(6, 0, pBoxInner);
+			m_pGridDetails->Add(6, 1, pGridInner);
+		}
+
+		// 레이아웃들을 배치하기 위한 배경 레이아웃 생성
+		CGUIGridLayout* pGridBackground = new CGUIGridLayout((int32_t)ERowLayout::Count, (int32_t)EColLayout::Count, true, L"pGridBackground");
+
+		// 메인 그리드 레이아웃을 ERowLayout::Main, EColLayout::Main 위치에서 row span = 4, col span = 1 을 차지하도록 배치
+		pGridBackground->Add((int32_t)ERowLayout::Main, (int32_t)EColLayout::Main, 4, 1, m_pGridMain);
+		// 버튼 그리드 레이아웃을 ERowLayout::Button, EColLayout::Main 위치에서 row span = 1, col span = 1 을 차지하도록 배치
+		pGridBackground->Add((int32_t)ERowLayout::Button, (int32_t)EColLayout::Button, m_pGridButtons);
+		// 메인 그리드 레이아웃을 ERowLayout::Main, EColLayout::Main 위치에서 row span = 5, col span = 1 을 차지하도록 배치
+		pGridBackground->Add((int32_t)ERowLayout::Details, (int32_t)EColLayout::Details, 5, 1, m_pGridDetails);
+		// 상세 정보 레이아웃 숨기기 처리
+		m_pGridDetails->SetVisible(false);
+
+		// 다이얼로그애 배경 레이아웃 추가
+		m_pDlgProgress->Add(pGridBackground);
+
+		// 다이얼로그 창의 크기가 변경될 때 어느 위치를 기준으로 창을 확대 또는 축소할지 기준 위치를 정합니다.
+		m_pDlgProgress->SetResizeWindowPivot(eResizePivot);
+		// 다이얼로그 창의 크기가 변경될 때 변경되기 전 창의 너비가 더 크면, 창의 너비를 변경하지 않고 이전 너비를 유지할지 여부 설정
+		m_pDlgProgress->KeepPreviousMaximumWidth(bKeepMaxWidth);
+		// 다이얼로그 창의 크기가 변경될 때 변경되기 전 창의 높이가 더 크면, 창의 높이를 변경하지 않고 이전 높이를 유지할지 여부 설정
+		m_pDlgProgress->KeepPreviousMaximumHeight(bKeepMaxHeight);
+
+		// 스레드 파라미터 초기화
+		ResetThreadParams();
+
+		// 작업 스레드 생성
+		m_pThread = new std::future<void>(std::async(CPropertyMenuDialogProgressExample::AlgorithmThreadForComplexDialogModal, this, &m_pThread));
+		SetThreadPriority(m_pThread, THREAD_PRIORITY_LOWEST);
+
+		// 다이얼로그 창 생성
+		m_pDlgProgress->DoModal();
+
+		if(m_pDlgProgress)
+		{
+			delete m_pDlgProgress;
+			m_pDlgProgress = nullptr;
+		}
+
+		cr = EResult_OK;
+	}
+	while(false);
+
+	if(m_pThread)
+	{
+		delete m_pThread;
+		m_pThread = nullptr;
+	}
+
+	return cr;
+}
+
 const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexDialogWithSheet()
 {
 	CResult cr;
@@ -1273,6 +1488,181 @@ void FLImaging::GUI::CPropertyMenuDialogProgressExample::AlgorithmThreadForCompl
 				++pInstance->m_i32CurrentProgress;
 			}
 		}
+	}
+}
+
+void FLImaging::GUI::CPropertyMenuDialogProgressExample::AlgorithmThreadForComplexDialogModal(CPropertyMenuDialogProgressExample* pInstance, std::future<void>** pContext)
+{
+	// 복잡한 다이얼로그에서 사용되는 스레드 // Thread used by the complex dialog
+
+	if(pInstance->m_pDlgProgress)
+	{
+		while(true)
+		{
+			// 현재 종료 작업 진행량이 전체 종료 작업 진행량 이상이 된 경우 // If the current shutdown progress reaches or exceeds the total shutdown progress
+			if(pInstance->m_i32CurrentStopProgress >= pInstance->m_i32TotalStopProgress)
+			{
+				// 스레드가 종료되었음을 알리는 플래그를 true 로 설정 후 break // Set the thread termination flag to true and break
+				pInstance->m_bThreadDone = true;
+				break;
+			}
+
+			int32_t i32StopClickCount = 0;
+
+			if(pInstance->m_pStopButton)
+				i32StopClickCount += pInstance->m_pStopButton->GetClickCount();
+
+			if(pInstance->m_pDlgProgress)
+				i32StopClickCount += pInstance->m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
+			CFLString<wchar_t> strMessage;
+			CFLString<wchar_t> strMessageFormat =
+				CFLString<wchar_t>(L"[Step 3/3] Learning...\n\n") +
+				CFLString<wchar_t>(L"<Cost>\n") +
+				CFLString<wchar_t>(L"0.012132\n\n") +
+				CFLString<wchar_t>(L"<Iteration>\n") +
+				CFLString<wchar_t>(L"(%d/%d)\n\n") +
+				CFLString<wchar_t>(L"<Epoch>\n") +
+				CFLString<wchar_t>(L"1/100\n\n") +
+				CFLString<wchar_t>(L"<Validation>\n") +
+				CFLString<wchar_t>(L"96.12%%at 1 epoch\n\n\n");
+
+			// 중지 버튼 클릭 횟수가 변경된 경우 // If the stop button click count has changed.
+			if(i32StopClickCount != pInstance->m_i32BtnStopClickCount)
+			{
+				// 중지 버튼을 한 번 클릭한 경우 // If the stop button has been clicked once.
+				if(i32StopClickCount == 1)
+				{
+					// 중지 버튼 내 문자열을 "Continue.." 로 설정 // Set the text of the stop button to "Continue...".
+					pInstance->m_pGridButtons->SetCtrlValue((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, L"Continue ..");
+				}
+				// 중지 버튼을 두 번 클릭한 경우 ("Continue.." 버튼을 클릭한 경우) // If the stop button has been clicked twice ("Continue..." button clicked).
+				else if(i32StopClickCount == 2)
+				{
+					// 중지 버튼 숨기기 // Hide the stop button.
+					pInstance->m_pGridButtons->SetCtrlVisible((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, false);
+				}
+
+				// "Details" 버튼 숨기기 // Hide the "Details" button.
+				pInstance->m_pGridButtons->SetCtrlVisible((int32_t)ERowButtonComplex::Details, (int32_t)EColButton::Button, false);
+				// 상세 정보 레이아웃 숨기기 // Hide the detailed information layout.
+				pInstance->m_pGridDetails->SetVisible(false);
+				// 중지 버튼 클릭 횟수 업데이트 // Update the stop button click count.
+				pInstance->m_i32BtnStopClickCount = i32StopClickCount;
+				// 다이얼로그의 레이아웃 업데이트 // Adjust the dialog layout.
+				pInstance->m_pDlgProgress->AdjustLayout();
+			}
+
+			// 중지 버튼을 한 번 클릭한 경우 // If the stop button has been clicked once.
+			if(i32StopClickCount == 1)
+			{
+				// 메세지 설정 // Set the message.
+				strMessage.Format(L"[Step 3/3] Temp Message...\n\n<Temp Progress>");
+
+				// pInstance->m_pGridMain 의 ERowMainComplex::Message, EColMainComplex::Message 위치에 문자열 값 설정하여 다이얼로그 상에서 보이는 메세지 설정
+				// Set the message displayed in the dialog by assigning a string value to (ERowMainComplex::Message, EColMainComplex::Message) in pInstance->m_pGridMain.
+				pInstance->m_pGridMain->SetCtrlValue((int32_t)ERowMainComplex::Message, (int32_t)EColMainComplex::Message, strMessage);
+
+				// 프로그레스 바가 100% 로 채워지도록 설정 // Set the progress bar to 100%.
+				pInstance->m_pProgressCtrlFP->SetPos(1.);
+
+				CGUIManager::RunOnMainThread(
+					[&](void* pParam) -> void
+					{
+						// 다이얼로그 화면 갱신 // Invalidate the dialog.
+						pInstance->m_pDlgProgress->Invalidate();
+						// 메시지 펌프 // Message pump
+						CGUIManager::PeekAndPump();
+					}, nullptr, pInstance);
+				Sleep(1);
+				continue;
+			}
+			// 중지 버튼을 두 번 클릭한 경우 // If the stop button has been clicked twice.
+			else if(i32StopClickCount == 2)
+			{
+				// 중지 프로세스 진행이 아직 완료되지 않은 경우 // If the stop process has not yet completed.
+				if(pInstance->m_i32CurrentStopProgress <= pInstance->m_i32TotalStopProgress)
+				{
+					// 메세지 설정 // Set the message.
+					strMessage.Format(L"[Step 3/3] Learning is being stopped...\n\n<Stop Progress>\n(%d/%d)", pInstance->m_i32CurrentStopProgress, pInstance->m_i32TotalStopProgress);
+					pInstance->m_pGridMain->SetCtrlValue((int32_t)ERowMainComplex::Message, (int32_t)EColMainComplex::Message, strMessage);
+
+					// 프로그레스 바에 진행률 설정 // Set the progress on the progress bar.
+					pInstance->m_pProgressCtrlFP->SetPos((double)pInstance->m_i32CurrentStopProgress / (double)pInstance->m_i32TotalStopProgress);
+
+					CGUIManager::RunOnMainThread(
+						[&](void* pParam) -> void
+						{
+							// 다이얼로그 화면 갱신 // Invalidate the dialog.
+							pInstance->m_pDlgProgress->Invalidate();
+						}, nullptr, pInstance);
+				}
+				else // 중지 프로세스 진행이 아직 완료된 경우 while 문에서 break // Break out of the loop if the stop process has completed.
+					break;
+
+				CGUIManager::RunOnMainThread(
+					[&](void* pParam) -> void
+					{
+						// 메시지 펌프 // Message pump
+						CGUIManager::PeekAndPump();
+					}, nullptr, pInstance);
+				Sleep(1);
+				continue;
+			}
+
+			// Close 버튼을 2회 이상 클릭한 경우 // If the close button has been clicked two or more times
+			if(i32StopClickCount >= 2)
+			{
+				Sleep(1);
+				// 중지 작업 진행량 값을 증가시킴 // Increase the shutdown progress value
+				++pInstance->m_i32CurrentStopProgress;
+			}
+			else
+			{
+				// 현재 작업 진행량이 전체 작업 진행량 이상이 된 경우 // If the current progress reaches or exceeds the total progress
+				if(pInstance->m_i32CurrentProgress >= pInstance->m_i32TotalProgress)
+				{
+					// 스레드가 종료되었음을 알리는 플래그를 true 로 설정 후 break // Set the thread termination flag to true and break
+					pInstance->m_bThreadDone = true;
+					break;
+				}
+
+				Sleep(1);
+				// 작업 진행량의 값을 증가시킴 // Increment the progress value
+				++pInstance->m_i32CurrentProgress;
+			}
+
+			// 중지 버튼을 한 번도 누르지 않은 경우 // If the stop button has not been clicked.
+
+			// 메세지 설정 // Set the message.
+			strMessage.Format
+			(
+				strMessageFormat,
+				pInstance->m_i32CurrentProgress, pInstance->m_i32TotalProgress
+			);
+			pInstance->m_pGridMain->SetCtrlValue((int32_t)ERowMainComplex::Message, (int32_t)EColMainComplex::Message, strMessage);
+
+			// 프로그레스 바에 진행률 설정 // Set the progress on the progress bar.
+			pInstance->m_pProgressCtrlFP->SetPos((double)pInstance->m_i32CurrentProgress / (double)pInstance->m_i32TotalProgress);
+
+			CGUIManager::RunOnMainThread(
+				[&](void* pParam) -> void
+				{
+					// 다이얼로그 화면 갱신 // Invalidate the dialog.
+					pInstance->m_pDlgProgress->Invalidate();
+					// 메시지 펌프 // Message pump
+					CGUIManager::PeekAndPump();
+				}, nullptr, pInstance);
+
+			Sleep(1);
+		}
+
+		CGUIManager::RunOnMainThread(
+			[&](void* pParam) -> void
+			{
+				// 다이얼로그 닫기 // Close Dialog
+				pInstance->CloseProgressDialog();
+			}, nullptr, pInstance);
 	}
 }
 
