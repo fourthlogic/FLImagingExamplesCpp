@@ -629,8 +629,16 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateSimpleDi
 			if(m_bThreadDone)
 				break;
 
+			int32_t i32StopClickCount = 0;
+
+			if(m_pStopButton)
+				i32StopClickCount += m_pStopButton->GetClickCount();
+
+			if(m_pDlgProgress)
+				i32StopClickCount += m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
 			// 중지 버튼을 1회 이상 클릭 시 break // Break if the stop button has been clicked at least once.
-			if(m_pStopButton->GetClickCount() >= 1)
+			if(i32StopClickCount >= 1)
 				break;
 			else
 			{
@@ -676,8 +684,16 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateSimpleDi
 			if(m_bThreadDone)
 				break;
 
+			int32_t i32StopClickCount = 0;
+
+			if(m_pStopButton)
+				i32StopClickCount += m_pStopButton->GetClickCount();
+
+			if(m_pDlgProgress)
+				i32StopClickCount += m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
 			// 중지 버튼을 1회 이상 클릭 시 break // Break if the stop button has been clicked at least once.
-			if(m_pStopButton->GetClickCount() >= 1)
+			if(i32StopClickCount >= 1)
 				break;
 			else
 			{
@@ -735,17 +751,25 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 			if(m_bThreadDone)
 				break;
 
+			int32_t i32StopClickCount = 0;
+
+			if(m_pStopButton)
+				i32StopClickCount += m_pStopButton->GetClickCount();
+
+			if(m_pDlgProgress)
+				i32StopClickCount += m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
 			// 중지 버튼 클릭 횟수가 변경된 경우 // If the stop button click count has changed.
-			if(m_pStopButton->GetClickCount() != m_i32BtnStopClickCount)
+			if(i32StopClickCount != m_i32BtnStopClickCount)
 			{
 				// 중지 버튼을 한 번 클릭한 경우 // If the stop button has been clicked once.
-				if(m_pStopButton->GetClickCount() == 1)
+				if(i32StopClickCount == 1)
 				{
 					// 중지 버튼 내 문자열을 "Continue.." 로 설정 // Set the text of the stop button to "Continue...".
 					m_pGridButtons->SetCtrlValue((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, L"Continue ..");
 				}
 				// 중지 버튼을 두 번 클릭한 경우 ("Continue.." 버튼을 클릭한 경우) // If the stop button has been clicked twice ("Continue..." button clicked).
-				else if(m_pStopButton->GetClickCount() == 2)
+				else if(i32StopClickCount == 2)
 				{
 					// 중지 버튼 숨기기 // Hide the stop button.
 					m_pGridButtons->SetCtrlVisible((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, false);
@@ -756,13 +780,13 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 				// 상세 정보 레이아웃 숨기기 // Hide the detailed information layout.
 				m_pGridDetails->SetVisible(false);
 				// 중지 버튼 클릭 횟수 업데이트 // Update the stop button click count.
-				m_i32BtnStopClickCount = m_pStopButton->GetClickCount();
+				m_i32BtnStopClickCount = i32StopClickCount;
 				// 다이얼로그의 레이아웃 업데이트 // Adjust the dialog layout.
 				m_pDlgProgress->AdjustLayout();
 			}
 
 			// 중지 버튼을 한 번 클릭한 경우 // If the stop button has been clicked once.
-			if(m_pStopButton->GetClickCount() == 1)
+			if(i32StopClickCount == 1)
 			{
 				// 메세지 설정 // Set the message.
 				strMessage.Format(L"[Step 3/3] Temp Message...\n\n<Temp Progress>");
@@ -781,7 +805,7 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 				continue;
 			}
 			// 중지 버튼을 두 번 클릭한 경우 // If the stop button has been clicked twice.
-			else if(m_pStopButton->GetClickCount() == 2)
+			else if(i32StopClickCount == 2)
 			{
 				// 중지 프로세스 진행이 아직 완료되지 않은 경우 // If the stop process has not yet completed.
 				if(m_i32CurrentStopProgress <= m_i32TotalStopProgress)
@@ -1334,17 +1358,25 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 			if(m_bThreadDone)
 				break;
 
+			int32_t i32StopClickCount = 0;
+
+			if(m_pStopButton)
+				i32StopClickCount += m_pStopButton->GetClickCount();
+
+			if(m_pDlgProgress)
+				i32StopClickCount += m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
 			// 중지 버튼 클릭 횟수가 변경된 경우 // If the stop button click count has changed.
-			if(m_pStopButton->GetClickCount() != m_i32BtnStopClickCount)
+			if(i32StopClickCount != m_i32BtnStopClickCount)
 			{
 				// 중지 버튼을 한 번 클릭한 경우 // If the stop button has been clicked once.
-				if(m_pStopButton->GetClickCount() == 1)
+				if(i32StopClickCount == 1)
 				{
 					// 중지 버튼 내 문자열을 "Continue.." 로 설정 // Set the text of the stop button to "Continue...".
 					m_pGridButtons->SetCtrlValue((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, L"Continue ..");
 				}
 				// 중지 버튼을 두 번 클릭한 경우 ("Continue.." 버튼을 클릭한 경우) // If the stop button has been clicked twice ("Continue..." button clicked).
-				else if(m_pStopButton->GetClickCount() == 2)
+				else if(i32StopClickCount == 2)
 				{
 					// 중지 버튼 숨기기 // Hide the stop button.
 					m_pGridButtons->SetCtrlVisible((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, false);
@@ -1355,13 +1387,13 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 				// Sheet 가 포함된 레이아웃 숨기기 // Hide the layout containing the sheet
 				m_pLayoutForSheet->SetVisible(false);
 				// 중지 버튼 클릭 횟수 업데이트 // Update the stop button click count.
-				m_i32BtnStopClickCount = m_pStopButton->GetClickCount();
+				m_i32BtnStopClickCount = i32StopClickCount;
 				// 다이얼로그의 레이아웃 업데이트 // Adjust the dialog layout.
 				m_pDlgProgress->AdjustLayout();
 			}
 
 			// 중지 버튼을 한 번 클릭한 경우 // If the stop button has been clicked once.
-			if(m_pStopButton->GetClickCount() == 1)
+			if(i32StopClickCount == 1)
 			{
 				// 메세지 설정 // Set the message.
 				strMessage.Format(L"[Step 3/3] Temp Message...\n\n<Temp Progress>");
@@ -1380,7 +1412,7 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 				continue;
 			}
 			// 중지 버튼을 두 번 클릭한 경우 // If the stop button has been clicked twice.
-			else if(m_pStopButton->GetClickCount() == 2)
+			else if(i32StopClickCount == 2)
 			{
 				// 중지 프로세스 진행이 아직 완료되지 않은 경우 // If the stop process has not yet completed.
 				if(m_i32CurrentStopProgress <= m_i32TotalStopProgress)
@@ -1466,8 +1498,16 @@ void FLImaging::GUI::CPropertyMenuDialogProgressExample::AlgorithmThreadForCompl
 				break;
 			}
 
+			int32_t i32StopClickCount = 0;
+
+			if(pInstance->m_pStopButton)
+				i32StopClickCount += pInstance->m_pStopButton->GetClickCount();
+
+			if(pInstance->m_pDlgProgress)
+				i32StopClickCount += pInstance->m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
 			// 버튼을 2회 이상 클릭한 경우 // If the button has been clicked two or more times
-			if(pInstance->m_pStopButton->GetClickCount() >= 2)
+			if(i32StopClickCount >= 2)
 			{
 				Sleep(1);
 				// 중지 작업 진행량 값을 증가시킴 // Increase the shutdown progress value
@@ -1674,8 +1714,16 @@ void FLImaging::GUI::CPropertyMenuDialogProgressExample::AlgorithmThreadForSimpl
 	{
 		while(true)
 		{
+			int32_t i32StopClickCount = 0;
+
+			if(pInstance->m_pStopButton)
+				i32StopClickCount += pInstance->m_pStopButton->GetClickCount();
+
+			if(pInstance->m_pDlgProgress)
+				i32StopClickCount += pInstance->m_pDlgProgress->GetCloseButtonOnCaptionClickCount();
+
 			// 버튼을 1회 이상 클릭한 경우 // If the button has been clicked one or more times
-			if(pInstance->m_pStopButton->GetClickCount() >= 1)
+			if(i32StopClickCount >= 1)
 			{
 				// 스레드가 종료되었음을 알리는 플래그를 true 로 설정 후 break // Set the thread termination flag to true and break
 				pInstance->m_bThreadDone = true;
