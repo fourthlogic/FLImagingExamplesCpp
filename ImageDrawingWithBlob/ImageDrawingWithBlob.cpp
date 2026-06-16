@@ -80,6 +80,7 @@ int main()
 		blob.SetSourceImage(fliImage);
 		// 논리 조건 설정 // Set the logical condition.
 		blob.SetLogicalCondition(ELogicalCondition_Less);
+		// 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 127보다 작은 객체를 검출
 		// Set the threshold value.
 		// Combined with the logical condition above, objects with values less than 127 are detected.
 		blob.SetThreshold(127);
@@ -92,7 +93,6 @@ int main()
 		}
 
 		// 결과 객체들 중 해당되는 조건을 가진 객체를 제거 // Remove objects that match the specified condition from the result objects.
-
 		// 면적이 500 이하의 작은 객체들을 제거 // Remove objects with an area less than or equal to 500.
 		if(IsFail(res = blob.Filter(CBlob::EFilterItem_Area, 500, ELogicalCondition_LessEqual)))
 		{
