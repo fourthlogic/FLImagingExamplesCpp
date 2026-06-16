@@ -293,7 +293,7 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 		// 데이터를 할당 // Assign the data.
 		ls.Assign(arrF64DataX, arrF64DataY, stDataCount);
 
-		// 계수 값을 받기 위해 FLArray 생성 // Create an FLArray for the coefficient values.
+		// 계수 값을 받기 위해 FLArray 생성 // Create a FLArray for the coefficient values.
 		CFLArray<double> vctOutput;
 		// R square 값을 받기 위해double 생성 // Create a double variable to receive the R-squared value.
 		double f64TRSqr = 0.;
@@ -349,7 +349,7 @@ void CGraphLeastSquaresDlg::OnBnClickedButtonGraphAdd()
 
 		flstrInfo.Format(L"R square value: %lf", f64TRSqr);
 
-		// 수식 객체 생성 // Create 수식 object
+		// 수식 객체 생성 // Create an expression object.
 		CExpression exp;
 		// 수식 문자열을 설정한다 // Set the polynomial expression string.
 		exp.SetExpression(flstrEquation);
