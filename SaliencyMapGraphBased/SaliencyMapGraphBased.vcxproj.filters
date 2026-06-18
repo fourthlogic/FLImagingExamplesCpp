@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SaliencyMap.cpp">
+    <ClCompile Include="SaliencyMapGraphBased.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

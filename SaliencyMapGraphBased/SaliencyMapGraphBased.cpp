@@ -80,8 +80,8 @@ int main()
 			break;
 		}
 
-		// SaliencyMap 객체 생성 // Create SaliencyMap object
-		CSaliencyMap saliencyMap;
+		// SaliencyMapGraphBased 객체 생성 // Create SaliencyMapGraphBased object
+		CSaliencyMapGraphBased saliencyMap;
 		// Source 이미지 설정 // Set source image
 		saliencyMap.SetSourceImage(arrFliImage[EType_Source]);
 		// Destination 이미지 설정 // Set destination image 
@@ -90,7 +90,7 @@ int main()
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = saliencyMap.Execute()).IsFail())
 		{
-			ErrorPrint(res, "Failed to execute SaliencyMap.");
+			ErrorPrint(res, "Failed to execute Saliency Map Graph Based.");
 			break;
 		}
 

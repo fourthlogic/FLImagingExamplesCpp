@@ -1372,7 +1372,7 @@
     - Skeleton
       - The example of an algorithm that extracts the skeleton of an image.
       - 이미지의 뼈대를 추출하는 알고리즘 예제
-    - SaliencyMap
+    - SaliencyMapGraphBased
       - The example of an algorithms that emphasize areas where people's eyes focus first.
       - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
     - ScaleInvariantFeatureTransform

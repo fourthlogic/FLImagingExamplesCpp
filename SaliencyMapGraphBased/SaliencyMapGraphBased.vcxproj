@@ -21,7 +21,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{52B6B695-C9C3-4726-9FC9-91BADD707920}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SaliencyMap</RootNamespace>
+    <RootNamespace>SaliencyMapGraphBased</RootNamespace>
+    <ProjectName>SaliencyMapGraphBased</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SaliencyMap.cpp" />
+    <ClCompile Include="SaliencyMapGraphBased.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
