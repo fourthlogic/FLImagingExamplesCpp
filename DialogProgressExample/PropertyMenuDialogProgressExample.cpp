@@ -183,12 +183,6 @@ const CResult FLImaging::GUI::sProgressThreadContext::CloseProgressDialog()
 	{
 		if(pDlgProgress && ::IsWindow(pDlgProgress->GetSafeHwnd()))
 			pDlgProgress->PostMessage(WM_COMMAND, IDOK);
-// 
-// 		if(pDlgProgress)
-// 		{
-// 			delete pDlgProgress;
-// 			pDlgProgress = nullptr;
-// 		}
 
 		cr = EResult_OK;
 	}
@@ -1262,7 +1256,7 @@ const CResult FLImaging::GUI::CPropertyMenuDialogProgressExample::UpdateComplexD
 			// When stop button is clicked twice (When "Continue.." button is clicked)
 			else if(i32StopClickCount == 2)
 			{
-				pSContext->pGridButtons->SetCtrlVisible((int32_t)ERowButtonComplex::Stop, (int32_t)EColButton::Button, false);
+				pSContext->pGridButtons->SetVisible(false);
 			}
 
 			// "Details" 버튼 숨기기
