@@ -121,6 +121,8 @@ int main()
 			break;
 		}
 
+		((CGUIView3DObject*)view3D.GetView3DObject(0))->SetOpacity(0.5f);
+
 		CGUIView3DLayerWrap layer3D = view3D.GetLayer(0);
 		layer3D.Clear();
 		layer3D.DrawTextCanvas(CFLPoint<double>(0, 0), L"Cross Section Measurement 3D", YELLOW, BLACK, 20);
