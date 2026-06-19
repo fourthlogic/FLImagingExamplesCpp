@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{701786C2-9426-41ED-AFF3-E47E64532385}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Sobel_Filter</RootNamespace>
+    <RootNamespace>Tenengrad</RootNamespace>
     <ProjectName>Tenengrad</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

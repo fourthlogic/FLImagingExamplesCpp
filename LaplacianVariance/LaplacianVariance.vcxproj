@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EB08520E-0FEA-4693-A497-857052526864}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Sobel_Filter</RootNamespace>
+    <RootNamespace>LaplacianVariance</RootNamespace>
     <ProjectName>LaplacianVariance</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

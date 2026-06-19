@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D1917316-1068-4CF0-B56D-915DB8D81FEE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Sobel_Filter</RootNamespace>
+    <RootNamespace>WaveletFocusMeasurement</RootNamespace>
     <ProjectName>WaveletFocusMeasurement</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
