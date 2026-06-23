@@ -1379,6 +1379,9 @@
     - SaliencyMapGraphBased
       - The example of an algorithms that emphasize areas where people's eyes focus first.
       - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
+    - SaliencyMapSpectralBased
+      - The example of an algorithms that emphasize areas where people's eyes focus first.
+      - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
     - ScaleInvariantFeatureTransform
       - The example of an algorithms that extracting feature points of an image.
       - 이미지의 특징점을 추출하는 알고리즘 예제
