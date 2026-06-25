@@ -29,7 +29,7 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = arrFliImage[EType_Source].Load(L"../../ExampleImages/FLAutoShadingCorrection/wall.flif")))
+		if(IsFail(res = arrFliImage[EType_Source].Load(L"../../ExampleImages/FLAutoShadingCorrection/Source.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
