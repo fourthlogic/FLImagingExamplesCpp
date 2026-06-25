@@ -1258,6 +1258,9 @@
     - ChannelLinfNorm
       - The example of an algorithm that extracts Linf norm value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 Linf Norm 을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelLpNorm
+      - The example of an algorithm that extracts Lp norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 Lp Norm 을 추출하여 이미지화 하는 알고리즘 예제.
     - ChannelMax
       - The example of an algorithm that extracts maximum value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 최대값을 추출하여 이미지화 하는 알고리즘 예제.
