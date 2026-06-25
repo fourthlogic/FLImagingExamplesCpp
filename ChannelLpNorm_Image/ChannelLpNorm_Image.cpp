@@ -31,7 +31,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = fliOprImage.Load(L"../../ExampleImages/ChannelLpNorm/.flif")))
+		if(IsFail(res = fliOprImage.Load(L"../../ExampleImages/ChannelLpNorm/Gradation.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
