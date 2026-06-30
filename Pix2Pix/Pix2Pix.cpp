@@ -282,7 +282,7 @@ int main()
 		// 학습할 Pix2Pix 모델 설정 // Set up Pix2Pix model to learn
 		pix2pixDL.SetModel(CPix2PixDL::EModel_FLGenNet_Pix2Pix);
 		// 학습할 Pix2Pix 모델의 버전 설정 // Set up Pix2Pix model version to learn
-		pix2pixDL.SetModelVersion(CPix2PixDL::EModelVersion_FLGenNet_Pix2Pix_128);
+		pix2pixDL.SetModelVersion(CPix2PixDL::EModelVersion_FLGenNet_Pix2Pix_V1_128);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		pix2pixDL.SetLearningEpoch(500);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image

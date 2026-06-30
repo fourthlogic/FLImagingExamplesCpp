@@ -186,7 +186,7 @@ int main()
 		// 학습할 Denoising Diffusion 모델 설정 // Set up Denoising Diffusion model to learn
 		denoisingDiffusionInpaintingDL.SetModel(CDenoisingDiffusionInpaintingDL::EModel_FLGenNet_Diffusion_Inpainting);
 		// 학습할 Denoising Diffusion 모델 설정 // Set up Denoising Diffusion model to learn
-		denoisingDiffusionInpaintingDL.SetModelVersion(CDenoisingDiffusionInpaintingDL::EModelVersion_FLGenNet_Diffusion_Inpainting_256);
+		denoisingDiffusionInpaintingDL.SetModelVersion(CDenoisingDiffusionInpaintingDL::EModelVersion_FLGenNet_Diffusion_Inpainting_V1_256);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		denoisingDiffusionInpaintingDL.SetLearningEpoch(2500);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
