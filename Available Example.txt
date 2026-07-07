@@ -199,6 +199,11 @@
 
   - [Resampler]
 
+    - [Mesh Simplifier Grid Cluster]
+      - MeshSimplifierGridCluster3D
+        - The example of an algorithm that simplifies a large mesh object by downsampling by grid clustering and remeshing.
+        - 격자 군집화 과정을 통해 큰 메시를 단순화하는 알고리즘 예제.
+
     - [Point Cloud Downsampler Farthest]
       - PointCloudDownsamplerFarthest3D
         - The example of an algorithm that reduces a point cloud by repeatedly selecting the point farthest from the already selected points.
