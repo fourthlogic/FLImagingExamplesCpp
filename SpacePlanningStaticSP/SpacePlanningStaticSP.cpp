@@ -188,12 +188,15 @@ int main()
 		alg.GetCurrentVolumeUsage(0, f32TotalVolume, f32UsedVolume);
 		const float f32VolumeUsage = f32TotalVolume > 0.f ? 100.f * f32UsedVolume / f32TotalVolume : 0.f;
 
+		SpacePlanning::SSpacePlanningStrategyId optimalStrategyId = alg.GetOptimalStrategyId();
+
 		CFLString<wchar_t> flsResultInfo;
 		flsResultInfo.Format(
-			L"Optimal strategy index: %d\n"
+			L"Optimal strategy: group=%d, id=%d\n"
 			L"Volume Usage: %.1f%%(%.1f/%.1f)\n"
 			L"Coordinate converter: world-space center pivot",
-			alg.GetOptimalStrategyIndex(),
+			(int32_t)optimalStrategyId.eGroup,
+			optimalStrategyId.i32IDInStrategy,
 			f32VolumeUsage,
 			f32UsedVolume,
 			f32TotalVolume);

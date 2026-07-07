@@ -111,9 +111,9 @@ int main()
 		}
 
 		// 학습된 전략 중 최적 전략 선택 // Select the optimal strategy among learned strategies
-		const int32_t i32OptimalStrategyIndex = alg.GetOptimalStrategyIndex();
+		const SpacePlanning::SSpacePlanningStrategyId optimalStrategyId = alg.GetOptimalStrategyId();
 
-		if((res = alg.SelectStrategy(i32OptimalStrategyIndex)).IsFail())
+		if((res = alg.SelectStrategy(optimalStrategyId)).IsFail())
 		{
 			ErrorPrint(res, "Failed to select strategy.\n");
 			break;
@@ -133,7 +133,7 @@ int main()
 			break;
 		}
 
-		wprintf(L"Optimal strategy index: %d\n", i32OptimalStrategyIndex);
+		wprintf(L"Optimal strategy: group=%d, id=%d\n", (int32_t)optimalStrategyId.eGroup, optimalStrategyId.i32IDInStrategy);
 
 		// 3D 뷰 생성 // Create 3D view
 		if((res = view3DResult.Create(600, 0, 1200, 600)).IsFail())
