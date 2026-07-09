@@ -1451,6 +1451,9 @@
       - FL Denoising Type 1
         - An example of the denoising algorithm type 1 proposed by 'FLImaging'.
         - FLImaging 노이즈 제거 알고리즘 타입 1 예제.
+      - FL Denoising Type 2
+        - An example of the denoising algorithm type 2 proposed by 'FLImaging'.
+        - FLImaging 노이즈 제거 알고리즘 타입 2 예제.
       - FastGuidedFilter
         - The example of an algorithm that processes a fast guided filter to an image.
         - 이미지에서 fast guided 필터를 처리하는 알고리즘 예제.
