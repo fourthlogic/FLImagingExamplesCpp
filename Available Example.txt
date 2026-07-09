@@ -241,10 +241,18 @@
         - The example of an algorithm that performs static space planning.
         - 정적 공간 계획을 수행하는 알고리즘 예제.
 
+      - SpacePlanningStaticRoundTripSP
+        - An advanced example of that performs a round-trip transfer of items between two pallets.
+        - 정적 공간 계획을 통해 두 팔레트 간 물건을 왕복시키는 고급 예제.
+
     - [Space Planning Dynamic SP]
       - SpacePlanningDynamicSP
         - The example of an algorithm that performs dynamic space planning.
         - 동적 공간 계획을 수행하는 알고리즘 예제.
+
+      - SpacePlanningDynamicIntermediateBufferSP
+        - An advanced example that simulates loading by introducing an intermediate buffer for reuse.
+        - 동적 공간 계획을 통해 중간 버퍼를 도입한 적재를 시뮬레이션하는 고급 예제.
 
   - [Transform]
     
