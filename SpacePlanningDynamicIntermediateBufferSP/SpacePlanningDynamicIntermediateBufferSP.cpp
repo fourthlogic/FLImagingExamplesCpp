@@ -3,6 +3,7 @@
 #include <array>
 #include <vector>
 #include <functional>
+#include <sys/stat.h>
 #include <FLImaging.h>
 #include "../CommonHeader/ErrorPrint.h"
 
@@ -511,12 +512,35 @@ namespace
 		itemChances[3] = 2.f;
 	}
 
-	CResult LearnDefaultModel(CSpacePlanningDynamicSP& alg, CFLArray<float>& itemChances)
+	CFLString<wchar_t> GetExecutablePath()
+	{
+		wchar_t wcsPath[MAX_PATH];
+		wcsPath[0] = L'\0';
+		GetModuleFileNameW(NULL, wcsPath, MAX_PATH);
+		return CFLString<wchar_t>(wcsPath);
+	}
+
+	bool IsCacheUpToDate(const CFLString<wchar_t>& flsCache, const CFLString<wchar_t>& flsReference)
+	{
+		struct _stat64 stCache;
+		if(_wstat64(flsCache.GetString(), &stCache) != 0)
+			return false;
+
+		struct _stat64 stReference;
+		if(_wstat64(flsReference.GetString(), &stReference) != 0)
+			return false;
+
+		return stCache.st_mtime > stReference.st_mtime;
+	}
+
+	CResult ConfigureAndLearnDefaultModel(CSpacePlanningDynamicSP& alg, const CFLArray<float>& itemChances)
 	{
 		CResult res = EResult_UnknownError;
 
 		do
 		{
+			alg.Clear();
+
 			const std::array<SpacePlanning::SBinSpec<float>, i32BinCount> arrDefaultBinSpecs = {{
 				SpacePlanning::SBinSpec<float>{ 9.f, 12.f, 10.f },
 				SpacePlanning::SBinSpec<float>{ 6.f, 5.f, 6.f },
@@ -547,17 +571,82 @@ namespace
 			if(res.IsFail())
 				break;
 
-			InitializeDefaultSourceItemChances(itemChances);
 			SpacePlanning::SRandomSequenceParameters params(itemChances, 2);
 			if((res = alg.SetRandomSequenceParameters(params)).IsFail())
 				break;
 
-			if((res = alg.Learn()).IsFail())
-				break;
-
-			res = alg.SelectStrategy(alg.GetOptimalStrategyId());
+			res = alg.Learn();
 		}
 		while(false);
+
+		return res;
+	}
+
+	const wchar_t* GetStrategyGroupName(SpacePlanning::EStrategyGroup eGroup)
+	{
+		switch(eGroup)
+		{
+		case SpacePlanning::EStrategyGroup_Online:
+			return L"Online";
+		case SpacePlanning::EStrategyGroup_Layered:
+			return L"Layered";
+		case SpacePlanning::EStrategyGroup_Search:
+			return L"Search";
+		}
+
+		return L"?";
+	}
+
+	const wchar_t* GetStrategyName(const CSpacePlanningBaseSP& alg, SpacePlanning::SSpacePlanningStrategyId sStrategyId)
+	{
+		SpacePlanning::SStrategyInfo info = {};
+		if(alg.GetStrategyInfo(sStrategyId, info).IsFail() || info.pWcsStrategyName == NULL)
+			return L"?";
+
+		return info.pWcsStrategyName;
+	}
+
+	CResult LearnOrLoadDefaultModel(CSpacePlanningDynamicSP& alg, CFLArray<float>& itemChances,
+	                                const CFLString<wchar_t>& flsCache, const CFLString<wchar_t>& flsSource)
+	{
+		CResult res = EResult_UnknownError;
+
+		if(IsCacheUpToDate(flsCache, flsSource))
+		{
+			res = alg.Load(flsCache);
+
+			if(res.IsOK() && alg.IsLearned())
+			{
+				SpacePlanning::SRandomSequenceParameters params;
+				if((res = alg.GetRandomSequenceParameters(params)).IsFail())
+					return res;
+
+				itemChances = params.itemChances;
+
+				const SpacePlanning::SSpacePlanningStrategyId sSelected = alg.GetSelectedStrategyId();
+				wprintf(L"Loaded cached model: %s (strategy \"%s\" {%s, %d})\n",
+					flsCache.GetString(), GetStrategyName(alg, sSelected),
+					GetStrategyGroupName(sSelected.eGroup), sSelected.i32IDInStrategy);
+				return res;
+			}
+		}
+
+		InitializeDefaultSourceItemChances(itemChances);
+
+		if((res = ConfigureAndLearnDefaultModel(alg, itemChances)).IsFail())
+			return res;
+
+		const SpacePlanning::SSpacePlanningStrategyId sOptimal = alg.GetOptimalStrategyId();
+		if((res = alg.SelectStrategy(sOptimal)).IsFail())
+			return res;
+
+		const CResult resSave = alg.Save(flsCache);
+		if(resSave.IsFail())
+			wprintf(L"Warning: failed to cache model (%s): %s\n", flsCache.GetString(), resSave.GetString());
+		else
+			wprintf(L"Learned and cached model: %s (strategy \"%s\" {%s, %d})\n",
+				flsCache.GetString(), GetStrategyName(alg, sOptimal),
+				GetStrategyGroupName(sOptimal.eGroup), sOptimal.i32IDInStrategy);
 
 		return res;
 	}
@@ -1144,10 +1233,14 @@ int main()
 	{
 		CSpacePlanningDynamicSP alg;
 
+		const CFLString<wchar_t> flsSource = GetExecutablePath();
+		CFLString<wchar_t> flsCache;
+		flsCache.Format(L"SpacePlanningDynamicIntermediateBuffer.%s", alg.GetFileExtension());
+
 		CFLArray<float> itemChances;
-		if((res = LearnDefaultModel(alg, itemChances)).IsFail())
+		if((res = LearnOrLoadDefaultModel(alg, itemChances, flsCache, flsSource)).IsFail())
 		{
-			ErrorPrint(res, "Failed to learn the default model.\n");
+			ErrorPrint(res, "Failed to prepare the default model.\n");
 			break;
 		}
 
