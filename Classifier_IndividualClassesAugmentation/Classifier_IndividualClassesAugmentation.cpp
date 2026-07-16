@@ -181,7 +181,7 @@ int main()
 		CClassifierDL classifierDL;
 
 		// OptimizerSpec 객체 생성 // Create OptimizerSpec object
-		COptimizerSpecAdamGradientDescent optSpec;
+		COptimizerSpecAdamGradientDescentDL optSpec;
 
 		// 학습할 이미지 설정 // Set the image to learn
 		classifierDL.SetLearningImage(fliLearnImage);
@@ -211,7 +211,7 @@ int main()
 		classifierDL.SetLearningStopCondition(L"f1score >= 0.999");
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
-		CAutoSaveSpec autoSaveSpec;
+		CAutoSaveSpecDL autoSaveSpec;
 
 		// 자동 저장 활성화 // Enable Auto-Save
 		// 저장 때문에 발생하는 속도 저하를 막기 위해 예제에서는 코드 사용법만 표시하고 옵션은 끔 // To prevent performance degradation caused by saving, the examples only demonstrate how to use the code, with the saving option disabled.
@@ -226,13 +226,13 @@ int main()
 		classifierDL.SetLearningAutoSaveSpec(autoSaveSpec);
 
 		// 공통 증강 스펙 설정 // Set common Augmentation Spec
-		CAugmentationSpec augCommonSpec;
+		CAugmentationSpecDL augCommonSpec;
 		augCommonSpec.EnableAugmentation(false);
 
 		classifierDL.SetLearningAugmentationSpec(augCommonSpec);
 
 		// 클래스 0,1 번에 대한 증강 Preset 설정 // Setting the augmentation preset for classes 0 and 1
-		CAugmentationSpec augSpec1;
+		CAugmentationSpecDL augSpec1;
 
 		augSpec1.EnableAugmentation(true);
 		augSpec1.SetCommonActivationRate(1.000000);
@@ -241,7 +241,7 @@ int main()
 
 		augSpec1.EnableRotation(true);
 		augSpec1.SetRotationParam(-30.000000, 30.000000, false, false, 1.000000);
-		CAugmentationPreset augmentationPreset1;
+		CAugmentationPresetDL augmentationPreset1;
 		CFLArray<int32_t> flaClassNum1;
 		flaClassNum1.PushBack(0);
 		flaClassNum1.PushBack(1);
@@ -251,7 +251,7 @@ int main()
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset1);
 
 		// 클래스 2 번에 대한 증강 Preset 설정 // Setting the augmentation preset for class 2
-		CAugmentationSpec augSpec2;
+		CAugmentationSpecDL augSpec2;
 
 		augSpec2.EnableAugmentation(true);
 		augSpec2.SetCommonActivationRate(0.500000);
@@ -261,7 +261,7 @@ int main()
 		augSpec2.EnableRotation(true);
 		augSpec2.SetRotationParam(-180.000000, 180.000000, false, false, 1.000000);
 
-		CAugmentationPreset augmentationPreset2;
+		CAugmentationPresetDL augmentationPreset2;
 		CFLArray<int32_t> flaClassNum2;
 		flaClassNum2.PushBack(2);
 		augmentationPreset2.SetClassNumbers(flaClassNum2);
@@ -270,7 +270,7 @@ int main()
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset2);
 
 		// 클래스 3 번에 대한 증강 Preset 설정 // Setting the augmentation preset for class 3
-		CAugmentationSpec augSpec3;
+		CAugmentationSpecDL augSpec3;
 
 		augSpec3.EnableAugmentation(true);
 		augSpec3.SetCommonActivationRate(1.000000);
@@ -280,7 +280,7 @@ int main()
 		augSpec3.EnableScale(true);
 		augSpec3.SetScaleParam(0.670000, 1.500000, 0.670000, 1.500000, true, 1.000000);
 
-		CAugmentationPreset augmentationPreset3;
+		CAugmentationPresetDL augmentationPreset3;
 		CFLArray<int32_t> flaClassNum3;
 		flaClassNum3.PushBack(3);
 		augmentationPreset3.SetClassNumbers(flaClassNum3);
@@ -289,7 +289,7 @@ int main()
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset3);
 
 		// 클래스 4,5 번에 대한 증강 Preset 설정 // Setting the augmentation preset for class 4
-		CAugmentationSpec augSpec4;
+		CAugmentationSpecDL augSpec4;
 
 		augSpec4.EnableAugmentation(true);
 		augSpec4.SetCommonActivationRate(1.000000);
@@ -299,7 +299,7 @@ int main()
 		augSpec4.EnableQuarterRotation(true);
 		augSpec4.SetQuarterRotationParam(true, true, true, true, 1.000000);
 
-		CAugmentationPreset augmentationPreset4;
+		CAugmentationPresetDL augmentationPreset4;
 		CFLArray<int32_t> flaClassNum4;
 		flaClassNum4.PushBack(4);
 		flaClassNum4.PushBack(5);

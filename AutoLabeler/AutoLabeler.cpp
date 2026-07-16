@@ -184,7 +184,7 @@ int main()
 		CSemanticSegmentationDL semanticSegmentationDL;
 
 		// OptimizerSpec 객체 생성 // Create OptimizerSpec object
-		COptimizerSpecAdamGradientDescent optSpec;
+		COptimizerSpecAdamGradientDescentDL optSpec;
 
 		// 학습할 이미지 설정 // Set the image to learn
 		semanticSegmentationDL.SetLearningImage(fliLearnImage);
@@ -209,7 +209,7 @@ int main()
 		semanticSegmentationDL.SetLearningOptimizerSpec(optSpec);
 		
 		// AugmentationSpec 설정 // Set the AugmentationSpec
-		CAugmentationSpec augSpec;
+		CAugmentationSpecDL augSpec;
 
 		augSpec.SetCommonActivationRate(0.5);
 		augSpec.SetCommonInterpolationMethod(FLImaging::ImageProcessing::EInterpolationMethod_Bilinear);

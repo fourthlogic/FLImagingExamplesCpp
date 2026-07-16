@@ -176,7 +176,7 @@ int main()
 		CMeasurementDL measurementDL;
 
 		// OptimizerSpec 객체 생성 // Create OptimizerSpec object
-		COptimizerSpecAdamGradientDescent optSpec;
+		COptimizerSpecAdamGradientDescentDL optSpec;
 
 		// 학습할 이미지 설정 // Set the image to learn
 		measurementDL.SetLearningImage(fliLearnImage);
@@ -197,13 +197,13 @@ int main()
 		// Set Conditional Expression to End Learning. If the mIoU.ze value is 0.95 or higher, end the learning. Same value as metric.
 		measurementDL.SetLearningStopCondition(L"mIoU.ze >= 0.95");
 
-		CAugmentationSpec augSpec;
+		CAugmentationSpecDL augSpec;
 
 		augSpec.EnableAugmentation(false);
 		measurementDL.SetLearningAugmentationSpec(augSpec);
 
 		// 자동 저장 옵션 설정 // Set Auto-Save Options
-		CAutoSaveSpec autoSaveSpec;
+		CAutoSaveSpecDL autoSaveSpec;
 
 		// 자동 저장 활성화 // Enable Auto-Save
 		// 저장 때문에 발생하는 속도 저하를 막기 위해 예제에서는 코드 사용법만 표시하고 옵션은 끔 // To prevent performance degradation caused by saving, the examples only demonstrate how to use the code, with the saving option disabled.
