@@ -131,8 +131,8 @@ int main()
 		viewImagesResult1.RedrawWindow();
 		viewImagesResult2.RedrawWindow();
 
-		// CocoLabelParserDL 객체 생성 // Create CocoLabelParserDL object
-		CocoLabelParserDL cocoLabelParserDL;
+		// CCocoLabelParserDL 객체 생성 // Create CCocoLabelParserDL object
+		CCocoLabelParserDL cocoLabelParserDL;
 
 		// Source 이미지 폴더 경로 설정 // Set source image folder path
 		cocoLabelParserDL.SetSourceImageFolderPath(L"../../ExampleImages/COCOLabelParser/Source");
@@ -142,7 +142,7 @@ int main()
 		cocoLabelParserDL.SetDestinationImagePath(L"../../ExampleImages/COCOLabelParser/Destination/Result.flif");
 
 		// 파라미터 값 설정 // Set parameter value
-		cocoLabelParserDL.SetLabelShape(CocoLabelParserDL::ELabelShape_Rect);
+		cocoLabelParserDL.SetLabelShape(CCocoLabelParserDL::ELabelShape_Rect);
 		
 		// COCOLabelParser 실행 // COCOLabelParser Execute 
 		if(IsFail(res = cocoLabelParserDL.Execute()))
@@ -159,7 +159,7 @@ int main()
 		}
 
 		// 파라미터 값 설정 // Set parameter value
-		cocoLabelParserDL.SetLabelShape(CocoLabelParserDL::ELabelShape_Segmentation);
+		cocoLabelParserDL.SetLabelShape(CCocoLabelParserDL::ELabelShape_Segmentation);
 
 		// COCOLabelParser 실행 // COCOLabelParser Execute 
 		if(IsFail(res = cocoLabelParserDL.Execute()))
