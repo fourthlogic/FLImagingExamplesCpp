@@ -87,8 +87,6 @@ int main()
 		// 임계값 옵셋 설정 // Set threshold offset 
 		adaptiveThresholdSauvola.SetThresholdOffset(5);
 
-		adaptiveThresholdSauvola.Clear();
-
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = adaptiveThresholdSauvola.Execute()).IsFail())
 		{
