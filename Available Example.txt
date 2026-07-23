@@ -2062,6 +2062,9 @@
     - AdaptiveThresholdMedian
       - Algorithm that binarizes images through regional thresholds using Median Filter.
       - 중앙 값 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+    - AdaptiveThresholdSauvola
+      - Algorithm that performs a binarization operation through an adaptive threshold using standard deviation inside the kernel size area.
+      - Kernel 내 표준편차를 사용한 적응형 임계값을 통해 이진화 연산을 수행하는 알고리즘
     - AutoThreshold
       - Algorithm that binarizes images through histogram and gaussian function.
       - 히스토그램과 가우스 함수를 통해 이미지를 이진화하는 알고리즘.
