@@ -72,14 +72,14 @@ namespace
 
 	typedef std::function<void(int32_t, const SAnimationPose&, const SAnimationPose&)> FnAnimateMove;
 
-	float Clamp01(double f64Value)
+	double Clamp01(double f64Value)
 	{
 		if(f64Value <= 0.)
-			return 0.f;
+			return 0;
 		if(f64Value >= 1.)
-			return 1.f;
+			return 1;
 
-		return static_cast<float>(f64Value);
+		return f64Value;
 	}
 
 	Base::TPoint3<float> Add(const Base::TPoint3<float>& tpA, const Base::TPoint3<float>& tpB)
@@ -278,16 +278,46 @@ namespace
 		return pose;
 	}
 
+	CFLGeometry3DQuaternion<float> FindClosestEquivalentCuboidRotation(const CFLGeometry3DQuaternion<float>& quatStart, const CFLGeometry3DQuaternion<float>& quatTarget)
+	{
+		// A centered cuboid is invariant under a 180-degree rotation about any local principal axis.
+		const CFLGeometry3DQuaternion<float> arrLocalSymmetries[4] = {
+			MakeQuaternionFromRotationVector({ 0.f, 0.f, 0.f }),
+			MakeQuaternionFromRotationVector({ f32Pi, 0.f, 0.f }),
+			MakeQuaternionFromRotationVector({ 0.f, f32Pi, 0.f }),
+			MakeQuaternionFromRotationVector({ 0.f, 0.f, f32Pi }),
+		};
+
+		CFLGeometry3DQuaternion<float> quatClosest = quatTarget;
+		double f64ClosestDot = -1.;
+		for(int32_t i = 0; i < 4; ++i)
+		{
+			CFLGeometry3DQuaternion<float> quatCandidate = quatTarget * arrLocalSymmetries[i];
+			quatCandidate.Normalize();
+
+			double f64Dot = quatStart.Dot(quatCandidate);
+			if(f64Dot < 0.)
+			{
+				quatCandidate *= -1.f;
+				f64Dot = -f64Dot;
+			}
+
+			if(f64Dot > f64ClosestDot)
+			{
+				quatClosest = quatCandidate;
+				f64ClosestDot = f64Dot;
+			}
+		}
+
+		return quatClosest;
+	}
+
 	SAnimationPose LerpArc(const SAnimationPose& start, const SAnimationPose& end, float f32T, float f32ArcHeight)
 	{
 		SAnimationPose pose;
 		pose.tpWorldCenter = Lerp(start.tpWorldCenter, end.tpWorldCenter, f32T);
 		pose.tpWorldCenter.y += f32ArcHeight * sinf(f32Pi * f32T);
-
-		CFLGeometry3DQuaternion<float> quatEnd = end.quatRotation;
-		if(start.quatRotation.Dot(quatEnd) < 0.)
-			quatEnd *= -1.f;
-		pose.quatRotation.SetSphericalLinearInterpolation(start.quatRotation, quatEnd, f32T);
+		pose.quatRotation.SetSphericalLinearInterpolation(start.quatRotation, end.quatRotation, f32T);
 		return pose;
 	}
 
@@ -1313,6 +1343,9 @@ int main()
 			if(!view3DResult.IsAvailable())
 				return;
 
+			SAnimationPose poseEndMinimumMotion = poseEnd;
+			poseEndMinimumMotion.quatRotation = FindClosestEquivalentCuboidRotation(poseStart.quatRotation, poseEnd.quatRotation);
+
 			fnDraw();
 
 			int32_t i32InFlightObjIndex = -1;
@@ -1329,8 +1362,8 @@ int main()
 
 			while(view3DResult.IsAvailable())
 			{
-				const float f32T = Clamp01(pcAnimation.GetElapsedTimeFromStartInMilliSecond() / f64AnimationDurationMs);
-				const SAnimationPose poseNext = LerpArc(poseStart, poseEnd, f32T, f32AnimationArcHeight);
+				const float f32T = static_cast<float>(Clamp01(pcAnimation.GetElapsedTimeFromStartInMilliSecond() / f64AnimationDurationMs));
+				const SAnimationPose poseNext = LerpArc(poseStart, poseEndMinimumMotion, f32T, f32AnimationArcHeight);
 
 				view3DResult.LockUpdate();
 				const CResult resUpdate = UpdateItemObjectPose(view3DResult, i32InFlightObjIndex, vctLocalVertices, poseNext);
