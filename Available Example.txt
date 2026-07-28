@@ -2065,6 +2065,9 @@
     - AdaptiveThresholdSauvola
       - Algorithm that performs a binarization operation through an adaptive threshold using standard deviation inside the kernel size area.
       - Kernel 내 표준편차를 사용한 적응형 임계값을 통해 이진화 연산을 수행하는 알고리즘
+    - AdaptiveThresholdWolfJolion
+      - Algorithm that performs a binarization operation through an adaptive threshold using standard deviation inside the kernel size area and min value of calculation area.
+      - Kernel 내 표준편차와 연산 영역 전체의 최솟값을 사용한 적응형 임계값을 통해 이진화 연산을 수행하는 알고리즘
     - AutoThreshold
       - Algorithm that binarizes images through histogram and gaussian function.
       - 히스토그램과 가우스 함수를 통해 이미지를 이진화하는 알고리즘.
