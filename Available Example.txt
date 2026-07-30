@@ -2384,9 +2384,10 @@
       - The example of loading and running a snap file.
       - 스냅 파일 로드 및 실행 예제.
 
+  - KDTree
+    - The example of KDTree class, which is a binary search tree of K dimensions.
+    - K 차원의 이진 탐색 트리인 KD Tree 클래스 예제.
+
   - Stencil
     - The example of a stencil class that converts a string to a figure shaped by the selected font.
     - 입력된 문자열을 설정한 폰트 모양의 도형으로 변환하는 스텐실 클래스 예제.
-  - StepReaderConvertTo3DObject
-    - Example of loading and tessellating a STEP file to convert it into a CFL3DObject.
-    - Step 파일을 로드 및 테셀레이션하여 CFL3DOjbect 로 변환하는 예제
