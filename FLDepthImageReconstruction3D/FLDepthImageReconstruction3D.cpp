@@ -79,15 +79,15 @@ int main()
 			break;
 		if((res = flDepthImageReconstruction3D.SetDifferentialMethod(CFLDepthImageReconstruction3D::EDifferentialMethod_DoGY)).IsFail())
 			break;
-		if((res = flDepthImageReconstruction3D.SetSigma1(0.50)).IsFail())
+		if((res = flDepthImageReconstruction3D.SetSigma1(1.00)).IsFail())
 			break;
-		if((res = flDepthImageReconstruction3D.SetSigma2(1.00)).IsFail())
+		if((res = flDepthImageReconstruction3D.SetSigma2(0.60)).IsFail())
 			break;
 		if((res = flDepthImageReconstruction3D.SetKernelBias(0.001)).IsFail())
 			break;
-		if((res = flDepthImageReconstruction3D.SetFMThreshold(0.000002)).IsFail())
+		if((res = flDepthImageReconstruction3D.SetFMThreshold(0.0000025)).IsFail())
 			break;
-		if((res = flDepthImageReconstruction3D.SetTransitionGain(100.00)).IsFail())
+		if((res = flDepthImageReconstruction3D.SetTransitionGain(20.00)).IsFail())
 			break;
 		if((res = flDepthImageReconstruction3D.SetSigmaSpatial(11.00)).IsFail())
 			break;
