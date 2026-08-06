@@ -108,7 +108,7 @@ int main()
 
 		// 안내 문자열 지정 // Sets the guidance message.
 		flsInformation = L"RIGHT BUTTON CLICK ON MOUSE AND SEE THE CONTEXT MENU";
-		flsInformation2 = L"Option : EAvailableViewImageContextMenu_All & \n           ~(EAvailableViewImageContextMenu_Load | \n              EAvailableViewImageContextMenu_ClearFile | \n              EAvailableViewImageContextMenu_Save | \n              EAvailableViewImageContextMenu_CreateImage)";
+		flsInformation2 = L"Option: RemoveAvailableViewImageContextMenu\n           (LoadFile, LoadFile_Raw, LoadFolder\n           ClearFile, Save, CreateImage, ...)";
 
 		// 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
 		// The function DrawTextCanvas displays a string on the viewer using screen coordinates.
