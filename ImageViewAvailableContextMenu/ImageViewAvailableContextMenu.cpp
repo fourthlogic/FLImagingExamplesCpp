@@ -44,14 +44,12 @@ int main()
 			ErrorPrint(res,"Failed to synchronize window\n");
 			break;
 		}
-
-		// 이미지 뷰에서 이용 가능한 컨텍스트 메뉴를 설정합니다. 
-		// EAvailableViewImageContextMenu_All 이 기본값이며, 이 값으로 설정하면 모든 메뉴를 사용 가능한 상태가 됩니다.
-		// 아래와 같이 EAvailableViewImageContextMenu_None 으로 설정할 경우 모든 메뉴가 비활성화됩니다.
-		// Sets the context menus available in the image view.
-		// EAvailableViewImageContextMenu_All is the default value, and setting this value enables all context menu items.
-		// As shown below, setting EAvailableViewImageContextMenu_None disables all context menu items.
-		viewImage[0].SetAvailableViewImageContextMenu(EAvailableViewImageContextMenu_None);
+		
+		// 이미지 뷰의 모든 컨텍스트 메뉴 사용 여부를 설정합니다. 
+		// true로 설정하면 모든 메뉴가 활성화되고, false로 설정하면 모든 메뉴가 비활성화됩니다.
+		// Sets whether to enable all context menus in the image view.
+		// Setting it to true enables all context menu items, and setting it to false disables all context menu items.
+		viewImage[0].EnableAvailableViewImageContextMenuAll(false);
 
 		// 이미지뷰의 0번 레이어 가져오기 // Retrieves layer 0 from the image view.
 		CGUIViewImageLayerWrap layer = viewImage[0].GetLayer(0);
@@ -71,19 +69,36 @@ int main()
 		layer.DrawTextCanvas(CFLPoint<double>(10, 30), flsInformation2, CYAN, BLACK, 15);
 
 
-		// 이미지 뷰에서 이용 가능한 컨텍스트 메뉴를 설정합니다. 
-		// EAvailableViewImageContextMenu_All 이 기본값이며, 이 값으로 설정하면 모든 메뉴를 사용 가능한 상태가 됩니다.
-		// 아래와 같이 여러 조합을 이용하여 설정할 수 있으며, 
-		// EAvailableViewImageContextMenu_All & ~(EAvailableViewImageContextMenu_Load | EAvailableViewImageContextMenu_ClearFile | EAvailableViewImageContextMenu_Save | EAvailableViewImageContextMenu_CreateImage) 으로 설정할 경우 
-		// 파일 열기, 닫기, 저장, 이미지 생성 메뉴가 비활성화됩니다.
+		// 이미지 뷰에서 이용 가능한 컨텍스트 메뉴를 설정합니다.
+		// 기본값은 모든 메뉴가 사용 가능한 상태이며, EnableAvailableViewImageContextMenuAll(true) 로 언제든 전체 활성화할 수 있습니다.
+		// 아래와 같이 EMenuItem 배열을 만들어 RemoveAvailableViewImageContextMenu 를 호출하면
+		// 전달한 항목들만 비활성화됩니다.
+		// 아래 예제에서는 파일 열기, 닫기, 저장, 이미지 생성 관련 메뉴가 비활성화됩니다.
 		// Sets the context menus available in the image view.
-		// EAvailableViewImageContextMenu_All is the default value, and setting this value enables all context menu items.
-		// As shown below, multiple menu combinations can be configured using bitwise operations.
-		// For example, setting
-		// EAvailableViewImageContextMenu_All & ~(EAvailableViewImageContextMenu_Load | EAvailableViewImageContextMenu_ClearFile | EAvailableViewImageContextMenu_Save | EAvailableViewImageContextMenu_CreateImage)
-		// disables the Open File, Close File, Save, and Create Image menu items.
-		viewImage[1].SetAvailableViewImageContextMenu(EAvailableViewImageContextMenu_All & ~(EAvailableViewImageContextMenu_Load | EAvailableViewImageContextMenu_ClearFile | EAvailableViewImageContextMenu_Save | EAvailableViewImageContextMenu_CreateImage));
+		// By default all context menu items are enabled; call EnableAvailableViewImageContextMenuAll(true) to enable them all at any time.
+		// As shown below, build an EMenuItem array and pass it to RemoveAvailableViewImageContextMenu
+		// to disable only the items you list.
+		// The example below disables the Open File, Close File, Save, and Create Image menu items.
+		EMenuItem arrRemoveMenu[] =
+		{
+			// Load
+			EMenuItem_MenuGroup_Load,
 
+			// ClearFile
+			EMenuItem_ClearFile,
+			EMenuItem_ClearSelectedPage,
+
+			// Save
+			EMenuItem_MenuGroup_Save,
+
+			// CreateImage
+			EMenuItem_CreateImage,
+			EMenuItem_InsertPage,
+			EMenuItem_AppendPage,
+		};
+
+		viewImage[1].EnableAvailableViewImageContextMenuAll(true); // 전체 메뉴 활성화 / Enable all menu items
+		viewImage[1].RemoveAvailableViewImageContextMenu(arrRemoveMenu, sizeof(arrRemoveMenu) / sizeof(arrRemoveMenu[0]));
 
 		// 이미지뷰의 0번 레이어 가져오기 // Retrieves layer 0 from the image view.
 		layer = viewImage[1].GetLayer(0);
