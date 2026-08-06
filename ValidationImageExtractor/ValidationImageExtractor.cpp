@@ -153,8 +153,8 @@ int main()
 		validationImageExtractorDL.SetResultValidationImage(fliResultValidationImage);
 		// 데이터 유닛 설정 // Set the unit of data
 		validationImageExtractorDL.SetDataUnit(CValidationImageExtractorDL::EDataUnit_Image);
-		// 클래스 평활화 여부 설정 // Set whether to apply class equalization
-		validationImageExtractorDL.EnableClassEqualization(true);
+		// 클래스 비율 보장 여부 설정 // Set whether to apply class ratio preservation
+		validationImageExtractorDL.EnableClassRatioPreservation(true);
 		// Validation Image 비율 설정 // Set ratio of validation image
 		validationImageExtractorDL.SetValidationRatio(0.4f);
 
