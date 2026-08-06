@@ -53,7 +53,7 @@ int main()
 			break;
 		}
 
-		if(IsFail(res = viewImagesResultRegex.Create(1100, 0, 1700, 500)))
+		if(IsFail(res = viewImagesResultRegex.Create(1100, 0, 1600, 500)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
@@ -108,20 +108,20 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if(IsFail(res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"ORIGINAL", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerSource.DrawTextCanvas(CFLPoint<double>(0, 0), L"ORIGINAL", YELLOW, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
 
-		if(IsFail(res = layerResult.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT(By Text)", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerResult.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT(Remove Label 1 By Text)", GREEN, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
 		}
 
-		if(IsFail(res = layerResultRegex.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT(By Regex)", YELLOW, BLACK, 30)))
+		if(IsFail(res = layerResultRegex.DrawTextCanvas(CFLPoint<double>(0, 0), L"RESULT(Remove Label 1, 2 By Regex)", PURPLE, BLACK, 15)))
 		{
 			ErrorPrint(res, "Failed to draw text\n");
 			break;
@@ -145,7 +145,7 @@ int main()
 		LabelRemoverDL.EnableRegularExpression(false);
 		LabelRemoverDL.EnableMatchCase(true);
 		LabelRemoverDL.SetCompareMode(CLabelRemoverDL::ECompareMode_TextMode);
-		LabelRemoverDL.SetRemovalLabelName(L"1");
+		LabelRemoverDL.SetRemovalLabelName(L"1 Bread");
 
 		// LabelRenamer 실행 // LabelRenamer Execute 
 		if(IsFail(res = LabelRemoverDL.Execute()))
@@ -158,7 +158,7 @@ int main()
 		// Destination 이미지 설정 // Set destination image
 		LabelRemoverDL.SetDestinationImage(fliResultRegexImage);
 		LabelRemoverDL.EnableRegularExpression(true);
-		LabelRemoverDL.SetRemovalLabelName(L"[0-1]");
+		LabelRemoverDL.SetRemovalLabelName(L"[1-2].*");
 
 		// LabelRenamer 실행 // LabelRenamer Execute 
 		if(IsFail(res = LabelRemoverDL.Execute()))
@@ -169,6 +169,13 @@ int main()
 
 		// 두 개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
 		if(IsFail(res = viewImageSource.SynchronizeWindow(&viewImagesResult)))
+		{
+			ErrorPrint(res, "Failed to synchronize window.\n");
+			break;
+		}
+
+		// 두 개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+		if(IsFail(res = viewImageSource.SynchronizeWindow(&viewImagesResultRegex)))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
