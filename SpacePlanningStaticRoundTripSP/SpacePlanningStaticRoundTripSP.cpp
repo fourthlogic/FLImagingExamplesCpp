@@ -186,10 +186,17 @@ namespace
 			for(size_t i = 0; i < vctItemCounts.size(); ++i)
 				params.itemCounts[static_cast<int64_t>(i)] = vctItemCounts[i];
 
-			if((res = alg.SetStaticListParameters(params)).IsFail())
+			if((res = alg.SetStaticListParameters(params)).IsFail() ||
+			   (res = alg.EnableImmediateScoreEvaluation(false)).IsFail())
 				break;
 
-			res = alg.Learn();
+			if((res = alg.Learn()).IsFail() ||
+			   (res = alg.SetExecutionMode(SpacePlanning::EExecutionMode_EvaluateScore)).IsFail() ||
+			   (res = alg.Execute()).IsFail())
+				break;
+
+			if(!alg.HasValidOptimalStrategy())
+				res = EResult_NoResult;
 		}
 		while(false);
 
@@ -209,7 +216,7 @@ namespace
 			res = alg.Load(flsCache);
 
 			// PartialOK 는 파라미터만 로드된 상태이므로 재학습 필요 // PartialOK means parameters were loaded but learning is required
-			if(res.IsOK() && alg.IsLearned())
+			if(res.IsOK() && alg.IsLearned() && alg.HasValidOptimalStrategy())
 			{
 				wprintf(L"Loaded cached model: %s\n", flsCache.GetString());
 				return res;
@@ -338,7 +345,8 @@ namespace
 			if((res = dstAlg.ClearInteractiveStates()).IsFail())
 				break;
 
-			if((res = dstAlg.Execute()).IsFail())
+			if((res = dstAlg.SetExecutionMode(SpacePlanning::EExecutionMode_Interactive)).IsFail() ||
+			   (res = dstAlg.Execute()).IsFail())
 				break;
 
 			// 현재 상단 물품을 목적지 대기열에 추가 // Push currently top-pickable items into the destination queue

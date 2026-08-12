@@ -558,10 +558,17 @@ namespace
 				break;
 
 			SpacePlanning::SRandomSequenceParameters params(itemChances, 2);
-			if((res = alg.SetRandomSequenceParameters(params)).IsFail())
+			if((res = alg.SetRandomSequenceParameters(params)).IsFail() ||
+			   (res = alg.EnableImmediateScoreEvaluation(false)).IsFail())
 				break;
 
-			res = alg.Learn();
+			if((res = alg.Learn()).IsFail() ||
+			   (res = alg.SetExecutionMode(SpacePlanning::EExecutionMode_EvaluateScore)).IsFail() ||
+			   (res = alg.Execute()).IsFail())
+				break;
+
+			if(!alg.HasValidOptimalStrategy())
+				res = EResult_NoResult;
 		}
 		while(false);
 
@@ -601,7 +608,7 @@ namespace
 		{
 			res = alg.Load(flsCache);
 
-			if(res.IsOK() && alg.IsLearned())
+			if(res.IsOK() && alg.IsLearned() && alg.HasValidOptimalStrategy())
 			{
 				SpacePlanning::SRandomSequenceParameters params;
 				if((res = alg.GetRandomSequenceParameters(params)).IsFail())
@@ -918,7 +925,8 @@ namespace
 			if((res = alg.ClearInteractiveStates()).IsFail())
 				break;
 
-			if((res = alg.Execute()).IsFail())
+			if((res = alg.SetExecutionMode(SpacePlanning::EExecutionMode_Interactive)).IsFail() ||
+			   (res = alg.Execute()).IsFail())
 				break;
 
 			bool bFailed = false;
