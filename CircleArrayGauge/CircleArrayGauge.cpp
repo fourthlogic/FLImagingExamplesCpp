@@ -26,7 +26,7 @@ int main()
 		}
 
 		// 이미지 뷰 생성 // Creates imageview		
-		if(IsFail(res = viewImage.Create(300, 300, 600, 600)))
+		if(IsFail(res = viewImage.Create(100, 100, 600, 600)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
@@ -40,10 +40,10 @@ int main()
 		}
 
 		// Circle Gauge 객체 생성 // Create Circle Gauge object
-		CCircleArrayGauge circleGauge;
+		CCircleArrayGauge circleArrayGauge;
 
 		// 처리할 이미지 설정 // Set the image to process
-		circleGauge.SetSourceImage(fliImage);
+		circleArrayGauge.SetSourceImage(fliImage);
 
 		// 측정할 영역을 설정합니다. // Set the area to measure.
 		CFLFigureArray flfaMeasurementRegion;
@@ -51,28 +51,28 @@ int main()
 		flfaMeasurementRegion.Load(L"../../ExampleImages/Gauge/Circle Array Measurement Region");
 
 		double tolerance = 15.;
-		circleGauge.SetMeasurementRegion(flfaMeasurementRegion, tolerance);
+		circleArrayGauge.SetMeasurementRegion(flfaMeasurementRegion, tolerance);
 
 		// 추출하기위한 파라미터를 설정합니다. // Set parameters for extraction.
 		// 원을 추정하기위해 추출할 경계점의 변화 임계값에 대해 설정합니다. // Set the threshold change of the boundary point to be extracted to estimate the circle.
-		circleGauge.SetThreshold(20);
+		circleArrayGauge.SetThreshold(20);
 		// 원을 추정하기위해 추출할 경계점의 변화 임계값에 보정값을 설정합니다. // Set the correction value to the threshold change of the boundary point to be extracted to estimate the circle.
-		circleGauge.SetMinimumAmplitude(10);
+		circleArrayGauge.SetMinimumAmplitude(10);
 		// 원을 추정하기위해 추출할 경계점들의 대표값 표본 개수를 설정합니다. // Set the number of representative sample values ??of the boundary points to be extracted to estimate the circle.
-		circleGauge.SetThickness(3);
+		circleArrayGauge.SetThickness(3);
 		// 원을 추정하기위해 추출할 경계점들의 추출 간격을 설정합니다. // Set the extraction interval of boundary points to be extracted to estimate the circle.
-		circleGauge.SetSamplingStep(1.);
+		circleArrayGauge.SetSamplingStep(1.);
 		// 원을 추정하기위해 추출할 경계점들의 이상치 조정을 위한 임계값을 설정합니다. // Set the threshold value for outlier adjustment of the boundary points to be extracted to estimate the circle.
-		circleGauge.SetOutliersThreshold(3.);
+		circleArrayGauge.SetOutliersThreshold(3.);
 		// 원을 추정하기위해 추출할 경계점들의 이상치 조정 횟수을 설정합니다. // Set the number of outlier adjustments for boundary points to be extracted to estimate the circle.
-		circleGauge.SetOutliersThresholdCount(3);
+		circleArrayGauge.SetOutliersThresholdCount(3);
 
 		// 원을 추정하기위해 추출할 경계점 변화 방향에 대해 설정합니다. // Set the boundary point change direction to extract to estimate the circle.
-		circleGauge.SetTransitionType(CCircleGauge::ETransitionType_BrightToDark);
+		circleArrayGauge.SetTransitionType(CCircleGauge::ETransitionType_BrightToDark);
 		// 원을 추정하기위해 추출한 경계점 중 사용할 경계점 유형을 선택합니다. // Select the boundary point type to use among the boundary points extracted to estimate the circle.
-		circleGauge.SetTransitionChoice(CCircleGauge::ETransitionChoice_LargestAmplitude);
+		circleArrayGauge.SetTransitionChoice(CCircleGauge::ETransitionChoice_LargestAmplitude);
 		// 알고리즘 수행 // Execute the algorithm
-		if(IsFail(res = circleGauge.Execute()))
+		if(IsFail(res = circleArrayGauge.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute Circle gauge.\n");
 			break;
@@ -84,18 +84,18 @@ int main()
 
 		// index의 경우 TransitionChoice의 Begin, End에서만 유효합니다. //Index works only at Begin and End of TransitionChoice
 		// 추정된 원을 가져옵니다. // Get the estimated circle.	
-		res = circleGauge.GetMeasuredObject(flfaResult);
+		res = circleArrayGauge.GetMeasuredObject(flfaResult);
 		// 추정된 원을 추출에 사용된 유효 경계점을 가져옵니다. // Get the effective boundary point used to extract the estimated circle.
-		circleGauge.GetMeasuredValidPoints(flfaResultsValid);
+		circleArrayGauge.GetMeasuredValidPoints(flfaResultsValid);
 		// 추정된 원을 추출에 사용되지 못한 유효하지 않은 경계점을 가져옵니다. // Get an invalid boundary point that is not used to extract the estimated circle.
-		circleGauge.GetMeasuredInvalidPoints(flfaResultsInvalid);
+		circleArrayGauge.GetMeasuredInvalidPoints(flfaResultsInvalid);
 
 		CGUIViewImageLayerWrap layer = viewImage.GetLayer(0);
 
 		layer.Clear();
 
 		// 측정 영역이 어디인지 알기 위해 디스플레이 한다 // Display to know where the measurement area is
-		CFLFigureArray flfaMeasurementToleranceRegion = circleGauge.GetActualMeasurementRegion();
+		CFLFigureArray flfaMeasurementToleranceRegion = circleArrayGauge.GetActualMeasurementRegion();
 
 		if(IsFail(res = layer.DrawFigureImage(&flfaMeasurementToleranceRegion, BLUE)))
 		{
