@@ -2,12 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{76493c9a-5af7-4243-a8eb-3b6be79ca5fa}</UniqueIdentifier>
+      <UniqueIdentifier>{9f953730-eddc-47f5-ad1c-25165ffc72b5}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LineScanCameraCalibrator.cpp">
+    <ClCompile Include="CircleArrayGauge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
