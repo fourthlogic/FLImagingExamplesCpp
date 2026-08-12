@@ -892,16 +892,7 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectCreate()
 		pFlFigure->Set(flrdFigureShape);
 
 		// 이미지 뷰에 Figure object 를 생성한다. // Create a figure object in the image view.
-		// 가장 마지막 파라미터는 활성화 되는 메뉴의 구성이며, EAvailableFigureContextMenu_All 가 기본 메뉴를 활성화 한다. // The last parameter specifies the set of context menu items to be enabled. EAvailableFigureContextMenu_All enables the default context menu.
-		// 활성화 하고자 하는 메뉴를 추가 혹은 제거 하기 위해서는 enum 값을 비트 연산으로 넣어주면 된다. // To add or remove specific menu items, combine enum values using bitwise operations.
-		// ex) EAvailableFigureContextMenu_None -> 활성화 되는 메뉴 없음
-		//     EAvailableFigureContextMenu_All -> 전체 메뉴 활성화
-		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Decl Type, Template Type 변환 메뉴 활성화
-		// ex) EAvailableFigureContextMenu_None -> No menu items are enabled.
-		//     EAvailableFigureContextMenu_All -> All menu items are enabled.
-		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Enables the Decl Type and Template Type conversion menu items.
-
-		m_viewImage.PushBackFigureObject(pFlFigure, EAvailableFigureContextMenu_All);
+		m_viewImage.PushBackFigureObject(pFlFigure);
 
 		// 이미지 뷰를 갱신한다. // Update the image view.
 		m_viewImage.Invalidate(true);
@@ -999,9 +990,9 @@ void CFigureOperationDlg::OnBnClickedButtonFigureObjectExecute()
 
 		// 이미지 뷰에 Figure object 를 생성한다. // Create a figure object in the image view.
 		if(flfa.GetCount() == 1)
-			m_viewImage.PushBackFigureObject(flfa.GetAt(0), EAvailableFigureContextMenu_All);
+			m_viewImage.PushBackFigureObject(flfa.GetAt(0));
 		else
-			m_viewImage.PushBackFigureObject(&flfa, EAvailableFigureContextMenu_All);
+			m_viewImage.PushBackFigureObject(&flfa);
 
 		// 이미지 뷰를 갱신한다. // Update the image view.
 		m_viewImage.Invalidate(true);

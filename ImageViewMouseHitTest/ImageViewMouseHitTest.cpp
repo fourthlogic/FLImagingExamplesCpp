@@ -227,23 +227,8 @@ int main()
 		CFLRect<double> flrdFigureShape(flpdCenter.x - f64Size, flpdCenter.y - f64Size, flpdCenter.x + f64Size, flpdCenter.y + f64Size);
 
 		// 이미지 뷰에 Figure object 를 생성한다.
-		// 가장 마지막 파라미터는 활성화 되는 메뉴의 구성이며, EAvailableFigureContextMenu_All 가 기본 메뉴를 활성화 한다.
-		// 활성화 하고자 하는 메뉴를 추가 혹은 제거 하기 위해서는 enum 값을 비트 연산으로 넣어주면 된다.
-		// ex) EAvailableFigureContextMenu_None -> 활성화 되는 메뉴 없음
-		//     EAvailableFigureContextMenu_All -> 전체 메뉴 활성화
-		//     EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType -> Decl Type, Template Type 변환 메뉴 활성화
 		// Create a figure object in the image view.
-		// The last parameter specifies the configuration of the enabled context menus.
-		// EAvailableFigureContextMenu_All enables the default context menus.
-		// To add or remove specific menus, combine enum values using bitwise operations.
-		// Examples:
-		// EAvailableFigureContextMenu_None
-		//     -> No context menus are enabled.
-		// EAvailableFigureContextMenu_All
-		//     -> All context menus are enabled.
-		// EAvailableFigureContextMenu_DeclType | EAvailableFigureContextMenu_TemplateType
-		//     -> Enables the Decl Type and Template Type conversion menus.
-		viewImage.PushBackFigureObject(&flrdFigureShape, EAvailableFigureContextMenu_All);
+		viewImage.PushBackFigureObject(&flrdFigureShape);
 
 		// 이미지 뷰를 갱신 // Update image view
 		viewImage.Invalidate(true);

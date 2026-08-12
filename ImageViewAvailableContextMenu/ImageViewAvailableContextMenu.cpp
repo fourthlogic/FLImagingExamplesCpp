@@ -59,7 +59,7 @@ int main()
 
 		// 안내 문자열 생성 // Creates a guidance message.
 		CFLString<wchar_t> flsInformation = L"RIGHT BUTTON CLICK ON MOUSE AND SEE THE CONTEXT MENU";
-		CFLString<wchar_t> flsInformation2 = L"Option : EAvailableViewImageContextMenu_None";
+		CFLString<wchar_t> flsInformation2 = L"Option : None";
 
 		// 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
 		// The function DrawTextCanvas displays a string on the viewer using screen coordinates.
