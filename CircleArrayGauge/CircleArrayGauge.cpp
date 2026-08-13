@@ -129,10 +129,10 @@ int main()
 
 			double f64Radius = pFlcResult->GetRadius();
 			CFLPoint<double> flpLineCenter = pFlcResult->GetCenter();
-			printf("[%lld]Circle Center : (%.2lf, %.2lf)\nRadius : %.2lf pixels", i, flpLineCenter.x, flpLineCenter.y, f64Radius);
+			printf("[%lld]Circle Center : (%.2lf, %.2lf), Radius : %.2lf pixels\n", i, flpLineCenter.x, flpLineCenter.y, f64Radius);
 		}
 
-	// 추출된 유효점이 어디인지 알기 위해 디스플레이 한다 // Display to know where the extracted valid point is
+		// 추출된 유효점이 어디인지 알기 위해 디스플레이 한다 // Display to know where the extracted valid point is
 		CFLFigureArray flfaValidCrossHair;
 		flfaResultsValid.MakeCrossHairElementwise(flfaValidCrossHair, 1., true);
 
