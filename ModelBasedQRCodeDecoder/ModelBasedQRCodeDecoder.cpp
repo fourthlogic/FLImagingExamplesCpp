@@ -245,6 +245,9 @@ int main()
 		// The image view is waiting until close.
 		while(arrViewImage[EViewList_Learn].IsAvailable() && arrViewImage[EViewList_ModelBaseFind].IsAvailable() && arrViewImage[EViewList_NormalFind].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EViewList_Count; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 

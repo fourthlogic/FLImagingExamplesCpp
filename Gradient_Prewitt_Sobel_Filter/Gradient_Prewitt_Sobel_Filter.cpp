@@ -235,6 +235,11 @@ int main()
 		while(viewImageSrc.IsAvailable() && arrViewImageDst[EDst_Gradient].IsAvailable()
 			&& arrViewImageDst[EDst_Prewitt].IsAvailable() && arrViewImageDst[EDst_Sobel].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EDstCount; ++i)
+			arrViewImageDst[i].Destroy();
+
+		viewImageSrc.Destroy();
 	}
 	while(false);
 

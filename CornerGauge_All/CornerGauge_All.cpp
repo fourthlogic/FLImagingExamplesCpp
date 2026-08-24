@@ -257,6 +257,9 @@ int main()
 
 			CThreadUtilities::Sleep(1);
 		}
+
+		for(int32_t i = 0; i < i32ExampleCount; ++i)
+			viewImage[i].Destroy();
 	}
 	while(false);
 

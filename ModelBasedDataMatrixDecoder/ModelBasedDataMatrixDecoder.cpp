@@ -1,4 +1,4 @@
-#include <cstdio>
+ï»¿#include <cstdio>
 
 #include <FLImaging.h>
 #include "../CommonHeader/ErrorPrint.h"
@@ -37,7 +37,7 @@ int main()
 			L"Decoder Result View",
 		};
 
-		// ÀÌ¹ÌÁö ·Îµå // Loads image
+		// ì´ë¯¸ì§€ ë¡œë“œ // Loads image
 		if(IsFail(res = arrFliImage[EViewList_Learn].Load(L"../../ExampleImages/DataMatrix/Learn.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
@@ -71,15 +71,15 @@ int main()
 				break;
 			}
 
-			// ÀÌ¹ÌÁö ºä¿¡ ÀÌ¹ÌÁö¸¦ µğ½ºÇÃ·¹ÀÌ // Display the image in the imageview
+			// ì´ë¯¸ì§€ ë·°ì— ì´ë¯¸ì§€ë¥¼ ë””ìŠ¤í”Œë ˆì´ // Display the image in the imageview
 			if(IsFail(res = arrViewImage[i].SetImagePtr(&arrFliImage[i])))
 			{
 				ErrorPrint(res, "Failed to set image object on the image view.\n");
 				break;
 			}
 
-			// È­¸é¿¡ Ãâ·ÂÇÏ±â À§ÇØ Image View¿¡¼­ ·¹ÀÌ¾î 0¹øÀ» ¾ò¾î¿È // Obtain layer 0 number from image view for display
-			// ÀÌ °´Ã¼´Â ÀÌ¹ÌÁö ºä¿¡ ¼ÓÇØÀÖ±â ¶§¹®¿¡ µû·Î ÇØÁ¦ÇÒ ÇÊ¿ä°¡ ¾øÀ½ // This object belongs to an image view and does not need to be released separately
+			// í™”ë©´ì— ì¶œë ¥í•˜ê¸° ìœ„í•´ Image Viewì—ì„œ ë ˆì´ì–´ 0ë²ˆì„ ì–»ì–´ì˜´ // Obtain layer 0 number from image view for display
+			// ì´ ê°ì²´ëŠ” ì´ë¯¸ì§€ ë·°ì— ì†í•´ìˆê¸° ë•Œë¬¸ì— ë”°ë¡œ í•´ì œí•  í•„ìš”ê°€ ì—†ìŒ // This object belongs to an image view and does not need to be released separately
 			arrLayer[i] = arrViewImage[i].GetLayer(0);
 
 			if(IsFail(res = arrLayer[i].DrawTextCanvas(CFLPoint<double>(0., 0.), arrWcsViewText[i], YELLOW, BLUE, 20)))
@@ -89,38 +89,38 @@ int main()
 			}
 		}
 
-		// ÀÌ¹ÌÁö ºäÀÇ ½ÃÁ¡À» µ¿±âÈ­ ÇÑ´Ù // Synchronize the viewpoints of the all image views. 
+		// ì´ë¯¸ì§€ ë·°ì˜ ì‹œì ì„ ë™ê¸°í™” í•œë‹¤ // Synchronize the viewpoints of the all image views. 
 		if(IsFail(res = arrViewImage[EViewList_ModelBaseFind].SynchronizePointOfView(&arrViewImage[EViewList_NormalFind])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		// Model Based Data Matrix Decoder °´Ã¼ »ı¼º // Create Model Based Data Matrix Decoder object
+		// Model Based Data Matrix Decoder ê°ì²´ ìƒì„± // Create Model Based Data Matrix Decoder object
 		CModelBasedDataMatrixDecoder modelBasedDataMatrixDecoder;
 
-		// ÇĞ½À ÀÌ¹ÌÁö ¼³Á¤ // Sets the learn image.
+		// í•™ìŠµ ì´ë¯¸ì§€ ì„¤ì • // Sets the learn image.
 		modelBasedDataMatrixDecoder.SetLearnImage(arrFliImage[EViewList_Learn]);
-		// ÄÚµå »ö»ó ¼³Á¤ // Sets the code color.
+		// ì½”ë“œ ìƒ‰ìƒ ì„¤ì • // Sets the code color.
 		modelBasedDataMatrixDecoder.SetColorMode(EDataCodeColor_WhiteOnBlack);
 
-		// ÇĞ½À µ¿ÀÛ // Learn
+		// í•™ìŠµ ë™ì‘ // Learn
 		if((res = modelBasedDataMatrixDecoder.Learn()).IsFail())
 		{
 			ErrorPrint(res, "Failed to learn data matrix decoder.");
 			break;
 		}
 
-		// µ¿ÀÛ ÀÌ¹ÌÁö ¼³Á¤ // Set source image
+		// ë™ì‘ ì´ë¯¸ì§€ ì„¤ì • // Set source image
 		modelBasedDataMatrixDecoder.SetSourceImage(arrFliImage[EViewList_ModelBaseFind]);
-		// µğÄÚµù °á°ú °³¼ö ¼³Á¤ // Sets the number of decoding results.
+		// ë””ì½”ë”© ê²°ê³¼ ê°œìˆ˜ ì„¤ì • // Sets the number of decoding results.
 		modelBasedDataMatrixDecoder.SetDetectingCount(EDataCodeDecoderDetectingCount_All);
 		modelBasedDataMatrixDecoder.SetMaximumDetectingCount(3);
 
-		// ÇĞ½À ÀÌ¹ÌÁö ±âÁØ Å½»ö °¢µµ ¼³Á¤ // Sets the search angle relative to the learn data.
+		// í•™ìŠµ ì´ë¯¸ì§€ ê¸°ì¤€ íƒìƒ‰ ê°ë„ ì„¤ì • // Sets the search angle relative to the learn data.
 		modelBasedDataMatrixDecoder.SetAngleTolerance(30);
 
-		// µ¿ÀÛ // Execute
+		// ë™ì‘ // Execute
 		if((res = modelBasedDataMatrixDecoder.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute data matrix decoder.");
@@ -128,7 +128,7 @@ int main()
 		}
 
 
-		// Learn µ¿ÀÛ °á°ú¸¦ ¾ò¾î¿Â´Ù // Gets the result of the learn result.
+		// Learn ë™ì‘ ê²°ê³¼ë¥¼ ì–»ì–´ì˜¨ë‹¤ // Gets the result of the learn result.
 		CModelBasedDataMatrixDecoder::CDataMatrixLearnInformation datamatrixLearnInfo;
 		modelBasedDataMatrixDecoder.GetLearnResult(datamatrixLearnInfo);
 		{
@@ -137,7 +137,7 @@ int main()
 			CFLQuad<double>& flqLearnedCodeRegion = datamatrixLearnInfo.decodedDataMatrixInformation.flqRegion;
 			CFLString<wchar_t>& flsLearnedCode = datamatrixLearnInfo.decodedDataMatrixInformation.flsCode;
 
-			// Learn µ¿ÀÛ °á°ú ¿µ¿ª ¹× ÄÚµå Ãâ·Â // Outputs the regions and codes from the learn operation results.
+			// Learn ë™ì‘ ê²°ê³¼ ì˜ì—­ ë° ì½”ë“œ ì¶œë ¥ // Outputs the regions and codes from the learn operation results.
 			arrLayer[EViewList_Learn].DrawFigureImage(flqLearnedCodeRegion, LIME, 2);
 			arrLayer[EViewList_Learn].DrawTextImage(flqLearnedCodeRegion.flpPoints[3], flsLearnedCode, CYAN, BLACK, 20, false, flqLearnedCodeRegion.flpPoints[3].GetAngle(flqLearnedCodeRegion.flpPoints[2]));
 
@@ -158,7 +158,7 @@ int main()
 			wprintf(L"Code : %s\n", flsLearnedCode.GetString());
 		}
 
-		// Data Matrix Decoder °á°ú °³¼ö¸¦ ¾ò´Â´Ù. // Gets the number of results from the Data Matrix decoder.
+		// Data Matrix Decoder ê²°ê³¼ ê°œìˆ˜ë¥¼ ì–»ëŠ”ë‹¤. // Gets the number of results from the Data Matrix decoder.
 		int64_t i64Results = modelBasedDataMatrixDecoder.GetResultCount();
 
 		wprintf(L"\n[Model Based Decoded Result]\n");
@@ -167,14 +167,14 @@ int main()
 			CFLQuad<double> flqDecodedCodeRegion;
 			CFLString<wchar_t> flsDecodedCode;
 
-			// Data Matrix Decoder °á°úµé Áß Data Region À» ¾ò¾î¿È // Gets the Data Region from the results of the Data Matrix decoder.
+			// Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Data Region ì„ ì–»ì–´ì˜´ // Gets the Data Region from the results of the Data Matrix decoder.
 			if(IsFail(res = modelBasedDataMatrixDecoder.GetResultDataRegion(i, flqDecodedCodeRegion)))
 			{
 				ErrorPrint(res, "Failed to get data region from the data matrix decoder object.");
 				continue;
 			}
 
-			// Data Matrix Decoder °á°úµé Áß Decoded String À» ¾ò¾î¿È // Gets the decoded string from the results of the Data Matrix decoder.
+			// Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Decoded String ì„ ì–»ì–´ì˜´ // Gets the decoded string from the results of the Data Matrix decoder.
 			if(IsFail(res = modelBasedDataMatrixDecoder.GetResultDecodedString(i, flsDecodedCode)))
 			{
 				ErrorPrint(res, "Failed to get decoded string from the data matrix decoder object.");
@@ -188,27 +188,27 @@ int main()
 			arrLayer[EViewList_ModelBaseFind].DrawTextImage(flqDecodedCodeRegion.flpPoints[3], flsDecodedCode, CYAN, BLACK, 16, false, flqDecodedCodeRegion.flpPoints[3].GetAngle(flqDecodedCodeRegion.flpPoints[2]));
 		}
 
-		// ÀÏ¹İ Data Matrix Decoder °á°ú¿Í ºñ±³ÇÏ±â À§ÇÑ µ¿ÀÛ // Operation for comparing with standard Data Matrix decoder results.
+		// ì¼ë°˜ Data Matrix Decoder ê²°ê³¼ì™€ ë¹„êµí•˜ê¸° ìœ„í•œ ë™ì‘ // Operation for comparing with standard Data Matrix decoder results.
 
-		// Data Matrix Decoder °´Ã¼ »ı¼º // Create Data Matrix Decoder object
+		// Data Matrix Decoder ê°ì²´ ìƒì„± // Create Data Matrix Decoder object
 		CDataMatrixDecoder datamatrixDecoder;
 
-		// µ¿ÀÛ ÀÌ¹ÌÁö ¼³Á¤ // Set source image
+		// ë™ì‘ ì´ë¯¸ì§€ ì„¤ì • // Set source image
 		datamatrixDecoder.SetSourceImage(arrFliImage[EViewList_NormalFind]);
-		// ÄÚµå »ö»ó ¼³Á¤ // Sets the code color.
+		// ì½”ë“œ ìƒ‰ìƒ ì„¤ì • // Sets the code color.
 		datamatrixDecoder.SetColorMode(EDataCodeColor_WhiteOnBlack);
-		// µğÄÚµù °á°ú °³¼ö ¼³Á¤ // Sets the number of decoding results.
+		// ë””ì½”ë”© ê²°ê³¼ ê°œìˆ˜ ì„¤ì • // Sets the number of decoding results.
 		datamatrixDecoder.SetDetectingCount(EDataCodeDecoderDetectingCount_All);
 		datamatrixDecoder.SetMaximumDetectingCount(3);
 
-		// µ¿ÀÛ // Execute
+		// ë™ì‘ // Execute
 		if((res = datamatrixDecoder.Execute()).IsFail())
 		{
 			ErrorPrint(res, "Failed to execute data matrix decoder.");
 			break;
 		}
 
-		// Data Matrix Decoder °á°ú °³¼ö¸¦ ¾ò´Â´Ù. // Gets the number of results from the Data Matrix decoder.
+		// Data Matrix Decoder ê²°ê³¼ ê°œìˆ˜ë¥¼ ì–»ëŠ”ë‹¤. // Gets the number of results from the Data Matrix decoder.
 		i64Results = datamatrixDecoder.GetResultCount();
 
 		wprintf(L"\n[Normal Decoded Result]\n");
@@ -217,14 +217,14 @@ int main()
 			CFLQuad<double> flqDecodedCodeRegion;
 			CFLString<wchar_t> flsDecodedCode;
 
-			// Data Matrix Decoder °á°úµé Áß Data Region À» ¾ò¾î¿È // Gets the Data Region from the results of the Data Matrix decoder.
+			// Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Data Region ì„ ì–»ì–´ì˜´ // Gets the Data Region from the results of the Data Matrix decoder.
 			if(IsFail(res = datamatrixDecoder.GetResultDataRegion(i, flqDecodedCodeRegion)))
 			{
 				ErrorPrint(res, "Failed to get data region from the data matrix decoder object.");
 				continue;
 			}
 
-			// Data Matrix Decoder °á°úµé Áß Decoded String À» ¾ò¾î¿È // Gets the decoded string from the results of the Data Matrix decoder.
+			// Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Decoded String ì„ ì–»ì–´ì˜´ // Gets the decoded string from the results of the Data Matrix decoder.
 			if(IsFail(res = datamatrixDecoder.GetResultDecodedString(i, flsDecodedCode)))
 			{
 				ErrorPrint(res, "Failed to get decoded string from the data matrix decoder object.");
@@ -238,13 +238,16 @@ int main()
 			arrLayer[EViewList_NormalFind].DrawTextImage(flqDecodedCodeRegion.flpPoints[3], flsDecodedCode, CYAN, BLACK, 16, false, flqDecodedCodeRegion.flpPoints[3].GetAngle(flqDecodedCodeRegion.flpPoints[2]));
 		}
 
-		// ÀÌ¹ÌÁö ºä¸¦ °»½Å ÇÕ´Ï´Ù. // Update image view
+		// ì´ë¯¸ì§€ ë·°ë¥¼ ê°±ì‹  í•©ë‹ˆë‹¤. // Update image view
 		for(int32_t i = 0; i < EViewList_Count; ++i)
 			arrViewImage[i].Invalidate();
 
 		// The image view is waiting until close.
 		while(arrViewImage[EViewList_Learn].IsAvailable() && arrViewImage[EViewList_ModelBaseFind].IsAvailable() && arrViewImage[EViewList_NormalFind].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EViewList_Count; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 
