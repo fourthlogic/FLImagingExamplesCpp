@@ -427,8 +427,13 @@ int main()
 		viewGraph.RedrawWindow();
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImageLearn.IsAvailable() && viewImagesBoxContour.IsAvailable() && viewImagesBoxContour.IsAvailable() && view3DResult.IsAvailable() && viewGraph.IsAvailable())
+		while(viewImageLearn.IsAvailable() && viewImagesBoxContour.IsAvailable() && view3DResult.IsAvailable() && viewGraph.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageLearn.Destroy();
+		viewImagesBoxContour.Destroy();
+		view3DResult.Destroy();
+		viewGraph.Destroy();
 	}
 	while(false);
 

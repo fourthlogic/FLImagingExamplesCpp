@@ -454,6 +454,13 @@ int main()
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
 		while(viewImageLearnLowResolution.IsAvailable() && viewImageValidationLowResolution.IsAvailable() && viewImageLearnHighResolution.IsAvailable() && viewImageValidationHighResolution.IsAvailable() && viewImagesLabelFigure.IsAvailable() && viewGraph.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageLearnLowResolution.Destroy();
+		viewImageValidationLowResolution.Destroy();
+		viewImageLearnHighResolution.Destroy();
+		viewImageValidationHighResolution.Destroy();
+		viewImagesLabelFigure.Destroy();
+		viewGraph.Destroy();
 	}
 	while(false);
 

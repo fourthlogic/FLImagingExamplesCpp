@@ -139,6 +139,8 @@ int main()
 		while(viewImageSource.IsAvailable() && viewImagesResult.IsAvailable())
 			CThreadUtilities::Sleep(1);
 
+		viewImageSource.Destroy();
+		viewImagesResult.Destroy();
 	}
 	while(false);
 

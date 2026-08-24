@@ -188,6 +188,10 @@ int main()
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
 		while(viewImageSource.IsAvailable() && viewImagesLearn.IsAvailable() && viewImagesValidation.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageSource.Destroy();
+		viewImagesLearn.Destroy();
+		viewImagesValidation.Destroy();
 	}
 	while(false);
 

@@ -196,6 +196,9 @@ int main()
 		while(viewImageSource.IsAvailable() && viewImagesResult1.IsAvailable() && viewImagesResult2.IsAvailable())
 			CThreadUtilities::Sleep(1);
 
+		viewImageSource.Destroy();
+		viewImagesResult1.Destroy();
+		viewImagesResult2.Destroy();
 	}
 	while(false);
 
