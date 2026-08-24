@@ -224,6 +224,11 @@ int main()
 
 			CThreadUtilities::Sleep(1);
 		}
+
+		for(int32_t i = 0; i < i32SrcImageCount; ++i)
+			arrViewImageSrc[i].Destroy();
+
+		viewImageDst.Destroy();
 	}
 	while(false);
 

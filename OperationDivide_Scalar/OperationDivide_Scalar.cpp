@@ -191,6 +191,10 @@ int main()
 			&& viewImageDestination1.IsAvailable()
 			&& viewImageDestination2.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageSource.Destroy();
+		viewImageDestination1.Destroy();
+		viewImageDestination2.Destroy();
 	}
 	while(false);
 

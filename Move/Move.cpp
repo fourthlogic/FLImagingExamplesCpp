@@ -169,6 +169,9 @@ int main()
 
 			CThreadUtilities::Sleep(1);
 		}
+
+		for(int32_t i = 0; i < ETypeCount; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 
