@@ -194,6 +194,9 @@ int main()
 			  && arrViewImage[EType_Destination1].IsAvailable()
 			  && arrViewImage[EType_Destination2].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < ETypeCount; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 
