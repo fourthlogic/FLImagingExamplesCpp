@@ -142,6 +142,9 @@ int main()
 		while(arrViewImage[0].IsAvailable()
 			  && arrViewImage[1].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < 2; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 
