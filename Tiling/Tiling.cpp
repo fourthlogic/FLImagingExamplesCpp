@@ -27,7 +27,7 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		for(int32_t i = 0; i<i32SrcImageCount; ++i)
+		for(int32_t i = 0; i < i32SrcImageCount; ++i)
 		{
 			CFLStringW flsFileName;
 
@@ -38,7 +38,7 @@ int main()
 				ErrorPrint(res, "Failed to load the image file.\n");
 				break;
 			}
-		}		
+		}
 
 		// 여러 장의 이미지를 하나의 FLImage로 생성 // Create multiple images into one FLImage
 		fliSrcImage = fliSrcImages[0];
@@ -106,7 +106,7 @@ int main()
 		}
 
 		// 이미지 뷰 윈도우의 위치를 맞춤 // Align the position of the image view window
-		for(int32_t i = 1; i< i32SrcImageCount; ++i)
+		for(int32_t i = 1; i < i32SrcImageCount; ++i)
 		{
 			if(IsFail(res = arrViewImageSrc[0].SynchronizeWindow(&arrViewImageSrc[i])))
 			{
@@ -120,10 +120,10 @@ int main()
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
 		}
-		
+
 		// Source 이미지에 ROI 추가 // Add ROI to source image
 		CFLRect<double> flRect(30, 68, 200, 235);
-		
+
 		flRect.SetName(L"0");
 		fliSrcImage.SelectPage(0);
 		fliSrcImage.PushBackFigure(CFigureUtilities::ConvertFigureObjectToString(flRect));
@@ -185,7 +185,7 @@ int main()
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		CGUIViewImageLayerWrap layerSrc[i32SrcImageCount];
 		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
-		
+
 		for(int32_t i = 0; i < i32SrcImageCount; ++i)
 		{
 			layerSrc[i] = arrViewImageSrc[i].GetLayer(0);
@@ -204,7 +204,7 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		for(int32_t i = 0 ; i< i32SrcImageCount; ++i)
+		for(int32_t i = 0; i < i32SrcImageCount; ++i)
 		{
 			CFLString<wchar_t> fls;
 			fls.Format(L"Source Image #%d", i);
@@ -223,7 +223,7 @@ int main()
 		}
 
 		// 이미지 뷰를 갱신한다. // Update the image view.
-		for(int32_t i = 0 ; i< i32SrcImageCount; ++i)
+		for(int32_t i = 0; i < i32SrcImageCount; ++i)
 			arrViewImageSrc[i].Invalidate(true);
 
 		viewImageDst.Invalidate(true);
@@ -232,7 +232,7 @@ int main()
 		bool bRun = true;
 		while(bRun)
 		{
-			for(int32_t i = 0 ; i < 4; ++i)
+			for(int32_t i = 0; i < 4; ++i)
 			{
 				bRun &= arrViewImageSrc[i].IsAvailable();
 			}
@@ -241,6 +241,9 @@ int main()
 
 			CThreadUtilities::Sleep(1);
 		}
+
+		for(int32_t i = 0; i < i32SrcImageCount; ++i)
+			arrViewImageSrc[i].Destroy();
 	}
 	while(false);
 

@@ -4,6 +4,19 @@
 #include "../CommonHeader/ErrorPrint.h" 
 
 
+enum EType
+{
+	EType_Source = 0,
+	EType_FFT,
+	EType_IdealFilter,
+	EType_IdealDst,
+	EType_ButterworthFilter,
+	EType_ButterworthDst,
+	EType_GaussianFilter,
+	EType_GaussianDst,
+	ETypeCount,
+};
+
 int main()
 {
 	// You must call the following function once
@@ -11,17 +24,10 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare the image object
-	CFLImage fliSrcImage;
-	CFLImage fliFFTImage;
-	CFLImage fliIdealFilter;
-	CFLImage fliIdealDst;
-	CFLImage fliButterworthFilter;
-	CFLImage fliButterworthDst;
-	CFLImage fliGaussianFilter;
-	CFLImage fliGaussianDst;
+	CFLImage arrImage[ETypeCount];
 
 	// 이미지 뷰 선언 // Declare the image view
-	CGUIViewImageWrap viewImage[8];
+	CGUIViewImageWrap viewImage[ETypeCount];
 
 	do
 	{
@@ -29,191 +35,191 @@ int main()
 		CResult res = EResult_UnknownError;
 
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliSrcImage.Load(L"../../ExampleImages/FilterGeneratorFD/Sea1Ch.flif")))
+		if(IsFail(res = arrImage[EType_Source].Load(L"../../ExampleImages/FilterGeneratorFD/Sea1Ch.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// 이미지 뷰 생성 // Create image view
-		if(IsFail(res = viewImage[0].Create(300, 0, 300 + 384, 384)))
+		if(IsFail(res = viewImage[EType_Source].Create(300, 0, 300 + 384, 384)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[1].Create(300 + 384, 0, 300 + 384 * 2, 384)))
+		if(IsFail(res = viewImage[EType_IdealFilter].Create(300 + 384, 0, 300 + 384 * 2, 384)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[2].Create(300 + 384 * 2, 0, 300 + 384 * 3, 384)))
+		if(IsFail(res = viewImage[EType_ButterworthFilter].Create(300 + 384 * 2, 0, 300 + 384 * 3, 384)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[3].Create(300 + 384 * 3, 0, 300 + 384 * 4, 384)))
+		if(IsFail(res = viewImage[EType_GaussianFilter].Create(300 + 384 * 3, 0, 300 + 384 * 4, 384)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[4].Create(300, 384, 300 + 384, 768)))
+		if(IsFail(res = viewImage[EType_FFT].Create(300, 384, 300 + 384, 768)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[5].Create(300 + 384, 384, 300 + 384 * 2, 768)))
+		if(IsFail(res = viewImage[EType_IdealDst].Create(300 + 384, 384, 300 + 384 * 2, 768)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[6].Create(300 + 384 * 2, 384, 300 + 384 * 3, 768)))
+		if(IsFail(res = viewImage[EType_ButterworthDst].Create(300 + 384 * 2, 384, 300 + 384 * 3, 768)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[7].Create(300 + 384 * 3, 384, 300 + 384 * 4, 768)))
+		if(IsFail(res = viewImage[EType_GaussianDst].Create(300 + 384 * 3, 384, 300 + 384 * 4, 768)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
 		// 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
-		if(IsFail(res = viewImage[0].SetImagePtr(&fliSrcImage)))
+		if(IsFail(res = viewImage[EType_Source].SetImagePtr(&arrImage[EType_Source])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[1].SetImagePtr(&fliIdealFilter)))
+		if(IsFail(res = viewImage[EType_IdealFilter].SetImagePtr(&arrImage[EType_IdealFilter])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[2].SetImagePtr(&fliButterworthFilter)))
+		if(IsFail(res = viewImage[EType_ButterworthFilter].SetImagePtr(&arrImage[EType_ButterworthFilter])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[3].SetImagePtr(&fliGaussianFilter)))
+		if(IsFail(res = viewImage[EType_GaussianFilter].SetImagePtr(&arrImage[EType_GaussianFilter])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[4].SetImagePtr(&fliFFTImage)))
+		if(IsFail(res = viewImage[EType_FFT].SetImagePtr(&arrImage[EType_FFT])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[5].SetImagePtr(&fliIdealDst)))
+		if(IsFail(res = viewImage[EType_IdealDst].SetImagePtr(&arrImage[EType_IdealDst])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[6].SetImagePtr(&fliButterworthDst)))
+		if(IsFail(res = viewImage[EType_ButterworthDst].SetImagePtr(&arrImage[EType_ButterworthDst])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[7].SetImagePtr(&fliGaussianDst)))
+		if(IsFail(res = viewImage[EType_GaussianDst].SetImagePtr(&arrImage[EType_GaussianDst])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views. 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[1])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_IdealFilter])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[2])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_ButterworthFilter])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[3])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_GaussianFilter])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[4])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_FFT])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[5])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_IdealDst])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[6])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_ButterworthDst])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizePointOfView(&viewImage[7])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizePointOfView(&viewImage[EType_GaussianDst])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[1])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_IdealFilter])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[2])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_ButterworthFilter])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[3])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_GaussianFilter])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[4])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_FFT])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[5])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_IdealDst])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[6])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_ButterworthDst])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImage[0].SynchronizeWindow(&viewImage[7])))
+		if(IsFail(res = viewImage[EType_Source].SynchronizeWindow(&viewImage[EType_GaussianDst])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
@@ -223,10 +229,10 @@ int main()
 		CFourierTransform fourierTransform;
 
 		// Source 이미지 설정 // Set source image 
-		fourierTransform.SetSourceImage(fliSrcImage);
+		fourierTransform.SetSourceImage(arrImage[EType_Source]);
 
 		// Destination 이미지 설정(FFT image) // Set destination image(FFT image) 
-		fourierTransform.SetDestinationImage(fliFFTImage);
+		fourierTransform.SetDestinationImage(arrImage[EType_FFT]);
 
 		// 결과 이미지 포멧 설정 (FFT image, 32/64 bit Floating Point 설정 가능) // Set Result image format(FFT image, 32/64 bit Floating Point) 
 		fourierTransform.SetResultType(EFloatingPointAccuracy_Bit32);
@@ -245,10 +251,10 @@ int main()
 		CFilterGeneratorBandpassFD filterGeneratorBandpassFD;
 
 		// Source 이미지 설정 // Set source image 
-		filterGeneratorBandpassFD.SetSourceImage(fliFFTImage);
+		filterGeneratorBandpassFD.SetSourceImage(arrImage[EType_FFT]);
 
 		// Destination 이미지 설정 // Set destination image
-		filterGeneratorBandpassFD.SetDestinationImage(fliIdealFilter);
+		filterGeneratorBandpassFD.SetDestinationImage(arrImage[EType_IdealFilter]);
 
 		// 정밀도 설정 // Set Accuracy
 		filterGeneratorBandpassFD.SetAccuracy(EFloatingPointAccuracy_Bit32);
@@ -270,7 +276,7 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		filterGeneratorBandpassFD.SetDestinationImage(fliButterworthFilter);
+		filterGeneratorBandpassFD.SetDestinationImage(arrImage[EType_ButterworthFilter]);
 
 		// Filter Shape 설정 // set Filter Shape
 		filterGeneratorBandpassFD.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Butterworth);
@@ -289,7 +295,7 @@ int main()
 		}
 
 		// Destination 이미지 설정 // Set destination image
-		filterGeneratorBandpassFD.SetDestinationImage(fliGaussianFilter);
+		filterGeneratorBandpassFD.SetDestinationImage(arrImage[EType_GaussianFilter]);
 
 		// Filter Shape 설정 // set Filter Shape
 		filterGeneratorBandpassFD.SetFilterShape(CFilterGeneratorBandpassFD::EFilterShape_Gaussian);
@@ -313,11 +319,11 @@ int main()
 		// Operation Multiply 객체 생성 // Create Operation Multiply object
 		COperationMultiply operationMultiply;
 		// Source 이미지 설정 // Set the source image
-		operationMultiply.SetSourceImage(fliFFTImage);
+		operationMultiply.SetSourceImage(arrImage[EType_FFT]);
 		// Operand 이미지 설정 // Set the operand image
-		operationMultiply.SetOperandImage(fliIdealFilter);
+		operationMultiply.SetOperandImage(arrImage[EType_IdealFilter]);
 		// Destination 이미지 설정 // Set the destination image
-		operationMultiply.SetDestinationImage(fliIdealDst);
+		operationMultiply.SetDestinationImage(arrImage[EType_IdealDst]);
 		// 연산 방식 설정 // Set operation source
 		operationMultiply.SetOperationSource(EOperationSource_Image);
 
@@ -329,9 +335,9 @@ int main()
 		}
 
 		// Operand 이미지 설정 // Set the operand image
-		operationMultiply.SetOperandImage(fliButterworthFilter);
+		operationMultiply.SetOperandImage(arrImage[EType_ButterworthFilter]);
 		// Destination 이미지 설정 // Set the destination image
-		operationMultiply.SetDestinationImage(fliButterworthDst);
+		operationMultiply.SetDestinationImage(arrImage[EType_ButterworthDst]);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = operationMultiply.Execute()))
@@ -341,9 +347,9 @@ int main()
 		}
 
 		// Operand 이미지 설정 // Set the operand image
-		operationMultiply.SetOperandImage(fliGaussianFilter);
+		operationMultiply.SetOperandImage(arrImage[EType_GaussianFilter]);
 		// Destination 이미지 설정 // Set the destination image
-		operationMultiply.SetDestinationImage(fliGaussianDst);
+		operationMultiply.SetDestinationImage(arrImage[EType_GaussianDst]);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = operationMultiply.Execute()))
@@ -353,10 +359,10 @@ int main()
 		}
 
 		// Source 이미지 설정(FFT image) // Set source image (FFT image)
-		fourierTransform.SetSourceImage(fliIdealDst);
+		fourierTransform.SetSourceImage(arrImage[EType_IdealDst]);
 
 		// Destination 이미지 설정(IFFT image) // Set destination image(IFFT image)
-		fourierTransform.SetDestinationImage(fliIdealDst);
+		fourierTransform.SetDestinationImage(arrImage[EType_IdealDst]);
 
 		// 알고리즘 수행(IFFT) // Execute the algorithm(IFFT)
 		if((res = fourierTransform.Execute()).IsFail())
@@ -366,10 +372,10 @@ int main()
 		}
 
 		// Source 이미지 설정(FFT image) // Set source image (FFT image)
-		fourierTransform.SetSourceImage(fliButterworthDst);
+		fourierTransform.SetSourceImage(arrImage[EType_ButterworthDst]);
 
 		// Destination 이미지 설정(IFFT image) // Set destination image(IFFT image)
-		fourierTransform.SetDestinationImage(fliButterworthDst);
+		fourierTransform.SetDestinationImage(arrImage[EType_ButterworthDst]);
 
 		// 알고리즘 수행(IFFT) // Execute the algorithm(IFFT)
 		if((res = fourierTransform.Execute()).IsFail())
@@ -379,10 +385,10 @@ int main()
 		}
 
 		// Source 이미지 설정(FFT image) // Set source image (FFT image)
-		fourierTransform.SetSourceImage(fliGaussianDst);
+		fourierTransform.SetSourceImage(arrImage[EType_GaussianDst]);
 
 		// Destination 이미지 설정(IFFT image) // Set destination image(IFFT image)
-		fourierTransform.SetDestinationImage(fliGaussianDst);
+		fourierTransform.SetDestinationImage(arrImage[EType_GaussianDst]);
 
 		// 알고리즘 수행(IFFT) // Execute the algorithm(IFFT)
 		if((res = fourierTransform.Execute()).IsFail())
@@ -393,14 +399,14 @@ int main()
 
 		// 출력을 위한 이미지 레이어를 얻어옵니다. //  Gets the image layer for output.
 		// 따로 해제할 필요 없음 // No need to release separately
-		CGUIViewImageLayerWrap layerSource = viewImage[0].GetLayer(0);
-		CGUIViewImageLayerWrap layerFFT = viewImage[4].GetLayer(0);
-		CGUIViewImageLayerWrap layerIdealFilter = viewImage[1].GetLayer(0);
-		CGUIViewImageLayerWrap layerButterworthFilter = viewImage[2].GetLayer(0);
-		CGUIViewImageLayerWrap layerGaussianFilter = viewImage[3].GetLayer(0);
-		CGUIViewImageLayerWrap layerIdealDst = viewImage[5].GetLayer(0);
-		CGUIViewImageLayerWrap layerButterworthDst = viewImage[6].GetLayer(0);
-		CGUIViewImageLayerWrap layerGaussianDst = viewImage[7].GetLayer(0);
+		CGUIViewImageLayerWrap layerSource = viewImage[EType_Source].GetLayer(0);
+		CGUIViewImageLayerWrap layerFFT = viewImage[EType_FFT].GetLayer(0);
+		CGUIViewImageLayerWrap layerIdealFilter = viewImage[EType_IdealFilter].GetLayer(0);
+		CGUIViewImageLayerWrap layerButterworthFilter = viewImage[EType_ButterworthFilter].GetLayer(0);
+		CGUIViewImageLayerWrap layerGaussianFilter = viewImage[EType_GaussianFilter].GetLayer(0);
+		CGUIViewImageLayerWrap layerIdealDst = viewImage[EType_IdealDst].GetLayer(0);
+		CGUIViewImageLayerWrap layerButterworthDst = viewImage[EType_ButterworthDst].GetLayer(0);
+		CGUIViewImageLayerWrap layerGaussianDst = viewImage[EType_GaussianDst].GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Delete the shapes drawn on the existing layer
 		layerSource.Clear();
@@ -467,18 +473,21 @@ int main()
 		}
 
 		// 이미지 뷰를 갱신 합니다. // Update the image view.
-		viewImage[0].Invalidate(true);
-		viewImage[1].Invalidate(true);
-		viewImage[2].Invalidate(true);
-		viewImage[3].Invalidate(true);
-		viewImage[4].Invalidate(true);
-		viewImage[5].Invalidate(true);
-		viewImage[6].Invalidate(true);
-		viewImage[7].Invalidate(true);
+		viewImage[EType_Source].Invalidate(true);
+		viewImage[EType_IdealFilter].Invalidate(true);
+		viewImage[EType_ButterworthFilter].Invalidate(true);
+		viewImage[EType_GaussianFilter].Invalidate(true);
+		viewImage[EType_FFT].Invalidate(true);
+		viewImage[EType_IdealDst].Invalidate(true);
+		viewImage[EType_ButterworthDst].Invalidate(true);
+		viewImage[EType_GaussianDst].Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImage[0].IsAvailable() && viewImage[1].IsAvailable() && viewImage[2].IsAvailable() && viewImage[3].IsAvailable() && viewImage[4].IsAvailable() && viewImage[5].IsAvailable() && viewImage[6].IsAvailable() && viewImage[7].IsAvailable())
+		while(viewImage[EType_Source].IsAvailable() && viewImage[EType_IdealFilter].IsAvailable() && viewImage[EType_ButterworthFilter].IsAvailable() && viewImage[EType_GaussianFilter].IsAvailable() && viewImage[EType_FFT].IsAvailable() && viewImage[EType_IdealDst].IsAvailable() && viewImage[EType_ButterworthDst].IsAvailable() && viewImage[EType_GaussianDst].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < ETypeCount; i++)
+			viewImage[i].Destroy();
 	}
 	while(false);
 

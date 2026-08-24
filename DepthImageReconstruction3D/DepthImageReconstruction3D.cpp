@@ -143,6 +143,10 @@ int main()
 		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
 		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable() && view3DDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageSrc.Destroy();
+		viewImageDst.Destroy();
+		view3DDst.Destroy();
 	}
 	while(false);
 

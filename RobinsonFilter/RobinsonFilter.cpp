@@ -195,6 +195,10 @@ int main()
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to exit
 		while(viewImageSrc.IsAvailable() && viewImageAmpDst.IsAvailable() && viewImageDirDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageSrc.Destroy();
+		viewImageAmpDst.Destroy();
+		viewImageDirDst.Destroy();
 	}
 	while(false);
 

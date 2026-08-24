@@ -164,6 +164,9 @@ int main()
 			  && arrViewImage[EType_Kernel].IsAvailable()
 			  && arrViewImage[EType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < ETypeCount; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 
