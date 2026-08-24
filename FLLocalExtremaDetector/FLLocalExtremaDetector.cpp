@@ -50,41 +50,41 @@ int main()
 		layer.Clear();
 
 		// 객체 생성 // Create object
-		CFLLocalExtremaDetection flLocalExtremaDetection;
+		CFLLocalExtremaDetector flLocalExtremaDetector;
 
 		// ROI 범위 설정
 		CFLRect<int32_t> flrROI(100, 50, 450, 450);
 
 		// 처리할 이미지 설정
-		if(IsFail(res = flLocalExtremaDetection.SetSourceImage(fliImage)))
+		if(IsFail(res = flLocalExtremaDetector.SetSourceImage(fliImage)))
 		{
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 		}
 
 		// 처리할 ROI 설정
-		if(IsFail(res = flLocalExtremaDetection.SetSourceROI(flrROI)))
+		if(IsFail(res = flLocalExtremaDetector.SetSourceROI(flrROI)))
 		{
 			ErrorPrint(res, "Failed to set Source ROI.");
 			break;
 		}
 
 		// 검출을 위한 Suppression Radius 설정
-		if(IsFail(res = flLocalExtremaDetection.SetSuppressionRadius(11)))
+		if(IsFail(res = flLocalExtremaDetector.SetSuppressionRadius(11)))
 		{
 			ErrorPrint(res, "Failed to set Suppression Radius.");
 			break;
 		}
 
 		// Reference Surface Check 설정
-		if(IsFail(res = flLocalExtremaDetection.EnableReferenceSurfaceCheck(true)))
+		if(IsFail(res = flLocalExtremaDetector.EnableReferenceSurfaceCheck(true)))
 		{
 			ErrorPrint(res, "Failed to set Reference Surface Check.");
 			break;
 		}
 
 		// 알고리즘 실행
-		if(IsFail(res = flLocalExtremaDetection.Execute()))
+		if(IsFail(res = flLocalExtremaDetector.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute.");
 			break;
@@ -94,7 +94,7 @@ int main()
 		Foundation::CFLFigureArray flfaResultPoints;
 
 		// 검출 결과 받아오기
-		if(IsFail(res = flLocalExtremaDetection.GetResultPoints(flfaResultPoints)))
+		if(IsFail(res = flLocalExtremaDetector.GetResultPoints(flfaResultPoints)))
 		{
 			ErrorPrint(res, "Failed to get result.");
 			break;

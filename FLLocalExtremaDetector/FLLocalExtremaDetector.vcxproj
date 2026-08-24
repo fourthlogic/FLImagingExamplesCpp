@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BD68839E-8EA9-4A09-8B11-DB42642F2E07}</ProjectGuid>
+    <ProjectGuid>{382E7F51-5F73-4660-B45B-2CD0031E03D2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>FLLocalExtremaDetection</RootNamespace>
+    <RootNamespace>FLLocalExtremaDetector</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FLLocalExtremaDetection.cpp" />
+    <ClCompile Include="FLLocalExtremaDetector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
