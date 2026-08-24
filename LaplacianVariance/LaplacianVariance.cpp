@@ -4,103 +4,107 @@
 #include "../CommonHeader/ErrorPrint.h"
 
 
+enum EImageType
+{
+	EImageType_Source1 = 0,
+	EImageType_Source2,
+	EImageType_Source3,
+	EImageType_Count,
+};
+
 int main()
 {
 	// You must call the following function once
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-	// 이미지 객체 선언 // Declare image object
-	CFLImage fliSrcImage1;
-	CFLImage fliSrcImage2;
-	CFLImage fliSrcImage3;
+	// 이미지 객체 선언 // Declare the image object
+	CFLImage arrFliImage[EImageType_Count];
 
-	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap viewImageSrc1;
-	CGUIViewImageWrap viewImageSrc2;
-	CGUIViewImageWrap viewImageSrc3;
+	// 이미지 뷰 선언 // Declare the image view
+	CGUIViewImageWrap arrViewImage[EImageType_Count];
 
 	do
 	{
 		CResult res = EResult_UnknownError;
 		// Source 이미지 로드 // Load the source image
-		if(IsFail(res = fliSrcImage1.Load(L"../../ExampleImages/FocusMeasurement/Focus1.flif")))
+		if(IsFail(res = arrFliImage[EImageType_Source1].Load(L"../../ExampleImages/FocusMeasurement/Focus1.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
-		if(IsFail(res = fliSrcImage2.Load(L"../../ExampleImages/FocusMeasurement/Focus2.flif")))
+		if(IsFail(res = arrFliImage[EImageType_Source2].Load(L"../../ExampleImages/FocusMeasurement/Focus2.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
-		if(IsFail(res = fliSrcImage3.Load(L"../../ExampleImages/FocusMeasurement/Focus3.flif")))
+		if(IsFail(res = arrFliImage[EImageType_Source3].Load(L"../../ExampleImages/FocusMeasurement/Focus3.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// Source 이미지 뷰 생성 // Create the source image view
-		if(IsFail(res = viewImageSrc1.Create(400, 0, 912, 612)))
+		if(IsFail(res = arrViewImage[EImageType_Source1].Create(400, 0, 912, 612)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc2.Create(912, 0, 1424, 612)))
+		if(IsFail(res = arrViewImage[EImageType_Source2].Create(912, 0, 1424, 612)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc3.Create(1424, 0, 1936, 612)))
+		if(IsFail(res = arrViewImage[EImageType_Source3].Create(1424, 0, 1936, 612)))
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
 		// Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		if(IsFail(res = viewImageSrc1.SetImagePtr(&fliSrcImage1)))
+		if(IsFail(res = arrViewImage[EImageType_Source1].SetImagePtr(&arrFliImage[EImageType_Source1])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc2.SetImagePtr(&fliSrcImage2)))
+		if(IsFail(res = arrViewImage[EImageType_Source2].SetImagePtr(&arrFliImage[EImageType_Source2])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc3.SetImagePtr(&fliSrcImage3)))
+		if(IsFail(res = arrViewImage[EImageType_Source3].SetImagePtr(&arrFliImage[EImageType_Source3])))
 		{
 			ErrorPrint(res, "Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the image views
-		if(IsFail(res = viewImageSrc1.SynchronizePointOfView(&viewImageSrc2)))
+		if(IsFail(res = arrViewImage[EImageType_Source1].SynchronizePointOfView(&arrViewImage[EImageType_Source2])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc1.SynchronizePointOfView(&viewImageSrc3)))
+		if(IsFail(res = arrViewImage[EImageType_Source1].SynchronizePointOfView(&arrViewImage[EImageType_Source3])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
 		// 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the image view windows
-		if(IsFail(res = viewImageSrc1.SynchronizeWindow(&viewImageSrc2)))
+		if(IsFail(res = arrViewImage[EImageType_Source1].SynchronizeWindow(&arrViewImage[EImageType_Source2])))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc1.SynchronizeWindow(&viewImageSrc3)))
+		if(IsFail(res = arrViewImage[EImageType_Source1].SynchronizeWindow(&arrViewImage[EImageType_Source3])))
 		{
 			ErrorPrint(res, "Failed to synchronize window.\n");
 			break;
@@ -110,7 +114,7 @@ int main()
 		CLaplacianVariance laplacianVariance;
 
 		// Source 이미지 1 설정 // Set the source1 image
-		laplacianVariance.SetSourceImage(fliSrcImage1);
+		laplacianVariance.SetSourceImage(arrFliImage[EImageType_Source1]);
 
 		//Threshold 설정 //Set Threshold
 		laplacianVariance.SetThreshold(5.0);
@@ -126,7 +130,7 @@ int main()
 		double f64Score1 = laplacianVariance.GetResultScore();
 
 		// Source 이미지 2 설정 // Set the source2 image
-		laplacianVariance.SetSourceImage(fliSrcImage2);
+		laplacianVariance.SetSourceImage(arrFliImage[EImageType_Source2]);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = laplacianVariance.Execute()))
@@ -139,7 +143,7 @@ int main()
 		double f64Score2 = laplacianVariance.GetResultScore();
 
 		// Source 이미지 3 설정 // Set the source3 image
-		laplacianVariance.SetSourceImage(fliSrcImage3);
+		laplacianVariance.SetSourceImage(arrFliImage[EImageType_Source3]);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = laplacianVariance.Execute()))
@@ -153,9 +157,9 @@ int main()
 
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		CGUIViewImageLayerWrap layerSrc1 = viewImageSrc1.GetLayer(0);
-		CGUIViewImageLayerWrap layerSrc2 = viewImageSrc2.GetLayer(0);
-		CGUIViewImageLayerWrap layerSrc3 = viewImageSrc3.GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc1 = arrViewImage[EImageType_Source1].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc2 = arrViewImage[EImageType_Source2].GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc3 = arrViewImage[EImageType_Source3].GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSrc1.Clear();
@@ -193,13 +197,16 @@ int main()
 		}
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
-		viewImageSrc1.Invalidate(true);
-		viewImageSrc2.Invalidate(true);
-		viewImageSrc3.Invalidate(true);
+		arrViewImage[EImageType_Source1].Invalidate(true);
+		arrViewImage[EImageType_Source2].Invalidate(true);
+		arrViewImage[EImageType_Source3].Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImageSrc1.IsAvailable() && viewImageSrc2.IsAvailable() && viewImageSrc3.IsAvailable())
+		while(arrViewImage[EImageType_Source1].IsAvailable() && arrViewImage[EImageType_Source2].IsAvailable() && arrViewImage[EImageType_Source3].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EImageType_Count; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 

@@ -4,6 +4,14 @@
 #include "../CommonHeader/ErrorPrint.h" 
 
 
+enum EImageType
+{
+	EImageType_Source = 0,
+	EImageType_Operand,
+	EImageType_Destination,
+	EImageType_Count,
+};
+
 int main()
 {
 	// You must call the following function once
@@ -11,71 +19,66 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare the image object
-	CFLImage fliSrcImage;
-	CFLImage fliOprImage;
-	CFLImage fliDstImage;
+	CFLImage arrFliImage[EImageType_Count];
 
 	// 이미지 뷰 선언 // Declare the image view
-	CGUIViewImageWrap viewImageSrc;
-	CGUIViewImageWrap viewImageOpr;
-	CGUIViewImageWrap viewImageDst;
-
-	CResult res = EResult_UnknownError;
+	CGUIViewImageWrap arrViewImage[EImageType_Count];
+	CResult res;
 
 	do
 	{
 		// 이미지 로드 // Loads image
-		if(IsFail(res = fliSrcImage.Load(L"../../ExampleImages/ChannelLpNorm/Coord.flif")))
+		if(IsFail(res = arrFliImage[EImageType_Source].Load(L"../../ExampleImages/ChannelLpNorm/Coord.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
-		if(IsFail(res = fliOprImage.Load(L"../../ExampleImages/ChannelLpNorm/Gradation.flif")))
+		if(IsFail(res = arrFliImage[EImageType_Operand].Load(L"../../ExampleImages/ChannelLpNorm/Gradation.flif")))
 		{
 			ErrorPrint(res, "Failed to load the image file.\n");
 			break;
 		}
 
 		// 이미지 뷰 생성 // Create image view
-		if((res = viewImageSrc.Create(100, 0, 600, 500)).IsFail() ||
-		   (res = viewImageOpr.Create(600, 0, 1100, 500)).IsFail() ||
-		   (res = viewImageDst.Create(1100, 0, 1600, 500)).IsFail())
+		if((res = arrViewImage[EImageType_Source].Create(100, 0, 600, 500)).IsFail() ||
+		   (res = arrViewImage[EImageType_Operand].Create(600, 0, 1100, 500)).IsFail() ||
+		   (res = arrViewImage[EImageType_Destination].Create(1100, 0, 1600, 500)).IsFail())
 		{
 			ErrorPrint(res, "Failed to create the image view.\n");
 			break;
 		}
 
 		// 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the image views. 
-		if(IsFail(res = viewImageSrc.SynchronizePointOfView(&viewImageOpr)))
+		if(IsFail(res = arrViewImage[EImageType_Source].SynchronizePointOfView(&arrViewImage[EImageType_Operand])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc.SynchronizePointOfView(&viewImageDst)))
+		if(IsFail(res = arrViewImage[EImageType_Source].SynchronizePointOfView(&arrViewImage[EImageType_Destination])))
 		{
 			ErrorPrint(res, "Failed to synchronize view\n");
 			break;
 		}
 
 		// 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the image view windows
-		if(IsFail(res = viewImageSrc.SynchronizeWindow(&viewImageOpr)))
+		if(IsFail(res = arrViewImage[EImageType_Source].SynchronizeWindow(&arrViewImage[EImageType_Operand])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
-		if(IsFail(res = viewImageSrc.SynchronizeWindow(&viewImageDst)))
+		if(IsFail(res = arrViewImage[EImageType_Source].SynchronizeWindow(&arrViewImage[EImageType_Destination])))
 		{
 			ErrorPrint(res, "Failed to synchronize window\n");
 			break;
 		}
 
 		// 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
-		if((res = viewImageSrc.SetImagePtr(&fliSrcImage)).IsFail() ||
-		   (res = viewImageOpr.SetImagePtr(&fliOprImage)).IsFail() ||
-		   (res = viewImageDst.SetImagePtr(&fliDstImage)).IsFail())
+		if((res = arrViewImage[EImageType_Source].SetImagePtr(&arrFliImage[EImageType_Source])).IsFail() ||
+		   (res = arrViewImage[EImageType_Operand].SetImagePtr(&arrFliImage[EImageType_Operand])).IsFail() ||
+		   (res = arrViewImage[EImageType_Destination].SetImagePtr(&arrFliImage[EImageType_Destination])).IsFail())
 		{
 			ErrorPrint(res, "Failed to set image object on the image view. \n");
 			break;
@@ -85,15 +88,15 @@ int main()
 		CChannelLpNorm channelLpNorm;
 
 		// Source 이미지 설정 // Set Source image
-		if((res = channelLpNorm.SetSourceImage(fliSrcImage)).IsFail()) 
+		if((res = channelLpNorm.SetSourceImage(arrFliImage[EImageType_Source])).IsFail())
 			break;
 
 		// Operand 이미지 설정 // Set Operand image
-		if((res = channelLpNorm.SetOperandImage(fliOprImage)).IsFail())
+		if((res = channelLpNorm.SetOperandImage(arrFliImage[EImageType_Operand])).IsFail())
 			break;
 
 		// Destination 이미지 설정 // Set Destination image 
-		if((res = channelLpNorm.SetDestinationImage(fliDstImage)).IsFail()) 
+		if((res = channelLpNorm.SetDestinationImage(arrFliImage[EImageType_Destination])).IsFail())
 			break;
 
 		// 연산 방식 설정 // Set operation source
@@ -109,9 +112,9 @@ int main()
 
 		// 출력을 위한 이미지 레이어를 얻어옵니다. //  Gets the image layer for output.
 		// 따로 해제할 필요 없음 // No need to release separately
-		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
-		CGUIViewImageLayerWrap layerOpr = viewImageOpr.GetLayer(0);
-		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc = arrViewImage[EImageType_Source].GetLayer(0);
+		CGUIViewImageLayerWrap layerOpr = arrViewImage[EImageType_Operand].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst = arrViewImage[EImageType_Destination].GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Delete the shapes drawn on the existing layer
 		layerSrc.Clear();
@@ -129,18 +132,21 @@ int main()
 		}
 
 		// Zoom Fit
-		viewImageSrc.ZoomFit();
-		viewImageOpr.ZoomFit();
-		viewImageDst.ZoomFit();
+		arrViewImage[EImageType_Source].ZoomFit();
+		arrViewImage[EImageType_Operand].ZoomFit();
+		arrViewImage[EImageType_Destination].ZoomFit();
 
 		// 이미지 뷰를 갱신 합니다. // Update the image view.
-		viewImageSrc.Invalidate(true);
-		viewImageOpr.Invalidate(true);
-		viewImageDst.Invalidate(true);
+		arrViewImage[EImageType_Source].Invalidate(true);
+		arrViewImage[EImageType_Operand].Invalidate(true);
+		arrViewImage[EImageType_Destination].Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImageSrc.IsAvailable() && viewImageOpr.IsAvailable() && viewImageDst.IsAvailable())
+		while(arrViewImage[EImageType_Source].IsAvailable() && arrViewImage[EImageType_Operand].IsAvailable() && arrViewImage[EImageType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EImageType_Count; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 

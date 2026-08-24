@@ -4,11 +4,11 @@
 #include "../CommonHeader/ErrorPrint.h"
 
 
-enum EType
+enum EImageType
 {
-	EType_Source = 0,
-	EType_Destination,
-	ETypeCount,
+	EImageType_Source = 0,
+	EImageType_Destination,
+	EImageType_Count,
 };
 
 int main()
@@ -17,11 +17,11 @@ int main()
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-	// 이미지 객체 선언 // Declare image object
-	CFLImage arrFliImage[ETypeCount];
+	// 이미지 객체 선언 // Declare the image object
+	CFLImage arrFliImage[EImageType_Count];
 
-	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap arrViewImage[ETypeCount];
+	// 이미지 뷰 선언 // Declare the image view
+	CGUIViewImageWrap arrViewImage[EImageType_Count];
 
 	// 알고리즘 동작 결과 // Algorithm execution result
 	CResult result = EResult_UnknownError;
@@ -29,28 +29,28 @@ int main()
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if((result = arrFliImage[EType_Source].Load(L"../../ExampleImages/OperationFourthRoot/Sea3ChF32.flif")).IsFail())
+		if((result = arrFliImage[EImageType_Source].Load(L"../../ExampleImages/OperationFourthRoot/Sea3ChF32.flif")).IsFail())
 		{
 			ErrorPrint(result, L"Failed to load the image file.\n");
 			break;
 		}
 
 		// Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
-		if((result = arrFliImage[EType_Destination].Assign(arrFliImage[EType_Source])).IsFail())
+		if((result = arrFliImage[EImageType_Destination].Assign(arrFliImage[EImageType_Source])).IsFail())
 		{
 			ErrorPrint(result, L"Failed to assign the image file.\n");
 			break;
 		}
 
 		// Source 이미지 뷰 생성 // Create Source image view
-		if((result = arrViewImage[EType_Source].Create(100, 0, 548, 448)).IsFail())
+		if((result = arrViewImage[EImageType_Source].Create(100, 0, 548, 448)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to create the image view.\n");
 			break;
 		}
 
 		// Destination 이미지 뷰 생성 // Create destination image view
-		if((result = arrViewImage[EType_Destination].Create(548, 0, 996, 448)).IsFail())
+		if((result = arrViewImage[EImageType_Destination].Create(548, 0, 996, 448)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to create the image view.\n");
 			break;
@@ -59,7 +59,7 @@ int main()
 		bool bError = false;
 
 		// 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-		for(int32_t i = 0; i < ETypeCount; ++i)
+		for(int32_t i = 0; i < EImageType_Count; ++i)
 		{
 			if((result = arrViewImage[i].SetImagePtr(&arrFliImage[i])).IsFail())
 			{
@@ -73,14 +73,14 @@ int main()
 			break;
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-		if((result = arrViewImage[EType_Source].SynchronizePointOfView(&arrViewImage[EType_Destination])).IsFail())
+		if((result = arrViewImage[EImageType_Source].SynchronizePointOfView(&arrViewImage[EImageType_Destination])).IsFail())
 		{
 			ErrorPrint(result, L"Failed to synchronize view\n");
 			break;
 		}
 
 		// 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-		if((result = arrViewImage[EType_Source].SynchronizeWindow(&arrViewImage[EType_Destination])).IsFail())
+		if((result = arrViewImage[EImageType_Source].SynchronizeWindow(&arrViewImage[EImageType_Destination])).IsFail())
 		{
 			ErrorPrint(result, L"Failed to synchronize window.\n");
 			break;
@@ -89,9 +89,9 @@ int main()
 		// Operation FourthRoot 객체 생성 // Create Operation FourthRoot object
 		COperationFourthRoot operationFourthRoot;
 		// Source 이미지 설정 // Set the source image
-		operationFourthRoot.SetSourceImage(arrFliImage[EType_Source]);
+		operationFourthRoot.SetSourceImage(arrFliImage[EImageType_Source]);
 		// Destination 이미지 설정 // Set the destination image
-		operationFourthRoot.SetDestinationImage(arrFliImage[EType_Destination]);
+		operationFourthRoot.SetDestinationImage(arrFliImage[EImageType_Destination]);
 		// Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
 		operationFourthRoot.SetOverflowMethod(EOverflowMethod_Clamping);
 
@@ -99,13 +99,13 @@ int main()
 		if((result = operationFourthRoot.Execute()).IsFail())
 		{
 			ErrorPrint(result, L"Failed to execute operation FourthRoot.");
-			
+
 			break;
 		}
 
-		CGUIViewImageLayerWrap arrLayer[ETypeCount];
+		CGUIViewImageLayerWrap arrLayer[EImageType_Count];
 
-		for(int32_t i = 0; i < ETypeCount; ++i)
+		for(int32_t i = 0; i < EImageType_Count; ++i)
 		{
 			// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 			// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
@@ -122,26 +122,29 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if((result = arrLayer[EType_Source].DrawTextCanvas(&CFLPoint<double>(5, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer[EImageType_Source].DrawTextCanvas(&CFLPoint<double>(5, 0), L"Source Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
 
-		if((result = arrLayer[EType_Destination].DrawTextCanvas(&CFLPoint<double>(5, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
+		if((result = arrLayer[EImageType_Destination].DrawTextCanvas(&CFLPoint<double>(5, 0), L"Destination Image", YELLOW, BLACK, 30)).IsFail())
 		{
 			ErrorPrint(result, L"Failed to draw text\n");
 			break;
 		}
-		
+
 		// 이미지 뷰를 갱신 // Update image view
-		arrViewImage[EType_Source].Invalidate(true);
-		arrViewImage[EType_Destination].Invalidate(true);
+		arrViewImage[EImageType_Source].Invalidate(true);
+		arrViewImage[EImageType_Destination].Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(arrViewImage[EType_Source].IsAvailable()
-			  && arrViewImage[EType_Destination].IsAvailable())
+		while(arrViewImage[EImageType_Source].IsAvailable()
+			  && arrViewImage[EImageType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EImageType_Count; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 

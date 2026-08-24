@@ -3,87 +3,93 @@
 #include <FLImaging.h>
 
 
+enum EImageType
+{
+	EImageType_Source = 0,
+	EImageType_Destination,
+	EImageType_Count,
+};
+
 int main()
 {
 	// You must call the following function once
 	// before using any features of the FLImaging(R) library
 	CLibraryUtilities::Initialize();
 
-	// 이미지 객체 선언 // Declare image object
-	CFLImage fliSrcImage;
-	CFLImage fliDstImage;
+	// 이미지 객체 선언 // Declare the image object
+	CFLImage arrFliImage[EImageType_Count];
 
-	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap viewImageSrc;
-	CGUIViewImageWrap viewImageDst;
+	// 이미지 뷰 선언 // Declare the image view
+	CGUIViewImageWrap arrViewImage[EImageType_Count];
+	CResult res;
 
 	do
 	{
 		// Source 이미지 로드 // Load the source image
-		if(IsFail(fliSrcImage.Load(L"../../ExampleImages/NoiseImage/NoiseImage1.flif")))
+		if(IsFail(arrFliImage[EImageType_Source].Load(L"../../ExampleImages/NoiseImage/NoiseImage1.flif")))
 		{
 			printf("Failed to load the image file.\n");
 			break;
 		}
 
 		// Destination이미지를 Src 이미지와 동일한 이미지로 생성
-		if(IsFail(fliDstImage.Assign(fliSrcImage)))
+		if(IsFail(arrFliImage[EImageType_Destination].Assign(arrFliImage[EImageType_Source])))
 		{
 			printf("Failed to assign the image file.\n");
 			break;
 		}
 
 		// Source 이미지 뷰 생성 // Create the source image view
-		if(IsFail(viewImageSrc.Create(400, 0, 912, 612)))
+		if(IsFail(arrViewImage[EImageType_Source].Create(400, 0, 912, 612)))
 		{
 			printf("Failed to create the image view.\n");
 			break;
 		}
 
 		// Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		if(IsFail(viewImageSrc.SetImagePtr(&fliSrcImage)))
+		if(IsFail(arrViewImage[EImageType_Source].SetImagePtr(&arrFliImage[EImageType_Source])))
 		{
 			printf("Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// Destination 이미지 뷰 생성 // Create the destination image view
-		if(IsFail(viewImageDst.Create(912, 0, 1424, 612)))
+		if(IsFail(arrViewImage[EImageType_Destination].Create(912, 0, 1424, 612)))
 		{
 			printf("Failed to create the image view.\n");
 			break;
 		}
 
 		// Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
-		if(IsFail(viewImageDst.SetImagePtr(&fliDstImage)))
+		if(IsFail(arrViewImage[EImageType_Destination].SetImagePtr(&arrFliImage[EImageType_Destination])))
 		{
 			printf("Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// Source이미지 뷰와 Dst 이미지 뷰의 초점을 맞춤
-		if(IsFail(viewImageSrc.SynchronizePointOfView(&viewImageDst)))
+		if(IsFail(arrViewImage[EImageType_Source].SynchronizePointOfView(&arrViewImage[EImageType_Destination])))
 		{
 			printf("Failed to set image object on the image view.\n");
 			break;
 		}
 
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if(IsFail(viewImageSrc.SynchronizeWindow(&viewImageDst)))
+		if(IsFail(arrViewImage[EImageType_Source].SynchronizeWindow(&arrViewImage[EImageType_Destination])))
 		{
 			printf("Failed to synchronize window.\n");
 			break;
 		}
 
 		// Source Image 크기에 맞게 view의 크기를 조정
-		if(IsFail(viewImageSrc.ZoomFit()))
+		if(IsFail(arrViewImage[EImageType_Source].ZoomFit()))
 		{
 			printf("Failed to zoom fit\n");
 			break;
 		}
 
 		// Destination Image 크기에 맞게 view의 크기를 조정
-		if(IsFail(viewImageDst.ZoomFit()))
+		if(IsFail(arrViewImage[EImageType_Destination].ZoomFit()))
 		{
 			printf("Failed to zoom fit\n");
 			break;
@@ -95,13 +101,13 @@ int main()
 		CFLRect<int32_t> flrROI(100, 190, 360, 420);
 
 		// Source 이미지 설정 // Set the source image
-		modeFilter.SetSourceImage(fliSrcImage);
+		modeFilter.SetSourceImage(arrFliImage[EImageType_Source]);
 
 		// Source ROI 설정 // Set the source ROI
 		modeFilter.SetSourceROI(flrROI);
 
 		// Destination 이미지 설정 // Set the destination image
-		modeFilter.SetDestinationImage(fliDstImage);
+		modeFilter.SetDestinationImage(arrFliImage[EImageType_Destination]);
 
 		// Destination ROI 설정
 		modeFilter.SetDestinationROI(flrROI);
@@ -121,8 +127,8 @@ int main()
 
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
-		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
+		CGUIViewImageLayerWrap layerSrc = arrViewImage[EImageType_Source].GetLayer(0);
+		CGUIViewImageLayerWrap layerDst = arrViewImage[EImageType_Destination].GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSrc.Clear();
@@ -149,12 +155,15 @@ int main()
 		}
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
-		viewImageSrc.Invalidate(true);
-		viewImageDst.Invalidate(true);
+		arrViewImage[EImageType_Source].Invalidate(true);
+		arrViewImage[EImageType_Destination].Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable())
+		while(arrViewImage[EImageType_Source].IsAvailable() && arrViewImage[EImageType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < EImageType_Count; ++i)
+			arrViewImage[i].Destroy();
 	}
 	while(false);
 
