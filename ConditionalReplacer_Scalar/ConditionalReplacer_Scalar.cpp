@@ -221,6 +221,9 @@ int main()
 			  && viewImage[1].IsAvailable()
 			  && viewImage[2].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < 3; ++i)
+			viewImage[i].Destroy();
 	}
 	while(false);
 

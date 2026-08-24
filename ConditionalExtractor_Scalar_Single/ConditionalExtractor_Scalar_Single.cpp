@@ -162,6 +162,9 @@ int main()
 		while(viewImage[0].IsAvailable()
 			  && viewImage[1].IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		for(int32_t i = 0; i < 2; ++i)
+			viewImage[i].Destroy();
 	}
 	while(false);
 
