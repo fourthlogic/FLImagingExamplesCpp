@@ -183,9 +183,9 @@ int main()
 		// 검증할 이미지 설정 // Set the image to validate
 		orientedObjectDetectionDL.SetLearningValidationImage(fliValidationImage);
 		// 학습할 orientedObjectDetectionDL 모델 설정 // Set up orientedObjectDetectionDL model to learn
-		orientedObjectDetectionDL.SetModel(COrientedObjectDetectionDL::EModel_OR_FLNet);
+		orientedObjectDetectionDL.SetModel(COrientedObjectDetectionDL::EModel_OR_FLNet_V2);
 		// 학습할 orientedObjectDetectionDL 모델의 버전 설정 // Set up orientedObjectDetectionDL model version to learn
-		orientedObjectDetectionDL.SetModelVersion(COrientedObjectDetectionDL::EModelVersion_OR_FLNet_V1_256);
+		orientedObjectDetectionDL.SetModelVersion(COrientedObjectDetectionDL::EModelVersion_OR_FLNet_V2_256);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
 		orientedObjectDetectionDL.SetLearningEpoch(1024);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
@@ -204,14 +204,14 @@ int main()
 
 		// AugmentationSpec 설정 // Set the AugmentationSpec
 		CAugmentationSpecDL augSpec;
-
+		CObjectAugmentationSpecDL obAugSpec;
+		obAugSpec.EnableAugmentation(false);
+		augSpec.SetObjectAugmentationSpec(&obAugSpec);
 		augSpec.EnableAugmentation(true);
 		augSpec.SetCommonActivationRate(0.8);
 		augSpec.SetCommonInterpolationMethod(FLImaging::ImageProcessing::EInterpolationMethod_Bilinear);
 		augSpec.EnableRotation(true);
-		augSpec.SetRotationParam(-30., 30., false, false);
-		augSpec.EnableScale(true);
-		augSpec.SetScaleParam(1., 1.2, 1., 1.2, true);
+		augSpec.SetRotationParam(-15., 15., false, false);
 		augSpec.EnableHorizontalFlip(true);
 		augSpec.EnableVerticalFlip(true);
 
