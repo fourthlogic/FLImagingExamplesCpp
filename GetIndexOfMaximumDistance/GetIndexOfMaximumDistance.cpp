@@ -184,7 +184,7 @@ int main()
 
 		CFLFigureArray flfaSrcDepth1 = (CFLFigureArray)flfaSource2.GetAt(flvSrcDepth1.v);
 		CFLFigure* pFlfSrcDepth1 = flfaSource2.GetAt(flvSrcDepth1.v);
-		CFLFigure* pFlfSrcDepth2 = ((CFLFigureArray)pFlfSrcDepth1).GetAt(flvSrcDepth2.v);
+		CFLFigure* pFlfSrcDepth2 = ((CFLFigureArray*)pFlfSrcDepth1)->GetAt(flvSrcDepth2.v);
 
 		CFLFigureArray flfaArraySrcDepth1 = (CFLFigureArray)flfaSource2.GetAt(flvSrcDepth1.v);
 		CFLRect<double> flrBoundary2;
