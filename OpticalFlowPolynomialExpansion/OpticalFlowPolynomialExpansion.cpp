@@ -247,6 +247,9 @@ int main()
 			performanceCounter.Start();
 			i32PageIndex++;
 		}
+
+		viewImageSrc.Destroy();
+		viewImageDst.Destroy();
 	}
 	while(false);
 

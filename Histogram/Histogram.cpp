@@ -155,6 +155,9 @@ int main()
 		// 이미지 뷰 / 그래프 뷰가 종료될 때 까지 기다림
 		while(viewImageSource.IsAvailable() && viewGraph.IsAvailable())
 			CThreadUtilities::Sleep(1);
+
+		viewImageSource.Destroy();
+		viewGraph.Destroy();
 	}
 	while(false);
 
