@@ -188,6 +188,15 @@ int main()
 		// Set Conditional Expression to End Learning. If the map value is 1 or higher, end the learning. Same value as metric.
 		measurementInstanceDL.SetLearningStopCondition(L"map >= 1");
 
+		// OptimizerSpec 객체 생성 // Create OptimizerSpec object
+		COptimizerSpecAdamGradientDescentDL optSpec;
+
+		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
+		optSpec.SetLearningRate(1e-4f);
+
+		// 설정한 Optimizer를 measurementInstanceDL에 적용 // Apply the Optimizer that we set up to measurementInstanceDL
+		measurementInstanceDL.SetLearningOptimizerSpec(optSpec);
+
 		CAugmentationSpecDL augSpec;
 
 		augSpec.EnableAugmentation(false);
