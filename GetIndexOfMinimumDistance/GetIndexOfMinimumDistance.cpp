@@ -141,14 +141,14 @@ int main()
 			layerSrc1.DrawTextImage(flpaSource1.GetAt(i)->GetCenter(), CFLString<wchar_t>().Format(L"%lld", i), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_BOTTOM);
 
 		// DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-		CFLScalar<int64_t> flvSrc = (CFLScalar<int64_t>)flfaResultSrc1.Front();
+		CFLScalar<int64_t>* pFlvSrc = (CFLScalar<int64_t>*)flfaResultSrc1.Front();
 		layerDst1.DrawFigureImage(flpaSource1, BLACK, 3);
 		layerDst1.DrawFigureImage(flpaSource1, LIME);
 		layerDst1.DrawFigureImage(flcDestination1, BLACK, 3);
 		layerDst1.DrawFigureImage(flcDestination1, KHAKI);
-		layerDst1.DrawFigureImage(flpaSource1.GetAt(flvSrc.v), CYAN, 3);
-		layerDst1.DrawTextImage(flpaSource1.GetAt(flvSrc.v)->GetCenter(), CFLString<wchar_t>().Format(L"%lld", flvSrc.v), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_BOTTOM);
-		layerDst1.DrawTextImage(flcDestination1.GetCenter(), CFLString<wchar_t>().Format(L"%lld", flvSrc.v), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
+		layerDst1.DrawFigureImage(flpaSource1.GetAt(pFlvSrc->v), CYAN, 3);
+		layerDst1.DrawTextImage(flpaSource1.GetAt(pFlvSrc->v)->GetCenter(), CFLString<wchar_t>().Format(L"%lld", pFlvSrc->v), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_BOTTOM);
+		layerDst1.DrawTextImage(flcDestination1.GetCenter(), CFLString<wchar_t>().Format(L"%lld", pFlvSrc->v), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
 
 		// SourceView2의 0번 레이어에 Source, Destination Figure 그리기 // Draw Source and Destination Figure on Layer 0 of SourceView2
 		layerSrc2.DrawFigureImage(flfaSource2, BLACK, 3);
@@ -158,15 +158,15 @@ int main()
 
 		for(int64_t i = 0; i < flfaSource2.GetCount(); ++i)
 		{
-			CFLFigureArray flfaArrayDepth1 = (CFLFigureArray)flfaSource2.GetAt(i);
+			CFLFigureArray* pFlfaArrayDepth1 = (CFLFigureArray*)flfaSource2.GetAt(i);
 			CFLRect<double> flrBoundary;
-			flfaArrayDepth1.GetBoundaryRect(&flrBoundary);
+			pFlfaArrayDepth1->GetBoundaryRect(&flrBoundary);
 
 			layerSrc2.DrawFigureImage(flrBoundary, LIGHTBLUE, 1);
-			layerSrc2.DrawTextImage(flfaArrayDepth1.GetCenter(), CFLString<wchar_t>().Format(L"%lld", i), LIGHTBLUE, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
+			layerSrc2.DrawTextImage(pFlfaArrayDepth1->GetCenter(), CFLString<wchar_t>().Format(L"%lld", i), LIGHTBLUE, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
 
-			for(int64_t j = 0; j < flfaArrayDepth1.GetCount(); ++j)
-				layerSrc2.DrawTextImage(flfaArrayDepth1.GetAt(j)->GetCenter(), CFLString<wchar_t>().Format(L"%lld", j), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
+			for(int64_t j = 0; j < pFlfaArrayDepth1->GetCount(); ++j)
+				layerSrc2.DrawTextImage(pFlfaArrayDepth1->GetAt(j)->GetCenter(), CFLString<wchar_t>().Format(L"%lld", j), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
 		}
 
 		for(int64_t i = 0; i < flfaDestination2.GetCount(); ++i)
@@ -182,7 +182,6 @@ int main()
 		CFLScalar<int64_t>* pFlvSrcDepth1 = (CFLScalar<int64_t>*)flfaResultSrc2.GetAt(0);
 		CFLScalar<int64_t>* pFlvSrcDepth2 = (CFLScalar<int64_t>*)flfaResultSrc2.GetAt(1);
 
-		CFLFigureArray* pFlfaSrcDepth1 = (CFLFigureArray*)flfaSource2.GetAt(pFlvSrcDepth1->v);
 		CFLFigure* pFlfSrcDepth1 = flfaSource2.GetAt(pFlvSrcDepth1->v);
 		CFLFigure* pFlfSrcDepth2 = ((CFLFigureArray*)pFlfSrcDepth1)->GetAt(pFlvSrcDepth2->v);
 
@@ -196,11 +195,11 @@ int main()
 		layerDst2.DrawTextImage(pFlfaArraySrcDepth1->GetAt(pFlvSrcDepth2->v)->GetCenter(), CFLString<wchar_t>().Format(L"%lld", pFlvSrcDepth2->v), CYAN, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
 		layerDst2.DrawFigureImage(pFlfSrcDepth2, CYAN, 1);
 
-		CFLScalar<int64_t> flvDstDepth1 = (CFLScalar<int64_t>)flfaResultDst2.GetAt(0);
+		CFLScalar<int64_t>* pFlvDstDepth1 = (CFLScalar<int64_t>*)flfaResultDst2.GetAt(0);
 
-		CFLFigure* pFlfDstDepth1 = flfaDestination2.GetAt(flvDstDepth1.v);
+		CFLFigure* pFlfDstDepth1 = flfaDestination2.GetAt(pFlvDstDepth1->v);
 
-		layerDst2.DrawTextImage(pFlfDstDepth1->GetCenter(), CFLString<wchar_t>().Format(L"%lld", flvDstDepth1.v), MAGENTA, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
+		layerDst2.DrawTextImage(pFlfDstDepth1->GetCenter(), CFLString<wchar_t>().Format(L"%lld", pFlvDstDepth1->v), MAGENTA, BLACK, 12, false, 0, EGUIViewImageTextAlignment_CENTER_CENTER);
 		layerDst2.DrawFigureImage(pFlfDstDepth1, MAGENTA, 1);
 
 
@@ -212,7 +211,7 @@ int main()
 		wprintf(L"%s\n\n", CFigureUtilities::ConvertFigureObjectToString(flcDestination1).GetString());
 
 		wprintf(L"Result1 Index of Minimum distance\n");
-		wprintf(L"%lld\n\n", flvSrc.v);
+		wprintf(L"%lld\n\n", pFlvSrc->v);
 
 		wprintf(L"\n\n");
 
@@ -226,7 +225,7 @@ int main()
 		wprintf(L"Depth1 : %lld\nDepth2 : %lld\n\n", pFlvSrcDepth1->v, pFlvSrcDepth2->v);
 
 		wprintf(L"Dst Result2 Index of Minimum distance\n");
-		wprintf(L"Depth1 : %lld\n\n", flvDstDepth1.v);
+		wprintf(L"Depth1 : %lld\n\n", pFlvDstDepth1->v);
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
 		for(int32_t i = 0; i < 4; ++i)
