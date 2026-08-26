@@ -99,22 +99,22 @@ int main()
 		if((res = computedTomographyTranslationCT.SetDestinationSinogramIndex(15)).IsFail())
 			break;
 
-		if((res = computedTomographyTranslationCT.SetDetectorCellSizeUnit(0.16708)).IsFail())
+		if((res = computedTomographyTranslationCT.SetDetectorCellSizeUnit(0.16708f)).IsFail())
 			break;
 		if((res = computedTomographyTranslationCT.SetObjectTranslateDirection(CComputedTomographyTranslationCT::EObjectTranslateDirection_RightToLeft)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetSourceObjectDistanceUnit(13.60)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSourceObjectDistanceUnit(13.60f)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetSourceDetectorDistanceUnit(60.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSourceDetectorDistanceUnit(60.00f)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetObjectTranslationDistanceUnit(24.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetObjectTranslationDistanceUnit(24.00f)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetPrincipalDeltaXPixel(0.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetPrincipalDeltaXPixel(0.00f)).IsFail())
 			break;
 
-		if((res = computedTomographyTranslationCT.SetNormalizedAirThreshold(0.60)).IsFail())
+		if((res = computedTomographyTranslationCT.SetNormalizedAirThreshold(0.60f)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetSinogramKeepRatio(0.30)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSinogramKeepRatio(0.30f)).IsFail())
 			break;
 		if((res = computedTomographyTranslationCT.SetInterpolationCoefficient(6)).IsFail())
 			break;
@@ -124,7 +124,7 @@ int main()
 			break;
 		if((res = computedTomographyTranslationCT.SetFrequencyWindow(CComputedTomographyTranslationCT::EFrequencyWindow_Gaussian)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetSigma(0.30)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSigma(0.30f)).IsFail())
 			break;
 
 		if((res = computedTomographyTranslationCT.SetReconstructionPlaneCount(140)).IsFail())
@@ -135,9 +135,9 @@ int main()
 			break;
 		if((res = computedTomographyTranslationCT.EnableSigmoid(true)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetSigmoidB(1.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSigmoidB(1.00f)).IsFail())
 			break;
-		if((res = computedTomographyTranslationCT.SetSigmoidM(0.00)).IsFail())
+		if((res = computedTomographyTranslationCT.SetSigmoidM(0.00f)).IsFail())
 			break;
 		if((res = computedTomographyTranslationCT.SetIntensityThreshold(190)).IsFail())
 			break;

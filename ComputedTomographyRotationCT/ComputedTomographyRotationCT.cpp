@@ -78,13 +78,13 @@ int main()
 		if((res = computedTomographyRotationCT.SetDestinationObject(&floDstObject)).IsFail())
 			break;
 
-		if((res = computedTomographyRotationCT.SetDetectorCellXSize(0.248046875)).IsFail())
+		if((res = computedTomographyRotationCT.SetDetectorCellXSize(0.248046875f)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetDetectorCellYSize(0.248046875)).IsFail())
+		if((res = computedTomographyRotationCT.SetDetectorCellYSize(0.248046875f)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetSourceDetectorDistance(597.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetSourceDetectorDistance(597.00f)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetObjectTotalRotationAngle(360.00f)).IsFail())
 			break;
 
 		Base::TPoint3<float> tpObjectLocation;
@@ -112,24 +112,24 @@ int main()
 		if((res = computedTomographyRotationCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail())
 			break;
 
-		if((res = computedTomographyRotationCT.SetDetectorNormalizer(0.00483)).IsFail())
+		if((res = computedTomographyRotationCT.SetDetectorNormalizer(0.00483f)).IsFail())
 			break;
 		if((res = computedTomographyRotationCT.EnableFrequencyRampFilter(true)).IsFail())
 			break;
 		if((res = computedTomographyRotationCT.SetFrequencyWindow(CComputedTomographyRotationCT::EFrequencyWindow_Gaussian)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetSigma(0.50)).IsFail())
+		if((res = computedTomographyRotationCT.SetSigma(0.50f)).IsFail())
 			break;
 
 		if((res = computedTomographyRotationCT.EnableCircularMask(true)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetCircularMaskRadius(1.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetCircularMaskRadius(1.00f)).IsFail())
 			break;
 		if((res = computedTomographyRotationCT.SetOutputFormat(CComputedTomographyRotationCT::EOutputFormat_U8)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetSigmoidB(4000.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetSigmoidB(4000.00f)).IsFail())
 			break;
-		if((res = computedTomographyRotationCT.SetSigmoidM(0.00)).IsFail())
+		if((res = computedTomographyRotationCT.SetSigmoidM(0.00f)).IsFail())
 			break;
 		if((res = computedTomographyRotationCT.SetIntensityThreshold(210)).IsFail())
 			break;
