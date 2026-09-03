@@ -368,7 +368,7 @@ const CResult FLImaging::GUI::CPropertyMenuFullyConnectedXOR::UpdateSimpleDialog
 			// 스레드가 완료되면 break
 			if(m_bThreadDone)
 			{
-				if(m_tsrCost.IsCudaActivated())
+				if(m_tsrCost.IsDeviceActivated())
 				{
 					m_tsrCost.CopyDeviceToHost();
 					m_tsrEvaluation.CopyDeviceToHost();
@@ -379,7 +379,7 @@ const CResult FLImaging::GUI::CPropertyMenuFullyConnectedXOR::UpdateSimpleDialog
 
 				if(m_pStopButton->GetClickCount() == 1)
 				{
-					if(m_tsrCost.IsCudaActivated())
+					if(m_tsrCost.IsDeviceActivated())
 						m_tsrCost.CopyDeviceToHost();
 
 					break;
@@ -454,7 +454,7 @@ const CResult FLImaging::GUI::CPropertyMenuFullyConnectedXOR::UpdateSimpleDialog
 					break;
 				else if(m_i32Epoch > 0)
 				{
-					if(m_tsrCost.IsCudaActivated())
+					if(m_tsrCost.IsDeviceActivated())
 					{
 						m_tsrCost.CopyDeviceToHost();
 						m_tsrEvaluation.CopyDeviceToHost();
@@ -573,8 +573,8 @@ void FLImaging::GUI::CPropertyMenuFullyConnectedXOR::AlgorithmThreadForSimpleDia
 			pInstance->m_tsrCost = pInstance->m_pGfCost->Evaluate();
 			pInstance->m_tsrEvaluation = pInstance->m_pGfEvaluation->Evaluate();
 
-			//cuda 연산일 경우 호스트 메모리로 데이터 복사
-			if(pInstance->m_tsrCost.IsCudaActivated())
+			//GPU 연산일 경우 호스트 메모리로 데이터 복사
+			if(pInstance->m_tsrCost.IsDeviceActivated())
 			{
 				pInstance->m_tsrCost.CopyDeviceToHost();
 				pInstance->m_tsrEvaluation.CopyDeviceToHost();
