@@ -199,6 +199,8 @@ int main()
 		classifierDL.SetLearningEpoch(300);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		classifierDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		// 검증 정확도 임계 값 설정 // Set the validation accuracy threshold
+		classifierDL.SetLearningValidationAccuracyThreshold(0.8f);
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-3f);
