@@ -77,6 +77,9 @@ int main()
 		// Tile Size 설정 // Set Tile Size
 		imageConcatenatorGrid.SetTileSize(3, 3);
 
+		// Figure Transformation 설정 // Set Figure Transformation
+		imageConcatenatorGrid.EnableImageFigureTransformation(true);
+
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = imageConcatenatorGrid.Execute()).IsFail())
 		{
