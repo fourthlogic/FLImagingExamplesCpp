@@ -317,9 +317,10 @@ int main()
 				CFLArray<float> vctMeanIoU;
 				CFLArray<float> vctVadliationPixelAccuracyZE;
 				CFLArray<float> vctMeanIoUZE;
+				CFLArray<float> vctMeanAP;
 				CFLArray<int32_t> vctValidationEpoch;
 
-				semanticSegmentationDL.GetLearningResultAllHistory(&vctCosts, &vctVadliationPixelAccuracy, &vctMeanIoU, &vctVadliationPixelAccuracyZE, &vctMeanIoUZE, &vctValidationEpoch);
+				semanticSegmentationDL.GetLearningResultAllHistory(&vctCosts, &vctVadliationPixelAccuracy, &vctMeanIoU, &vctVadliationPixelAccuracyZE, &vctMeanIoUZE, &vctMeanAP ,&vctValidationEpoch);
 
 				// 비용 기록이나 검증 결과 기록이 있다면 출력 // Print results if cost or validation history exists
 				if((vctCosts.GetCount() && i32PrevCostCount != (int32_t)vctCosts.GetCount()) || (vctVadliationPixelAccuracy.GetCount() && i32PrevValidationCount != (int32_t)vctVadliationPixelAccuracy.GetCount()))

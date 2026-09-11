@@ -231,6 +231,8 @@ int main()
 		semanticSegmentationDL.SetLearningEpoch(120);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		semanticSegmentationDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
+		// 학습 시 검증 Mean AP 활성화 // Enable Validation Mean AP during learning.
+		semanticSegmentationDL.EnableValidationMeanAP(true);
 
 		// Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(1e-3f);
@@ -304,9 +306,10 @@ int main()
 				// 마지막 검증 결과 받기 // Get the last validation result
 				float f32ValidationPa = semanticSegmentationDL.GetLearningResultLastAccuracy();
 				float f32ValidationMeanIoU = semanticSegmentationDL.GetLearningResultLastMeanIoU();
+				float f32ValidationMeanAP = semanticSegmentationDL.GetLearningResultLastMeanAP();
 
 				// 해당 epoch의 비용과 검증 결과 값 출력 // Print cost and validation value for the relevant epoch
-				printf("Cost : %.6f Validation : %.6f mIoU : %.6f Epoch %d / %d\n", f32CurrCost, f32ValidationPa, f32ValidationMeanIoU, i32Epoch, i32MaxEpoch);
+				printf("Cost : %.6f Validation : %.6f mIoU : %.6f map : %.6f Epoch %d / %d\n", f32CurrCost, f32ValidationPa, f32ValidationMeanIoU, f32ValidationMeanAP, i32Epoch, i32MaxEpoch);
 
 				// 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
 				// Get the history of cost and validation and print it at graph view
@@ -315,12 +318,13 @@ int main()
 				CFLArray<float> vctMeanIoU;
 				CFLArray<float> vctVadliationPixelAccuracyZE;
 				CFLArray<float> vctMeanIoUZE;
+				CFLArray<float> vctMeanAP;
 				CFLArray<int32_t> vctValidationEpoch;
 
-				semanticSegmentationDL.GetLearningResultAllHistory(&vctCosts, &vctVadliationPixelAccuracy, &vctMeanIoU, &vctVadliationPixelAccuracyZE, &vctMeanIoUZE, &vctValidationEpoch);
+				semanticSegmentationDL.GetLearningResultAllHistory(&vctCosts, &vctVadliationPixelAccuracy, &vctMeanIoU, &vctVadliationPixelAccuracyZE, &vctMeanIoUZE, &vctMeanAP, &vctValidationEpoch);
 
 				// 비용 기록이나 검증 결과 기록이 있다면 출력 // Print results if cost or validation history exists
-				if((vctCosts.GetCount() && i32PrevCostCount != (int32_t)vctCosts.GetCount()) || (vctVadliationPixelAccuracy.GetCount() && i32PrevValidationCount != (int32_t)vctVadliationPixelAccuracy.GetCount()))
+				if((vctCosts.GetCount() && i32PrevCostCount != (int32_t)vctCosts.GetCount()) || (vctVadliationPixelAccuracy.GetCount() && i32PrevValidationCount != (int32_t)vctVadliationPixelAccuracy.GetCount() && vctMeanAP.GetCount()))
 				{
 					int32_t i32Step = semanticSegmentationDL.GetLearningValidationStep();
 					CFLArray<float> flaX;
@@ -339,6 +343,7 @@ int main()
 					// Graph View 데이터 입력 // Input Graph View Data
 					viewGraph.Plot(flaX, vctVadliationPixelAccuracy, EChartType_Line, BLUE, L"PixelAccuracy(Zero Exception)");
 					viewGraph.Plot(flaX, vctMeanIoU, EChartType_Line, PINK, L"mIoU");
+					viewGraph.Plot(flaX, vctMeanAP, EChartType_Line, PINK, L"map");
 					viewGraph.UnlockUpdate();
 
 					viewGraph.UpdateWindow();
