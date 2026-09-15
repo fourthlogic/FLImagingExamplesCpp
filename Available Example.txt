@@ -961,6 +961,9 @@
     - DeviceLaserProfileSensorLMI
       - Example of connecting and operating LMI Laser Profile Sensor.
       - LMI 레이저 프로파일 센서 연결 및 구동하는 예제.
+    - DeviceLaserProfileSensorMechEye
+      - Example of connecting and operating Mech-Eye Laser Profile Sensor.
+      - Mech-Eye 레이저 프로파일 센서 연결 및 구동하는 예제.
 
   - [Serial]
 
