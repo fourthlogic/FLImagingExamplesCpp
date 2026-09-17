@@ -1203,6 +1203,9 @@
     - GammaCorrection
       - Algorithm example for correcting the Luminance of an image.
       - 이미지의 밝기를 보정하는 알고리즘 예제.
+    - SimplestColorBalance
+      - The algorithm example for correcting the color balance of an image.
+      - 이미지의 색 균형을 보정하는 알고리즘 예제.
     - WhiteBalance
       - An example of correcting the white balance of an image.
       - 이미지의 화이트 밸런스를 보정하는 예제.
