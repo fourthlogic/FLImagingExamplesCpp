@@ -1863,6 +1863,9 @@
     - OperationLogicalXor
       - Algorithm for performing Logical Xor operations on an image.
       - 이미지를 Logical Xor 연산을 수행하는 알고리즘 예제.
+    - OperationMatrixMultiply 
+      - The algorithm that treats an image as a matrix and performs scalar or matrix multiplication operations with another image.
+      - 이미지를 행렬로 생각해 스칼라 또는 다른 이미지와 행렬 곱셈 연산을 수행하는 알고리즘.
     - OperationMaximum 
       - The algorithm that compares an image with a scalar or other image to output a max value.
       - 이미지를 스칼라 또는 다른 이미지와 비교하여 큰 값을 출력하는 알고리즘.
