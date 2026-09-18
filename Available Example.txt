@@ -904,6 +904,9 @@
     - DeviceCameraEGrabber
 	  - Example of connecting and operating eGrabber.
       - eGrabber 연결 및 구동하는 예제.
+	- DeviceCameraFrameGrabberHIK
+	  - Example of connecting and operating Frame Grabber HIK.
+      - Frame Grabber HIK 연결 및 구동하는 예제.
 	- DeviceCameraMulticam
 	  - Example of connecting and operating Multicam.
       - Multicam 연결 및 구동하는 예제.
