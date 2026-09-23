@@ -55,6 +55,12 @@
         - The example of an Algorithm for slice reconstruction in fixed cone-beam CT with arbitrary object motion per projection.
         - 고정된 콘빔 CT 시스템에서 프로젝션마다 임의의 물체 움직임을 허용하는 단면 재구성 알고리즘 예제.
   
+    - [Computed Tomography Generalized CT Preprocessing]
+
+      - ComputedTomographyGeneralizedCT_Preprocessing
+        - The example of an Algorithm for slice reconstruction in fixed cone-beam CT with arbitrary object motion per projection using preprocessing.
+        - 고정된 콘빔 CT 시스템에서 프로젝션마다 임의의 물체 움직임을 허용하고 Preprocessing을 사용한 단면 재구성 알고리즘 예제.
+
     - [Computed Tomography Rotation CT]
 
       - ComputedTomographyRotationCT
