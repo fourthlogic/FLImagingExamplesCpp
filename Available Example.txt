@@ -277,6 +277,11 @@
         - The example of an algorithm that performs projection transformation to a given vertex based on the camera's position and the direction the camera is looking.
         - 주어진 정점에 대하여 카메라의 위치와 카메라가 바라보는 방향을 바탕으로 투영변환을 하는 알고리즘 예제.
 
+    - [Spherical Harmonics Transform]
+      - SphericalHarmonicsTransform3D
+        - The example of an algorithm that decomposes data on a sphere into frequency components (spectral coefficients) or, conversely, reconstructs spherical data from spectral coefficients.
+        - 구면 위의 데이터를 주파수 성분(스펙트럼 계수)으로 분해하거나, 반대로 스펙트럼 계수로부터 구면 데이터를 재구성하는 알고리즘 예제.
+
     - [Switch Axes]
       - Switch Axes 3D
         - The example of an algorithm that switches axis order.
