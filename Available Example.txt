@@ -1475,6 +1475,9 @@
       - BM3DFilter
         - The example of an algorithm that processes a block-matching and 3D filtering to an image.
         - 이미지에서 블록 매칭과 3D 필터링을 처리하는 알고리즘 예제
+      - ConservativeSmoothingFilter
+        - The example of an algorithm that processes a conservative smoothing filter to an image.
+        - 이미지에서 conservative smoothing 필터를 처리하는 알고리즘 예제
       - ContraharmonicMeanFilter
         - The example of an algorithm that processes a contraharmonic mean filter to an image.
         - 이미지에서 contraharmonic mean 필터를 처리하는 알고리즘 예제
