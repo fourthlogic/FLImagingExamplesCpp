@@ -49,7 +49,7 @@ int main()
 		// 파라미터 설정 // Set parameter
 		sphericalHarmonicsTransform3D.SetSourceObject(fl3DObjectSrc);
 		sphericalHarmonicsTransform3D.SetDestinationObject(fl3DObjectDst1);
-		sphericalHarmonicsTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D::Forward);
+		sphericalHarmonicsTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D::ETransformDirection_Forward);
 		sphericalHarmonicsTransform3D.SetMaxDegree(15);
 		
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
@@ -62,7 +62,7 @@ int main()
 		// 파라미터 설정 // Set parameter
 		sphericalHarmonicsTransform3D.SetSourceObject(fl3DObjectDst1);
 		sphericalHarmonicsTransform3D.SetDestinationObject(fl3DObjectDst2);
-		sphericalHarmonicsTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D::Inverse);
+		sphericalHarmonicsTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D::ETransformDirection_Inverse);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = sphericalHarmonicsTransform3D.Execute()).IsFail())
