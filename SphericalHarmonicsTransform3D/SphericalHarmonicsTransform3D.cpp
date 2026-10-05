@@ -87,9 +87,13 @@ int main()
 		view3DSrc.ZoomFit();
 
 		view3DDst[0].PushObject(fl3DObjectDst1);
+		view3DDst[0].SetPointSize(10);
 		view3DDst[0].ZoomFit();
 
 		view3DDst[1].PushObject(fl3DObjectDst2);
+		view3DDst[1].SetPointSize(2);
+		view3DDst[1].SetShadingType(EShadingType3D_Shadeless);
+		view3DDst[1].SynchronizePointOfView(&view3DSrc);
 		view3DDst[1].ZoomFit();
 		
 		CFLPoint<double> flpTopLeft(0, 0);
@@ -108,7 +112,7 @@ int main()
 		view3DDst[1].Invalidate(true);
 
 		// 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
-		while(view3DSrc.IsAvailable() || view3DDst[0].IsAvailable() || view3DDst[1].IsAvailable())
+		while(view3DSrc.IsAvailable() && view3DDst[0].IsAvailable() && view3DDst[1].IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
