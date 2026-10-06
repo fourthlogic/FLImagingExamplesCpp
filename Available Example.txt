@@ -205,6 +205,11 @@
 
   - [Resampler]
 
+    - [Fibonacci Spherical Resampler]
+      - Fibonacci Spherical Resampler 3D
+        - The example of an algorithm for uniformly sampling a surface based on a spherical coordinate system.
+        - 구면 좌표계를 기준으로 표면을 균등하게 샘플링하는 알고리즘 예제.
+
     - [Mesh Simplifier Grid Cluster]
       - MeshSimplifierGridCluster3D
         - The example of an algorithm that simplifies a large mesh object by downsampling by grid clustering and remeshing.
