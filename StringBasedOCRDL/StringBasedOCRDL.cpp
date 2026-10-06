@@ -167,7 +167,7 @@ int main()
 		// 학습할 StringBasedOCR 모델 설정 // Set up StringBasedOCR model to learn
 		stringBasedOCRDL.SetModelVersion(CStringBasedOCRDL::EModelVersion_FLOcrNet_S_V1_32_256_B2);
 		// 학습 epoch 값을 설정 // Set the learn epoch value 
-		stringBasedOCRDL.SetLearningEpoch(500);
+		stringBasedOCRDL.SetLearningEpoch(1000);
 		// 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
 		stringBasedOCRDL.SetInterpolationMethod(EInterpolationMethod_Bilinear);
 
@@ -322,6 +322,9 @@ int main()
 		// 인식할 이미지 설정 // Set the image to Recognize
 		stringBasedOCRDL.SetInferenceImage(fliSourceImage);
 		stringBasedOCRDL.SetInferenceResultImage(fliResultImage);
+
+		// 결과 항목 설정 // Set the result item
+		stringBasedOCRDL.SetInferenceResultItemSettings(CStringBasedOCRDL::EInferenceResultItemSettings_Quadrangle);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if(IsFail(res = stringBasedOCRDL.Execute()))
