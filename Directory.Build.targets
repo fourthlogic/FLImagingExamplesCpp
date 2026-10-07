@@ -1,0 +1,11 @@
+﻿<Project>
+	<PropertyGroup>
+		<MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);81010002</MSBuildWarningsAsMessages>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup Condition="'$(MSBuildProjectExtension)' == '.vcxproj' And '$(ConfigurationType)' == 'Application'">
+		<Manifest>
+			<AdditionalManifestFiles>%(Manifest.AdditionalManifestFiles);$(MSBuildThisFileDirectory)SegmentHeap.manifest</AdditionalManifestFiles>
+		</Manifest>
+	</ItemDefinitionGroup>
+</Project>
