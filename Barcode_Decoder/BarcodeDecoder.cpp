@@ -48,8 +48,10 @@ int main()
 		// 미 설정시 EBarcodeDecodingType_Auto 로 모든 심볼을 탐색한다 동작한다.
 		barcodeDecoder.SetSymbolType(EBarcodeSymbolType_EAN13);
 
-		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		
+		// Barcode 디코딩 수준 설정
+		barcodeDecoder.SetDecodingLevel(EDataCodeDecoderDecodingLevel_Fast);
+
+		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters		
 		if(IsFail(res =  barcodeDecoder.Execute()))
 		{
 			ErrorPrint(res, "Failed to execute barcode decoder.");
