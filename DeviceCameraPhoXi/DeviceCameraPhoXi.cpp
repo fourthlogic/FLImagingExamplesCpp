@@ -3,20 +3,40 @@
 #include <FLImaging.h>
 
 
-// 카메라에서 데이터 취득 이벤트를 받기 위해 CDeviceEventImageBase 를 상속 받아서 구현
-// Inherit from CDeviceEventImageBase to receive image acquisition events from the camera.
-class CDeviceEventImageEx : public CDeviceEventImageBase
+// 카메라에서 데이터 취득 이벤트를 받기 위해 CDeviceEventCameraPhoXiBase 를 상속 받아서 구현
+// Inherit from CDeviceEventCameraPhoXiBase to receive image acquisition events from the camera.
+class CDeviceEventCameraPhoXiEx : public CDeviceEventCameraPhoXiBase
 {
 public:
-	// CDeviceEventImageEx 생성자 // Constructor of CDeviceEventImageEx
-	CDeviceEventImageEx()
+	// CDeviceEventCameraPhoXiEx 생성자 // Constructor of CDeviceEventCameraPhoXiEx
+	CDeviceEventCameraPhoXiEx()
 	{
+		m_pViewImage = nullptr;
+		// 이미지를 받을 객체 생성 // Create an object to receive images.
+		m_pImage = new CFLImage;
 		m_pView3D = nullptr;
 	}
 
-	// CDeviceEventImageEx 소멸자 // Destructor of CDeviceEventImageEx
-	virtual ~CDeviceEventImageEx()
+	// CDeviceEventCameraPhoXiEx 소멸자 // Destructor of CDeviceEventCameraPhoXiEx
+	virtual ~CDeviceEventCameraPhoXiEx()
 	{
+		if(m_pImage)
+		{
+			delete m_pImage;
+			m_pImage = nullptr;
+		}
+	}
+
+	// 취득한 이미지를 표시할 이미지 뷰를 설정하는 함수 // Sets the image view to display acquired images.
+	void SetViewImage(CGUIViewImageWrap* pViewImage)
+	{
+		if(pViewImage)
+		{
+			m_pViewImage = pViewImage;
+
+			// 이미지 뷰에 이미지 포인터 설정 // Set the image pointer for the image view.
+			m_pViewImage->SetImagePtr(m_pImage);
+		}
 	}
 
 	// 취득한 데이터를 표시할 3D 뷰를 설정하는 함수 // Sets the 3D view used to display the acquired data.
@@ -83,7 +103,25 @@ public:
 		while(false);
 	}
 
+	// 카메라에서 조기 전송을 위한 이미지 취득 시 호출 되는 함수 // Called when acquiring an image from the camera for early transfer.
+	virtual void OnAcquisitionForEarlyTransfer(const CDeviceCameraPhoXi* pCamera)
+	{
+		// 이미지 뷰의 유효성을 확인한다. // Check the validity of the image view.
+		if(m_pViewImage && m_pViewImage->IsAvailable())
+		{
+			// 카메라에서 취득 한 이미지를 얻어온다. // Get the image acquired from the camera.
+			m_pImage->Lock();
+			pCamera->GetAcquiredImage(m_pImage);
+			m_pImage->Unlock();
+
+			// 이미지 뷰를 재갱신 한다. // Invalidate the image view.
+			m_pViewImage->Invalidate();
+		}
+	}
+
 protected:
+	CGUIViewImageWrap* m_pViewImage;
+	CFLImage* m_pImage;
 	CGUIView3DWrap* m_pView3D;
 };
 
@@ -95,6 +133,9 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	CResult drReturn = EResult_UnknownError;
+
+	// 이미지 뷰 선언 // Declare the image view
+	CGUIViewImageWrap viewImage;
 
 	// 3D 뷰 선언 // Declare a 3D view.
 	CGUIView3DWrap view3D;
@@ -200,7 +241,7 @@ int main()
 		}
 
 		// 이벤트를 받을 객체 선언 // Declare an event object.
-		CDeviceEventImageEx eventImage;
+		CDeviceEventCameraPhoXiEx eventImage;
 
 		// 카메라에 이벤트 객체 설정 // Set the event object for the camera.
 		camPhoXi.RegisterDeviceEvent(&eventImage);
@@ -221,15 +262,28 @@ int main()
 			break;
 		}
 
-		// 3D 뷰 생성 // Create a 3D view.
-		if(view3D.Create(0, 0, 1000, 1000).IsFail())
+		// 이미지 뷰 생성 // Create image view
+		if(viewImage.Create(0, 0, 500, 500).IsFail())
 		{
 			drReturn = EResult_FailedToCreateObject;
-
 			printf("Failed to create the image view.\n");
 			break;
 		}
 
+		// 3D 뷰 생성 // Create a 3D view.
+		if(view3D.Create(500, 0, 1000, 500).IsFail())
+		{
+			drReturn = EResult_FailedToCreateObject;
+			printf("Failed to create the 3D view.\n");
+			break;
+		}
+
+		viewImage.SynchronizeWindow(&view3D);
+
+		// 조기 전송 기능을 활성화 합니다. // Enables the early transfer feature.
+		camPhoXi.EnableEarlyTransfer(true);
+
+		eventImage.SetViewImage(&viewImage);
 		eventImage.SetView3D(&view3D);
 
 		// 카메라를 Live 합니다. // Start live acquisition.
@@ -241,8 +295,8 @@ int main()
 			break;
 		}
 
-		// 3D 뷰가 종료될 때 까지 기다림 // Wait for the 3D view to close.
-		while(view3D.IsAvailable())
+		// 뷰가 종료될 때 까지 기다림 // Wait for the view to close.
+		while(viewImage.IsAvailable() && view3D.IsAvailable())
 			CThreadUtilities::Sleep(1);
 	}
 	while(false);
