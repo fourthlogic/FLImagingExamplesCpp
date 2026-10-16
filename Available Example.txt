@@ -1828,6 +1828,9 @@
     - OperationDivide 
       - The algorithm that performs divide operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 나눗셈 연산을 수행하는 알고리즘.
+    - OperationEisensteinNorm
+      - The algorithm that performs Eisenstein Norm operation on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 Eisenstein Norm 연산을 수행하는 알고리즘.
     - OperationELU
       - Algorithm that outputs the function value or differential value of the ELU function to the image.
       - 이미지에 ELU 함수의 함숫값 또는 미분값을 출력하는 알고리즘
