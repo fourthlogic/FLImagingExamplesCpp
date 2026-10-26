@@ -1600,6 +1600,9 @@
       - EmphasizeFilter	   
         - The example of an algorithm that enhances contrast of the image.
         - 이미지에 명암비를 향상시키는 알고리즘 예제
+      - FrangiFilter
+        - The example of an algorithm  that enhances contrast between an object with curvature and background.
+        - 곡률을 갖는 Object와 배경 사이의 Contrast를 강화하는 알고리즘 예제
       - HighpassFilter
         - The example of an algorithm that processes a highpass differential filter to an image.
         - 이미지에서 highpass 미분 필터를 처리하는 알고리즘 예제.
