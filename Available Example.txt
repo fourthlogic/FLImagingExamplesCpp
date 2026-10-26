@@ -157,6 +157,11 @@
 
   - [Reconstruction]
 
+    - [Alpha Shape]
+      - AlphaShape3D
+        - The example for generalization of the convex hull, used for reconstructing non-convex, complex, or disconnected 3D shapes from a set of discrete points.
+        - 이산적인 점들의 집합으로부터 비볼록형, 복잡형 또는 분리된 3D 형상을 재구성하는 데 사용되는 Convex Hull 의 일반화 알고리즘 예제.
+
     - [Laser Triangulation]
       - LaserTriangulation_Image
         - The example of an algorithm that reconstructs 3D objects projected by line laser into 3D image using laser triangulation from the source of 'Image' type.
