@@ -80,7 +80,7 @@ int main()
 		}
 
 		// 모멘트 결과들을 가져옵니다. // Get the moment results.
-		CMoment::SMoments results;
+		CMoment::SMoment results;
 		moment.GetMoment(results);
 
 		// 모멘트 결과를 Console 창에 출력 // Output the moment result to the console window
