@@ -22,7 +22,7 @@ int main()
 
 	// 이미지 뷰 선언 // Declare the image view
 	CGUIViewImageWrap arrViewImage[EImageType_Count];
-	CResult res;
+
 	do
 	{
 		// 동작 결과 // operation result
