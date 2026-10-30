@@ -16,7 +16,7 @@ int main()
 	CFLImage fliDstImage;
 
 	// 이미지 뷰 선언 // Declare image view
-	CGUIViewImageWrap viewImageLearn;
+	CGUIViewImageWrap viewImageCalibration;
 	CGUIViewImageWrap viewImageSrc;
 	CGUIViewImageWrap viewImageDst;
 
@@ -25,22 +25,22 @@ int main()
 
 	do
 	{
-		// Learn 이미지 로드 // Load the learn image
+		// Calibration 이미지 로드 // Load the calibration image
 		if((res = fliCalibrationImage.Load(L"../../ExampleImages/ShadingCalibrator/Calibration.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
 		}
 
-		// Learn 이미지 뷰 생성 // Create the learn image view
-		if((res = viewImageLearn.Create(400, 0, 912, 612)).IsFail())
+		// Calibration 이미지 뷰 생성 // Create the calibration image view
+		if((res = viewImageCalibration.Create(400, 0, 912, 612)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to create the image view.\n");
 			break;
 		}
 
-		// Learn 이미지 뷰에 이미지를 디스플레이 // Display the image in the learn image view
-		if((res = viewImageLearn.SetImagePtr(&fliCalibrationImage)).IsFail())
+		// Calibration 이미지 뷰에 이미지를 디스플레이 // Display the image in the calibration image view
+		if((res = viewImageCalibration.SetImagePtr(&fliCalibrationImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
@@ -89,7 +89,7 @@ int main()
 		}
 
 		// 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-		if((res = viewImageSrc.SynchronizePointOfView(&viewImageLearn)).IsFail())
+		if((res = viewImageSrc.SynchronizePointOfView(&viewImageCalibration)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to synchronize view\n");
 			break;
@@ -103,7 +103,7 @@ int main()
 		}
 
 		// 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if((res = viewImageSrc.SynchronizeWindow(&viewImageLearn)).IsFail())
+		if((res = viewImageSrc.SynchronizeWindow(&viewImageCalibration)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to synchronize window.\n");
 			break;
@@ -112,7 +112,7 @@ int main()
 		// ShadingCalibrator 객체 생성 // Create ShadingCalibrator object
 		CShadingCalibrator shadingCalibrator;
 
-		// Learn 이미지 설정 // Set the learn image
+		// Calibration 이미지 설정 // Set the calibration image
 		shadingCalibrator.SetCalibrationImage(fliCalibrationImage);
 
 		// 앞서 설정된 이미지로 Calibration을 수행 // Perform Calibration with the previously set image
@@ -145,12 +145,12 @@ int main()
 
 		// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		CGUIViewImageLayerWrap layerLearn = viewImageLearn.GetLayer(0);
+		CGUIViewImageLayerWrap layerCalibration = viewImageCalibration.GetLayer(0);
 		CGUIViewImageLayerWrap layerSrc = viewImageSrc.GetLayer(0);
 		CGUIViewImageLayerWrap layerDst = viewImageDst.GetLayer(0);
 
 		// 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
-		layerLearn.Clear();
+		layerCalibration.Clear();
 		layerSrc.Clear();
 		layerDst.Clear();
 
@@ -161,7 +161,7 @@ int main()
 		//                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		// Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		//                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
-		if((res = layerLearn.DrawTextCanvas(CFLPoint<double>(0, 0), L"Learn Image", YELLOW, BLACK, 20)).IsFail())
+		if((res = layerCalibration.DrawTextCanvas(CFLPoint<double>(0, 0), L"Calibration Image", YELLOW, BLACK, 20)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to draw text\n");
 			break;
@@ -180,15 +180,15 @@ int main()
 		}
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
-		viewImageLearn.Invalidate(true);
+		viewImageCalibration.Invalidate(true);
 		viewImageSrc.Invalidate(true);
 		viewImageDst.Invalidate(true);
 
 		// 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImageLearn.IsAvailable() && viewImageSrc.IsAvailable() && viewImageDst.IsAvailable())
+		while(viewImageCalibration.IsAvailable() && viewImageSrc.IsAvailable() && viewImageDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 
-		viewImageLearn.Destroy();
+		viewImageCalibration.Destroy();
 		viewImageSrc.Destroy();
 		viewImageDst.Destroy();
 	}
