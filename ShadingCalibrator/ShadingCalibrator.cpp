@@ -11,7 +11,7 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare image object
-	CFLImage fliLearnImage;
+	CFLImage fliCalibrationImage;
 	CFLImage fliSrcImage;
 	CFLImage fliDstImage;
 
@@ -26,7 +26,7 @@ int main()
 	do
 	{
 		// Learn 이미지 로드 // Load the learn image
-		if((res = fliLearnImage.Load(L"../../ExampleImages/ShadingCalibrator/Learn.flif")).IsFail())
+		if((res = fliCalibrationImage.Load(L"../../ExampleImages/ShadingCalibrator/Calibration.flif")).IsFail())
 		{
 			ErrorPrint(res, L"Failed to load the image file.\n");
 			break;
@@ -40,7 +40,7 @@ int main()
 		}
 
 		// Learn 이미지 뷰에 이미지를 디스플레이 // Display the image in the learn image view
-		if((res = viewImageLearn.SetImagePtr(&fliLearnImage)).IsFail())
+		if((res = viewImageLearn.SetImagePtr(&fliCalibrationImage)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set image object on the image view.\n");
 			break;
@@ -113,7 +113,7 @@ int main()
 		CShadingCalibrator shadingCalibrator;
 
 		// Learn 이미지 설정 // Set the learn image
-		shadingCalibrator.SetLearnImageForShadingCalibration(fliLearnImage);
+		shadingCalibrator.SetCalibrationImage(fliCalibrationImage);
 
 		// 앞서 설정된 이미지로 Calibration을 수행 // Perform Calibration with the previously set image
 		if((res = shadingCalibrator.Calibrate()).IsFail())
