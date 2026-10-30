@@ -102,6 +102,10 @@
 
   - [Filter]
     
+    - [Adaptive Robust Denoising 3D]
+        - An example removing noise from point clouds while preserving geometric features.
+        - 기하적 특성을 보존하며 포인트 클라우드 노이즈를 제거하는 알고리즘 예제.
+
     - [Smoothing 3D]
       - Smoothing3D
         - The example of an algorithm that smooth a given point cloud.
