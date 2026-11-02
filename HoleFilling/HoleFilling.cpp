@@ -143,6 +143,8 @@ int main()
 		while(viewImageSrc.IsAvailable() && viewImageDst.IsAvailable())
 			CThreadUtilities::Sleep(1);
 
+		viewImageSrc.Destroy();
+		viewImageDst.Destroy();
 	}
 	while(false);
 
