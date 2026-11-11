@@ -9,15 +9,16 @@
 #include <process.h>
 
 bool g_bTerminated = false;
+CResult g_resLearnResult;
 
 unsigned int __stdcall LearnThread(void* pParam)
 {
 	CAnomalyDetectionDL* pAnomalyDetection = (CAnomalyDetectionDL*)pParam;
 
-	CResult er = pAnomalyDetection->Learn();
+	g_resLearnResult = pAnomalyDetection->Learn();
 	g_bTerminated = true;
 
-	return unsigned int(er);
+	return unsigned int(g_resLearnResult);
 };
 
 int main()
@@ -313,6 +314,12 @@ int main()
 				CloseHandle(hThread);
 				break;
 			}
+		}
+
+		if(g_resLearnResult.IsFail())
+		{
+			ErrorPrint(g_resLearnResult, "Failed to Learn.\n");
+			break;
 		}
 
 		// Result Label Image에 피겨를 포함하지 않는 Execute
