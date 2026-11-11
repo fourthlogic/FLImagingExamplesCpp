@@ -91,7 +91,7 @@ int main()
 		// 클러스터링 범위 설정 // Set the clustering range
 		vertexMatch3D.SetClusterRange(0.02);
 		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		vertexMatch3D.SetIteration(150);
+		vertexMatch3D.SetIterationCount(150);
 		// 초기 점수 설정 // Set the initial score
 		vertexMatch3D.SetInitialScore(0.1);
 

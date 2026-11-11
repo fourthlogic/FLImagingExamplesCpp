@@ -111,7 +111,7 @@ int main()
 		// 클러스터링 범위 설정 // Set the clustering range
 		surfaceMatch3DMulti.SetClusterRange(0.02);
 		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		surfaceMatch3DMulti.SetIteration(5);
+		surfaceMatch3DMulti.SetIterationCount(5);
 
 		// 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
 		surfaceMatch3DMulti.SetMaxObjectMode(CMatchBase3DMulti::EMaxObjectMode_Class);

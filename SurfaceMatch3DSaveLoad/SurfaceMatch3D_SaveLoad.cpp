@@ -132,7 +132,7 @@ int main()
 		// 클러스터링 범위 설정 // Set the clustering range
 		surfaceMatch3D.SetClusterRange(0.02);
 		// 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		surfaceMatch3D.SetIteration(5);
+		surfaceMatch3D.SetIterationCount(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((eResult = surfaceMatch3D.Execute()).IsFail())
