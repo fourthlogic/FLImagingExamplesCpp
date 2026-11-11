@@ -266,7 +266,7 @@ int main()
 			// 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
 			int32_t i32MaxIteration = denoisingDiffuionDL.GetActualMiniBatchCount();
 			// 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			int32_t i32Iteration = denoisingDiffuionDL.GetLearningResultCurrentIterationCount();
+			int32_t i32Iteration = denoisingDiffuionDL.GetLearningResultCurrentIteration();
 			// 마지막 학습 횟수 받기 // Get the last epoch learning
 			int32_t i32Epoch = denoisingDiffuionDL.GetLastEpoch();
 
