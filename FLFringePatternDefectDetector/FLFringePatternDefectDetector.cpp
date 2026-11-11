@@ -94,8 +94,8 @@ int main()
 		// Mura 탐지 모드 설정 // Set mura detecting mode
 		flFringePatternDefectDetector.EnableMura(false);
 
-		// Mura 반복 횟수 설정 // Set mura iteration
-		flFringePatternDefectDetector.SetMuraIteration(2);
+		// Mura 반복 횟수 설정 // Set mura iteration count
+		flFringePatternDefectDetector.SetMuraIterationCount(2);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = flFringePatternDefectDetector.Execute()).IsFail())
