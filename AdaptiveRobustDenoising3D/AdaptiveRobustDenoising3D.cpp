@@ -43,7 +43,7 @@ int main()
 		adaptiveRobustDenoising.SetDestinationObject(fl3DObjectDst);
 
 		adaptiveRobustDenoising.SetNeighborCount(24);
-		adaptiveRobustDenoising.SetIteration(2);
+		adaptiveRobustDenoising.SetIterationCount(2);
 		adaptiveRobustDenoising.SetNormalBandwidth(0.1f);
 		adaptiveRobustDenoising.SetOutlierThreshold(3.f);
 		adaptiveRobustDenoising.SetPositionUpdate(0.3f);

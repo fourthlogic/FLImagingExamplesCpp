@@ -102,7 +102,7 @@ int main()
 		}
 
 		// 연산 반복 횟수 설정 // Set the Iteration.
-		if(IsFail(res = totalVariationDenoising.SetIteration(3)))
+		if(IsFail(res = totalVariationDenoising.SetIterationCount(3)))
 		{
 			ErrorPrint(res, "Failed to set Iteration.");
 			break;
