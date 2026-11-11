@@ -108,8 +108,8 @@ int main()
 		opticalFlowPolynomialExpansion.SetDestinationImage(fliDstImage);
 		// Pyramid Level 설정 // Set Pyramid Level
 		opticalFlowPolynomialExpansion.SetPyramidLevel(2);
-		// Iteration 설정 // Set Iteration
-		opticalFlowPolynomialExpansion.SetIteration(3);
+		// Iteration Count 설정 // Set Iteration Count
+		opticalFlowPolynomialExpansion.SetIterationCount(3);
 		// Window Size 설정 // Set Window Size
 		opticalFlowPolynomialExpansion.SetWindowSize(15);
 		// Binning Size 설정 // Set Binning Size
