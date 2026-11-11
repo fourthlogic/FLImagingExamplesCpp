@@ -85,8 +85,8 @@ int main()
 		// Intensity 설정 // Set the Intensity
 		contrastEnhancement.SetIntensity(10.0);
 
-		// Iteration 설정 // Set the Iteration
-		contrastEnhancement.SetIteration(10);
+		// Iteration Count 설정 // Set the Iteration Count
+		contrastEnhancement.SetIterationCount(10);
 
 		// Gain 설정 // Set the Gain
 		contrastEnhancement.SetGain(1.0);
