@@ -108,8 +108,8 @@ int main()
 		// Theta = 3 설정 // Set the Theta = 3
 		anisotropicDiffusion.SetTheta(3.0);
 
-		// Iteration = 5 설정 // Set the Iteration = 5
-		anisotropicDiffusion.SetIteration(5);
+		// Iteration Count = 5 설정 // Set the Iteration Count = 5
+		anisotropicDiffusion.SetIterationCount(5);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if((res = anisotropicDiffusion.Execute()).IsFail())
