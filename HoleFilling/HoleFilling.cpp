@@ -83,7 +83,7 @@ int main()
 			break;
 		if((res = holeFilling.SetPrecision(0.1)).IsFail())
 			break;
-		if((res = holeFilling.SetMaxIteration(100)).IsFail())
+		if((res = holeFilling.SetMaxIterationCount(100)).IsFail())
 			break;
 		CMultiVar<int64_t> mvThresholdCondition1 = CMultiVar<int64_t>((int64_t)ELogicalCondition_GreaterEqual, (int64_t)ELogicalCondition_GreaterEqual, (int64_t)ELogicalCondition_GreaterEqual);
 		if((res = holeFilling.SetLogicalCondition(mvThresholdCondition1, EThresholdIndex_First)).IsFail())
