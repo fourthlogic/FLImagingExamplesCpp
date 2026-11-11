@@ -87,8 +87,8 @@ int main()
 		// 업데이트 비율 설정 // Set update rate
 		coherenceEnhancingDiffusion.SetTheta(0.5);
 
-		// 반복횟수 설정 // Number of iterations
-		coherenceEnhancingDiffusion.SetIteration(15);
+		// 반복횟수 설정 // Iteration count
+		coherenceEnhancingDiffusion.SetIterationCount(15);
 
 		// 알고리즘 수행 // Execute the algorithm
 		if((res = coherenceEnhancingDiffusion.Execute()).IsFail())
