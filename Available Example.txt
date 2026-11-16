@@ -1,5 +1,5 @@
 ﻿======= 
-5.11.16.1
+7.11.11.1
 ======= 
 
 - [3D]
@@ -89,6 +89,11 @@
       - PlaneDetector3D
         - The example of an algorithm for plane detection in normal-equipped point clouds or meshes.
         - Normal 정보가 있는 포인트 클라우드 또는 mesh 에서 평면을 검출하는 알고리즘 예제.
+
+    - [Sphere Detector 3D]
+      - SphereDetector3D
+        - An example of sphere detection in a point cloud containing multiple surface types.
+        - 여러 종류의 표면이 섞인 포인트 클라우드에서 구를 검출하는 알고리즘 예제.
 
     - [Point Cloud Clustering 3D]
       - PointCloudClustering3D
