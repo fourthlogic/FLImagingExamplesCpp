@@ -2114,6 +2114,9 @@
     - AdaptiveThreshold
       - Algorithm that binarizes images through regional thresholds.
       - 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+    - AdaptiveThresholdBernsen
+      - Algorithm that binarizes images using a local threshold from the midpoint of the local minimum and maximum, applying a global threshold to low-contrast regions.
+      - 지역 최솟값과 최댓값의 중간값을 지역 임계값으로 사용하고, 대비가 낮은 영역에는 전역 임계값을 적용하여 이미지를 이진화하는 알고리즘.
     - AdaptiveThresholdGaussian
       - Algorithm that binarizes images through regional thresholds using Gaussian Filter.
       - 가우시안 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
