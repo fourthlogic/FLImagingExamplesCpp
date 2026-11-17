@@ -102,7 +102,7 @@ int main()
 		decorrelationStretch.SetDestinationImage(fliDstImage);
 
 		// Decorrelation Method 설정 // Set the decorrelation method
-		decorrelationStretch.SetBalanceMode(CDecorrelationStretch::EDecorrelationMethod_Correlation);
+		decorrelationStretch.SetDecorrelationMethod(CDecorrelationStretch::EDecorrelationMethod_Correlation);
 
 		// 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(IsFail(res = decorrelationStretch.Execute()))
