@@ -53,10 +53,10 @@ int main()
 		   (res = sphereDetector3D.SetMaxCount(4)).IsFail() ||
 		   (res = sphereDetector3D.SetMinimumInlierCount(40)).IsFail() ||
 		   (res = sphereDetector3D.SetDistanceThreshold(0.03f)).IsFail() ||
-		   (res = sphereDetector3D.SetFitCosineSimilarity(0.98)).IsFail() ||
+		   (res = sphereDetector3D.SetFitCosineSimilarity(0.98f)).IsFail() ||
 		   (res = sphereDetector3D.SetMinimumSurfaceCoverage(0.25f)).IsFail() ||
 		   (res = sphereDetector3D.SetScoreItem(CSphereDetector3D::EScoreItem_SurfaceCoverage)).IsFail() ||
-		   (res = sphereDetector3D.SetIterationCount(5000)).IsFail() ||
+		   (res = sphereDetector3D.SetIterationCount(500)).IsFail() ||
 		   (res = sphereDetector3D.SetRefinementIterationCount(10)).IsFail())
 		{
 			ErrorPrint(res, L"Failed to set the Sphere Detector 3D source object or detection parameters.\n");
