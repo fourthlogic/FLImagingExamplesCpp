@@ -518,7 +518,7 @@ void CGraphViewContextMenuDlg::CreateContextMenuCheckbox()
 		pWndRadio = (CButton*)GetDlgItem(IDC_RADIO_ALL);
 		pWndRadio->GetWindowRect(rt);
 		pWndRadio->SetParent(this);
-		pWndRadio->SetCheck(arrAvailbaleContextMenu.GetCount() == (int64_t)EViewGraphMenuItem_Count ? BST_CHECKED : BST_UNCHECKED);
+		pWndRadio->SetCheck(arrAvailbaleContextMenu.GetCount() == (int64_t)EViewGraphMenuItem_COUNT ? BST_CHECKED : BST_UNCHECKED);
 
 		int32_t i32Height = rt.Height() + 2;
 		pWndStatic->ScreenToClient(rt);
