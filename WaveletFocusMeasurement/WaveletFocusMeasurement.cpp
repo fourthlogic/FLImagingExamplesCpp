@@ -9,7 +9,7 @@ enum EImageType
 	EImageType_Source1 = 0,
 	EImageType_Source2,
 	EImageType_Source3,
-	EImageType_Count,
+	EImageType_COUNT,
 };
 
 int main()
@@ -19,10 +19,10 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare the image object
-	CFLImage arrFliImage[EImageType_Count];
+	CFLImage arrFliImage[EImageType_COUNT];
 
 	// 이미지 뷰 선언 // Declare the image view
-	CGUIViewImageWrap arrViewImage[EImageType_Count];
+	CGUIViewImageWrap arrViewImage[EImageType_COUNT];
 
 	do
 	{
@@ -208,7 +208,7 @@ int main()
 		while(arrViewImage[EImageType_Source1].IsAvailable() && arrViewImage[EImageType_Source2].IsAvailable() && arrViewImage[EImageType_Source3].IsAvailable())
 			CThreadUtilities::Sleep(1);
 
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 			arrViewImage[i].Destroy();
 	}
 	while(false);

@@ -8,7 +8,7 @@ enum EImageType
 {
 	EImageType_Source = 0,
 	EImageType_Destination,
-	EImageType_Count,
+	EImageType_COUNT,
 };
 
 int main()
@@ -18,10 +18,10 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare the image object
-	CFLImage arrFliImage[EImageType_Count];
+	CFLImage arrFliImage[EImageType_COUNT];
 
 	// 이미지 뷰 선언 // Declare the image view
-	CGUIViewImageWrap arrViewImage[EImageType_Count];
+	CGUIViewImageWrap arrViewImage[EImageType_COUNT];
 
 	// 알고리즘 동작 결과 // Algorithm execution result
 	CResult result = EResult_UnknownError;
@@ -59,7 +59,7 @@ int main()
 		bool bError = false;
 
 		// 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 		{
 			if((result = arrViewImage[i].SetImagePtr(&arrFliImage[i])).IsFail())
 			{
@@ -103,9 +103,9 @@ int main()
 			break;
 		}
 
-		CGUIViewImageLayerWrap arrLayer[EImageType_Count];
+		CGUIViewImageLayerWrap arrLayer[EImageType_COUNT];
 
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 		{
 			// 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 			// 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
@@ -143,7 +143,7 @@ int main()
 			  && arrViewImage[EImageType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
 
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 			arrViewImage[i].Destroy();
 	}
 	while(false);

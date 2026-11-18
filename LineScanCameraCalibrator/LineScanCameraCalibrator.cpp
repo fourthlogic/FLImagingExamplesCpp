@@ -25,7 +25,7 @@ int main()
 		EView_Calibration,
 		EView_Source,
 		EView_Destination,
-		EView_Count
+		EView_COUNT
 	};
 
 	CResult res;
@@ -41,7 +41,7 @@ int main()
 
 		fliImage[EView_Source].Assign(fliImage[EView_Calibration]);
 
-		for(int32_t i = 0; i < EView_Count; ++i)
+		for(int32_t i = 0; i < EView_COUNT; ++i)
 		{
 			// Learn 이미지 뷰 생성 // Create the Learn image view
 			if(IsFail(res = arrViewImage[i].Create(300 + 480 * i, 0, 300 + 480 * (i + 1), 360)))
@@ -135,7 +135,7 @@ int main()
 		}
 
 		// 뷰 이름 출력 // display view name
-		for(int32_t i = 0; i < EView_Count; ++i)
+		for(int32_t i = 0; i < EView_COUNT; ++i)
 		{
 			CGUIViewImageLayerWrap currentLayer = arrViewImage[i].GetLayer(0);
 
@@ -148,7 +148,7 @@ int main()
 
 		while(bAvailable)
 		{
-			for(int32_t i = 0; i < EView_Count; ++i)
+			for(int32_t i = 0; i < EView_COUNT; ++i)
 				bAvailable &= arrViewImage[i].IsAvailable();
 
 			CThreadUtilities::Sleep(1);

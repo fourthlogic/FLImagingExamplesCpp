@@ -8,7 +8,7 @@ enum EImageType
 {
 	EImageType_Source = 0,
 	EImageType_Destination,
-	EImageType_Count,
+	EImageType_COUNT,
 };
 
 int main()
@@ -18,10 +18,10 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare the image object
-	CFLImage arrFliImage[EImageType_Count];
+	CFLImage arrFliImage[EImageType_COUNT];
 
 	// 이미지 뷰 선언 // Declare the image view
-	CGUIViewImageWrap arrViewImage[EImageType_Count];
+	CGUIViewImageWrap arrViewImage[EImageType_COUNT];
 
 	do
 	{
@@ -51,7 +51,7 @@ int main()
 		bool bError = false;
 
 		// 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 		{
 			if(IsFail(res = arrViewImage[i].SetImagePtr(&arrFliImage[i])))
 			{
@@ -92,9 +92,9 @@ int main()
 			break;
 		}
 
-		CGUIViewImageLayerWrap arrLayer[EImageType_Count];
+		CGUIViewImageLayerWrap arrLayer[EImageType_COUNT];
 
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 		{
 			// 출력을 위한 이미지 레이어를 얻어옵니다. //  Gets the image layer for output.
 			// 따로 해제할 필요 없음 // No need to release separately
@@ -131,7 +131,7 @@ int main()
 			  && arrViewImage[EImageType_Destination].IsAvailable())
 			CThreadUtilities::Sleep(1);
 
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 			arrViewImage[i].Destroy();
 	}
 	while(false);

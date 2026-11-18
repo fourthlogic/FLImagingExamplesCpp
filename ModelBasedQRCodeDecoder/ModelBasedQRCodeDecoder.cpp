@@ -20,17 +20,17 @@ int main()
 			EViewList_ModelBaseFind,
 			EViewList_NormalFind,
 
-			EViewList_Count
+			EViewList_COUNT
 		};
 
 		// Declaration of the image view 
-		CGUIViewImageWrap arrViewImage[EViewList_Count];
+		CGUIViewImageWrap arrViewImage[EViewList_COUNT];
 
-		CFLImage arrFliImage[EViewList_Count];
-		CGUIViewImageLayerWrap arrLayer[EViewList_Count];
+		CFLImage arrFliImage[EViewList_COUNT];
+		CGUIViewImageLayerWrap arrLayer[EViewList_COUNT];
 
 
-		const wchar_t* arrWcsViewText[EViewList_Count] =
+		const wchar_t* arrWcsViewText[EViewList_COUNT] =
 		{
 			L"Learn View",
 			L"Model Based Decoder Result View",
@@ -60,7 +60,7 @@ int main()
 		const int32_t i32ViewSize = 450;
 		const int32_t i32Start = 100;
 
-		for(int32_t i = 0; i < EViewList_Count; ++i)
+		for(int32_t i = 0; i < EViewList_COUNT; ++i)
 		{
 			int32_t i32X = i32ViewSize * i;
 			int32_t i32Y = i32Start;
@@ -239,14 +239,14 @@ int main()
 		}
 
 		// 이미지 뷰를 갱신 합니다. // Update image view
-		for(int32_t i = 0; i < EViewList_Count; ++i)
+		for(int32_t i = 0; i < EViewList_COUNT; ++i)
 			arrViewImage[i].Invalidate();
 
 		// The image view is waiting until close.
 		while(arrViewImage[EViewList_Learn].IsAvailable() && arrViewImage[EViewList_ModelBaseFind].IsAvailable() && arrViewImage[EViewList_NormalFind].IsAvailable())
 			CThreadUtilities::Sleep(1);
 
-		for(int32_t i = 0; i < EViewList_Count; ++i)
+		for(int32_t i = 0; i < EViewList_COUNT; ++i)
 			arrViewImage[i].Destroy();
 	}
 	while(false);

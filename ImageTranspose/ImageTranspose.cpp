@@ -14,7 +14,7 @@ enum EImageType
 	EImageType_DestinationYZ,
 	EImageType_DestinationZX,
 	EImageType_DestinationZY,
-	EImageType_Count,
+	EImageType_COUNT,
 };
 
 int main()
@@ -24,10 +24,10 @@ int main()
 	CLibraryUtilities::Initialize();
 
 	// 이미지 객체 선언 // Declare the image object
-	CFLImage arrFliImage[EImageType_Count];
+	CFLImage arrFliImage[EImageType_COUNT];
 
 	// 이미지 뷰 선언 // Declare the image view
-	CGUIViewImageWrap arrViewImage[EImageType_Count];
+	CGUIViewImageWrap arrViewImage[EImageType_COUNT];
 
 	// 알고리즘 동작 결과 // Algorithm execution result
 	CResult res = EResult_UnknownError;
@@ -123,7 +123,7 @@ int main()
 		}
 
 		// 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 		{
 			if((res = arrViewImage[i].SetImagePtr(&arrFliImage[i])).IsFail())
 			{
@@ -316,7 +316,7 @@ int main()
 		while(arrViewImage[EImageType_Source].IsAvailable() && arrViewImage[EImageType_DestinationXY].IsAvailable() && arrViewImage[EImageType_DestinationXZ].IsAvailable() && arrViewImage[EImageType_DestinationYX].IsAvailable() && arrViewImage[EImageType_DestinationYZ].IsAvailable() && arrViewImage[EImageType_DestinationZX].IsAvailable() && arrViewImage[EImageType_DestinationZY].IsAvailable())
 			CThreadUtilities::Sleep(1);
 
-		for(int32_t i = 0; i < EImageType_Count; ++i)
+		for(int32_t i = 0; i < EImageType_COUNT; ++i)
 			arrViewImage[i].Destroy();
 	}
 	while(false);
