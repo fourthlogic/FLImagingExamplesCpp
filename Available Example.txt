@@ -1308,45 +1308,12 @@
     - ChannelInsertion
       - The example of an algorithm that Inserts channels selected from multiple images.
       - 여러 이미지에서 선택된 채널들을 삽입하는 알고리즘 예제. 
-    - ChannelL1Norm
-      - The example of an algorithm that extracts L1 norm value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 L1 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelL2Norm
-      - The example of an algorithm that extracts L2 norm value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 L2 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelLinfNorm
-      - The example of an algorithm that extracts Linf norm value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 Linf Norm 을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelLpNorm
-      - The example of an algorithm that extracts Lp norm value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 Lp Norm 을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelMax
-      - The example of an algorithm that extracts maximum value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 최대값을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelMean
-      - The example of an algorithm that extracts mean value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 평균값을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelMedian
-      - The example of an algorithm that extracts median value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 중앙값을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelMin
-      - The example of an algorithm that extracts minimum value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 최소값을 추출하여 이미지화 하는 알고리즘 예제.
     - ChannelRemoval
       - The example of an algorithm that removes particular channels from a multichannel image.
       - 다채널 이미지에서 특정 채널을 제거하는 알고리즘 예제.
-    - ChannelStdev
-      - The example of an algorithm that extracts standard deviation value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 표준편차값을 추출하여 이미지화 하는 알고리즘 예제.
-    - ChannelSum
-      - The example of an algorithm that extracts sum value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 총합을 추출하여 이미지화 하는 알고리즘 예제.
     - ChannelSwap
       - The example of an algorithm that swaps two channels selected from a multichannel image.
       - 다채널 이미지에서 두개의 채널을 교환하여 이미지화하는 알고리즘 예제.
-    - ChannelVariance
-      - The example of an algorithm that extracts variance value of each pixel from a multichannel image.
-      - 다채널 이미지에서 각 픽셀의 분산값을 추출하여 이미지화 하는 알고리즘 예제.
 
   - [Dimension]
     - [Reduce]
@@ -1821,6 +1788,39 @@
     - OperationBlend 
       - The algorithm that performs blend operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 블렌드 연산을 수행하는 알고리즘.
+    - OperationChannelL1Norm
+      - The example of an algorithm that extracts L1 norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 L1 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelL2Norm
+      - The example of an algorithm that extracts L2 norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 L2 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelLinfNorm
+      - The example of an algorithm that extracts Linf norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 Linf Norm 을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelLpNorm
+      - The example of an algorithm that extracts Lp norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 Lp Norm 을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelMax
+      - The example of an algorithm that extracts maximum value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 최대값을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelMean
+      - The example of an algorithm that extracts mean value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 평균값을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelMedian
+      - The example of an algorithm that extracts median value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 중앙값을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelMin
+      - The example of an algorithm that extracts minimum value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 최소값을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelStdev
+      - The example of an algorithm that extracts standard deviation value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 표준편차값을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelSum
+      - The example of an algorithm that extracts sum value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 총합을 추출하여 이미지화 하는 알고리즘 예제.
+    - OperationChannelVariance
+      - The example of an algorithm that extracts variance value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 분산값을 추출하여 이미지화 하는 알고리즘 예제.
     - OperationCompare
       - The algorithm that performs compare operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 비교 연산을 수행하는 알고리즘.
