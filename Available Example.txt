@@ -10,6 +10,11 @@
         - The example of an algorithm that estimate pose matrix for a given point clouds.
         - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
 
+    - [Non Rigid Registration]
+      - NonRigidRegistration3D
+        - The example of an algorithm that estimate pose matrix for a given point clouds.
+        - 주어진 두 3D 객체(포인트 클라우드 또는 메시)에서 한쪽을 다른 쪽에 맞도록 비강체 변형하여 정합하는 알고리즘 예제.
+
     - [Iterative Closest Point]
       - IterativeClosestPoint3D
         - The example of an algorithm that align two given 3D Object.
