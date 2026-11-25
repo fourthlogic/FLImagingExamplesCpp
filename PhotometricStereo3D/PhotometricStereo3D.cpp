@@ -167,9 +167,9 @@ int main()
 		}
 
 		// Valid 픽셀의 기준 설정 // Set valid pixel ratio
-		if((res = photometricStereo3D.SetValidPixelThreshold(0.25)).IsFail())
+		if((res = photometricStereo3D.SetValidPixelRatio(0.25)).IsFail())
 		{
-			ErrorPrint(res, L"Failed to set valid pixel threshold.\n");
+			ErrorPrint(res, L"Failed to set valid pixel ratio.\n");
 			break;
 		}
 
