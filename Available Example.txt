@@ -2429,6 +2429,9 @@
   - LeastSquares
     - The example of calculate least squares.
     - 최소자승법 계산의 예제.
+  - LeastSquares3D
+    - The example of calculate least squares of 3D points.
+    - 3D 점의 최소자승법 계산의 예제.
   - Permutation
     - The example of permutation.
     - 순열 계산의 예제.
